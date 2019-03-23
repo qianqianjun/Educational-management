@@ -1,4 +1,5 @@
 package buct.software.dao;
+
 import buct.software.domain.College;
 import org.springframework.stereotype.Repository;
 
@@ -12,10 +13,10 @@ import java.util.List;
 
 @Repository
 public interface CollegeDao {
-    List<College> getColleges();
+    public List<College> getColleges();
 
-    College getCollegeByName(String coll);
+    public College getCollegeByName(String coll);
 
-
-
+//    public Integer updateCollege(College college);
 }
+

@@ -1,9 +1,12 @@
 package buct.software.domain;
 
+import lombok.Data;
+
 /**
  * @author 高谦
  * 学期实体类
  */
+@Data
 public class Semester {
     private String start;
     private String end;
@@ -15,30 +18,5 @@ public class Semester {
         this.semester = semester;
     }
 
-    public Semester() {
-    }
-
-    public String getStart() {
-        return start;
-    }
-
-    public void setStart(String start) {
-        this.start = start;
-    }
-
-    public String getEnd() {
-        return end;
-    }
-
-    public void setEnd(String end) {
-        this.end = end;
-    }
-
-    public String getSemester() {
-        return semester;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
-    }
+    public Semester() {}
 }
