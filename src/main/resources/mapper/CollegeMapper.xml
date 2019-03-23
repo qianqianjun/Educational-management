@@ -14,8 +14,10 @@
         select * from college
     </select>
 
+    
     <select id="getCollegeByName" parameterType="String" resultType="College">
         select college.college from college where college.college=#{coll}
     </select>
+
 
 </mapper>

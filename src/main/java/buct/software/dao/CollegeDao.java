@@ -13,9 +13,5 @@ import java.util.List;
 @Repository
 public interface CollegeDao {
     List<College> getColleges();
-
     College getCollegeByName(String coll);
-
-
-
 }

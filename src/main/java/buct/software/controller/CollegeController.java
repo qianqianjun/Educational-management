@@ -16,9 +16,9 @@ public class CollegeController {
     public ResponseMessage getcolleges(){
         return collegeService.getAllCollege();
     }
+
     @PostMapping(value = "/college")
     public ResponseMessage getCourseByname(@RequestParam("college") String college){
-        System.out.println(college);
         return collegeService.getCollegeByName(college);
     }
 }

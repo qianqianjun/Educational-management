@@ -24,7 +24,7 @@ public class HttpAspect {
      * 这就不用在每个方法中都写判断逻辑了。
      * 有bug ，真难受
      */
-    /*@Autowired
+    @Autowired
     IndexController controller;
     @Pointcut("execution(public * buct.software.controller.CollegeController.*(..))")
     public void login(){
@@ -54,5 +54,5 @@ public class HttpAspect {
         System.out.println("返回了！");
     }
 
-    */
+
 }
