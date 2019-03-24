@@ -1,8 +1,6 @@
 package buct.software.dao;
-
 import buct.software.domain.Course;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 /**
@@ -12,6 +10,4 @@ import java.util.List;
 
 @Repository
 public interface CourseDao {
-    public List<Course> getAll();
-    public Course getByCno(String cno);
 }
