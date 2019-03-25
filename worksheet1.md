@@ -48,6 +48,6 @@
 
 如何使用浏览器开发手机端界面，按 F12 ，打开开发者工具，选择这个按钮进入移动端开发模式，选择手机类型为iphone6 plus  （推荐使用谷歌或者火狐浏览器，不推荐使用 360浏览器）
 
-<img src="https://cdn.img.wenhairu.com/images/2019/03/25/733e5dfb7bf80f3dbbdf16be02befa54.png">
+![cmd-markdown-logo](https://cdn.img.wenhairu.com/images/2019/03/25/733e5dfb7bf80f3dbbdf16be02befa54.png)
 
 
