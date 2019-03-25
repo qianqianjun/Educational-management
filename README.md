@@ -1,3 +1,8 @@
+# 作业发布：
+作业详情请看下面的地址：[作业地址](https://github.com/qianqianjun/Educational-management/blob/master/worksheet1.md)
+
+
+
 ## 软件工程项目
 
 ---
