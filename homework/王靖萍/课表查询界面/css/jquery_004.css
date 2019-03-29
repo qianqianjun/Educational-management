@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+.widget-backdrop{
+	position: absolute !important;
+	text-align: center;
+    display: none;
+    background-color: rgba(253, 253, 253, 1);
+}
+
+
+.widget-backdrop.in {
+    opacity: 0.6 !important;               /* standard CSS3 style for transparency */  
+	-moz-opacity: 0.6 !important;          /* transparency for older Mozillas */  
+	filter: alpha(opacity=60) !important;  /* transparency for IE; note no decimal point */ 
+    filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */
+    -webkit-filter: blur(10px); /* Chrome, Opera */
+       -moz-filter: blur(10px);
+        -ms-filter: blur(10px);    
+            filter: blur(10px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+}
+
+
+.widget-backdrop.fade {
+    opacity: 0 !important;               	/* standard CSS3 style for transparency */  
+	-moz-opacity: 0 !important;          	/* transparency for older Mozillas */  
+	filter: alpha(opacity=0) !important;  	/* transparency for IE; note no decimal point */  
+}
+
+.widget-backdrop-loading{
+	position: absolute !important;
+	text-align: center;
+    display: none;
+    font-size:26px;
+    z-index:2;
+}
+
+.widget-backdrop-loading .image{
+	padding-top:5px;
+	padding-bottom:5px;
+	text-align: center;
+}
+
+.widget-backdrop-loading .msg {
+	 font-weight: bolder;
+  font-size: 24px;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 1px 0px 1px #333333;
+  font-family: serif;
+  color: #333333;
+}
