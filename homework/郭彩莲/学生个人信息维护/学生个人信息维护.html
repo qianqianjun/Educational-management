@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!-- saved from url=(0113)http://jwgl.buct.edu.cn/jwglxt/xsxxxggl/xsgrxxwh_cxXsGrxxxgIndex.html?gnmkdm=N100808&layout=default&su=2016014303 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>学生个人信息维护</title>
+	
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="Copyright" content="zfsoft">	
+<link rel="icon" href="http://jwgl.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://jwgl.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
+<style type="text/css">	
+	.active{font-weight: bolder;}
+	#navbar-tabs li{ margin-top: 2px;}
+	#navbar-tabs li a{ border-top: 2px solid transparent;}
+	#navbar-tabs li.active a{border-top: 2px solid #0770cd;}
+</style>	
+<!--jQuery核心框架库 -->
+<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="./js/jquery-migrate-1.4.1.min.js"></script>
+<!--jQuery浏览器检测 -->
+<script type="text/javascript" src="./js/browse-judge.js"></script>
+<script type="text/javascript">
+	//浏览器版本验证
+	var broswer = broswer();
+	if(broswer.msie==true||broswer.safari==true||broswer.mozilla==true||broswer.chrome==true){
+		if(broswer.msie==true&&broswer.version<9){
+		   window.location.href = _path+"/xtgl/init_cxBrowser.html";
+		}
+	}else{
+		 window.location.href = _path+"/xtgl/init_cxBrowser.html";
+	}
+</script>
+<script type="text/javascript">
+var _path 				= "/jwglxt";
+var _systemPath 		= "/jwglxt";
+var _stylePath 			= "/zftal-ui-v5-1.0.2";
+var _reportPath 		= "http://202.4.157.135:80/WebReport";
+var _refreshInterval	= "10";
+var _localeKey 			= "zh_CN";
+</script>
+<!--
+jquery.ui 需要在bootstrap之前加载，解决冲突问题
+http://blog.csdn.net/remote_roamer/article/details/14105999
+-->
+<script type="text/javascript" src="./js/jquery-ui-custom.contact-1.0.0.js"></script>
+<!--Bootstrap布局框架-->
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./css/error.css">
+<link rel="stylesheet" type="text/css" href="./css/zftal-ui.css">
+<script type="text/javascript" src="./js/bootstrap.min.js" charset="utf-8"></script>
+<!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 -->
+<script type="text/javascript" src="./js/jquery.utils.contact-min.js" charset="utf-8"></script>
+<!--jQuery基础工具库：$.browser,$.cookie,$.actual等 -->
+<script type="text/javascript" src="./js/jquery.plugins.contact-min.js" charset="utf-8"></script>
+<!--jQuery自定义event事件库 -->
+<script type="text/javascript" src="./js/jquery.events.contact-min.js" charset="utf-8"></script>
+<!--JavaScript对象扩展库：Array,Date,Number,String -->
+<script type="text/javascript" src="./js/jquery.extends.contact-min.js" charset="utf-8"></script>
+<!--Bootbox弹窗插件-->
+<link rel="stylesheet" type="text/css" href="./css/bootbox.css">
+<script src="./js/bootbox.concat-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/zh_CN.js" type="text/javascript" charset="utf-8"></script>
+
+<!--jQuery模拟滚动条库-->
+<link rel="stylesheet" type="text/css" href="./css/jquery.mCustomScrollbar.min.css">
+<script type="text/javascript" src="./js/jquery.mCustomScrollbar.min.js" charset="utf-8"></script>
+<!--jQuery.chosen美化插件-->
+<link rel="stylesheet" type="text/css" href="./css/chosen-min.css">
+<script type="text/javascript" src="./js/jquery.choosen.concat-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/zh_CN-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.utils.pinyin.min.js" charset="utf-8"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/html5shiv.min.js?ver=20190115" charset="utf-8"></script>
+<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/respond.min.js?ver=20190115" charset="utf-8"></script>
+<![endif]-->
+<!--业务框架jQuery全局设置和通用函数库-->
+<script type="text/javascript" src="./js/jquery.zftal.contact-min.js"></script>
+<!--国际化js库 -->
+<script type="text/javascript" src="./js/jquery.i18n-min.js" charset="utf-8"></script>
+<!--全局国际化js. -->
+<script type="text/javascript" src="./js/i18n-global_zh_CN.js" charset="utf-8"></script>
+<!--业务框架前端脚本国际化库-->
+<script type="text/javascript" src="./js/jquery.zftal_zh_CN-min.js"></script>
+<!--密码强弱判断-->
+<script type="text/javascript" src="./js/jquery.utils.strength.min.js"></script>
+
+	
+
+
+
+
+
+	
+<script type="text/javascript">
+
+	var _path 		= "/jwglxt";
+	var _systemPath = "/jwglxt";
+	var _stylePath  = "/zftal-ui-v5-1.0.2";
+	var _reportPath = "http://202.4.157.135:80/WebReport";
+	var _localeKey 			= "zh_CN";
+	
+	jQuery(function($){
+		$('[data-toggle*="validation"]').trigger("validation");
+		$('[data-toggle*="fixed"]').trigger("fixed");
+		if($.fn.tooltip){
+			$('[data-toggle*="tooltip"]').tooltip({container:'body'});
+		}
+	});
+	
+</script>
+<!--教务系统通用业务js引用:比如学年，学期等公共的信息会放在这里-->
+<script type="text/javascript" src="./js/jwglxt-common_zh_CN.js"></script>
+<!--业务模块的properties初始化-->
+<!--国际化js库 -->
+
+<script type="text/javascript" src="./js/jquery.Jcrop.min.js"></script>
+<link rel="stylesheet" href="./css/jquery.Jcrop.min.css" type="text/css">
+<style type="text/css">
+	.ui-jqgrid tr.jqgrow td {
+		white-space: normal;
+		vertical-align: top;
+	}
+	#btn_sc,#btn_xg{
+		display:none;
+	}
+	</style>
+
+<link href="./css/WdatePicker.css" rel="stylesheet" type="text/css"></head>
+<body>
+<input type="hidden" id="pkey" name="pkey" value="">
+	<!-- 头部 开始 -->
+	<header class="navbar-inverse top2">
+		<div class="container" id="navbar_container">
+					<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only"> 学生个人信息维护</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<a href="http://jwgl.buct.edu.cn/jwglxt/xsxxxggl/xsgrxxwh_cxXsGrxxxgIndex.html?gnmkdm=N100808&amp;layout=default&amp;su=2016014303#" id="topButton" class="navbar-brand" onclick="onClickMenu(&#39;/xsxxxggl/xsgrxxwh_cxXsGrxxxgIndex.html&#39;,&#39;N100808&#39;)">
+					学生个人信息维护
+				</a>
+				<script type="text/javascript">
+					document.title="学生个人信息维护";
+				</script>
+			</div>
+		</div>
+<!-- navbar-end  -->
+		</div>
+	</header>
+	
+	<!--头部 结束 -->
+	<div style="width: 100%; padding: 0px; margin: 0px;" id="bodyContainer">
+		<!-- requestMap中的参数为系统级别控制参数，请勿删除 -->
+		<form id="requestMap">
+			 <input type="hidden" id="sessionUserKey" value="2016014303"> 
+			 
+			 	<input type="hidden" id="gnmkdmKey" value="N100808">
+			 
+			 
+		</form>
+		<div class="container container-func sl_all_bg" id="yhgnPage" style="min-height: 532px;">
+			<div id="innerContainer">
+				<!-- 放置页面显示内容 -->
+				
+<!--操作按钮 开始 -->
+<div class="row sl_add_btn">
+    <div class="col-sm-12">
+      	<!-- 加载当前菜单栏目下操作     "N100808"-->
+     		<div class="btn-toolbar" role="toolbar" style="float:right;"><div class="btn-group" id="but_ancd"><button type="button" class="btn btn-default btn_sq" href="javascript:void(0);" id="btn_sq"><i class="bigger-100 glyphicon glyphicon-ban-circle"></i> 申请</button><button type="button" class="btn btn-default btn_xg" href="javascript:void(0);" id="btn_xg"><i class="bigger-100 glyphicon glyphicon-edit"></i> 修改</button><button type="button" class="btn btn-default btn_cxsq" href="javascript:void(0);" id="btn_cxsq"><i class="bigger-100 glyphicon glyphicon-tasks"></i> 撤销申请</button> </div> </div>
+		<!-- 加载当前菜单栏目下操作 -->
+    </div>
+</div>
+<!--操作按钮 结束  -->
+
+
+<div class="tsxx" hidden="">
+	<div class="alert alert-dismissible red" role="alert">
+		  <strong>提示:</strong>&nbsp;登陆系统请完善必填字段
+	</div>
+</div>
+<input id="dlzt" hidden="" value="null">
+<div class="panel panel-default">
+  	<div class="panel-heading">
+    	<h3 class="panel-title">历史修改记录</h3>
+  	</div>
+  	<div class="panel-body" id="searchBox" style="padding: 0px;">
+    	<form id="xsgrxxxgForm" name="xsgrxxxgForm" method="post">
+			<div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_lsxgjlTabGrid" dir="ltr" style="width: 1274px;"><div class="ui-widget-overlay jqgrid-overlay" id="lui_lsxgjlTabGrid"></div><div class="loading ui-state-default ui-state-active" id="load_lsxgjlTabGrid" style="display: none;">正在请求数据...</div><div class="ui-jqgrid-view" id="gview_lsxgjlTabGrid" style="width: 1274px;"><div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix" style="display: none;"><span class="ui-jqgrid-title">null</span></div><div class="ui-state-default ui-jqgrid-hdiv" style="width: 1276px;"><div class="ui-jqgrid-hbox"><table class="ui-jqgrid-htable" style="width:1320px" role="grid" aria-labelledby="gbox_lsxgjlTabGrid" cellspacing="0" cellpadding="0" border="0"><thead><tr class="ui-jqgrid-labels ui-sortable" role="rowheader"><th id="lsxgjlTabGrid_cb" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 40px;"><div id="jqgh_lsxgjlTabGrid_cb"><input role="checkbox" id="cb_lsxgjlTabGrid" class="cbox" type="checkbox" name="checkbox"><span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_xsxxxgsq_id" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 120px; display: none;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_xsxxxgsq_id" class="ui-jqgrid-sortable">表ID<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_xh_id" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 100px; display: none;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_xh_id" class="ui-jqgrid-sortable">学号ID<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_sqzt" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 120px; display: none;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_sqzt" class="ui-jqgrid-sortable">sqzt<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_shzt" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 120px; display: none;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_shzt" class="ui-jqgrid-sortable">shzt<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_shzt" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 120px; display: none;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_shzt" class="ui-jqgrid-sortable">shzt<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_" class="ui-jqgrid-sortable">流程跟踪<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_xnmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_xnmc" class="ui-jqgrid-sortable">学年<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_xqmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 80px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_xqmc" class="ui-jqgrid-sortable">学期<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_sqztmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_sqztmc" class="ui-jqgrid-sortable">申请状态<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_sqsj" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 200px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_sqsj" class="ui-jqgrid-sortable">申请时间<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_shztmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_shztmc" class="ui-jqgrid-sortable">审核状态<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_zzshsj" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 200px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_zzshsj" class="ui-jqgrid-sortable">最终审核时间<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_fjmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 200px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_fjmc" class="ui-jqgrid-sortable">附件<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="lsxgjlTabGrid_" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 200px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_lsxgjlTabGrid_" class="ui-jqgrid-sortable">操作<span class="s-ico" style=""><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th></tr></thead></table></div></div><div class="ui-jqgrid-bdiv" style="height: 300px; width: 1276px;"><div style="position:relative;"><div></div><table id="lsxgjlTabGrid" tabindex="0" cellspacing="0" cellpadding="0" border="0" role="grid" aria-multiselectable="true" aria-labelledby="gbox_lsxgjlTabGrid" class="ui-jqgrid-btable" style="width: 1320px;"><tbody><tr class="jqgfirstrow" role="row" style="height:auto"><td role="gridcell" style="height:0px;width:40px;"></td><td role="gridcell" style="height:0px;width:120px;display:none;"></td><td role="gridcell" style="height:0px;width:100px;display:none;"></td><td role="gridcell" style="height:0px;width:120px;display:none;"></td><td role="gridcell" style="height:0px;width:120px;display:none;"></td><td role="gridcell" style="height:0px;width:120px;display:none;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:80px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:200px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:200px;"></td><td role="gridcell" style="height:0px;width:200px;"></td><td role="gridcell" style="height:0px;width:200px;"></td></tr><tr name="norecords" class="emptyrow" align="center" valign="middle" style="height:80px;"><td colspan="15" align="center" valign="middle" style="line-height:80px;text-align: center;font-size:12px;">没有符合条件记录!</td></tr><tr></tr></tbody></table></div></div></div><div class="ui-jqgrid-resize-mark" id="rs_mlsxgjlTabGrid">&nbsp;</div></div>
+		</form>
+
+
+
+  	</div>
+</div>
+
+				
+
+
+<!--jQuery.jqGrid -->
+<link rel="stylesheet" type="text/css" href="./css/jquery.jqgrid.css">
+<script type="text/javascript" src="./js/jquery.jqgrid.src-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.jqgrid.contact-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/zh_CN.js(1)" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.jqgrid.settings.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.jqGrid-min.js" charset="utf-8"></script>
+<!--jQuery.validation -->
+<link rel="stylesheet" type="text/css" href="./css/jquery.validate-min.css">
+<script type="text/javascript" src="./js/jquery.validate-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.validate.contact-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.validate.methods.contact-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/zh_CN-min.js(1)" charset="utf-8"></script>
+<script type="text/javascript">
+	jQuery(function($){
+		$('[data-toggle*="validation"]').trigger("validation");
+	});
+</script>
+
+<script type="text/javascript" src="./js/jquery.filehandle.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/zh_CN.js(2)" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.filestyle.js" charset="utf-8"></script>
+	
+<script type="text/javascript" src="./js/WdatePicker.js"></script>
+<script type="text/javascript" src="./js/sfzyz.js"></script>
+<script type="text/javascript" src="./js/cxXsGrxxxgIndex.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() { 
+	if($("#dlzt").val() == "yes"){
+		$(".tsxx").show();
+	} 
+}); 
+
+</script>
+
+			</div>
+		</div>
+	</div>
+	<!-- footer -->
+	
+
+<!-- footer --> 
+<div id="footerID" class="footer">
+	<p>版权所有© Copyright 1999-2017  正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301</p>
+</div>
+<!-- footer-end -->
+	<!-- footer-end -->
+
+<script type="text/javascript">
+	jQuery(function($) {	
+		if ($("#navbar-tabs").length > 0) {
+			$("#navbar-tabs li:eq(0) a").tab('show');
+		}
+		
+		setMinheight();
+		
+		$('#yhgnPage').resize(function(){
+			var minHeight  = $(this).data('min-height');
+			var innerHeight =  $('#innerContainer').outerHeight(true);
+			//console.log("minHeight:" + minHeight + ",innerHeight:" + innerHeight);
+			$(this).css('min-height', Math.max(minHeight,innerHeight));
+		});
+		
+		function setMinheight(){
+			//计算grid页面高度
+			var docuemntHeight = $(document).height();
+			var topHeight = $('header').height();
+			var footerHeight = $('.footer').height();
+			var containerHeight = docuemntHeight-topHeight-footerHeight-60;
+			$('#yhgnPage').css('min-height',containerHeight).data('min-height',containerHeight);
+		}
+	});
+	//加载title名称，根据系统内置表设置，取菜单名称或者系统名称
+	jQuery(document).attr("title",'学生个人信息维护');
+</script>
+
+<div class="ui-widget ui-widget-content ui-corner-all ui-jqdialog" id="alertmod_lsxgjlTabGrid" dir="ltr" tabindex="-1" role="dialog" aria-labelledby="alerthd_lsxgjlTabGrid" aria-hidden="true" style="width: 200px; height: auto; z-index: 950; overflow: hidden; top: 306px; left: 583px;"><div class="ui-jqdialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" id="alerthd_lsxgjlTabGrid" style="cursor: move;"><span class="ui-jqdialog-title" style="float: left;">注意</span><a class="ui-jqdialog-titlebar-close ui-corner-all" style="right: 0.3em;"><span class="ui-icon ui-icon-closethick"></span></a></div><div class="ui-jqdialog-content ui-widget-content" id="alertcnt_lsxgjlTabGrid"><div>请选择记录</div><span tabindex="0"><span tabindex="-1" id="jqg_alrt"></span></span></div><div class="jqResize ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se"></div></div></body></html>
