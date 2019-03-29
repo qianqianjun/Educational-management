@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+	<title>北京化工大学教务管理系统</title>
+	
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Copyright" content="zfsoft">	
+<link rel="icon" href="http://jwgl.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://jwgl.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
+<style type="text/css">	
+	.active{font-weight: bolder;}
+	#navbar-tabs li{ margin-top: 2px;}
+	#navbar-tabs li a{ border-top: 2px solid transparent;}
+	#navbar-tabs li.active a{border-top: 2px solid #0770cd;}
+</style>	
+<!--jQuery核心框架库 -->
+<script type="text/javascript" src="js/jquery-1.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.js"></script>
+<!--jQuery浏览器检测 -->
+<script type="text/javascript" src="js/browse-judge.js"></script>
+<script type="text/javascript">
+	//浏览器版本验证
+	var broswer = broswer();
+	if(broswer.msie==true||broswer.safari==true||broswer.mozilla==true||broswer.chrome==true){
+		if(broswer.msie==true&&broswer.version<9){
+		   window.location.href = _path+"/xtgl/init_cxBrowser.html";
+		}
+	}else{
+		 window.location.href = _path+"/xtgl/init_cxBrowser.html";
+	}
+</script>
+<script type="text/javascript">
+var _path 				= "/jwglxt";
+var _systemPath 		= "/jwglxt";
+var _stylePath 			= "/zftal-ui-v5-1.0.2";
+var _reportPath 		= "http://202.4.157.135:80/WebReport";
+var _refreshInterval	= "10";
+var _localeKey 			= "zh_CN";
+</script>
+<!--
+jquery.ui 需要在bootstrap之前加载，解决冲突问题
+http://blog.csdn.net/remote_roamer/article/details/14105999
+-->
+<script type="text/javascript" src="js/jquery-ui-custom.js"></script>
+<!--Bootstrap布局框架-->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/error.css">
+<link rel="stylesheet" type="text/css" href="css/zftal-ui.css">
+<script type="text/javascript" src="js/bootstrap.js" charset="utf-8"></script>
+<!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 -->
+<script type="text/javascript" src="js/jquery_005.js" charset="utf-8"></script>
+<!--jQuery基础工具库：$.browser,$.cookie,$.actual等 -->
+<script type="text/javascript" src="js/jquery.js" charset="utf-8"></script>
+<!--jQuery自定义event事件库 -->
+<script type="text/javascript" src="js/jquery_014.js" charset="utf-8"></script>
+<!--JavaScript对象扩展库：Array,Date,Number,String -->
+<script type="text/javascript" src="js/jquery_006.js" charset="utf-8"></script>
+<!--Bootbox弹窗插件-->
+<link rel="stylesheet" type="text/css" href="css/bootbox.css">
+<script src="js/bootbox.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/zh_CN.js" type="text/javascript" charset="utf-8"></script>
+
+<!--jQuery模拟滚动条库-->
+<link rel="stylesheet" type="text/css" href="css/jquery_002.css">
+<script type="text/javascript" src="js/jquery_003.js" charset="utf-8"></script>
+<!--jQuery.chosen美化插件-->
+<link rel="stylesheet" type="text/css" href="css/chosen-min.css">
+<script type="text/javascript" src="js/jquery_011.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/zh_CN-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery_012.js" charset="utf-8"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/html5shiv.min.js?ver=20190115" charset="utf-8"></script>
+<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/respond.min.js?ver=20190115" charset="utf-8"></script>
+<![endif]-->
+<!--业务框架jQuery全局设置和通用函数库-->
+<script type="text/javascript" src="js/jquery_004.js"></script>
+<!--国际化js库 -->
+<script type="text/javascript" src="js/jquery_007.js" charset="utf-8"></script>
+<!--全局国际化js. -->
+<script type="text/javascript" src="js/i18n-global_zh_CN.js" charset="utf-8"></script>
+<!--业务框架前端脚本国际化库-->
+<script type="text/javascript" src="js/jquery_002.js"></script>
+<!--密码强弱判断-->
+<script type="text/javascript" src="js/jquery_013.js"></script>
+
+	
+	
+
+
+
+
+	<!--jQuery³£ÓÃ¹¤¾ßÀ©Õ¹¿â£º»ù´¡¹¤¾ß,×ÊÔ´¼ÓÔØ¹¤¾ß,ÔªËØ³ß´çÏà¹Ø¹¤¾ß -->
+<script type="text/javascript" src="js/jquery_005.js" charset="utf-8"></script>
+<!--jQueryä¯ÀÀÆ÷¼ì²â -->
+<script type="text/javascript" src="js/browse-judge.js"></script>
+<script type="text/javascript">
+	//\u6d4f\u89c8\u5668\u7248\u672c\u9a8c\u8bc1
+	var broswer = broswer();
+	if(broswer.msie==true||broswer.safari==true||broswer.mozilla==true||broswer.chrome==true){
+		if(broswer.msie==true&&broswer.version<9){
+		   window.location.href = _path+"/xtgl/init_cxBrowser.html";
+		}
+	}else{
+		 window.location.href = _path+"/xtgl/init_cxBrowser.html";
+	}
+</script>
+	
+
+</head>
+<body class="body-container">
+	<!-- 放置页面显示内容 -->
+	
+<!-- requestMap中的参数为系统级别控制参数，请勿删除 -->
+<form id="requestMap" style="display:none;">
+	<input type="hidden" id="sessionUserKey" value="2016014293">
+	<input type="hidden" id="gnmkdmKey" value="index">
+	<input type="hidden" id="login_type" value="">
+</form>
+<!-- top -->
+<div class="navbar navbar-default navbar-static-top top1">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand logo_2" href="#"><img src="images/logo_jw_w.png" style="margin-top:-3px">
+			<span id="xtmc">北京化工大学教务管理系统</span>
+			</a>
+			<button type="button" id="exit_btn" style="width:44px;height:34px;" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-navbar-collapse-js" aria-expanded="false">
+			退出
+			</button>
+			<button type="button" id="js_btn" style="width:44px;height:34px;" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-navbar-collapse-js" aria-expanded="false">
+				<img style="margin-top: 3.5px;margin-left: 2.5px;position:relative;top:-9px;position:relative;left:-10px;" src="images/user_logo.jpg" width="42" height="32">
+			</button>
+			
+			
+			<!--  -->
+			<button type="button" id="cd_btn" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-navbar-collapse" aria-expanded="false">
+				<span class="sr-only">功能菜单</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<!--  -->
+			
+		</div>
+		<!-- <ul class="nav navbar-nav navbar-right hidden-xs" style="display:block !important"> -->
+		<ul class="nav navbar-nav navbar-right  hidden-xs">
+
+				<li>
+					<form class="navbar-form ">
+			<!-- 			<input type="text" class="form-control" placeholder="搜索服务功能"> -->
+					  	
+					  	
+					  	 
+					</form>
+					</li>
+					
+			<li>
+				<a href="#" class="dropdown-toggle grxx" data-toggle="dropdown"><img src="images/user_logo.jpg" width="28" height="28"></a>
+				<ul class="dropdown-menu">
+					
+					
+					<li class="divider"></li>
+					<li><a href="javascript:void(0);" id="updatePassword"><i class="top_png mm"></i>修改密码</a></li>
+					
+					
+					
+					<li class="divider"></li>
+					<li><a href="javascript:void(0);" id="exit"><i class="top_png tc"></i>退出</a></li>
+				</ul>
+			</li>
+		</ul>
+		<form class="navbar-form navbar-right">
+			
+		  	
+		  	
+		  	
+		  		
+		  		
+		  		 <input type="hidden" name="language" value="zh_CN" id="localChange">
+		  		
+		</form>
+	</div>
+</div>
+<!-- top-end -->
+
+<!-- 角色 -->
+<div class="navbar_index" id="myDiv" style="display:none">
+	<div class="container">
+	 	<nav id="jsNav" class="navbar-collapse bs-navbar-collapse-js collapse" role="navigation" aria-expanded="false">
+	 	<ul class="nav navbar-nav">
+			 
+                <li class="dropdown">
+                	
+                	<!-- <a id="drop_N03" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                	自定义功能管理<b class="caret"></b> </a> -->
+                		<a tabindex="-1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+		                	学生
+		                	<span class="glyphicon glyphicon-ok float_r"></span>
+                		</a>
+                	
+                	
+                </li>
+            
+		</ul>
+	  	</nav>
+	</div>
+</div>
+
+<!-- 菜单  -->
+<div class="navbar_index">
+	<div class="container" id="myDiv1">
+	 	<nav id="cdNav" class="navbar-collapse bs-navbar-collapse collapse" role="navigation" aria-expanded="false">
+     	  	<ul class="nav navbar-nav"><li class="dropdown"><a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">报名申请<b class="caret"></b> </a><ul class="dropdown-menu" role="menu" aria-labelledby="drop1"> <li><a tabindex="-1" onclick="clickMenu('N102020','/xjyd/xjydsq_cxXjydsq.html?doType=details','学籍异动申请','null'); return false;" href="javascript:void(0);" target="_blank">学籍异动申请</a></li> <li><a tabindex="-1" onclick="clickMenu('N103520','/jlsgl/xssqjlsxm_cxXssqJlsxm.html','学生申请交流项目','null'); return false;" href="javascript:void(0);" target="_blank">学生申请交流项目</a></li> <li><a tabindex="-1" onclick="clickMenu('N1053','/fxgl/fxbm_cxXsfxbmIndex.html','辅修报名','null'); return false;" href="javascript:void(0);" target="_blank">辅修报名</a></li> <li><a tabindex="-1" onclick="clickMenu('N1056','/cxbm/cxbm_cxXscxbmIndex.html','重修报名','null'); return false;" href="javascript:void(0);" target="_blank">重修报名</a></li> <li><a tabindex="-1" onclick="clickMenu('N106005','/xszbbgl/xszbbgl_cxXszbbsqIndex.html?doType=details','学生证补办申请','null'); return false;" href="javascript:void(0);" target="_blank">学生证补办申请</a></li> <li><a tabindex="-1" onclick="clickMenu('N106204','/xszzy/xszzysqgl_cxXszzysqIndex.html?doType=details','学生转专业申请','null'); return false;" href="javascript:void(0);" target="_blank">学生转专业申请</a></li> <li><a tabindex="-1" onclick="clickMenu('N2510','/kjgl/kjbm_cxXskjbm.html','补选、重修自修、免推申请报名','null'); return false;" href="javascript:void(0);" target="_blank">补选、重修自修、免推申请报名</a></li> <li><a tabindex="-1" onclick="clickMenu('N2511','/jxrwbmgl/jxrwxmbm_cxJxrwxmbmIndex.html','免体缓考补选报名','null'); return false;" href="javascript:void(0);" target="_blank">免体缓考补选报名</a></li> <li><a tabindex="-1" onclick="clickMenu('N307010','/cjjglx/cjjglxsq_cxCjjglxsqIndex.html','成绩作废申请','null'); return false;" href="javascript:void(0);" target="_blank">成绩作废申请</a></li> <li><a tabindex="-1" onclick="clickMenu('N352510','/bkgl/bkmdwh_cxBkmdIndex.html','补考确认','null'); return false;" href="javascript:void(0);" target="_blank">补考确认</a></li> <li><a tabindex="-1" onclick="clickMenu('N151530','/kcthgl/xskcthsq_cxXskcthIndex.html?sqlx=xnkc','校内课程替代申请','null'); return false;" href="javascript:void(0);" target="_blank">校内课程替代申请</a></li> <li><a tabindex="-1" onclick="clickMenu('N151540','/kcthgl/xskcthsq_cxXskcthIndex.html?sqlx=xnxfjd','校内学分节点替代申请','null'); return false;" href="javascript:void(0);" target="_blank">校内学分节点替代申请</a></li> <li><a tabindex="-1" onclick="clickMenu('N151550','/kcthgl/xskcthsq_cxXskcthIndex.html?sqlx=xwkcxfjd','校外课程学分节点替代申请','null'); return false;" href="javascript:void(0);" target="_blank">校外课程学分节点替代申请</a></li> <li><a tabindex="-1" onclick="clickMenu('N303010','/cjfcgl/cjfcsq_cxCjfcsqIndex.html','成绩复查申请','null'); return false;" href="javascript:void(0);" target="_blank">成绩复查申请</a></li></ul></li><li class="dropdown"><a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">信息维护<b class="caret"></b> </a><ul class="dropdown-menu" role="menu" aria-labelledby="drop1"> <li><a tabindex="-1" onclick="clickMenu('N100802','/xsxxxggl/xsjhrxxcj_cxXsjhrxxcjIndex.html','学生监护人信息采集','null'); return false;" href="javascript:void(0);" target="_blank">学生监护人信息采集</a></li> <li><a tabindex="-1" onclick="clickMenu('N100808','/xsxxxggl/xsgrxxwh_cxXsGrxxxgIndex.html','学生个人信息维护','null'); return false;" href="javascript:void(0);" target="_blank">学生个人信息维护</a></li> <li><a tabindex="-1" onclick="clickMenu('N1051','/zxzygl/zxzyqr_cxZxzyqrIndex.html','主修专业确认','null'); return false;" href="javascript:void(0);" target="_blank">主修专业确认</a></li> <li><a tabindex="-1" onclick="clickMenu('N1532','/xspyfagl/xspyfaxxwh_cxXsPyfaxxwhIndex.html','个人培养方案','null'); return false;" href="javascript:void(0);" target="_blank">个人培养方案</a></li> <li><a tabindex="-1" onclick="clickMenu('N4770','/xmfzgl/xmfzqr_cxXmfzqrIndex.html','创新创业学分确认','null'); return false;" href="javascript:void(0);" target="_blank">创新创业学分确认</a></li> <li><a tabindex="-1" onclick="clickMenu('N542550','/xssxgl/sxgczl_cxSxgczlIndex.html','实习过程资料','null'); return false;" href="javascript:void(0);" target="_blank">实习过程资料</a></li> <li><a tabindex="-1" onclick="clickMenu('N109310','/dlflgl/flzyqr_cxFlzyqrIndex.html','分流专业确认','null'); return false;" href="javascript:void(0);" target="_blank">分流专业确认</a></li> <li><a tabindex="-1" onclick="clickMenu('N109510','/zyfxgl/zyfxqr_cxZyfxqrIndex.html','专业方向确认','null'); return false;" href="javascript:void(0);" target="_blank">专业方向确认</a></li></ul></li><li class="dropdown"><a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">选课<b class="caret"></b> </a><ul class="dropdown-menu" role="menu" aria-labelledby="drop1"> <li><a tabindex="-1" onclick="clickMenu('N253512','/xsxk/zzxkyzb_cxZzxkYzbIndex.html','自主选课','null'); return false;" href="javascript:void(0);" target="_blank">自主选课</a></li></ul></li><li class="dropdown"><a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">信息查询<b class="caret"></b> </a><ul class="dropdown-menu" role="menu" aria-labelledby="drop1"> <li><a tabindex="-1" onclick="clickMenu('N100801','/xsxxxggl/xsgrxxwh_cxXsgrxx.html','查询个人信息','null'); return false;" href="javascript:void(0);" target="_blank">查询个人信息</a></li> <li><a tabindex="-1" onclick="clickMenu('N105505','/xjyj/xjyj_cxXjyjIndex.html','学籍预警查询','null'); return false;" href="javascript:void(0);" target="_blank">学籍预警查询</a></li> <li><a tabindex="-1" onclick="clickMenu('N105508','/bygl/bysh_cxByshjgHcIndex.html','毕业审核结果核查','null'); return false;" href="javascript:void(0);" target="_blank">毕业审核结果核查</a></li> <li><a tabindex="-1" onclick="clickMenu('N2151','/kbcx/xskbcx_cxXskbcxIndex.html','学生课表查询','null'); return false;" href="javascript:void(0);" target="_blank">学生课表查询</a></li> <li><a tabindex="-1" onclick="clickMenu('N2155','/cdjy/cdjy_cxKxcdlb.html','查询空闲教室','null'); return false;" href="javascript:void(0);" target="_blank">查询空闲教室</a></li> <li><a tabindex="-1" onclick="clickMenu('N305005','/cjcx/cjcx_cxDgXscj.html','学生成绩查询','null'); return false;" href="javascript:void(0);" target="_blank">学生成绩查询</a></li> <li><a tabindex="-1" onclick="clickMenu('N305007','/cjcx/cjcx_cxDgXsxmcj.html','学生成绩明细查询','null'); return false;" href="javascript:void(0);" target="_blank">学生成绩明细查询</a></li> <li><a tabindex="-1" onclick="clickMenu('N358105','/kwgl/kscx_cxXsksxxIndex.html','考试信息查询','null'); return false;" href="javascript:void(0);" target="_blank">考试信息查询</a></li> <li><a tabindex="-1" onclick="clickMenu('N358163','/design/viewFunc_cxDesignFuncPageIndex.html','考试时间查询','null'); return false;" href="javascript:void(0);" target="_blank">考试时间查询</a></li> <li><a tabindex="-1" onclick="clickMenu('N4780','/xmfzgl/xshdfzcx_cxXshdfzcxIndex.html','创新创业获得学分','null'); return false;" href="javascript:void(0);" target="_blank">创新创业获得学分</a></li> <li><a tabindex="-1" onclick="clickMenu('N581035','/jyhzgl/ksxxcx_cxXsksxxIndex.html','结业换证考试查询','null'); return false;" href="javascript:void(0);" target="_blank">结业换证考试查询</a></li> <li><a tabindex="-1" onclick="clickMenu('N105515','/xsxy/xsxyqk_cxXsxyqkIndex.html','学生学业情况查询','null'); return false;" href="javascript:void(0);" target="_blank">学生学业情况查询</a></li> <li><a tabindex="-1" onclick="clickMenu('N219933','/design/viewFunc_cxDesignFuncPageIndex.html','全校课表查询','null'); return false;" href="javascript:void(0);" target="_blank">全校课表查询</a></li> <li><a tabindex="-1" onclick="clickMenu('N153540','/jxzxjhgl/jxzxjhck_cxJxzxjhckIndex.html','教学执行计划查看','null'); return false;" href="javascript:void(0);" target="_blank">教学执行计划查看</a></li></ul></li><li class="dropdown"><a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">教学评价<b class="caret"></b> </a><ul class="dropdown-menu" role="menu" aria-labelledby="drop1"> <li><a tabindex="-1" onclick="clickMenu('N401605','/xspjgl/xspj_cxXspjIndex.html?doType=details','学生评价','null'); return false;" href="javascript:void(0);" target="_blank">学生评价</a></li> <li><a tabindex="-1" onclick="clickMenu('N401650','/xspjgl/kcgcpj_cxKcgcpjxxIndex.html?doType=details','课程过程评价','null'); return false;" href="javascript:void(0);" target="_blank">课程过程评价</a></li> <li><a tabindex="-1" onclick="clickMenu('N403050','/kcwjdcgl/kcwjdc_cxKcwjdcglIndex.html?doType=details','课程问卷调查','null'); return false;" href="javascript:void(0);" target="_blank">课程问卷调查</a></li> <li><a tabindex="-1" onclick="clickMenu('N410510','/jxxxygl/jxxxfk_cxJxxxfkIndex.html','教学信息反馈','null'); return false;" href="javascript:void(0);" target="_blank">教学信息反馈</a></li></ul></li><li class="dropdown"><a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">毕业设计(论文)<b class="caret"></b> </a><ul class="dropdown-menu" role="menu" aria-labelledby="drop1"> <li><a tabindex="-1" onclick="clickMenu('N532530','/xsbysjgl/xsxt_cxXsxtIndex.html','学生选题','null'); return false;" href="javascript:void(0);" target="_blank">学生选题</a></li> <li><a tabindex="-1" onclick="clickMenu('N532540','/xsbysjgl/xsgczl_cxXsgczlIndex.html','学生过程资料','null'); return false;" href="javascript:void(0);" target="_blank">学生过程资料</a></li> <li><a tabindex="-1" onclick="clickMenu('N532550','/xsbysjgl/dbxxck_cxDbxxckIndex.html','答辩信息查看','null'); return false;" href="javascript:void(0);" target="_blank">答辩信息查看</a></li> <li><a tabindex="-1" onclick="clickMenu('N532560','/xsbysjgl/cjck_cxCjckIndex.html','成绩查看','null'); return false;" href="javascript:void(0);" target="_blank">成绩查看</a></li></ul></li></ul>	
+	  	</nav>
+	</div>
+</div>
+
+<!-- 主体 -->
+<div class="container padding-150">
+	<div class="row">
+		<div class="col-md-3 col-sm-4">
+			
+			
+			<div class="index_wdyy">
+				<h3><span>我的应用</span><a href="#" class="sz" id="wdyy_szbtn"></a></h3>
+				<ul class="list-unstyled mCustomScrollbar _mCS_1 mCS_no_scrollbar" id="index_wdyy" style="height: 350px;"><li class="col-md-4 col-sm-4 col-xs-6"><a onclick="clickMenu('N102020','/xjyd/xjydsq_cxXjydsq.html','学籍异动申请'); return false;" href="#" target="_blank" title="学籍异动申请"><img src="images/ico_but83.png" alt="学籍异动申请"><h5>学籍异动申请</h5></a></li><li class="col-md-4 col-sm-4 col-xs-6"><a onclick="clickMenu('N1053','/fxgl/fxbm_cxXsfxbmIndex.html','辅修报名'); return false;" href="#" target="_blank" title="辅修报名"><img src="images/ico_but28.png" alt="辅修报名"><h5>辅修报名</h5></a></li><li class="col-md-4 col-sm-4 col-xs-6"><a onclick="clickMenu('N105515','/xsxy/xsxyqk_cxXsxyqkIndex.html','学生学业情况查询'); return false;" href="#" target="_blank" title="学生学业情况查询"><img src="images/ico_but30.png" alt="学生学业情况查询"><h5>学生学业情况查询</h5></a></li><li class="col-md-4 col-sm-4 col-xs-6"><a onclick="clickMenu('N1056','/cxbm/cxbm_cxXscxbmIndex.html','重修报名'); return false;" href="#" target="_blank" title="重修报名"><img src="images/ico_but31.png" alt="重修报名"><h5>重修报名</h5></a></li><li class="col-md-4 col-sm-4 col-xs-6"><a onclick="clickMenu('N2510','/kjgl/kjbm_cxXskjbm.html','免推申请报名'); return false;" href="#" target="_blank" title="免推申请报名"><img src="images/ico_but18.png" alt="免推申请报名"><h5>免推申请报名</h5></a></li><li class="col-md-4 col-sm-4 col-xs-6"><a onclick="clickMenu('N2511','/jxrwbmgl/jxrwxmbm_cxJxrwxmbmIndex.html','教学项目报名'); return false;" href="#" target="_blank" title="教学项目报名"><img src="images/ico_but19.png" alt="教学项目报名"><h5>教学项目报名</h5></a></li><li class="col-md-4 col-sm-4 col-xs-6"><a onclick="clickMenu('N253512','/xsxk/zzxkyzb_cxZzxkYzbIndex.html','自主选课(一致版)'); return false;" href="#" target="_blank" title="自主选课(一致版)"><img src="images/ico_but46.png" alt="自主选课(一致版)"><h5>自主选课(一致版)</h5></a></li><li class="col-md-4 col-sm-4 col-xs-6"><a onclick="clickMenu('N305005','/cjcx/cjcx_cxDgXscj.html','学生成绩查询'); return false;" href="#" target="_blank" title="学生成绩查询"><img src="images/ico_but36.png" alt="学生成绩查询"><h5>学生成绩查询</h5></a></li><li class="col-md-4 col-sm-4 col-xs-6"><a onclick="clickMenu('N532530','/xsbysjgl/xsxt_cxXsxtIndex.html','学生选题'); return false;" href="#" target="_blank" title="学生选题"><img src="images/ico_but42.png" alt="学生选题"><h5>学生选题</h5></a></li></ul>
+				
+			</div>
+			
+		</div>
+		<div class="col-md-9 col-sm-8">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="index_grxx">
+						<div class="row">
+							<div class="col-md-5" id="yhxxIndex">
+
+
+	
+
+
+
+
+
+<div class="media">
+	<a class="pull-left" href="#">
+		
+		
+			
+				<img class="media-object" alt="110x110" src="images/photo_cxXszp.jpg" style="width: 110px; height: 110px;">
+			
+			
+			
+		
+		<!-- data-src="holder.js/110x110" -->
+	</a>
+	<div class="media-body">
+		<h4 class="media-heading">学生姓名</h4>
+		
+		
+			<p>信息科学与技术学院 计科1601</p>
+
+			
+<!-- 			<div class="progress"> -->
+
+
+<!-- 				</div> -->
+<!-- 				<a href="#">详细</a> -->
+<!-- 			</div> -->
+			
+
+		
+	</div>
+</div>
+
+</div>
+							<div class="col-md-7 mCustomScrollbar _mCS_3" id="newsnotice" style="height: 150px;"><div id="mCSB_3" class="mCustomScrollBox mCS-dark-3 mCSB_vertical mCSB_inside" tabindex="0"><div id="mCSB_3_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
+
+
+
+
+<h5 class="index_title"><span class="title">通知</span></h5>
+	<div class="list-group">
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=83C7727654280306E053839D04CA36AA&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			针对参加学籍异动选课的温馨提示
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2019-03-11</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=82C73B5B9230B893E053839D04CAEB3E&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于增设《普通物理实验（II）》和《普通物理实验（...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2019-02-26</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=82C5D46A82165730E053839D04CAF8F7&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于配合个人所得税专项附加扣除、采集父母或监护人信...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2019-02-26</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=82C55EE835A7476AE053839D04CA5582&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于增设《普通物理（II）》系列课程单开班重修的通...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2019-02-26</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=82C1594732BE1442E053839D04CABFA8&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于增设《形势与政策》系列课程单开班重修的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2019-02-26</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=8278DE8B947DFC9DE053839D04CA33AA&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2018-2019学年第二学期退补选和重修选课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2019-02-22</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=7FAE35CE1F280022E053839D04CACD5A&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于配合个人所得税专项附加扣除、完善教育管理信息系...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2019-01-18</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=7F29C960036E8E5EE053839D04CA0B0E&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2018-2019-2学期正选期间停课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2019-01-11</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=7EE9324EA51B5716E053839D04CA4BFF&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于全校性通识教育课程日语（II），德语（II）选...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2019-01-08</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=7E259D786C370336E053839D04CA0496&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2018-2019-2学期课程正选阶段选课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-12-29</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=7E225E8D5D712CD3E053839D04CAA914&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2018—2019学年第二学期本科生返校注册的...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-12-29</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=7C6466140FB11901E053839D04CA0E85&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2018年12月15日全国大学英语四、六级考试...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-12-07</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=7A81943EA681EEE8E053839D04CA78B1&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2018年11月全国大学英语四、六级口语考试相关事...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-11-13</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=7A7879BBCDECA8E9E053839D04CA26D1&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于“大学英语四、六级口语考试（CET-SET）”...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-11-13</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=787AF7CF2B8959FFE053839D04CAD254&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			全校通识课程之网络课程导课通知（昌平校区）
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-10-18</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=77B225B9E494E137E053839D04CA93BE&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于口语考试有关事宜的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-10-08</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=76FD97C168A5D31FE053839D04CA6F16&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			停开课程涉及大四学生名单
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-09-29</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=765AF620B3E72F60E053839D04CA643A&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			视频直播课的上课提醒
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-09-21</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=7649513994FFC79CE053839D04CA4071&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2018年11月大学英语四、六级口试考试报考补...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-09-20</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=75D1E759C79ECD79E053839D04CA1AA0&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2018-2019-1学期停课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-09-14</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=75B7437397931C56E053839D04CAD833&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2018年12月大学外语四、六级考试报名及有关...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-09-13</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=752BDF8210BA0084E053839D04CA708B&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			《物理化学（II）》增设单开班重修的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-09-06</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=75295EDDD3375919E053839D04CA9F5C&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			《普通物理（I）》《概率论与数理统计》增设单开班重...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-09-06</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=74ED43E2EB44194DE053839D04CA8F01&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2018-2019学年第一学期退补选和重修选课通知
+			</span>
+			
+			<span class="time float_r">2018-09-03</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=712C704D6E07C91AE053839D04CAB855&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2018-2019学年第一学期本科生返校注册的...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-07-17</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=70A16368B54DFB57E053839D04CAF2E2&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2018秋冬学期-智慧树网慕课课程激活学习手册
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-07-10</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=703AD06D24D73692E053839D04CA2A0F&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2018-2019-1学期课程正选阶段选课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-07-05</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=700E538962FC1160E053839D04CA884C&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于组织2018-2019学年学科交叉班招生的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-07-03</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6FC6309389F401C3E053839D04CA6428&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018-3小学期《美国大学研究方法、伦...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-06-29</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6FB5CACED2DEE212E053839D04CA080C&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018-3学期《平面广告设计》和《影视...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-06-29</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6F383B19E114840CE053839D04CAF8DC&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018-3小学期《生物纳米技术》停课通...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-06-22</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6EF6CE05A6572591E053839D04CA9714&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2017-2018-2学期学生评教系统开放的通...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-06-19</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6C54DEB3E6BE7061E053839D04CA2060&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2018年6月大学外语四、六级考试考生打印准考...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-05-22</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6C7308B8E6C1EC72E053839D04CAA87B&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			北京化工大学关于2017-2018-2学期本科生转...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-05-18</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6B4604909A4431C1E053839D04CABD0B&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018年第二学期体育理论考试通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-05-04</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6ADEF845F049C082E053839D04CAC31C&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018-3小学期停课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-04-28</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=69897FE2E97E3E35E053839D04CAA6B6&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018-3小学期选课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-04-11</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=673514EED64D512FE053839D04CA398B&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			通识教育课《拓展训练》课程上课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-03-13</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=671F1CFFC87EEC1BE053839D04CA7FB8&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018-2学期停课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-03-11</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=66F6862B0782FCB3E053839D04CA5741&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2018年6月大学英语四六级考试报名的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-03-09</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6695D0C3329CE6E8E053839D04CAEF2F&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2018春夏学期-智慧树网和超星尔雅网络通识课程激...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-03-07</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=66A50F06F93DC404E053839D04CAEC73&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			不关联跟班重修的说明
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-03-07</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6678D52C1C67D1AEE053839D04CAFFF8&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			选课延迟通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-03-05</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6664AC795B13D819E053839D04CAA0A4&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			停课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-03-02</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=663F2F2E5CC79690E053839D04CA93FE&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			单开班重修增加《普通物理II》视频直播课的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-03-02</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=663B16C17ECE82A6E053839D04CA9C38&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			单开班重修增加《机械设计》的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-02-28</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=663B4919170182CCE053839D04CAA249&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			单开班重修增加《结构化学》和《抽象代数》的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-02-28</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=663BA624AE9DA318E053839D04CA6EEA&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			单开班重修增加《化工原理》的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-02-28</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=66270F59BA4D8F24E053839D04CABE8D&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			单开班重修增加《高等数学》的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-02-27</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6612A6168AE89099E053839D04CA0A74&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018学年第二学期退补选和重修选课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-02-26</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6357317E75E194FCE053839D04CA245B&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018学年第二学期双学位缴费的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-01-22</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=628A6DA279B28C42E053839D04CAF096&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于体育课程项目选择的说明
+			</span>
+			
+			<span class="time float_r">2018-01-12</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6264C6158ACA1F20E053839D04CA5409&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2017—2018学年第二学期本科生返校注册的...
+			</span>
+			
+			<span class="time float_r">2018-01-10</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=6260EB2281D10CE2E053839D04CAC7B0&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			提醒：选课从1月10日12：30正式开始
+			</span>
+			
+			<span class="time float_r">2018-01-10</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=61F06B629C8D4715E053839D04CA99A4&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2017-2018-2学期开设网络通识选修课的...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-01-04</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=61EEDE038C07DDB9E053839D04CAE101&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018-2学期课程正选阶段选课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2018-01-04</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=61628168BD3923ADE053839D04CA7A6F&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2017-2018-1学期学生评教系统开放的通...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-12-28</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5F0720D39C46E05BE053839D04CA49A8&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017年秋季学期选修超星尔雅网络通识课程学习考试...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-11-28</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5EF977C8A3BA33D4E053839D04CAA515&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2017-2018第一学期选修智慧树网络课程学...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-11-28</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5E6581D5DA4FBCFFE053839D04CAA9CE&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			补办学生证及补购学生火车优惠卡流程及要求
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-11-20</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5D99369B39F9AF12E053839D04CAC21F&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2018年校级大学生科技创新基金项目申报的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-11-10</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5D8F39F372D21B7CE053839D04CAD662&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于做好北京化工大学2017级本科学生体质测试的通...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-11-10</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5CBEC41199A2A740E053839D04CA2CF6&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2017级学生网上维护个人学籍信息的补充通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-10-30</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5C81C26A7095E099E053839D04CA9147&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017年体育理论考试通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-10-27</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5BCD4690E4B69083E053839D04CA5F28&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2017级学生网上维护个人学籍信息的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-10-20</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5B95CD9804F27D18E053839D04CAC4D8&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			网络选修课程学生学习手册-超星
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-10-16</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5B06911C68C4D636E053839D04CAC632&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			停开课程通知最终版
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-10-11</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5B00F9C6EE636F5AE053839D04CA04D4&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2017-2018-1学期开设网络通识选修课的...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-10-09</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5A497145F17684D8E053839D04CA763C&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			【第二版】跟班重修与课表考试时间冲突说明
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-29</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5A3685EBF8A7AFEFE053839D04CA61DC&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017级英语分级教学快班慢班结果公示及教材通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-28</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5A3685EBF89BAFEFE053839D04CA61DC&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017级英语分级教学普通班结果公示及教材通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-28</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5A2B955F1AF8DFF4E053839D04CA664B&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018-1学期跟班重修与课表考试时间冲...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-28</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=59D1B18FD7DEE873E053839D04CAF2C3&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于四六级的紧急通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-24</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=59D13DDDF4F4D055E053839D04CA716F&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2014级毕业班照相的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-23</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=59B34E0CA1FF2722E053839D04CA9ED4&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			不允许跟班重修自修的范围通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-22</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=599D210AC3FB781DE053839D04CACEBF&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于跟班重修和学籍异动选课的说明
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-21</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=59868729E043B1D6E053839D04CAF1D0&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018-1学期停开课程通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-19</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=59855E151280681AE053839D04CA44A7&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017－2018学年第一学期转专业结果公示
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-19</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5932814D91A123D8E053839D04CA33DF&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			研讨课紧急通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-15</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5930E013A92BABCEE053839D04CA7C2E&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			推免网上报名申请操作说明
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-15</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=590DBF56BCE2B8F4E053839D04CA3639&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017级优秀生转专业结果公示
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-13</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=58C0773F5B43E001E053839D04CA1753&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于校选课《古典吉他音乐欣赏》《绘画与艺术欣赏》停...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-09</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=58BC9A2100AADCA9E053839D04CAAA48&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018-1学期开设网络通识选修课的通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-09</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=58AD92C2AD1B92D5E053839D04CAEBA0&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017级优秀生候选人公示及面试通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-08</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5898CD0B6AF0ACCAE053839D04CA10C3&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			2017-2018-1学期退补选及重修选课通知
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-07</span>
+		</a>
+	
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_ckXw.html?xwbh=5852BA25E7D0BE88E053839D04CA0E6F&amp;doType=save" target="_blank" class="list-group-item">
+			<span class="title">
+			
+			
+				<font color="black">【通知】</font>
+			
+			关于2017年12月大学外语四、六级考试报名及有关...
+			</span>
+			
+				<i class="index_png new"></i>
+			
+			<span class="time float_r">2017-09-04</span>
+		</a>
+	
+	
+	
+	<div>
+		<a href="http://jwgl.buct.edu.cn/jwglxt/xtgl/xwck_cxMoreXwList.html" target="_blank"><p align="right">...更多</p></a>
+	</div>
+	
+	</div>
+</div><div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-dark-3 mCSB_scrollTools_vertical" style="display: block;"><a href="#" class="mCSB_buttonUp" oncontextmenu="return false;" style="display: block;"></a><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 7px; max-height: 100px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div><a href="#" class="mCSB_buttonDown" oncontextmenu="return false;" style="display: block;"></a></div></div></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="index_rctx" id="area_one">
+
+
+
+<h5 class="index_title"><span class="title">课表</span></h5>
+
+	
+	
+	 
+		<a onclick="clickMenu('N2151','/kbcx/xskbcx_cxXskbcxIndex.html','学生课表查询'); return false;" href="#" target="_blank" class="list-group-item">
+			<span class="title">
+			  3-13周(11-13节)-星期一-Java程序设计-北区-A阶-203-万静
+			</span>
+		</a>
+		
+		
+	 
+		<a onclick="clickMenu('N2151','/kbcx/xskbcx_cxXskbcxIndex.html','学生课表查询'); return false;" href="#" target="_blank" class="list-group-item">
+			<span class="title">
+			  1-9周(1-3节)-星期一-计算机系统结构-北区-B阶-304-韩阳
+			</span>
+		</a>
+		
+		
+	 
+		<a onclick="clickMenu('N2151','/kbcx/xskbcx_cxXskbcxIndex.html','学生课表查询'); return false;" href="#" target="_blank" class="list-group-item">
+			<span class="title">
+			  3-14周(7-9节)-星期一-信息论基础-北区-A阶-303-邢藏菊
+			</span>
+		</a>
+		
+		
+	 
+		<a onclick="clickMenu('N2151','/kbcx/xskbcx_cxXskbcxIndex.html','学生课表查询'); return false;" href="#" target="_blank" class="list-group-item">
+			<span class="title">
+			  1-16周(3-5节)-星期二-计算机网络-北区-B阶-201-卢罡
+			</span>
+		</a>
+		
+		
+	 
+		<a onclick="clickMenu('N2151','/kbcx/xskbcx_cxXskbcxIndex.html','学生课表查询'); return false;" href="#" target="_blank" class="list-group-item">
+			<span class="title">
+			  5-8周(7-9节)-星期二-大学生就业与创业指导-北区-B阶-203-汪雪琴
+			</span>
+		</a>
+		
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+	
+		
+	<div>
+		<a onclick="clickMenu('N2151','/kbcx/xskbcx_cxXskbcxIndex.html','学生课表查询'); return false;" target="_blank"><p id="xskbcxgd" align="right">...更多</p></a>
+	</div>
+	
+	
+	
+</div>
+				</div>
+				<div class="col-md-6">
+					
+					
+						<div class="index_rctx mCustomScrollbar _mCS_2 mCS_no_scrollbar" id="area_two"><div id="mCSB_2" class="mCustomScrollBox mCS-dark-3 mCSB_vertical mCSB_inside" tabindex="0"><div id="mCSB_2_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+
+
+<style type="text/css">
+.index_rctx .list-group-item .time {
+    float: right;
+    margin-left: 10px;
+    color: #858585;
+    font: normal 12px/39px SimSun;
+}
+</style>
+
+
+<h5 class="index_title"><span class="title">文件</span></h5>
+
+
+	<div class="list-group">
+	
+	
+	
+	</div>
+<!-- 	sdfdsg -->
+</div><div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-dark-3 mCSB_scrollTools_vertical" style="display: none;"><a href="#" class="mCSB_buttonUp" oncontextmenu="return false;"></a><div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div><a href="#" class="mCSB_buttonDown" oncontextmenu="return false;"></a></div></div></div>
+					 
+				</div>
+				<div class="col-md-6">
+					<div class="index_rctx" id="area_three">
+
+
+
+<h5 class="index_title"><span class="title">消息</span></h5>
+
+	<div class="list-group">
+	
+	
+	
+	</div>
+</div>
+				</div>
+				<div class="col-md-6">
+					<div class="index_rctx" id="area_four">
+
+
+
+<h5 class="index_title"><span class="title">成绩</span></h5>
+
+	<div class="list-group">
+	
+	
+	 
+		<a onclick="clickMenu('N305005','/cjcx/cjcx_cxDgXscj.html','学生成绩查询'); return false;" target="_blank" class="list-group-item">
+			<span class="title">
+			2018-2019-1-专业必修-计算机组成原理
+			</span>
+			<span class="fraction float_r">71</span>
+		</a>
+    		
+	
+	 
+		<a onclick="clickMenu('N305005','/cjcx/cjcx_cxDgXscj.html','学生成绩查询'); return false;" target="_blank" class="list-group-item">
+			<span class="title">
+			2018-2019-1-专业选修-数据仓库与数据挖掘
+			</span>
+			<span class="fraction float_r">72</span>
+		</a>
+    		
+	
+	 
+		<a onclick="clickMenu('N305005','/cjcx/cjcx_cxDgXscj.html','学生成绩查询'); return false;" target="_blank" class="list-group-item">
+			<span class="title">
+			2018-2019-1-专业必修-数据库原理
+			</span>
+			<span class="fraction float_r">77</span>
+		</a>
+    		
+	
+	 
+		<a onclick="clickMenu('N305005','/cjcx/cjcx_cxDgXscj.html','学生成绩查询'); return false;" target="_blank" class="list-group-item">
+			<span class="title">
+			2018-2019-1-实践环节必修-数据库原理课程设计
+			</span>
+			<span class="fraction float_r">81</span>
+		</a>
+    		
+	
+	 
+		<a onclick="clickMenu('N305005','/cjcx/cjcx_cxDgXscj.html','学生成绩查询'); return false;" target="_blank" class="list-group-item">
+			<span class="title">
+			2018-2019-1-专业必修-编译原理
+			</span>
+			<span class="fraction float_r">82</span>
+		</a>
+    		
+	
+			
+	
+			
+	
+			
+	
+			
+	
+			
+	
+	
+	
+	
+	
+	<div>
+	    <a onclick="clickMenu('N305005','/cjcx/cjcx_cxDgXscj.html','学生成绩查询'); return false;" target="_blank"><p id="xscjcxgd" align="right">...更多</p></a>
+	</div>
+	
+	
+	</div>
+</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- footer --> 
+
+
+<!-- footer --> 
+<div id="footerID" class="footer">
+	<p>版权所有© Copyright 1999-2017  正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301</p>
+</div>
+<!-- footer-end -->
+<!-- footer-end -->
+
+
+
+
+		<style type="text/css">
+			.icon-div {
+				background-color: #48abea;
+				color: #fff;
+				font-size: 20px;
+				font-weight: 600;
+				text-align: center;
+				width: 48px;
+				height: 48px;
+				line-height: 48px;
+				border-radius: 100%;
+				margin: auto;
+			}
+			.index_wdyy ul li h5{
+				height: 60px;
+				overflow: hidden;
+			}
+			
+			.list-unstyled a{
+				text-decoration: none;
+			}
+			.index_rctx{
+				height:280px;
+			}
+			.index_rctx .table-responsive{   
+				height: 240px;
+    			overflow-y: hidden; 
+    		}
+		</style>
+
+
+<script type="text/javascript">
+ 	$(function() {
+				$(document).off('click', '#js_btn').on('click', '#js_btn', function(e) {
+				     $("#myDiv").css("display","");
+				});
+				localStorage.setItem('language',$("#localChange").val());//把值放入localStorage
+				if($("#localChange").val()=='en_US'){//切换系统名称为英文的
+					$("#xtmc").text("");
+					$("title").text("")
+					$("a.zh").hide();
+					$("a.en").show();
+				}else{
+					$("a.zh").show();
+					$("a.en").hide();
+				}
+			});
+ 	/* $(function($){
+	var broswer = function() {
+	    var _broswer = {};
+	    var sUserAgent = navigator.userAgent;
+	    //console.info("useragent: ", sUserAgent);
+	    var isOpera = sUserAgent.indexOf("Opera") > -1;
+	    if (isOpera) {
+	        //首先检测Opera是否进行了伪装
+	        if (navigator.appName == 'Opera') {
+	            //如果没有进行伪装，则直接后去版本号
+	            _broswer.version = parseFloat(navigator.appVersion);
+	        } else {
+	            var reOperaVersion = new RegExp("Opera (\\d+.\\d+)");
+	            //使用正则表达式的test方法测试并将版本号保存在RegExp.$1中
+	            reOperaVersion.test(sUserAgent);
+	            _broswer.version = parseFloat(RegExp['$1']);
+	        }
+	        _broswer.opera = true;
+	    }
+	    var isChrome = sUserAgent.indexOf("Chrome") > -1;
+	    if (isChrome) {
+	        var reChorme = new RegExp("Chrome/(\\d+\\.\\d+(?:\\.\\d+\\.\\d+))?");
+	        reChorme.test(sUserAgent);
+	        _broswer.version = parseFloat(RegExp['$1']);
+	        _broswer.chrome = true;
+	    }
+	    //排除Chrome信息，因为在Chrome的user-agent字符串中会出现Konqueror/Safari的关键字
+	    var isKHTML = (sUserAgent.indexOf("KHTML") > -1
+	            || sUserAgent.indexOf("Konqueror") > -1 || sUserAgent
+	            .indexOf("AppleWebKit") > -1)
+	            && !isChrome;
+	    if (isKHTML) {//判断是否基于KHTML，如果时的话在继续判断属于何种KHTML浏览器
+	        var isSafari = sUserAgent.indexOf("AppleWebKit") > -1;
+	        var isKonq = sUserAgent.indexOf("Konqueror") > -1;
+	        if (isSafari) {
+	            var reAppleWebKit = new RegExp("Version/(\\d+(?:\\.\\d*)?)");
+	            reAppleWebKit.test(sUserAgent);
+	            var fAppleWebKitVersion = parseFloat(RegExp["$1"]);
+	            _broswer.version = parseFloat(RegExp['$1']);
+	            _broswer.safari = true;
+	        } else if (isKonq) {
+	            var reKong = new RegExp(
+	                    "Konqueror/(\\d+(?:\\.\\d+(?\\.\\d)?)?)");
+	            reKong.test(sUserAgent);
+	            _broswer.version = parseFloat(RegExp['$1']);
+	            _broswer.konqueror = true;
+	        }
+	    }
+	    // !isOpera 避免是由Opera伪装成的IE  
+	    var isIE = sUserAgent.indexOf("Trident") > -1 && !isOpera;
+	    if (isIE) {
+	        var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+	        reIE.test(sUserAgent);
+	        _broswer.version = parseFloat(RegExp['$1']);
+	        _broswer.msie = true;
+	    }
+	    // 排除Chrome 及 Konqueror/Safari 的伪装
+	    var isMoz = sUserAgent.indexOf("Gecko") > -1 && !isChrome && !isKHTML;
+	    if (isMoz) {
+	        var reMoz = new RegExp("rv:(\\d+\\.\\d+(?:\\.\\d+)?)");
+	        reMoz.test(sUserAgent);
+	        _broswer.version = parseFloat(RegExp['$1']);
+	        _broswer.mozilla = true;
+	    }
+	    return _broswer;
+	}
+ 		var broswer = broswer();
+ 		if(broswer.msie==true||broswer.safari==true||broswer.mozilla==true||broswer.chrome==true){
+ 			if(broswer.msie==true&&broswer.version<9){
+ 			   window.location.href = _path+"/xtgl/init_cxBrowser.html";
+ 			}
+ 		}else{
+ 			 window.location.href = _path+"/xtgl/init_cxBrowser.html";
+ 		}
+ 	}) */
+</script>
+<script type="text/javascript" src="js/index_v5.js"></script>
+<script type="text/javascript" src="js/jwglxt_index.js"></script>
+<!--jQuery浏览器检测 -->
+<!--jQuery.validation -->
+<link rel="stylesheet" type="text/css" href="css/jquery.css">
+<script type="text/javascript" src="js/jquery_009.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery_010.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery_008.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/zh_CN-min_002.js" charset="utf-8"></script>
+<script type="text/javascript">
+	jQuery(function($){
+		$('[data-toggle*="validation"]').trigger("validation");
+	});
+</script>
+
+
+</body></html>
