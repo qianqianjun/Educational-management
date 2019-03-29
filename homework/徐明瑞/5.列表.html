@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+<!-- meta使用viewport以确保页面可自由缩放 -->
+<!-- 初始化移动设备显示方式,默认缩放比例1(不缩放) -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 引入 jQuery Mobile 样式 -->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+<!-- 引入 jQuery 库 -->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- 引入 jQuery Mobile 库 -->
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<title>jQuery Mobile列表</title>
+</head>
+<body>
+<!-- jqm列表分为有序和无序,需要在再ol或ul增加data-role="listview" -->
+<!-- 增加按钮加入a元素 -->
+<div data-role="page">
+	<div data-role="header">
+		<p>标题</p>
+	</div>
+	
+	<div role="main" class="ui-content" data-inset="true"><!-- 不贴边显示内容:data-inset = "true" -->
+		<!-- 注意:此处是ol 的data-role -->
+		<ol data-role="listview" data-inset="true">
+			<li><a href="">项目1</a></li>
+			<li>项目2(无连接)</li>
+			<li><a href="">项目3</a></li>
+		</ol>
+		<ul data-role="listview" data-inset="true">
+			<li><a href="">
+				<h2>G1次</h2>
+				<p>xx到xx</p>
+				<p>xxxxxx</p>
+				<!-- 把连接中其中的元素放置右上 ui-li-aside -->
+				<p class="ui-li-aside">9:00开</p>
+			</a></li>
+		</ul>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="">导航1</a></li>
+				<li><a href="">导航2</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

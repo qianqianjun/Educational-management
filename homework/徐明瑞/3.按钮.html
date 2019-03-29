@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+<!-- meta使用viewport以确保页面可自由缩放 -->
+<!-- 初始化移动设备显示方式,默认缩放比例1(不缩放) -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 引入 jQuery Mobile 样式 -->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+<!-- 引入 jQuery 库 -->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- 引入 jQuery Mobile 库 -->
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<title>jQuery Mobile按钮</title>
+</head>
+<body>
+<!-- 通过给a,button,input元素添加样式(或者data-role = "button") -->
+<div data-role = "page">
+	<div data-role = "header">
+		<p>标题</p>
+	</div>
+	<div role = "main" class="ui-content">
+		<p>内容</p>
+		<!-- 圆角:ui-corner-all -->
+		<!-- 阴影:ui-shadow -->
+		<!-- 并排显示:ui-btn-inline -->
+		<!-- 不同样式:ui-btn-a / b -->
+		<a href="" class = "ui-btn ui-btn-inline">按钮1:a标签</a>
+		<a href="" class = "ui-btn ui-btn-inline ui-corner-all ui-shadow">按钮2:a标签(并排,圆角,阴影)</a>
+		<a href="" class = "ui-btn ui-btn-inline ui-corner-all">按钮3:a标签(并排,圆角)</a>
+		<a href="" class = "ui-btn ui-btn-inline ui-shadow">按钮4:a标签(并排,阴影)</a>
+		<a href="" class = "ui-btn ui-btn-b">按钮5:a标签(不同样式)</a>
+		<input type="submit" name="btn" value="按钮2:submit(默认圆角阴影)">
+
+	</div>
+</div>
+</body>
+</html>
