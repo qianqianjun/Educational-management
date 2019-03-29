@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+<!-- meta使用viewport以确保页面可自由缩放 -->
+<!-- 初始化移动设备显示方式,默认缩放比例1(不缩放) -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 引入 jQuery Mobile 样式 -->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+<!-- 引入 jQuery 库 -->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- 引入 jQuery Mobile 库 -->
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<title>基本页面</title>
+</head>
+<body>
+<!-- 页面需要:标题栏,内容,页表 -->
+			<!-- 为了区分页面,用id分割每个页面,用href链接彼此 -->
+	<div data-role="page" id = "index">
+		<div data-role = "header">
+			<h1>我是标题1</h1>
+		</div>
+		<div role = "main" class="ui-content">
+			<p>我是内容1</p>
+			<!-- 设置超链接关联彼此 -->
+			<p><a href="#index2">index2</a></p>
+		</div>
+		<div data-role="footer">
+			<h1>我是页脚1</h1>
+		</div>
+	</div>
+
+	<div data-role="page" id = "index2">
+		<div data-role = "header">
+			<h1>我是标题2</h1>
+		</div>
+		<div role = "main" class="ui-content">
+			<p>我是内容2</p>
+			<p><a href="#index">index</a></p>
+		</div>
+		<div data-role="footer">
+			<h1>我是页脚2</h1>
+		</div>
+	</div>
+
+</body>
+</html>
