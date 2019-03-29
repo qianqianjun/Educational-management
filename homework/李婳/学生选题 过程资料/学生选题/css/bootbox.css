@@ -1,0 +1,147 @@
+.bootbox .modal-overflow {
+	-ms-overflow-y: hidden !important;
+}
+.bootbox .bootbox-body-overflow {
+	-ms-overflow-x: hidden; -ms-overflow-y: auto;
+}
+.bootbox .modal-dialog-reset {
+	margin: inherit !important;
+}
+.bootbox .modal-header {
+	padding: 10px; position: relative;
+}
+.bootbox .close {
+	border-radius: 0px;
+}
+.bootbox .modal-body {
+	padding: 8px;
+}
+.bootbox-alert.bootbox .modal-body {
+	-ms-overflow-y: auto;
+}
+.bootbox-confirm.bootbox .modal-body {
+	-ms-overflow-y: auto;
+}
+.bootbox .loading-spinner {
+	margin: 40px auto !important; padding: 10px !important; width: 300px !important; line-height: 30px !important;
+}
+.bootbox .loading-spinner span {
+	color: rgb(49, 112, 143); font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif; font-size: 16px; font-weight: bold; vertical-align: bottom;
+}
+.bootbox .modal-progress {
+	padding: 0px; min-height: 12px;
+}
+.bootbox .progress {
+	border-radius: 1px; height: 12px; margin-bottom: 0px; display: none;
+}
+.ajax-progress {
+	border-radius: 1px; height: 12px; margin-bottom: 0px; display: none;
+}
+.bootbox .progress-bar {
+	line-height: 12px;
+}
+.ajax-progress .progress-bar {
+	line-height: 12px;
+}
+.bootbox .modal-footer {
+	padding: 10px 15px;
+}
+.bootbox .alert-modal {
+	margin: auto 1em; border: 0px currentColor !important; border-image: none !important; height: auto; padding-top: 15px; padding-bottom: 15px; padding-left: 50px; display: block !important; -ms-word-break: break-all; -ms-word-wrap: break-word; min-height: 48px;
+}
+.bootbox .confirm-modal {
+	margin: auto 1em; border: 0px currentColor !important; border-image: none !important; height: auto; padding-top: 15px; padding-bottom: 15px; padding-left: 50px; display: block !important; -ms-word-break: break-all; -ms-word-wrap: break-word; min-height: 48px;
+}
+.bootbox .error-modal {
+	margin: auto 1em; border: 0px currentColor !important; border-image: none !important; height: auto; padding-top: 15px; padding-bottom: 15px; padding-left: 50px; display: block !important; -ms-word-break: break-all; -ms-word-wrap: break-word; min-height: 48px;
+}
+.bootbox .success-modal {
+	margin: auto 1em; border: 0px currentColor !important; border-image: none !important; height: auto; padding-top: 15px; padding-bottom: 15px; padding-left: 50px; display: block !important; -ms-word-break: break-all; -ms-word-wrap: break-word; min-height: 48px;
+}
+.bootbox .alert-modal p {
+	margin: auto 0px !important; text-align: left; font-size: 14px; font-weight: 400;
+}
+.bootbox .confirm-modal p {
+	margin: auto 0px !important; text-align: left; font-size: 14px; font-weight: 400;
+}
+.bootbox .error-modal p {
+	margin: auto 0px !important; text-align: left; font-size: 14px; font-weight: 400;
+}
+.bootbox .success-modal p {
+	margin: auto 0px !important; text-align: left; font-size: 14px; font-weight: 400;
+}
+.bootbox .alert-modal {
+	background: url("../images/alert.png") no-repeat left; color: rgb(0, 0, 0);
+}
+.bootbox .confirm-modal {
+	background: url("../images/confirm.png") no-repeat left; color: rgb(138, 109, 59);
+}
+.bootbox .error-modal {
+	background: url("../images/error.png") no-repeat left; color: rgb(169, 68, 66);
+}
+.bootbox .success-modal {
+	background: url("../images/success.png") no-repeat left; color: rgb(60, 118, 61);
+}
+.bootbox .mCustomScrollBox {
+	max-height: inherit !important;
+}
+.bootbox .sl_all_form {
+	padding: 0px;
+}
+.bootbox-body {
+	
+}
+.modal.bootbox {
+	-ms-overflow-y: hidden !important;
+}
+.bootbox-full {
+	top: 15px; right: 30px; font-size: 12px; display: inline-block; position: absolute; cursor: pointer;
+}
+.bootbox-full span {
+	color: rgb(255, 255, 255);
+}
+.box-full-screen .modal-dialog {
+	margin: 0px !important; top: 0px !important; width: 100% !important; height: 100% !important;
+}
+.blue-third-skin .sl_mod .modal-header {
+	background: rgb(117, 197, 224);
+}
+.blue-third-skin .modal-footer .btn-primary {
+	background: rgb(117, 197, 224); border: 1px solid rgb(91, 189, 222); border-image: none;
+}
+.basic-skin .sl_mod .modal-header {
+	background: rgb(80, 89, 101);
+}
+.basic-skin .modal-footer .btn-primary {
+	background: rgb(80, 89, 101); border: 1px solid rgb(67, 74, 84); border-image: none;
+}
+.wood-grain-skin .sl_mod .modal-header {
+	background: rgb(255, 193, 36);
+}
+.wood-grain-skin .modal-footer .btn-primary {
+	background: rgb(255, 193, 36); border: 1px solid rgb(224, 168, 25); border-image: none;
+}
+.green-skin .sl_mod .modal-header {
+	background: rgb(100, 173, 54);
+}
+.green-skin .modal-footer .btn-primary {
+	background: rgb(100, 173, 54); border: 1px solid rgb(87, 160, 41); border-image: none;
+}
+.blue-lightblue-skin .sl_mod .modal-header {
+	background: rgb(98, 163, 210);
+}
+.blue-lightblue-skin .modal-footer .btn-primary {
+	background: rgb(98, 163, 210); border: 1px solid rgb(20, 112, 214); border-image: none;
+}
+.blue-second-skin .sl_mod .modal-header {
+	background: rgb(64, 155, 255);
+}
+.blue-second-skin .modal-footer .btn-primary {
+	background: rgb(64, 155, 255); border: 1px solid rgb(20, 112, 214); border-image: none;
+}
+.blue-third-skin .sl_mod .modal-header {
+	background: rgb(98, 139, 150);
+}
+.blue-third-skin .modal-footer .btn-primary {
+	background: rgb(98, 139, 150); border: 1px solid rgb(45, 74, 82); border-image: none;
+}
