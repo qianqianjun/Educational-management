@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="index" >
+  <div data-role="header" data-position="fixed" >
+    <h1>列车查询时刻表</h1>
+  </div>
+
+  <div data-role="main" class="ui-content" >
+      <form method="post" action="demo_form.php">
+          <div class="ui-field-contain">
+            <label for="inception">起点站：</label>
+            <input type="text" name="inception" id="inception">       
+            <label for="Terminus">终点站：</label>
+            <input type="text" name="Terminus" id="Terminus">
+            <label for="train_number">车次：</label>
+            <input type="text" name="train_number" id="train_number">
+          </div>
+          <a class="ui-btn">查询</a>
+          <!-- <input type="submit" data-inline="true" value="提交"> -->
+        </form>
+        <ul data-role="listview" data-inset="true">
+            <li><a href="#index2">
+              <h2>G1次</h2>
+              <p>北京南-上海虹桥</p>
+              <p>用时：4：48</p>
+              <p class="ui-li-aside">09:00:00 开</p>
+            </a></li>
+            <li><a href="#">项目2</a></li>
+            <li><a href="#">项目3</a></li>
+          </ul>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+      <li><a href="#index" data-icon="search">查询</a></li>
+      <li><a href="#" data-icon="camera">收藏</a></li>
+      <li><a href="#" data-icon="home">我的</a></li>
+    </ul>
+    </div>
+  </div>
+</div> 
+
+
+
+
+
+
+
+<div data-role="page" id="index2">
+  <div data-role="header" data-position="fixed">
+    <h1>车次详情</h1>
+  </div>
+
+  <div data-role="main" class="ui-content" >
+    <table data-role="table" data-mode="reflow" class="ui-responsive table-stroke">
+      <thead>
+        <tr>
+          <th>站名</th>
+          <th>到站时间</th>
+          <th>出发时间</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>第一项</td>
+            <td>第二项</td>
+            <td>第三项</td>
+          </tr>
+          <tr>
+              <td>第一项</td>
+              <td>第二项</td>
+              <td>第三项</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+      <div data-role="navbar">
+        <ul>
+        <li><a href="#index" data-icon="search">查询</a></li>
+        <li><a href="#" data-icon="camera">收藏</a></li>
+        <li><a href="#" data-icon="home">我的</a></li>
+      </ul>
+      </div>
+    </div>
+</div> 
+
+<!-- $(document).on("pagebeforeshow","#index2",function(){
+	alert("pagebeforeshow");
+}); -->
+
+
+</body>
+</html>
