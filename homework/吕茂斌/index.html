@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>基本的页面</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+<div data-role="page" id="index">
+    <div data-role="header"data-position="fixed">
+    	<h1>我是标题1</h1>	
+    </div>
+    <div role="main" class="ui-content">  
+    <table data-role="table" data-mode="reflow" class="ui-responsive table-stroke">
+    	<thead>
+    		<tr>
+    			<th>第一列</th>
+    			<th>第二列</th>
+    			<th>第三列</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr>
+    			<td>123</td>
+    			<td>456</td>
+    			<td>789</td>
+    		</tr>
+    			<tr>
+    			<td>111</td>
+    			<td>4222</td>
+    			<td>744</td>
+    		</tr>
+
+    	</tbody>
+    </table> 
+    <!-- 	<form>
+    		<div class="ui-field-contain">
+    		<label>发车站</label>
+    		<input type="text">
+    	</div>
+    	<div class="ui-field-contain">
+    		<label>到车站</label>
+    		<input type="text">
+    	</div>
+    		<div class="ui-field-contain">
+    		<label>车次</label>
+    		<input type="text">
+    	</div>
+    	</form> -->
+    	<ul data-role="listview" data-inset="true">
+				<li><a href="#">
+				<h2>G1次</h2>	
+				<p>xxx-xxx</p>
+				<p>xxx-xxx</p>
+				<p class="ui-li-aside">9:00开</p>
+				</a></li>
+				<li><a href="#">222</a></li>
+				<li><a href="#">333</a></li>
+			</ul>
+
+    </div>
+	<div data-role="footer"data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#"data-icon="camera">111</a></li>
+				<li><a href="#"data-icon="carat-u">22</a></li>
+				<li><a href="#"data-icon="carat-d">3</a></li>
+			</ul>
+	    </div>
+    </div>
+  </div>
+
+<div data-role="page" id="index2">
+    <div data-role="header">
+    	<h1>我是标题2</h1>	
+    </div>
+    <div role="main" class="ui-content">   
+    	<p>我是内容2</p>
+    	<p><a href="#index1"data-transition="slide">index2</a></p>
+    </div>
+	<div data-role="footer">
+		<h1>我是页脚2</h1>
+	</div>
+</div>
+
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/jquery.mobile-1.4.3.js"></script>
+<!-- <script >
+	$(document).on("pagebeforehide","#index",function(){alert("pagebeforehide");});
+	$(document).on("pagehide","#index",function(){alert("pagehide");});
+	$(document).on("pagebeforeshow","#index2",function(){alert("pagebeforeshow");});
+	$(document).on("pageshow","#index2",function(){alert("pageshow");});
+</script> -->
+</body>
+</html>
