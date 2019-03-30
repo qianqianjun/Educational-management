@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>timetable</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="jquery.mobile-1.4.5.css"/>
+  </head>
+  <body>
+    <div data-role="page" id="index">
+      <div data-role="header" data-position="fixed">
+        <h1>Trains Timetable</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <p>contain</p>
+        <p><a href="#index2" data-transition="slideup">index2</a></p>
+        <a class="ui-btn ui-btn-inline">button</a>
+        <a class="ui-btn ui-btn-inline ui-btn-b ui-shadow">button</a>
+        <input type="submit" value="button2">
+        <table data-role="table" data-mode="reflow" class="ui-responsive table-stroke">
+          <thead>
+            <tr>
+              <th>train number</th>
+              <th>start - terminal</th>
+              <th>time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>D 26</td>
+              <td>Beijing - Shenyang</td>
+              <td>9 : 58</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        <div data-role="footer" data-position="fixed">
+          <div data-role="navbar">
+            <ul>
+              <li><a href="#index1">timetable</a> </li>
+              <li><a href="#index2">star</a></li>
+              <li><a href="#index3">set</a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+    <div data-role="page" id="index2">
+      <div data-role="header">
+        <h1>Title 2</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <p>contain2</p>
+        <ul data-role="listview">
+          <li><a href="#">
+            <h2>D 26</h2>
+            <p>Beijing - Shenyang</p>
+            <p class="ui-li-aside">9:00 Feb 2th start</p>
+          </a></li>
+          <li><a href="#">star</a></li>
+          <li><a href="#">set</a></li>
+          <li><a href="#">search</a> </li>
+          <li><a href="#">star</a></li>
+          <li><a href="#">set</a></li>
+        </ul>
+        <p><a href="#index" data-transition="slidedown">index</a></p>
+      </div>
+      <div data-role="footer">
+        <h1>Tail2</h1>
+      </div>
+    </div>
+    <div data-role="page" id="index3">
+      <div data-role="header">
+        <h1>Title 2</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <p>contain2</p>
+        <form>
+          <div class="ui-field-contain">
+            <label>origin station</label>
+              <input type="text">
+          </div>
+          <div class="ui-field-contain">
+            <label>terminal station</label>
+              <input type="text">
+          </div>
+          <div class="ui-field-contain">
+            <label>train number</label>
+              <input type="text">
+          </div>
+        </form>
+        <p><a href="#index" data-transition="slidedown">index</a></p>
+      </div>
+      <div data-role="footer">
+        <h1>Tail2</h1>
+      </div>
+    </div>
+    <script src="jquery-1.8.3.js"></script>
+    <script src="jquery.mobile-1.4.5.js"></script>
+    <script>
+      $(document).on("pagebeforecreate","#index",function () {
+        alert("pagebeforecreate");
+      })
+      $(document).on("pagehide","#index",function () {
+        alert("pagehide");
+      })
+      $(document).on("pagecreate",function () {
+        alert("pagecreate");
+      })
+      $(document).on("pageinit",function () {
+        alert("pageinit");
+      })
+    </script>
+  </body>
+</html>
