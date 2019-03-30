@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+<!-- meta使用viewport以确保页面可自由缩放 -->
+<!-- 初始化移动设备显示方式,默认缩放比例1(不缩放) -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 引入 jQuery Mobile 样式 -->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+<!-- 引入 jQuery 库 -->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- 引入 jQuery Mobile 库 -->
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<title>jQuery Mobile表单</title>
+</head>
+<body>
+<div data-role = "page">
+	<div data-role = "header">
+		<p>标题</p>
+	</div>
+	<div role = "main" class="ui-content">
+	<!-- 表单的id不能重复 -->
+		<form>
+		<!-- 自适应功能ui-field-contain 窄屏幕上下显示,都会加入一个分隔符 -->
+		<div class="ui-field-contain">
+			<label>发车站</label>
+			<input type="text" name="">
+		</div>
+		<div class="ui-field-contain">
+			<label>到达站</label>
+			<input type="text" name="" required>
+		</div>
+		<div class="ui-field-contain">
+			<label>车次</label>
+			<input type="text" name="" required>
+		</div>
+		</form>
+	</div>
+	<div data-role = "footer" data-position="fixed">
+		<div data-role="navbar">
+		<ul>
+			<li><a href="">导航1</a></li>
+			<li><a href="">导航2</a></li>
+		</ul></div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+em.error {
+	background: url("../images/unchecked.gif") no-repeat 0px 3px; text-align: left; color: rgb(169, 68, 66); line-height: 22px; padding-left: 16px; margin-left: 5px; display: inline; white-space: nowrap; -ms-word-break: normal; -ms-word-wrap: break-word;
+}
+em.success {
+	background: url("../images/checked.gif") no-repeat 0px 3px; text-align: left; color: rgb(60, 118, 61); line-height: 22px; padding-left: 16px; margin-left: 5px; display: inline; white-space: nowrap; -ms-word-break: normal; -ms-word-wrap: break-word;
+}
+.tooltips {
+	line-height: 1.4; font-size: 12px; display: block; visibility: visible; position: absolute; z-index: 1070; opacity: 0;
+}
+.in.tooltips {
+	opacity: 1;
+}
+.top.tooltips {
+	padding: 5px 0px; margin-top: -3px;
+}
+.right.tooltips {
+	padding: 0px 5px; margin-left: 3px;
+}
+.bottom.tooltips {
+	padding: 5px 0px; margin-top: 3px;
+}
+.left.tooltips {
+	padding: 0px 5px; margin-left: -3px;
+}
+.tooltips-inner {
+	padding: 3px 8px; border-radius: 4px; border: 1px solid rgb(253, 128, 126); border-image: none; text-align: center; color: rgb(77, 77, 77); text-decoration: none; min-width: 80px; max-width: 500px; background-color: rgb(253, 242, 240);
+}
+.tooltips-arrow {
+	border-style: solid; border-color: transparent; width: 0px; height: 0px; position: absolute;
+}
+.top.tooltips .tooltips-arrow {
+	border-width: 5px 5px 0px; left: 50%; bottom: 0px; margin-left: -5px; border-top-color: rgb(253, 128, 126);
+}
+.top-left.tooltips .tooltips-arrow {
+	border-width: 5px 5px 0px; left: 5px; bottom: 0px; border-top-color: rgb(253, 128, 126);
+}
+.top-right.tooltips .tooltips-arrow {
+	border-width: 5px 5px 0px; right: 5px; bottom: 0px; border-top-color: rgb(253, 128, 126);
+}
+.right.tooltips .tooltips-arrow {
+	border-width: 5px 5px 5px 0px; left: 0px; top: 50%; margin-top: -5px; border-right-color: rgb(253, 128, 126);
+}
+.left.tooltips .tooltips-arrow {
+	border-width: 5px 0px 5px 5px; top: 50%; right: 0px; margin-top: -5px; border-left-color: rgb(253, 128, 126);
+}
+.bottom.tooltips .tooltips-arrow {
+	border-width: 0px 5px 5px; left: 50%; top: 0px; margin-left: -5px; border-bottom-color: rgb(253, 128, 126);
+}
+.bottom-left.tooltips .tooltips-arrow {
+	border-width: 0px 5px 5px; left: 5px; top: 0px; border-bottom-color: rgb(253, 128, 126);
+}
+.bottom-right.tooltips .tooltips-arrow {
+	border-width: 0px 5px 5px; top: 0px; right: 5px; border-bottom-color: rgb(253, 128, 126);
+}

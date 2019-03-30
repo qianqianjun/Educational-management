@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+<!-- meta使用viewport以确保页面可自由缩放 -->
+<!-- 初始化移动设备显示方式,默认缩放比例1(不缩放) -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 引入 jQuery Mobile 样式 -->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+<!-- 引入 jQuery 库 -->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- 引入 jQuery Mobile 库 -->
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<title>jQuery Mobile导航栏</title>
+</head>
+<body>
+<!-- 导航栏,水平放置在页眉,页脚的链接a:变成按钮 -->
+<!-- 带那个一方式:data-role="navbar" -->
+<div data-role="page">
+<!-- 保证页面的header和footer位置固定:data-position="fixed" -->
+	<div data-role = "header" data-position="fixed">
+		<p>标题</p>
+	</div>
+	<div role = "main" class = "ui-content">
+		<p>内容区域</p>
+	</div>
+	<div data-role = "footer" data-position="fixed">
+		<!-- 定义导航栏: -->
+		<div data-role="navbar">
+			<ul>
+			<!-- 如果要给导航栏增加图标 data-icon="默认提供" -->
+				<li><a href="" data-icon="camera">导航1</a></li>
+				<li><a href="" data-icon="action">导航2</a></li>
+				<li><a href="" data-icon="arrow-right">导航3</a></li>
+				<!-- 增加按钮实现增加导航,一旦超出限制,换行显示 -->
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

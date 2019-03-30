@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--meta使用viewport以确保页面可自由缩放-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <!--引入自己定义的css样式-->
+    <link rel="stylesheet" type="text/css" href="pattern.css">
+    <!--引入jQuery Mobile样式-->
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <!--引入jQuery库-->
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!--引入jQuery Mobile库-->
+    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>北京化工大学教务管理系统</title>
+</head>
+<body>
+<div data-role="page" id="firstpage" data-theme="a">
+    <div data-role="header">
+        <h1 style="text-align:left;margin-left: 10px;color: blue;font-size: 20px;">北京化工大学教务管理系统</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <p><b>用户登录</b></p>
+        <form method="post" action="#">
+            <div>
+                <div>
+                    <a class="ui-btn ui-corner-all ui-icon-user ui-btn-icon-notext"></a>
+                </div>
+                <input type="text" value="" placeholder="用户名" />
+            </div>
+            <div>
+                <div>
+                    <a class="ui-btn ui-corner-all ui-icon-lock ui-btn-icon-notext"></a>
+                </div>
+                <input type="text" value="" placeholder="密码">
+            </div>
+            <a href="#" style="float: right">忘记密码了？</a>
+            <br/>
+            <input type="submit" value="登录" style="background-color: blue; width: 100%;">
+        </form>
+    </div>
+
+    <div data-role = "footer">
+        <h1>版权所有© Copyright 2018-2019 北京化工大学信息科学与技术学院计科1601 北京市昌平区南口镇南涧路29号</h1>
+    </div>
+</div>
+</body>
+</html>

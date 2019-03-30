@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>基本的页面</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.3.css"/>
+</head>
+<body>
+<div data-role="page" id="index">
+	<div data-role="header" data-position="fixed">
+	<h1>我是标题1</h1>
+	</div>
+		<div role="main" class="ui-content">
+		<!--
+		<p>我是内容1</p>
+		<p> <a href="#index2" data-transition=flip>index2 </a> </p>
+		<a class="ui-btn ui-btn-inline ui-corner-all ui-shadow">我是按钮1</a>
+		<a class="ui-btn ui-btn-inline ui-corner-all ui-shadow">我是按钮2</a>
+		<input type="submit" value="我也是按钮"
+		-->
+		<form>
+		 <div class="ui-field-contain">
+			<label>住址:</label>
+			<input type="text">
+		 
+			<label>种族:</label>
+			<input type="text">
+			<label>姓名:</label>
+			<input type="text">
+		 </div>
+		</form>
+		<table data-role="table" data-mode="reflow" class="ui-responsive table-stroke">
+			<thead>
+				<tr>
+					<th>第一列</th>
+					<th>第二列</th>
+					<th>第三列</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>123</td>
+					<td>456</td>
+					<td>789</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<td>111</td>
+					<td>222</td>
+					<td>333</td>
+				</tr>
+			</tbody>
+		</table>	
+		
+	  <ul data-role="listview" data-inset="true">
+	   <li>项目1</li>
+	   <li><a href="#">
+	   <h2>博丽神社</h2>
+	   <p>鸟居</p>
+	   <p>庭院</p>
+	   <p class="ui-li-aside">博丽灵梦</p>
+	   </a>
+	   </li>
+	   <li><a href="#" >导航2</a></li>
+	   <li><a href="#" >导航3</a></li>
+	  </ul>
+		
+	</div>
+	<div data-role="footer" data-position="fixed">
+	 <div data-role="navbar">
+	  <ul>
+	   <li><a href="#" data-icon="camera">导航1</a></li>
+	   <li><a href="#" data-icon="back">导航2</a></li>
+	   <li><a href="#" data-icon="clock">导航3</a></li>
+	  </ul>
+	 </div>
+	</div> 
+</div>
+</body>
+
+<body>
+<div data-role="page" id="index2">
+	<div date-role="header">
+	<h1>我是标题2</h1>
+	</div>
+	<div role="main" class="ui-content">
+	<p>我是内容2</p>
+	<p> <a href="#index" data-transition=flip>index </a> </p>
+	</div>
+	<div date-role="footer">
+	<h1>我是页脚2</h1>
+	</div> 
+</div>
+</body>
+
+<body>
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/jquery.mobile-1.4.3.js"></script>
+<script>
+$(document).on("pagebeforehide","#index",function(){
+	alert("pagebeforehide");
+});
+
+$(document).on("pagehide","#index",function(){
+	alert("pagehide");
+});
+
+$(document).on("pagebeforeshow","#index2",function(){
+	alert("pagebeforeshow");
+});
+
+$(document).on("pageshow","#index2",function(){
+	alert("pageshow");
+});
+</script>
+</body>
+</html>

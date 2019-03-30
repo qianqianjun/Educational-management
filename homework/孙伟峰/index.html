@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquery</title>
+<meta name="viewport" content="width=device-width initial-scale=1">
+<link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script>
+    $(document).on("pagebeforehide","#index",function () {
+       alert("pagebeforhide");
+    });
+    $(document).on("pagebehide","#index",function () {
+        alert("pagehide");
+    });
+    $(document).on("pagebeforeshow","#page1",function () {
+        alert("pagebeforeshow");
+    });
+    $(document).on("pageshow","#page1",function () {
+        alert("pageshow");
+    });
+</script>
+</head>
+<body>
+<div data-role="page" id="index">
+    <div data-role="header" data-position="fixed">
+        <a href="#userinfo1" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-left">选项</a>
+        <h1>列车时刻查询表</h1>
+        <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-star ui-btn-icon-right">收藏</a>
+    </div>
+    <div role="main" class="ui-content">
+        <form>
+            <div class="ui-field-contain">
+                <label for="departure">发车站</label>
+                <input type="text" id="departure">
+            </div>
+            <div class="ui-field-contain">
+                <label for="arrival">到达站</label>
+                <input type="text" id="arrival">
+            </div>
+            <div class="ui-field-contain">
+                <label for="tno">车次</label>
+                <input type="text" id="tno">
+            </div>
+            <input type="submit" value="搜索" data-icon="search">
+        </form>
+        <ul data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#tno" data-inset="true">
+            <li><a href="#">
+                <h2>G1次</h2>
+                <p>北京南-上海虹桥</p>
+                <p>用时5:57</p>
+                <p class="ui-li-aside">06:43:00开</p>
+            </a></li>
+            <li><a href="#page1">
+                <h2>G1001次</h2>
+                <p>武汉-深圳北</p>
+                <p>用时4:50</p>
+                <p class="ui-li-aside">7:25:00开</p></a></li>
+            <li><a href="#">
+                <h2>G1002次</h2>
+                <p>北京南-杭州东</p>
+                <p>用时4:38</p>
+                <p class="ui-li-aside">08:00:00开</p>
+            </a></li>
+            <li><a href="#">
+                <h2>G2003次</h2>
+                <p>北京西-广州南</p>
+                <p>用时8:01</p>
+                <p class="ui-li-aside">10:00:00开</p>
+            </a></li>
+            <li><a href="#">
+                <h2>G2004次</h2>
+                <p>北京南-南京南</p>
+                <p>用时4:14</p>
+                <p class="ui-li-aside">9:15:00开</p>
+            </a></li>
+            <li><a href="#">
+                <h2>G2005次</h2>
+                <p>北京西-汉口</p>
+                <p>用时5:28</p>
+                <p class="ui-li-aside">9:27:00开</p>
+            </a></li>
+        </ul>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a data-rel="back" data-icon="back">返回</a></li>
+                <li><a href="#" data-icon="search">查询</a></li>
+                <li><a href="#" data-icon="gear">设置</a></li>
+            </ul>
+        </div>
+    </div>
+    <div data-role="panel" id="userinfo1">
+        <ul data-role="listview">
+            <li><a href="#index">首页</a></li>
+            <li><a href="#">用户</a></li>
+            <li><a href="#">记录</a></li>
+            <li><a href="#">已收藏</a></li>
+            <li><a href="#">帮助</a></li>
+            <li><a href="#">选项</a></li>
+            <li><a href="#">注销</a></li>
+        </ul>
+    </div>
+</div>
+<div data-role="page" id="page1">
+    <div data-role="header">
+        <a href="#userinfo2" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-left">选项</a>
+        <h1>列车时刻查询表</h1>
+        <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-star ui-btn-icon-right">收藏</a>
+    </div>
+    <div role="main" class="ui-content">
+        <table data-role="table" data-mode="reflow" class="ui-responsive table-stroke">
+            <thead>
+                <tr>
+                    <th>站名</th>
+                    <th>到站时间</th>
+                    <th>出发时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>武汉</td>
+                    <td></td>
+                    <td>07:25：00</td>
+                </tr>
+                <tr>
+                    <td>咸宁北</td>
+                    <td>07:49:00</td>
+                    <td>07:51:00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a data-rel="back" data-icon="back">返回</a></li>
+                <li><a href="#" data-icon="search">查询</a></li>
+                <li><a href="#" data-icon="gear">设置</a></li>
+            </ul>
+        </div>
+    </div>
+    <div data-role="panel" id="userinfo2">
+        <ul data-role="listview">
+            <li><a href="#index" data-transition="pop">首页</a></li>
+            <li><a href="#">用户</a></li>
+            <li><a href="#">记录</a></li>
+            <li><a href="#">已收藏</a></li>
+            <li><a href="#">帮助</a></li>
+            <li><a href="#">选项</a></li>
+            <li><a href="#">注销</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

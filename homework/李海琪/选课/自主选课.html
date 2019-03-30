@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+	<title>自主选课</title>
+	
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Copyright" content="zfsoft">	
+<link rel="icon" href="http://jwgl.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://jwgl.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
+<style type="text/css">	
+	.active{font-weight: bolder;}
+	#navbar-tabs li{ margin-top: 2px;}
+	#navbar-tabs li a{ border-top: 2px solid transparent;}
+	#navbar-tabs li.active a{border-top: 2px solid #0770cd;}
+</style>	
+<!--jQuery核心框架库 -->
+<script type="text/javascript" src="js/jquery-1.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.js"></script>
+<!--jQuery浏览器检测 -->
+<script type="text/javascript" src="js/browse-judge.js"></script>
+<script type="text/javascript">
+	//浏览器版本验证
+	var broswer = broswer();
+	if(broswer.msie==true||broswer.safari==true||broswer.mozilla==true||broswer.chrome==true){
+		if(broswer.msie==true&&broswer.version<9){
+		   window.location.href = _path+"/xtgl/init_cxBrowser.html";
+		}
+	}else{
+		 window.location.href = _path+"/xtgl/init_cxBrowser.html";
+	}
+</script>
+<script type="text/javascript">
+var _path 				= "/jwglxt";
+var _systemPath 		= "/jwglxt";
+var _stylePath 			= "/zftal-ui-v5-1.0.2";
+var _reportPath 		= "http://202.4.157.135:80/WebReport";
+var _refreshInterval	= "10";
+var _localeKey 			= "zh_CN";
+</script>
+<!--
+jquery.ui 需要在bootstrap之前加载，解决冲突问题
+http://blog.csdn.net/remote_roamer/article/details/14105999
+-->
+<script type="text/javascript" src="js/jquery-ui-custom.js"></script>
+<!--Bootstrap布局框架-->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/error.css">
+<link rel="stylesheet" type="text/css" href="css/zftal-ui.css">
+<script type="text/javascript" src="js/bootstrap.js" charset="utf-8"></script>
+<!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 -->
+<script type="text/javascript" src="js/jquery_007.js" charset="utf-8"></script>
+<!--jQuery基础工具库：$.browser,$.cookie,$.actual等 -->
+<script type="text/javascript" src="js/jquery.js" charset="utf-8"></script>
+<!--jQuery自定义event事件库 -->
+<script type="text/javascript" src="js/jquery_019.js" charset="utf-8"></script>
+<!--JavaScript对象扩展库：Array,Date,Number,String -->
+<script type="text/javascript" src="js/jquery_008.js" charset="utf-8"></script>
+<!--Bootbox弹窗插件-->
+<link rel="stylesheet" type="text/css" href="css/bootbox.css">
+<script src="js/bootbox.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/zh_CN.js" type="text/javascript" charset="utf-8"></script>
+
+<!--jQuery模拟滚动条库-->
+<link rel="stylesheet" type="text/css" href="css/jquery_003.css">
+<script type="text/javascript" src="js/jquery_005.js" charset="utf-8"></script>
+<!--jQuery.chosen美化插件-->
+<link rel="stylesheet" type="text/css" href="css/chosen-min.css">
+<script type="text/javascript" src="js/jquery_016.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/zh_CN-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery_017.js" charset="utf-8"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/html5shiv.min.js?ver=20190115" charset="utf-8"></script>
+<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/respond.min.js?ver=20190115" charset="utf-8"></script>
+<![endif]-->
+<!--业务框架jQuery全局设置和通用函数库-->
+<script type="text/javascript" src="js/jquery_006.js"></script>
+<!--国际化js库 -->
+<script type="text/javascript" src="js/jquery_009.js" charset="utf-8"></script>
+<!--全局国际化js. -->
+<script type="text/javascript" src="js/i18n-global_zh_CN.js" charset="utf-8"></script>
+<!--业务框架前端脚本国际化库-->
+<script type="text/javascript" src="js/jquery_002.js"></script>
+<!--密码强弱判断-->
+<script type="text/javascript" src="js/jquery_018.js"></script>
+
+	
+	
+
+
+
+
+	
+<script type="text/javascript">
+
+	var _path 		= "/jwglxt";
+	var _systemPath = "/jwglxt";
+	var _stylePath  = "/zftal-ui-v5-1.0.2";
+	var _reportPath = "http://202.4.157.135:80/WebReport";
+	var _localeKey 			= "zh_CN";
+	
+	jQuery(function($){
+		$('[data-toggle*="validation"]').trigger("validation");
+		$('[data-toggle*="fixed"]').trigger("fixed");
+		if($.fn.tooltip){
+			$('[data-toggle*="tooltip"]').tooltip({container:'body'});
+		}
+	});
+	
+</script>
+<!--教务系统通用业务js引用:比如学年，学期等公共的信息会放在这里-->
+<script type="text/javascript" src="js/jwglxt-common_zh_CN.js"></script>
+<!--业务模块的properties初始化-->
+<!--国际化js库 -->
+
+
+</head>
+<body>
+<input type="hidden" id="pkey" name="pkey" value="">
+	<!-- 头部 开始 -->
+	<header class="navbar-inverse top2">
+		<div class="container" id="navbar_container">
+					<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only"> 自主选课</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<a href="#" id="topButton" class="navbar-brand" onclick="onClickMenu('/xsxk/zzxkyzb_cxZzxkYzbIndex.html','N253512')">
+					自主选课
+				</a>
+				<script type="text/javascript">
+					document.title="自主选课";
+				</script>
+			</div>
+		</div>
+<!-- navbar-end  -->
+		</div>
+	</header>
+	
+	<!--头部 结束 -->
+	<div style="width: 100%; padding: 0px; margin: 0px;" id="bodyContainer">
+		<!-- requestMap中的参数为系统级别控制参数，请勿删除 -->
+		<form id="requestMap">
+			 <input type="hidden" id="sessionUserKey" value="2016014286"> 
+			 
+			 	<input type="hidden" id="gnmkdmKey" value="N253512">
+			 
+			 
+		</form>
+		<div class="container container-func sl_all_bg" id="yhgnPage" style="min-height: 836px;">
+			<div id="innerContainer">
+				<!-- 放置页面显示内容 -->
+				
+
+
+
+				
+	<div id="searchBox"><div class="form-horizontal sl_all_form searchbox" style="display: block;border: 0px;"><!-- fuzzy search --><div class="row search-filter "><div class="col-sm-12 col-md-12"><div class="form-group form-group-sm" style="margin-bottom:0px;"><label for="" class="col-sm-2 col-md-2 control-label">&nbsp;</label><div class="col-sm-8 col-md-8  buttons"><div class="input-group"><input type="text" name="searchInput" class="form-control input-sm filter-input" placeholder="请输入课程号或课程名称或教学班名称查询!"><span class="input-group-btn"><button class="btn btn-primary btn-sm" type="button" name="query"><i class=" bigger-110 icon-search"></i>&nbsp;查询</button><button class="btn btn-default btn-sm" type="button" name="reset"><i class=" bigger-110 icon-repeat"></i>&nbsp;重置</button></span></div></div></div></div></div><!-- fuzzy search end--><!-- selected conditions --><div class="row selected-attr" style="display: block;"><div class="col-sm-12 col-md-12"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label">已选条件：</label><div class="col-sm-9 col-md-9 selecteds"><div class="col-sm-12 col-md-2 selected" index="yl_list_1"><a index="yl_list_1" key="1" href="javascript:void(0);">有无余量:有<span class="close-icon"></span></a></div></div></div></div></div><!-- selected conditions end--><!-- advanced query--><div class="row condition-item"><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label title">年级：</label><div class="col-sm-9 col-md-9 items" name="njdm_id_list"><ul><li class="col-sm-1 col-md-1" name="fixed" index="njdm_id_list_2022"><a href="javascript:void(0);">2022</a></li><li class="col-sm-1 col-md-1" name="fixed" index="njdm_id_list_2021"><a href="javascript:void(0);">2021</a></li><li class="col-sm-1 col-md-1" name="fixed" index="njdm_id_list_2020"><a href="javascript:void(0);">2020</a></li><li class="col-sm-1 col-md-1" name="fixed" index="njdm_id_list_2019"><a href="javascript:void(0);">2019</a></li><li class="col-sm-1 col-md-1" name="fixed" index="njdm_id_list_2018"><a href="javascript:void(0);">2018</a></li><li class="col-sm-1 col-md-1" name="fixed" index="njdm_id_list_2017"><a href="javascript:void(0);">2017</a></li><li class="col-sm-1 col-md-1" name="fixed" index="njdm_id_list_2016"><a href="javascript:void(0);">2016</a></li><li class="col-sm-1 col-md-1" name="fixed" index="njdm_id_list_2015"><a href="javascript:void(0);">2015</a></li><li class="col-sm-1 col-md-1" name="fixed" index="njdm_id_list_2014"><a href="javascript:void(0);">2014</a></li><li class="col-sm-1 col-md-1" name="fixed" index="njdm_id_list_2013"><a href="javascript:void(0);">2013</a></li></ul></div><div class="col-sm-1 col-md-1 more" index="njdm_id_list"><a href="javascript:void(0);" class="more_up" style="display: block;">&nbsp;更  多 </a></div></div></div><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label title">学院：</label><div class="col-sm-9 col-md-9 items" name="jg_id_list"><ul><li class="col-sm-1 col-md-1" name="fixed" index="jg_id_list_01"><a href="javascript:void(0);">化学工程学院</a></li><li class="col-sm-1 col-md-1" name="fixed" index="jg_id_list_02"><a href="javascript:void(0);">材料科学与工程学院</a></li><li class="col-sm-1 col-md-1" name="fixed" index="jg_id_list_03"><a href="javascript:void(0);">机电工程学院</a></li><li class="col-sm-1 col-md-1" name="fixed" index="jg_id_list_04"><a href="javascript:void(0);">信息科学与技术学院</a></li><li class="col-sm-1 col-md-1" name="fixed" index="jg_id_list_05"><a href="javascript:void(0);">经济管理学院</a></li><li class="col-sm-1 col-md-1" name="fixed" index="jg_id_list_06"><a href="javascript:void(0);">理学院</a></li></ul></div><div class="col-sm-1 col-md-1 more" index="jg_id_list"><a href="javascript:void(0);" class="more_up" style="display: block;">&nbsp;更  多 </a></div></div></div><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label title">专业：</label><div class="col-sm-9 col-md-9 items" name="zyh_id_list"><ul><li class="col-sm-1 col-md-1" name="fixed" index="zyh_id_list_0101"><a href="javascript:void(0);">环境工程(0101)</a></li><li class="col-sm-1 col-md-1" name="fixed" index="zyh_id_list_0102"><a href="javascript:void(0);">化学工程与工艺(0102)</a></li><li class="col-sm-1 col-md-1" name="fixed" index="zyh_id_list_0103"><a href="javascript:void(0);">化工工程实验班(0103)</a></li><li class="col-sm-1 col-md-1" name="fixed" index="zyh_id_list_0104"><a href="javascript:void(0);">能源化学工程(0104)</a></li><li class="col-sm-1 col-md-1" name="fixed" index="zyh_id_list_0105"><a href="javascript:void(0);">化工国际班(0105)</a></li><li class="col-sm-1 col-md-1" name="fixed" index="zyh_id_list_0106"><a href="javascript:void(0);">环境工程实验班(0106)</a></li></ul></div><div class="col-sm-1 col-md-1 more" index="zyh_id_list"><a href="javascript:void(0);" class="more_up" style="display: block;">&nbsp;更  多 </a></div></div></div><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label title">开课学院：</label><div class="col-sm-9 col-md-9 items" name="kkbm_id_list"><ul><li class="col-sm-1 col-md-1" name="fixed" index="kkbm_id_list_01"><a href="javascript:void(0);">化学工程学院</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kkbm_id_list_02"><a href="javascript:void(0);">材料科学与工程学院</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kkbm_id_list_03"><a href="javascript:void(0);">机电工程学院</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kkbm_id_list_04"><a href="javascript:void(0);">信息科学与技术学院</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kkbm_id_list_05"><a href="javascript:void(0);">经济管理学院</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kkbm_id_list_06"><a href="javascript:void(0);">理学院</a></li></ul></div><div class="col-sm-1 col-md-1 more" index="kkbm_id_list"><a href="javascript:void(0);" class="more_up" style="display: block;">&nbsp;更  多 </a></div></div></div><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label title">课程类别：</label><div class="col-sm-9 col-md-9 items" name="kclb_id_list"><ul><li class="col-sm-1 col-md-1" name="fixed" index="kclb_id_list_09"><a href="javascript:void(0);">创新创业教育</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kclb_id_list_08"><a href="javascript:void(0);">双学位</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kclb_id_list_01"><a href="javascript:void(0);">通识及公共基础</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kclb_id_list_02"><a href="javascript:void(0);">学科基础</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kclb_id_list_03"><a href="javascript:void(0);">学科方向</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kclb_id_list_04"><a href="javascript:void(0);">实践环节</a></li></ul></div><div class="col-sm-1 col-md-1 more" index="kclb_id_list"><a href="javascript:void(0);" class="more_up" style="display: block;">&nbsp;更  多 </a></div></div></div><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label title">课程性质：</label><div class="col-sm-9 col-md-9 items" name="kcxzdm_list"><ul><li class="col-sm-1 col-md-1" name="fixed" index="kcxzdm_list_15"><a href="javascript:void(0);">双学位必修</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kcxzdm_list_14"><a href="javascript:void(0);">实践环节选修</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kcxzdm_list_17"><a href="javascript:void(0);">创新创业选修</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kcxzdm_list_06"><a href="javascript:void(0);">学科基础必修</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kcxzdm_list_03"><a href="javascript:void(0);">通识教育课程</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kcxzdm_list_04"><a href="javascript:void(0);">公共基础必修</a></li></ul></div><div class="col-sm-1 col-md-1 more" index="kcxzdm_list"><a href="javascript:void(0);" class="more_up" style="display: block;">&nbsp;更  多 </a></div></div></div><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label title">教学模式：</label><div class="col-sm-9 col-md-9 items" name="jxms_list"><ul><li class="col-sm-1 col-md-1" name="fixed" index="jxms_list_1"><a href="javascript:void(0);">双语教学</a></li><li class="col-sm-1 col-md-1" name="fixed" index="jxms_list_2"><a href="javascript:void(0);">中文教学</a></li></ul></div></div></div><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label title">课程归属：</label><div class="col-sm-9 col-md-9 items" name="kcgs_list"><ul><li class="col-sm-1 col-md-1" name="fixed" index="kcgs_list_A"><a href="javascript:void(0);">管理类</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kcgs_list_B"><a href="javascript:void(0);">科技类</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kcgs_list_C"><a href="javascript:void(0);">人文社科类</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kcgs_list_D"><a href="javascript:void(0);">体育类</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kcgs_list_E"><a href="javascript:void(0);">艺术类</a></li><li class="col-sm-1 col-md-1" name="fixed" index="kcgs_list_F"><a href="javascript:void(0);">创新类</a></li></ul></div></div></div><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label title">上课星期：</label><div class="col-sm-9 col-md-9 items" name="sksj_list"><ul><li class="col-sm-1 col-md-1" name="fixed" index="sksj_list_1"><a href="javascript:void(0);">星期一</a></li><li class="col-sm-1 col-md-1" name="fixed" index="sksj_list_2"><a href="javascript:void(0);">星期二</a></li><li class="col-sm-1 col-md-1" name="fixed" index="sksj_list_3"><a href="javascript:void(0);">星期三</a></li><li class="col-sm-1 col-md-1" name="fixed" index="sksj_list_4"><a href="javascript:void(0);">星期四</a></li><li class="col-sm-1 col-md-1" name="fixed" index="sksj_list_5"><a href="javascript:void(0);">星期五</a></li><li class="col-sm-1 col-md-1" name="fixed" index="sksj_list_6"><a href="javascript:void(0);">星期六</a></li><li class="col-sm-1 col-md-1" name="fixed" index="sksj_list_7"><a href="javascript:void(0);">星期日</a></li></ul></div></div></div><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label title">上课节次：</label><div class="col-sm-9 col-md-9 items" name="skjc_list"><ul><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_1"><a href="javascript:void(0);">1</a></li><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_2"><a href="javascript:void(0);">2</a></li><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_3"><a href="javascript:void(0);">3</a></li><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_4"><a href="javascript:void(0);">4</a></li><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_5"><a href="javascript:void(0);">5</a></li><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_6"><a href="javascript:void(0);">6</a></li><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_7"><a href="javascript:void(0);">7</a></li><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_8"><a href="javascript:void(0);">8</a></li><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_9"><a href="javascript:void(0);">9</a></li><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_10"><a href="javascript:void(0);">10</a></li><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_11"><a href="javascript:void(0);">11</a></li><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_12"><a href="javascript:void(0);">12</a></li><li class="col-sm-1 col-md-1" name="fixed" index="skjc_list_13"><a href="javascript:void(0);">13</a></li></ul></div></div></div><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label title">教学班：</label><div class="col-sm-9 col-md-9 items" name="jxbmc_list"><ul><li class="col-sm-12 col-md-12" name="fixed" index="jxbmc_list"><div class="input-group input-group-xs"><input type="text" class="form-control pull-left input-xs input-xs-last fixed"><span class="input-group-btn pull-left"><button class="btn btn-default btn-xs sure" type="button">确定</button></span></div></li></ul></div></div></div><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm" style="margin-bottom:5px;"><label for="" class="col-sm-2 col-md-2 control-label title">是否重修：</label><div class="col-sm-9 col-md-9 items" name="cxbj_list"><ul><li class="col-sm-1 col-md-1" name="fixed" index="cxbj_list_1"><a href="javascript:void(0);">是</a></li><li class="col-sm-1 col-md-1" name="fixed" index="cxbj_list_0"><a href="javascript:void(0);">否</a></li></ul></div></div></div><div class="col-sm-12 col-md-12 condition-row" style="display: block;"><div class="form-group form-group-sm"><label for="" class="col-sm-2 col-md-2 control-label title">有无余量：</label><div class="col-sm-9 col-md-9 items" name="yl_list"><ul><li class="col-sm-1 col-md-1" name="fixed" index="yl_list_1"><a href="javascript:void(0);" class="selectedValue">有</a></li><li class="col-sm-1 col-md-1" name="fixed" index="yl_list_0"><a href="javascript:void(0);">无</a></li></ul></div></div></div><div class="col-sm-12 col-md-12 condition-retract"><p><a class="up" href="javascript:void(0);">收起</a></p></div></div><!-- advanced query end--></div></div> 
+	
+		<input type="hidden" name="iskxk" id="iskxk" value="0">
+		<div class="clearfix"></div>
+		<div class="panel panel-info">
+			<div class="panel-heading">&nbsp;</div>
+			<div class="panel-body">
+				<div class="nodata"><span>2018-2019学年2学期不可选课，如有需要，请与管理员联系！</span></div>
+			</div>
+		</div>
+	
+ 	
+ 	
+ 	
+	<div id="displayBox"></div>
+	<div id="choosedBox"></div>
+	<div id="endsign" style="display:none; text-align:center; height: 50px"><i class="red">......已到最后......</i></div><!-- （共 <font id="searchCount"></font> 条记录） -->
+	<!-- <div id="waitsign" style="display:none; text-align:center; height: 50px"><i class="red bigger-300 icon-spinner icon-spin"></i></div> -->
+	<div id="more" style="text-align:center; display:none"><font size="5" color="#2a6496">[<a href="javascript:void(0)" id="nextPage">点此查看更多</a>]</font></div>
+<!--jQuery.jqGrid -->
+<link rel="stylesheet" type="text/css" href="css/jquery.css">
+<script type="text/javascript" src="js/jquery_013.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery_015.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/zh_CN_002.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery_010.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery_003.js" charset="utf-8"></script>
+<!--jQuery.validation -->
+<link rel="stylesheet" type="text/css" href="css/jquery_002.css">
+<script type="text/javascript" src="js/jquery_012.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery_014.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery_011.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/zh_CN-min_002.js" charset="utf-8"></script>
+<script type="text/javascript">
+	jQuery(function($){
+		$('[data-toggle*="validation"]').trigger("validation");
+	});
+</script>
+
+<link rel="stylesheet" type="text/css" href="css/jquery_004.css">
+<script type="text/javascript" src="js/jquery_004.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="js/zzxkYzb.js"></script>
+<!--<script type="text/javascript" src="/jwglxt/js/comp/jwglxt/xkgl/xsxk/zzxkYzb_icetor.js?ver=20190115"></script>-->
+
+			</div>
+		</div>
+	</div>
+	<!-- footer -->
+	
+
+<!-- footer --> 
+<div id="footerID" class="footer">
+	<p>版权所有© Copyright 1999-2017  正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301</p>
+</div>
+<!-- footer-end -->
+	<!-- footer-end -->
+
+<script type="text/javascript">
+	jQuery(function($) {	
+		if ($("#navbar-tabs").length > 0) {
+			$("#navbar-tabs li:eq(0) a").tab('show');
+		}
+		
+		setMinheight();
+		
+		$('#yhgnPage').resize(function(){
+			var minHeight  = $(this).data('min-height');
+			var innerHeight =  $('#innerContainer').outerHeight(true);
+			//console.log("minHeight:" + minHeight + ",innerHeight:" + innerHeight);
+			$(this).css('min-height', Math.max(minHeight,innerHeight));
+		});
+		
+		function setMinheight(){
+			//计算grid页面高度
+			var docuemntHeight = $(document).height();
+			var topHeight = $('header').height();
+			var footerHeight = $('.footer').height();
+			var containerHeight = docuemntHeight-topHeight-footerHeight-60;
+			$('#yhgnPage').css('min-height',containerHeight).data('min-height',containerHeight);
+		}
+	});
+	//加载title名称，根据系统内置表设置，取菜单名称或者系统名称
+	jQuery(document).attr("title",'自主选课');
+</script>
+
+</body></html>

@@ -1,0 +1,924 @@
+.panel .ui-jqgrid {
+	border: 0px currentColor !important; border-image: none !important; margin-top: 0px !important;
+}
+.ui-jqgrid {
+	border: 1px solid rgb(225, 225, 225) !important; border-image: none !important; overflow: hidden; clear: both; font-size: 12px; margin-top: 2px; position: relative;
+}
+.ui-jqgrid .ui-jqgrid-view {
+	padding: 0px; left: 0px; top: 0px; font-size: 13px; position: relative;
+}
+.ui-jqgrid .ui-jqgrid-view {
+	overflow: hidden !important; border-right-color: currentColor !important; border-right-width: 0px !important; border-right-style: none !important; border-top-left-radius: 4px; border-top-right-radius: 4px;
+}
+.ui-jqgrid .ui-jqgrid-view input {
+	font-size: 12px;
+}
+.ui-jqgrid .ui-jqgrid-view select {
+	font-size: 12px;
+}
+.ui-jqgrid .ui-jqgrid-view textarea {
+	font-size: 12px;
+}
+.ui-jqgrid .ui-jqgrid-view button {
+	font-size: 12px;
+}
+.ui-jqgrid .ui-jqgrid-titlebar {
+	padding: 0.3em 0.2em 0.2em 0.3em; font-size: 12px; border-top-color: currentColor; border-right-color: currentColor; border-left-color: currentColor; border-top-width: 0px; border-right-width: 0px; border-left-width: 0px; border-top-style: none; border-right-style: none; border-left-style: none; position: relative;
+}
+.ui-jqgrid-view .ui-jqgrid-titlebar {
+	background: rgb(255, 255, 255); padding: 0px; top: 1px; height: 30px; color: rgb(51, 51, 51); font-size: 15px; position: relative; z-index: 1;
+}
+.ui-jqgrid .ui-jqgrid-caption {
+	text-align: left; overflow: hidden; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.ui-jqgrid .ui-jqgrid-title {
+	margin: 0.1em 0px 0.2em 10px; padding: 5px 0px; font-weight: normal; vertical-align: middle; float: left;
+}
+.ui-jqgrid .ui-jqgrid-titlebar-close {
+	margin: -10px 0px 0px; padding: 1px; top: 50%; width: 19px; height: 18px; position: absolute; cursor: pointer;
+}
+.ui-jqgrid .ui-jqgrid-titlebar-close span {
+	margin: 1px; display: block;
+}
+.ui-jqgrid .ui-jqgrid-titlebar-close:hover {
+	padding: 0px;
+}
+.ui-jqgrid .ui-jqgrid-hdiv {
+	border-width: 0px 0px 1px !important; border-style: none none solid !important; border-color: currentColor currentColor rgb(66, 151, 215) !important; margin: 0px; padding: 0px !important; color: rgb(119, 119, 119); line-height: 15px; font-weight: bold; position: relative; -ms-overflow-x: hidden; -ms-overflow-y: scroll !important; text-shadow: none; background-color: rgb(249, 249, 249);
+}
+.ui-jqgrid .ui-jqgrid-hbox {
+	padding-right: 0px !important; float: left;
+}
+.ui-jqgrid .ui-jqgrid-htable {
+	margin: 0px; table-layout: fixed;
+}
+.ui-jqgrid .ui-jqgrid-htable th {
+	padding: 0px !important; height: 22px;
+}
+.ui-jqgrid .ui-jqgrid-htable th div {
+	height: 17px; overflow: hidden; position: relative;
+}
+.ui-jqgrid .ui-jqgrid-htable thead {
+	background-color: rgb(249, 249, 249);
+}
+.ui-jqgrid .ui-jqgrid-htable th span.ui-jqgrid-resize {
+	height: 35px !important;
+}
+.ui-jqgrid .ui-jqgrid-htable th div {
+	height: 20px; line-height: 18px !important; overflow: visible; padding-top: 0px !important; padding-bottom: 0px; margin-top: 7px;
+}
+.ui-jqgrid .ui-jqgrid-htable th div input {
+	margin: 0px; line-height: normal;
+}
+.ui-jqgrid .ui-jqgrid-htable .jqgfirstrow td {
+	border-right-width: 1px; border-right-style: solid;
+}
+.ui-jqgrid-hdiv .ui-jqgrid-htable {
+	border-top-color: currentColor; border-top-width: 0px; border-top-style: none;
+}
+.ui-th-column {
+	text-align: center; overflow: hidden; border-top-color: currentColor; border-bottom-color: currentColor; border-top-width: 0px; border-bottom-width: 0px; border-top-style: none; border-bottom-style: none; white-space: nowrap;
+}
+.ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+	text-align: center; overflow: hidden; border-top-color: currentColor; border-bottom-color: currentColor; border-top-width: 0px; border-bottom-width: 0px; border-top-style: none; border-bottom-style: none; white-space: nowrap;
+}
+.ui-th-ltr {
+	border-left-color: currentColor; border-left-width: 0px; border-left-style: none; cursor: default !important;
+}
+.ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr {
+	border-left-color: currentColor; border-left-width: 0px; border-left-style: none; cursor: default !important;
+}
+.ui-th-rtl {
+	border-right-color: currentColor; border-right-width: 0px; border-right-style: none;
+}
+.ui-jqgrid .ui-jqgrid-htable th.ui-th-rtl {
+	border-right-color: currentColor; border-right-width: 0px; border-right-style: none;
+}
+.ui-first-th-ltr {
+	border-right-color: currentColor; border-right-width: 1px; border-right-style: solid;
+}
+.ui-first-th-rtl {
+	border-left-color: currentColor; border-left-width: 1px; border-left-style: solid;
+}
+.ui-jqgrid .ui-th-div-ie {
+	height: 17px; white-space: nowrap; -ms-zoom: 1;
+}
+.ui-jqgrid .ui-jqgrid-resize {
+	height: 20px !important; overflow: hidden; display: inline; position: relative; cursor: e-resize;
+}
+.ui-jqgrid .ui-grid-ico-sort {
+	overflow: hidden; display: inline; position: absolute; cursor: pointer !important;
+}
+.ui-jqgrid .ui-grid-ico-sort::before {
+	font-family: Glyphicons Halflings; font-size: 10px; display: inline;
+}
+.ui-jqgrid .ui-jqgrid-labels {
+	padding: 0px !important; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none; background-color: rgb(249, 249, 249) !important;
+}
+.ui-jqgrid .ui-jqgrid-labels th {
+	border-right-color: rgb(225, 225, 225) !important; border-right-width: 1px !important; border-right-style: solid !important;
+}
+.ui-jqgrid .ui-jqgrid-labels th[id*='_cb']:first-child > div {
+	text-align: center !important; padding-top: 0px;
+}
+.ui-jqgrid .ui-jqgrid-labels th[aria-selected=true] {
+	background-image: linear-gradient(rgb(239, 243, 248) 0px, rgb(227, 231, 237) 100%); background-repeat: repeat-x;
+}
+.ui-jqgrid-labels th[aria-selected=true] .ui-jqgrid-sortable {
+	color: rgb(48, 126, 204);
+}
+.ui-jqgrid .ui-jqgrid-labels .ui-jqgrid-sortable {
+	color: rgb(119, 119, 119); padding-left: 0px; font-size: 13px; font-weight: bold; cursor: pointer;
+}
+.ui-jqgrid .ui-jqgrid-labels .ui-jqgrid-sortable:hover {
+	color: rgb(84, 126, 168);
+}
+.ui-jqgrid tr.ui-search-toolbar {
+	border-top-color: rgb(225, 225, 225); border-top-width: 1px; border-top-style: solid;
+}
+.ui-jqgrid tr.ui-search-toolbar th {
+	border-top-color: inherit !important; border-top-width: 1px !important; border-top-style: ridge !important;
+}
+tr.ui-search-toolbar input {
+	margin: 1px 0px 0px;
+}
+tr.ui-search-toolbar select {
+	margin: 1px 0px 0px;
+}
+.ui-jqgrid .ui-jqgrid-bdiv {
+	margin: 0px; padding: 0px; text-align: left; position: relative; -ms-overflow-x: auto;
+}
+.ui-jqgrid .ui-jqgrid-bdiv .auto-hdiv {
+	border-top-color: rgb(225, 225, 225) !important; border-top-width: 1px !important; border-top-style: solid !important;
+}
+.ui-jqgrid .ui-jqgrid-btable {
+	margin: 0px; table-layout: fixed; outline-style: none;
+}
+.ui-jqgrid .ui-jqgrid-btable td.unselect {
+	-ms-user-select: none; -webkit-user-select: none; -moz-user-select: none;
+}
+.ui-jqgrid .ui-jqgrid-btable .ui-priority-secondary.ui-widget-content {
+	opacity: 1; background-image: none; background-color: rgb(249, 249, 249);
+}
+.ui-jqgrid .ui-jqgrid-btable .ui-state-hover.ui-widget-content {
+	opacity: 1; background-image: none; background-color: rgb(239, 244, 247);
+}
+.ui-jqgrid .ui-jqgrid-btable .ui-state-highlight.ui-widget-content {
+	background-color: rgb(239, 239, 239);
+}
+.ui-jqgrid .ui-jqgrid-btable input {
+	padding: 2px; width: auto; margin-bottom: 0px; max-width: 100%;
+}
+.ui-jqgrid .ui-jqgrid-btable textarea {
+	padding: 2px; width: auto; margin-bottom: 0px; max-width: 100%;
+}
+.ui-jqgrid .ui-jqgrid-btable select {
+	padding: 2px; width: auto; margin-bottom: 0px; max-width: 100%;
+}
+.ui-jqgrid .ui-jqgrid-btable input.input-sm {
+	height: 25px; line-height: 25px;
+}
+.ui-jqgrid .ui-jqgrid-btable select {
+	height: 25px; line-height: 25px;
+}
+.ui-jqgrid tr.jqgrow {
+	border: 0px currentColor; border-image: none; outline-style: none;
+}
+.ui-jqgrid tr.jqgrow .editable {
+	max-width: calc(92%) !important;
+}
+.ui-jqgrid tr.ui-row-rtl.jqgrow td:last-child {
+	border-right-color: currentColor; border-left-color: rgb(225, 225, 225); border-right-width: 0px; border-left-width: 1px; border-right-style: none; border-left-style: solid;
+}
+.ui-jqgrid tr.jqgroup {
+	outline-style: none;
+}
+.ui-jqgrid tr.jqgrow td {
+	padding: 0px 2px; height: 22px; overflow: hidden; font-weight: normal; border-bottom-color: inherit; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap;
+}
+.ui-jqgrid td textarea {
+	width: auto; height: auto;
+}
+.ui-jqgrid td input {
+	margin: 0px;
+}
+.ui-jqgrid td select {
+	margin: 0px;
+}
+.ui-jqgrid td textarea {
+	margin: 0px;
+}
+.ui-jqgrid tr.jqgfirstrow td {
+	border-width: 0px; padding: 0px 2px; border-right-style: solid;
+}
+.ui-jqgrid tr.jqgroup td {
+	padding: 0px 2px; height: 22px; overflow: hidden; font-weight: normal; border-bottom-color: inherit; border-bottom-width: 1px; border-bottom-style: solid; white-space: pre;
+}
+.ui-jqgrid tr.jqfoot td {
+	padding: 0px 2px; height: 22px; overflow: hidden; font-weight: bold; border-bottom-color: inherit; border-bottom-width: 1px; border-bottom-style: solid; white-space: pre;
+}
+.ui-jqgrid tr.ui-row-ltr {
+	border: 0px currentColor; border-image: none;
+}
+.ui-jqgrid tr.ui-row-rtl {
+	border: 0px currentColor; border-image: none;
+}
+.ui-jqgrid tr.ui-row-ltr td {
+	padding: 5px; text-align: left; border-right-color: inherit; border-right-width: 1px; border-right-style: solid;
+}
+.ui-jqgrid tr.ui-row-rtl td {
+	text-align: right; border-left-color: inherit; border-left-width: 1px; border-left-style: solid;
+}
+.ui-jqgrid tr.ui-row-ltr td {
+	border-color: rgb(221, 223, 215) !important; padding: 4px 10px; border-bottom-width: 1px; border-bottom-style: solid;
+}
+.ui-jqgrid tr.ui-row-rtl td {
+	border-color: rgb(221, 223, 215) !important; padding: 4px 10px; border-bottom-width: 1px; border-bottom-style: solid;
+}
+.ui-jqgrid .ui-row-ltr.ui-state-highlight td {
+	border-right-color: rgb(199, 211, 169); border-bottom-color: rgb(225, 225, 225) !important; border-bottom-width: 1px !important; border-bottom-style: solid !important;
+}
+.ui-jqgrid .ui-row-rtl.ui-state-highlight td {
+	border-bottom-color: rgb(225, 225, 225) !important; border-left-color: rgb(199, 211, 169); border-bottom-width: 1px !important; border-bottom-style: solid !important;
+}
+.ui-jqgrid td.jqgrid-rownum {
+	margin: 0px; padding: 0px 2px; border: 0px currentColor; border-image: none;
+}
+.ui-jqgrid .ui-jqgrid-resize-mark {
+	border: 0px currentColor; border-image: none; left: 0px; top: 0px; width: 2px; height: 100px; overflow: hidden; display: none; position: absolute; z-index: 99999; cursor: col-resize; background-color: rgb(119, 119, 119);
+}
+.ui-jqgrid .ui-jqgrid-sdiv {
+	margin: 0px; padding: 0px; overflow: hidden; border-top-color: currentColor !important; border-right-color: currentColor !important; border-left-color: currentColor !important; border-top-width: 0px !important; border-right-width: 0px !important; border-left-width: 0px !important; border-top-style: none !important; border-right-style: none !important; border-left-style: none !important; position: relative;
+}
+.ui-jqgrid .ui-jqgrid-ftable {
+	margin-bottom: 0px; table-layout: fixed;
+}
+.ui-jqgrid tr.footrow td {
+	padding: 0px 2px; height: 21px; overflow: hidden; font-weight: bold; border-top-color: inherit; border-top-width: 1px; border-top-style: solid; white-space: nowrap;
+}
+.ui-jqgrid tr.footrow-ltr td {
+	text-align: left; border-right-color: inherit; border-right-width: 1px; border-right-style: solid;
+}
+.ui-jqgrid tr.footrow-rtl td {
+	text-align: right; border-left-color: inherit; border-left-width: 1px; border-left-style: solid;
+}
+.ui-jqgrid .ui-jqgrid-pager {
+	margin: 0px !important; padding: 0px !important; height: 32px; overflow: hidden; font-size: 11px; border-right-color: currentColor !important; border-bottom-color: currentColor !important; border-left-color: currentColor !important; border-right-width: 0px !important; border-bottom-width: 0px !important; border-left-width: 0px !important; border-right-style: none !important; border-bottom-style: none !important; border-left-style: none !important; white-space: nowrap; position: relative;
+}
+.ui-jqgrid .ui-jqgrid-pager {
+	background-color: rgb(249, 249, 249) !important;
+}
+.ui-jqgrid .ui-jqgrid-pager input {
+	vertical-align: middle;
+}
+.ui-jqgrid .ui-pager-control {
+	position: relative;
+}
+.ui-jqgrid .ui-pager-control {
+	border-top-color: rgb(225, 225, 225) !important; border-top-width: 1px !important; border-top-style: solid !important;
+}
+.ui-jqgrid .ui-pg-table {
+	margin: 0px; width: auto; padding-bottom: 2px; font-size: 13px; position: relative;
+}
+.ui-jqgrid .ui-pg-table .navtable .ui-corner-all {
+	border-radius: 0px;
+}
+.ui-jqgrid .ui-pg-table td {
+	padding: 0px !important; height: 26px; font-weight: normal; vertical-align: middle;
+}
+.ui-jqgrid .ui-pg-div .ui-icon {
+	margin: 0px 1px; transition:0.12s; width: 18px; text-align: center; font-size: 17px; vertical-align: middle; float: none; display: inline-block; position: static; cursor: pointer; opacity: 0.85; -webkit-transition: all .12s;
+}
+.ui-jqgrid .ui-pg-div .ui-icon:hover {
+	margin: 0px 1px; position: static; opacity: 1; transform: scale(1.2); -webkit-transform: scale(1.2); -o-transform: scale(1.2); -moz-transform: scale(1.2);
+}
+.ui-jqgrid .ui-pg-div .ui-icon::before {
+	font-family: Glyphicons Halflings; display: inline;
+}
+.ui-jqgrid .ui-state-disabled:hover {
+	padding: 1px;
+}
+.ui-pg-table > tbody > tr > .ui-pg-button > .ui-icon {
+	margin: 1px !important; padding: 0px; border-radius: 100%; border: 1px solid rgb(204, 204, 204); border-image: none; width: 23px; height: 22px; text-align: center; color: rgb(128, 128, 128); line-height: 20px; float: none; display: inline-block; position: static; background-color: rgb(255, 255, 255);
+}
+.ui-pg-table > tbody > tr > .ui-pg-button > .ui-icon:hover {
+	border-color: rgb(255, 255, 255); color: rgb(255, 255, 255);
+}
+.ui-pg-table > tbody > tr > .ui-pg-button > .ui-icon::before {
+	width: 20px; text-align: center; display: inline-block;
+}
+.ui-pg-table > tbody > tr > .ui-state-disabled.ui-pg-button .ui-icon {
+	border-color: rgb(221, 221, 221); color: rgb(176, 176, 176); transform: scale(0.9); background-color: rgb(247, 247, 247); -webkit-transform: scale(0.9); -o-transform: scale(0.9); -moz-transform: scale(0.9);
+}
+.ui-jqgrid .ui-pg-button {
+	height: 19px !important;
+}
+.ui-jqgrid .ui-pg-button:hover {
+	padding: 1px;
+}
+.ui-jqgrid .ui-pg-button:hover {
+	padding: 0px;
+}
+.ui-jqgrid .ui-pg-button .ui-separator {
+	border-color: rgb(201, 212, 219); margin-right: 4px; margin-left: 4px;
+}
+.ui-jqgrid .ui-pg-button span {
+	margin: 1px; float: left; display: block;
+}
+.ui-jqgrid .ui-pg-button span.glyphicon {
+	width: 20px; height: 20px; text-align: center; color: rgb(51, 51, 51); line-height: 20px; cursor: pointer; background-color: rgb(221, 221, 221);
+}
+.ui-jqgrid .ui-pg-button span.glyphicon:hover {
+	color: rgb(255, 255, 255); background-color: rgb(4, 131, 212);
+}
+.ui-jqgrid .ui-pg-input {
+	margin: 0px; height: 13px; font-size: 0.8em;
+}
+.ui-jqgrid .ui-pg-input {
+	width: 24px; height: 14px; text-align: center; line-height: 16px; padding-top: 1px; padding-bottom: 1px; font-size: inherit; box-sizing: content-box; -webkit-box-sizing: content-box; -moz-box-sizing: content-box;
+}
+.ui-jqgrid .ui-pg-selbox {
+	margin: 0px; padding: 1px; width: 60px; height: 22px; line-height: normal; font-size: 13px; display: block;
+}
+.ui-jqgrid .ui-separator {
+	margin: 1px; height: 18px; border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-right-width: 1px; border-left-width: 1px; border-right-style: solid; border-left-style: solid; float: right;
+}
+.ui-jqgrid .ui-paging-info {
+	height: 19px; font-size: 13px; font-weight: normal; margin-top: 0px !important; margin-right: 4px;
+}
+.ui-jqgrid .ui-jqgrid-pager .ui-pg-div {
+	padding: 1px 0px; float: left; position: relative;
+}
+.ui-jqgrid .ui-jqgrid-pager .ui-pg-button {
+	cursor: pointer;
+}
+.ui-jqgrid .ui-jqgrid-pager .ui-pg-div span.ui-icon {
+	margin: 0px 2px; float: left;
+}
+.ui-jqgrid .ui-jqgrid-toppager {
+	margin: 0px !important; padding: 0px !important; height: 25px !important; overflow: hidden; border-top-color: currentColor !important; border-right-color: currentColor !important; border-left-color: currentColor !important; border-top-width: 0px !important; border-right-width: 0px !important; border-left-width: 0px !important; border-top-style: none !important; border-right-style: none !important; border-left-style: none !important; white-space: nowrap; position: relative;
+}
+.ui-jqgrid .ui-jqgrid-toppager {
+	height: auto !important; border-bottom-color: rgb(225, 225, 225) !important; border-bottom-width: 1px !important; border-bottom-style: solid !important; background-color: rgb(249, 249, 249) !important;
+}
+.ui-jqgrid .ui-jqgrid-toppager .ui-pg-div {
+	padding: 1px 0px; float: left; position: relative;
+}
+.ui-jqgrid .ui-jqgrid-toppager .ui-pg-button {
+	cursor: pointer;
+}
+.ui-jqgrid .ui-jqgrid-toppager .ui-pg-div span.ui-icon {
+	margin: 0px 2px; float: left;
+}
+.ui-jqgrid .ui-jqgrid-btable .ui-sgcollapsed span {
+	display: block;
+}
+.ui-jqgrid .ui-subgrid {
+	margin: 0px; padding: 0px; width: 100%;
+}
+.ui-jqgrid .ui-subgrid table {
+	table-layout: fixed;
+}
+.ui-jqgrid .ui-subgrid tr.ui-subtblcell td {
+	height: 18px; border-right-color: inherit; border-bottom-color: inherit; border-right-width: 1px; border-bottom-width: 1px; border-right-style: solid; border-bottom-style: solid;
+}
+.ui-jqgrid .ui-subgrid td.subgrid-data {
+	border-top-color: currentColor !important; border-top-width: 0px !important; border-top-style: none !important;
+}
+.ui-jqgrid .ui-subgrid td.subgrid-cell {
+	border-width: 0px 0px 1px;
+}
+.ui-jqgrid .ui-th-subgrid {
+	height: 20px;
+}
+.ui-jqgrid .loading {
+	margin: 5px; padding: 6px 20px; border: 2px solid rgb(142, 184, 209); border-image: none; left: 45%; top: 45%; width: auto; height: auto; text-align: center; color: rgb(226, 176, 24); font-size: 12px; font-weight: bold; display: none; position: absolute; z-index: 101; background-color: rgb(255, 255, 255);
+}
+.ui-jqgrid .jqgrid-overlay {
+	display: none; z-index: 100;
+}
+* .jqgrid-overlay iframe {
+	left: 0px; top: 0px; position: absolute; z-index: -1;
+}
+.ui-jqgrid .ui-userdata {
+	height: 21px; overflow: hidden; border-right-color: currentColor; border-left-color: currentColor; border-right-width: 0px; border-left-width: 0px; border-right-style: none; border-left-style: none;
+}
+.ui-jqdialog {
+	padding: 0.2em; width: 300px; overflow: visible; font-size: 11px; display: none; position: absolute;
+}
+.ui-jqdialog .ui-jqdialog-titlebar {
+	padding: 0.3em 0.2em; border-bottom-color: rgb(221, 221, 221) !important; border-bottom-width: 1px !important; border-bottom-style: solid !important; position: relative;
+}
+.ui-jqdialog .ui-jqdialog-title {
+	margin: 0.1em 0px 0.2em;
+}
+.ui-jqdialog .ui-jqdialog-titlebar-close {
+	margin: -10px 0px 0px; padding: 1px; top: 50%; width: 19px; height: 18px; position: absolute; cursor: pointer;
+}
+.ui-jqdialog .ui-jqdialog-titlebar-close span {
+	margin: 1px; display: block;
+}
+.ui-jqdialog .ui-jqdialog-titlebar-close:hover {
+	padding: 0px;
+}
+.ui-jqdialog .ui-jqdialog-titlebar-close:focus {
+	padding: 0px;
+}
+.ui-jqdialog .ui-widget-header {
+	border-image: none; color: rgb(102, 159, 199); border-bottom-color: rgb(66, 151, 215); border-bottom-width: 1px; border-bottom-style: solid; position: relative; min-height: 38px; background-image: linear-gradient(rgb(255, 255, 255) 0px, rgb(238, 238, 238) 100%); background-repeat: repeat-x; background-color: rgb(249, 249, 249);
+}
+.ui-jqdialog .ui-widget-header .ui-jqdialog-title {
+	margin: 0px; padding: 0px 0px 0px 12px; text-align: left; line-height: 38px;
+}
+.ui-jqdialog .ui-widget-header .widget-header {
+	border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}
+.ui-jqdialog-content {
+	background: none; padding: 0.3em 0.2em; border: 0px currentColor; border-image: none; height: auto;
+}
+.ui-jqdialog .ui-jqdialog-content {
+	background: none; padding: 0.3em 0.2em; border: 0px currentColor; border-image: none; height: auto;
+}
+.ui-jqdialog .ui-jqconfirm {
+	border-width: 3px; padding: 0.4em 1em; width: 220px; height: 80px; text-align: center; right: 10px; bottom: 10px; overflow: visible; display: none; position: absolute;
+}
+.ui-jqdialog > .ui-resizable-se {
+	right: -3px; bottom: -3px;
+}
+.ui-jqgrid > .ui-resizable-se {
+	right: -3px; bottom: -3px;
+}
+.ui-jqdialog-content .FormGrid {
+	margin: 0px;
+}
+.ui-jqdialog-content .EditTable {
+	width: 100%; margin-bottom: 0px;
+}
+.ui-jqdialog-content .DelTable {
+	width: 100%; margin-bottom: 0px;
+}
+.EditTable td input {
+	margin: 0px;
+}
+.EditTable td select {
+	margin: 0px;
+}
+.EditTable td textarea {
+	margin: 0px;
+}
+.EditTable td textarea {
+	width: auto; height: auto;
+}
+.EditTable {
+	padding: 8px; border-top-color: rgb(214, 225, 234) !important; border-top-width: 1px !important; border-top-style: solid !important; background-color: rgb(249, 249, 249);
+}
+.EditTable tr:first-child {
+	display: none;
+}
+.EditTable .navButton .fm-button {
+	margin: 1px 1px 2px !important; border-radius: 100%; width: auto !important; float: none !important; background-color: transparent;
+}
+.EditTable .navButton .fm-button:hover {
+	background-color: transparent;
+}
+.EditTable .navButton .fm-button:focus {
+	outline: 0px;
+}
+.EditTable .navButton .fm-button [class*='icon-'] {
+	border-radius: 100%; border: 1px solid rgb(170, 170, 170); border-image: none; width: 26px; height: 26px; text-align: center; color: rgb(153, 153, 153); line-height: 26px; display: inline-block; background-color: rgb(255, 255, 255);
+}
+.EditTable .navButton .fm-button:hover [class*='icon-'] {
+	border-color: rgb(105, 154, 181); color: rgb(105, 154, 181);
+}
+.EditTable .navButton [class*='icon-'].ui-state-disabled.fm-button {
+	border-color: rgb(204, 204, 204); color: rgb(187, 187, 187); transform: scale(0.88); -webkit-transform: scale(0.88); -o-transform: scale(0.88); -moz-transform: scale(0.88);
+}
+.EditTable .navButton .ui-state-disabled.fm-button:hover [class*='icon-'] {
+	border-color: rgb(204, 204, 204); color: rgb(187, 187, 187); transform: scale(0.88); -webkit-transform: scale(0.88); -o-transform: scale(0.88); -moz-transform: scale(0.88);
+}
+.FormGrid .EditTable {
+	padding: 0px; border-top-color: currentColor !important; border-top-width: medium !important; border-top-style: none !important; background-color: rgb(255, 255, 255);
+}
+.FormGrid .EditTable tr:first-child {
+	display: none;
+}
+.ui-jqdialog-content td.EditButton {
+	text-align: right; padding-top: 5px; padding-bottom: 5px; border-top-color: currentColor; border-right-color: currentColor; border-left-color: currentColor; border-top-width: 0px; border-right-width: 0px; border-left-width: 0px; border-top-style: none; border-right-style: none; border-left-style: none;
+}
+.ui-jqdialog-content td.navButton {
+	text-align: center; padding-top: 5px; padding-bottom: 5px; border-top-color: currentColor; border-right-color: currentColor; border-left-color: currentColor; border-top-width: 0px; border-right-width: 0px; border-left-width: 0px; border-top-style: none; border-right-style: none; border-left-style: none;
+}
+.ui-jqdialog-content input.FormElement {
+	padding: 0.3em;
+}
+.ui-jqdialog-content select.FormElement {
+	padding: 0.3em;
+}
+.ui-jqdialog-content .data-line {
+	border: 0px currentColor; border-image: none; padding-top: 0.1em;
+}
+.ui-jqdialog-content .CaptionTD {
+	padding: 2px; border: 0px currentColor; border-image: none; vertical-align: middle; white-space: nowrap;
+}
+.ui-jqdialog-content .DataTD {
+	padding: 2px; border: 0px currentColor; border-image: none; vertical-align: top;
+}
+.ui-jqdialog-content .form-view-data {
+	white-space: pre;
+}
+.ui-jqdialog-content {
+	padding: 4px 0px 0px; font-size: 13px;
+}
+.ui-jqdialog .ui-jqdialog-content {
+	padding: 4px 0px 0px; font-size: 13px;
+}
+.ui-jqdialog-content .formdata {
+	padding: 6px 12px; font-size: 13px;
+}
+.ui-jqdialog .ui-jqdialog-content .formdata {
+	padding: 6px 12px; font-size: 13px;
+}
+.ui-jqdialog-content .form-view-data {
+	font-size: 13px; vertical-align: middle;
+}
+.ui-jqdialog .ui-jqdialog-content .form-view-data {
+	font-size: 13px; vertical-align: middle;
+}
+[id*='alertcnt_'].ui-jqdialog-content {
+	padding: 8px 11px;
+}
+.ui-jqdialog [id*='alertcnt_'].ui-jqdialog-content {
+	padding: 8px 11px;
+}
+.ui-jqdialog-content .CaptionTD {
+	text-align: right; color: rgb(102, 102, 102); font-size: 12px;
+}
+.ui-jqdialog-content .FormData {
+	border-bottom-color: rgb(232, 232, 232); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.ui-jqdialog-content :last-child.FormData {
+	border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}
+.ui-jqdialog-content .FormData > td {
+	padding-top: 6px; padding-bottom: 6px;
+}
+.ui-jqdialog-content input.FormElement {
+	width: auto;
+}
+.ui-jqdialog-content select.FormElement {
+	padding: 1px; width: auto; height: 25px; line-height: 25px;
+}
+.ui-jqdialog-content td.EditButton {
+	padding: 8px;
+}
+.ui-jqdialog-content .searchFilter select {
+	padding: 1px; width: auto; height: 26px; line-height: 26px; margin-bottom: 0px; max-width: 95%;
+}
+.ui-jqdialog-content .searchFilter .input-elm {
+	width: 95% !important; height: 18px; line-height: 18px; padding-right: 1px; padding-left: 1px; margin-bottom: 0px; box-sizing: content-box; -webkit-box-sizing: content-box; -moz-box-sizing: content-box;
+}
+.ui-jqdialog-content .searchFilter table {
+	margin-left: 4px;
+}
+.ui-jqdialog-content .searchFilter tr td {
+	padding: 5px 0px;
+}
+.ui-jqdialog-content .searchFilter .add-group {
+	font-size: 15px !important; margin-left: 4px !important;
+}
+.ui-jqdialog-content .searchFilter .add-rule {
+	font-size: 15px !important; margin-left: 4px !important;
+}
+.ui-jqdialog-content .searchFilter .delete-group {
+	font-size: 15px !important; margin-left: 4px !important;
+}
+.ui-jqdialog-content .searchFilter .delete-rule {
+	padding: 0px; border: 0px currentColor; transition:0.1s; border-image: none; width: 22px; color: rgb(209, 91, 71); line-height: 10px; font-size: 20px; display: inline-block; opacity: 0.85; text-shadow: none !important; background-color: rgb(255, 255, 255); -webkit-transition: all .1s;
+}
+.ui-jqdialog-content .searchFilter .delete-rule:hover {
+	color: rgb(183, 70, 53); opacity: 1; transform: scale(1.1); -webkit-transform: scale(1.1); -o-transform: scale(1.1); -moz-transform: scale(1.1);
+}
+.ui-jqdialog-content .searchFilter .queryresult {
+	margin-bottom: 11px;
+}
+.ui-jqdialog-content .searchFilter .queryresult td.query {
+	padding: 6px 11px; border: 1px solid rgb(225, 225, 225); border-image: none; background-color: rgb(238, 238, 238);
+}
+.ui-jqdialog-content .searchFilter .queryresult td:empty.query {
+	display: none;
+}
+.fm-button {
+	margin: 0px 4px; padding: 0.4em 0.5em; text-align: center; text-decoration: none !important; display: inline-block; position: relative; cursor: pointer; -ms-zoom: 1;
+}
+.fm-button-icon-left {
+	padding-left: 1.9em;
+}
+.fm-button-icon-right {
+	padding-right: 1.9em;
+}
+.fm-button-icon-left .ui-icon {
+	left: 0.2em; top: 50%; right: auto; margin-top: -8px; margin-left: 0px; position: absolute;
+}
+.fm-button-icon-right .ui-icon {
+	left: auto; top: 50%; right: 0.2em; margin-top: -8px; margin-left: 0px; position: absolute;
+}
+#nData {
+	margin: 3px; padding: 0px; width: 15px; float: left;
+}
+#pData {
+	margin: 3px; padding: 0px; width: 15px; float: left;
+}
+.ui-jqgrid .selected-row {
+	font-style: normal; border-left-color: currentColor; border-left-width: 0px; border-left-style: none;
+}
+div.ui-jqgrid .selected-row td {
+	font-style: normal; border-left-color: currentColor; border-left-width: 0px; border-left-style: none;
+}
+.ui-state-hover.ui-inline-del span {
+	margin: -1px;
+}
+.ui-state-hover.ui-inline-edit span {
+	margin: -1px;
+}
+.ui-state-hover.ui-inline-save span {
+	margin: -1px;
+}
+.ui-state-hover.ui-inline-cancel span {
+	margin: -1px;
+}
+.ui-jqgrid .tree-wrap {
+	height: 18px; overflow: hidden; float: left; white-space: nowrap; position: relative;
+}
+.ui-jqgrid .tree-minus {
+	width: 18px; height: 18px; overflow: hidden; position: absolute;
+}
+.ui-jqgrid .tree-plus {
+	width: 18px; height: 18px; overflow: hidden; position: absolute;
+}
+.ui-jqgrid .tree-leaf {
+	width: 18px; height: 18px; overflow: hidden; position: absolute;
+}
+.ui-jqgrid .treeclick {
+	cursor: pointer;
+}
+* iframe.jqm {
+	left: 0px; top: 0px; position: absolute; z-index: -1;
+}
+.ui-jqgrid-dnd tr td {
+	height: 20px; border-right-color: inherit; border-right-width: 1px; border-right-style: solid;
+}
+.ui-jqgrid .ui-jqgrid-caption-rtl {
+	text-align: right;
+}
+.ui-jqgrid .ui-jqgrid-title-rtl {
+	margin: 8px; float: right;
+}
+.ui-jqgrid .ui-jqgrid-hbox-rtl {
+	padding-left: 20px; float: right;
+}
+.ui-jqgrid .ui-jqgrid-resize-ltr {
+	margin: -2px -2px -2px 0px; float: right;
+}
+.ui-jqgrid .ui-jqgrid-resize-rtl {
+	margin: -2px 0px -1px -3px; float: left;
+}
+.ui-jqgrid .ui-sort-rtl {
+	left: 0px;
+}
+.ui-jqgrid .tree-wrap-ltr {
+	float: left;
+}
+.ui-jqgrid .tree-wrap-rtl {
+	float: right;
+}
+.ui-jqgrid .ui-ellipsis {
+	-ms-text-overflow: ellipsis; -moz-text-overflow: ellipsis;
+}
+.ui-search-menu {
+	padding: 2px 5px; position: absolute;
+}
+.ui-jqgrid .ui-search-table {
+	padding: 0px; border: 0px currentColor; border-image: none; width: 100%; height: 20px;
+}
+.ui-jqgrid .ui-search-table .ui-search-oper {
+	width: 20px;
+}
+a.g-menu-item {
+	cursor: pointer;
+}
+a.soptclass {
+	cursor: pointer;
+}
+a.clearsearchclass {
+	cursor: pointer;
+}
+.ui-jqgrid .ui-search-table .ui-search-input > input {
+	display: block; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.ui-jqgrid .ui-search-table .ui-search-input > select {
+	display: block; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.ui-jqgrid .ui-jqgrid-tips {
+	background: 0px 0px rgb(232, 240, 251); border-width: 0px 0px 1px; border-style: none none solid; border-color: currentColor currentColor rgb(66, 151, 215); padding: 0.3em 0.2em 0.2em 2em; text-align: left; color: rgb(60, 118, 61); font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif; font-size: 16px; font-weight: bold; margin-bottom: 5px !important; position: relative;
+}
+.ui-jqgrid .ui-jqgrid-tips strong {
+	color: rgb(60, 118, 61) !important; font-weight: bold !important;
+}
+.ui-jqgrid .ui-icon {
+	color: rgb(48, 126, 204); text-indent: 0px; float: none; position: absolute;
+}
+.ui-jqgrid .ui-state-disabled.ui-icon {
+	color: rgb(192, 192, 192);
+}
+.ui-jqgrid .ui-state-error.ui-icon {
+	margin: 4px 4px 8px; padding: 6px 10px; border: 1px solid rgb(238, 211, 215); border-image: none; color: rgb(185, 74, 72); font-size: 13px; text-shadow: 0px 1px 0px rgba(255,255,255,0.5); background-color: rgb(242, 222, 222);
+}
+.ui-jqgrid .rtl .ui-icon {
+	left: 2px; right: auto;
+}
+.ui-jqgrid .s-ico {
+	margin-left: 5px; position: relative;
+}
+.ui-jqgrid .ui-icon-asc::before {
+	content: "\e113";
+}
+.ui-jqgrid .ui-icon-asc {
+	height: 12px; padding-left: 1px; margin-top: -4px;
+}
+.ui-jqgrid .ui-icon-desc {
+	height: 12px; margin-top: 4px;
+}
+.ui-jqgrid .ui-icon-desc::before {
+	content: "\e114";
+}
+.ui-jqgrid .ui-icon-desc:hover {
+	margin-left: 0px !important;
+}
+.ui-jqgrid .ui-icon-pencil {
+	color: rgb(71, 143, 202);
+}
+.ui-jqgrid .ui-icon-pencil::before {
+	content: "\f040";
+}
+.ui-jqgrid .ui-icon-trash {
+	color: rgb(221, 90, 67);
+}
+.ui-jqgrid .ui-icon-trash::before {
+	content: "\f014";
+}
+.ui-jqgrid .ui-icon-disk {
+	color: rgb(105, 170, 70);
+}
+.ui-jqgrid .ui-icon-disk::before {
+	content: "\f00c";
+}
+.ui-jqgrid .ui-icon-cancel {
+	color: rgb(221, 90, 67);
+}
+.ui-jqgrid .ui-icon-cancel::before {
+	content: "\f00d";
+}
+.panel-body .ui-jqgrid-view {
+	border-bottom-color: currentColor !important; border-bottom-width: medium !important; border-bottom-style: none !important;
+}
+.ui-grid-handle {
+	background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px currentColor; border-image: none; width: 99.9% !important; height: 0px; line-height: 0px;
+}
+.ui-jqdialog {
+	display: none !important;
+}
+.icon-button {
+	
+}
+.ui-icon-top {
+	background: url("../images/arrow-top.png") no-repeat left bottom; width: 16px; height: 16px; float: left; display: block; cursor: pointer;
+}
+.ui-icon-up {
+	background: url("../images/arrow-090.png") no-repeat left bottom; width: 16px; height: 16px; float: left; display: block; cursor: pointer;
+}
+.ui-icon-down {
+	background: url("../images/arrow-270.png") no-repeat left bottom; width: 16px; height: 16px; float: left; display: block; cursor: pointer;
+}
+.ui-icon-root {
+	background: url("../images/arrow-root.png") no-repeat left bottom; width: 16px; height: 16px; float: left; display: block; cursor: pointer;
+}
+.ui-icon-top-disable {
+	background: url("../images/arrow-top-disable.png") no-repeat left bottom;
+}
+.ui-icon-up-disable {
+	background: url("../images/arrow-090-disable.png") no-repeat left bottom;
+}
+.ui-icon-down-disable {
+	background: url("../images/arrow-270-disable.png") no-repeat left bottom;
+}
+.ui-icon-root-disable {
+	background: url("../images/arrow-root-disable.png") no-repeat left bottom;
+}
+.ui-multiselect {
+	border: 1px solid currentColor; border-image: none; font-size: 0.8em;
+}
+.ui-multiselect ul {
+	-moz-user-select: none;
+}
+.ui-multiselect li {
+	list-style: none; margin: 0px; padding: 0px; height: 20px; line-height: 20px; font-size: 11px; cursor: default;
+}
+.ui-multiselect li a {
+	padding: 0px; color: rgb(153, 153, 153); text-decoration: none; float: left; display: block; cursor: pointer;
+}
+.ui-multiselect li.ui-draggable-dragging {
+	padding-left: 10px;
+}
+.ui-multiselect div.selected {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none; float: left; position: relative;
+}
+.ui-multiselect ul.selected {
+	background: rgb(255, 255, 255); list-style: none; margin: 0px; padding: 0px; border: 0px currentColor; border-image: none; width: 100%; overflow: auto; position: relative; -ms-overflow-x: hidden;
+}
+.ui-multiselect ul.selected li {
+	
+}
+.ui-multiselect div.available {
+	border-width: 0px 0px 0px 1px; border-style: none none none solid; border-color: currentColor; margin: 0px; padding: 0px; border-image: none; float: left; position: relative;
+}
+.ui-multiselect ul.available {
+	background: rgb(255, 255, 255); list-style: none; margin: 0px; padding: 0px; border: 0px currentColor; border-image: none; width: 100%; overflow: auto; position: relative; -ms-overflow-x: hidden;
+}
+.ui-multiselect ul.available li {
+	padding-left: 10px;
+}
+.ui-multiselect .ui-state-default {
+	border: currentColor; border-image: none; padding-left: 20px; margin-bottom: 1px; position: relative;
+}
+.ui-multiselect .ui-state-hover {
+	border: currentColor; border-image: none;
+}
+.ui-multiselect .ui-widget-header {
+	border: currentColor; border-image: none; font-size: 11px; margin-bottom: 1px;
+}
+.ui-multiselect .add-all {
+	padding: 7px; float: right;
+}
+.ui-multiselect .remove-all {
+	padding: 7px; float: right;
+}
+.ui-multiselect .search {
+	padding: 4px; float: left;
+}
+.ui-multiselect .count {
+	padding: 7px; float: left;
+}
+.ui-multiselect li span.ui-icon-arrowthick-2-n-s {
+	left: 2px; position: absolute;
+}
+.ui-multiselect li a.action {
+	top: 2px; right: 2px; position: absolute;
+}
+.ui-multiselect input.search {
+	margin: 4px; padding: 1px; width: 100px; height: 14px; opacity: 0.5;
+}
+.ui-jqgrid .ui-jqgrid-resize-ltr {
+	width: 10px; right: 0px; position: absolute; z-index: 99;
+}
+.ui-th-ltr {
+	position: relative;
+}
+.ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr {
+	position: relative;
+}
+th.ui-th-ltr.ui-th-column-header.ui-state-default {
+	color: rgb(119, 119, 119); font-size: 13px; font-weight: bold;
+}
+th.ui-th-ltr.ui-th-column-header.ui-state-default:hover {
+	color: rgb(84, 126, 168);
+}
+.colspanbottom {
+	text-align: center; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.colspan-height {
+	top: 0px !important; line-height: 20px !important; margin-top: 0px !important;
+}
+.ui-jqgrid-bdiv .ui-icon {
+	background-image: url("../images/ui-icons_469bdd_256x240.png");
+}
+.ui-jqgrid .tree-minus {
+	width: 18px; height: 18px; overflow: hidden; position: absolute;
+}
+.ui-jqgrid .treeclick {
+	cursor: pointer;
+}
+.ui-icon-triangle-1-s {
+	background-position: -64px -16px;
+}
+.ui-icon {
+	text-indent: -99999px; overflow: hidden; display: block; background-repeat: no-repeat;
+}
+.fixed-jqgrid-hdiv {
+	top: 0px; position: fixed !important; z-index: 18;
+}
+.ui-jqgrid-view .mCSB_inside.mCSB_horizontal > .mCSB_container {
+	margin-bottom: 10px;
+}
+#tableForm .ui-jqgrid .ui-jqgrid-hdiv {
+	-ms-overflow-y: scroll;
+}
