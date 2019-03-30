@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本的页面</title>
+    <meta name="viemport" content="width=device-width",initial-scal="1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.3.css"/>
+</head>
+
+<body>
+<div data-role="page" id="index">
+    <div data-role="header" data-position="fixed">
+        <h1>我是标题1</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <!--按钮-->
+        <!--<p>我是内容1</p>-->
+        <!--<p ><a href="#index2"data-transition="slidedown">页面2</a></p>-->
+        <!--<a class="ui-btn ui-btn-a ui-shadow ui-corner-all" >我是按钮1</a>-->
+        <!--<a class="ui-btn ui-btn-b ui-shadow ui-corner-all" >我是按钮2</a>-->
+        <!--<input type="submit" value="我也是按钮">-->
+
+
+        <!--<ul data-role="listview" data-inset="true">-->
+            <!--<li><a href="#" data-icon="camera">-->
+                <!--<h2>G1次</h2>-->
+                <!--<p>XXXX-XXXX</p>-->
+                <!--<p>XXXX-XXXX</p>-->
+                <!--<p class="ui-li-aside">9:00开</p>-->
+            <!--</a></li>-->
+            <!--<li><a href="#" data-icon="alert">项目2</a></li>-->
+            <!--<li><a href="#" data-icon="bars">项目3</a></li>-->
+            <!--<li><a href="#" data-icon="clock">项目4</a></li>-->
+            <!--<li><a href="#" data-icon="audio">项目5</a></li>-->
+        <!--</ul>-->
+    <!--表单-->
+        <form >
+            <div class="ui-field-contain">
+            <label>到达站:</label>
+            <input type="text">
+            </div>
+            <div class="ui-field-contain">
+            <label>车次:</label>
+            <input type="text">
+            </div>
+            <div class="ui-field-contain">
+            <label>发车站:</label>
+            <input type="text">
+            </div>
+            <a href="#" id="ajaxbtn" class="ui-btn ui-btn-a ui-shadow ui-corner-all" >
+                搜索</a>
+        </form>
+        <!--表格-->
+        <!--<table data-role="table" data-mode="reflow" class="ui-responsive table-stroke">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th>第一列</th>-->
+                <!--<th>第二列</th>-->
+                <!--<th>第三列</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td>123</td>-->
+                <!--<td>453</td>-->
+                <!--<td>977</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>154</td>-->
+                <!--<td>678</td>-->
+                <!--<td>257</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" data-icon="camera">导航1</a></li>
+                <li><a href="#" data-icon="alert">导航2</a></li>
+                <li><a href="#" data-icon="bars">导航3</a></li>
+                <li><a href="#" data-icon="clock">导航4</a></li>
+                <li><a href="#" data-icon="audio">导航5</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<div data-role="page" id="index2">
+    <div data-role="header">
+        <h1>我是标题2</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <p>我是内容2</p>
+        <p ><a href="#index"data-transition="slide">页面1</a></p>
+    </div>
+    <div data-role="footer">
+        <h1>我是页脚2</h1>
+
+    </div>
+</div>
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/jquery.mobile-1.4.3.js"></script>
+<script>
+    $(document).on("pageinit","#index",function(){
+        var url =
+            "http://www.webxml.com.cn/WebServices/TrainTimeWebService.asmx/getStationAndTimeByStationName?UserID=";
+        $("#ajaxbtn").on("click",function(){
+            $.mobile.loading("show");
+            $.get(url,{TrainCode:"G1"};function(data){
+                console.log(data);
+                $.mobile.loading("hide");
+            });
+        });
+    });
+</script>
+<!--
+<script>
+    $(document).on("pagebeforehide","#index",function(){
+        alert("pagebeforehide");
+    });
+    $(document).on("pagehide","index",function(){
+        alert("pagehide");
+    });
+    $(document).on("pagebeforeshow","index2",function(){
+        alert("pagebeforeshow");
+    });
+    $(document).on("pageshow","index2",function(){
+        alert("pageshow");
+    });
+</script>
+-->
+</body>
+</html>
