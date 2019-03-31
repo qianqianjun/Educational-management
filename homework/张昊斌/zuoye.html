@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.3.css"/>
+</head>
+<body>
+<div data-role="page"id="index">
+    <div data-role="header" data-position="fixed">
+         <h1>我是标题</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <p><a href="#index1"data-transition="slide">index1</a></p>
+        <form>
+            <div class="ui-field-contain">
+                <label>发车站</label>
+                <input type="text">
+            </div>
+            <div class="ui-field-contain">
+                <label>姓名</label>
+                <input type="text">
+            </div>
+            <div class="ui-field-contain">
+                <label>干啥去</label>
+                <input type="text">
+            </div>
+        </form>
+        <ul data-role="listview" data-inset="true">
+            <li><a href="#">项目1</a> </li>
+            <li><a href="#">
+                <h2>G1</h2>
+                <p>xxxx-xxxx</p>
+                <p>xxxx-xx</p>
+                <p class="ui-li-aside">9:00</p>
+            </a></li>
+            <li><a href="#">项目3</a></li>
+            <li><a href="#">项目4</a></li>
+            <li><a href="#">项目5</a></li>
+        </ul>
+        <table data-role="table" data-mode="reflow"class="ui-responsive table-stroke">
+            <thead>
+            <tr>
+                <th>第一列</th>
+                <th>第二列</th>
+                <th>第三列</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>123</td>
+                <td>456</td>
+                <td>789</td>
+            </tr>
+            <tr>
+                <td>1233</td>
+                <td>45336</td>
+                <td>78339</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div data-role="footer"data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" data-icon="camera">导航1</a> </li>
+                <li><a href="#"data-icon="carat-l">导航2</a></li>
+                <li><a href="#"data-icon="carat-r">导航3</a></li>
+                <li><a href="#"data-icon="carat-u">导航4</a></li>
+                <li><a href="#"data-icon="carat-d">导航5</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div data-role="page"id="index1">
+    <div data-role="header">
+        <h1>我是标题2</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <p>我是内容2</p>
+        <p><a href="#index"data-transition="slide">index</a></p>
+    </div>
+    <div data-role="footer">
+        <h1>我是标题2</h1>
+    </div>
+</div>
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/jquery.mobile-1.4.3.js"></script>
+<script>
+    $(document).on("pagebeforehide","#index",function(){
+        alert("pagebeforehide");
+    });
+    $(document).on("pagehide","#index",function(){
+        alert("pagehide");
+    });
+    $(document).on("pagebeforeshow","#index1",function(){
+        alert("pagebeforeshow");
+    });
+    $(document).on("pageshow","#index1",function(){
+        alert("pageshow");
+    });
+</script>
+</body>
+</html>
