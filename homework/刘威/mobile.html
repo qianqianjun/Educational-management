@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="index">
+    <div data-role="header" data-position="fixed">
+        <h1>列车时刻表查询</h1>
+    </div>
+
+    <div role="main" class="ui-content">
+        <div class="ui-field-contain">
+            <label>发车站:</label>
+            <input type="text" name="text-basic" id="search-begin">
+        </div>
+        <div class="ui-field-contain">
+            <label>终点站:</label>
+            <input type="text" name="text-basic" id="search-end">
+        </div>
+        <div class="ui-field-contain">
+            <label>车次:</label>
+            <input type="text" name="text-basic" id="search-no">
+        </div>
+        <input type="button" value="搜索" id="search-submit">
+        <ul data-role="listview" data-inset="true" id="list">
+            <li><a href="#">
+                <h2>G1次</h2>
+                <p>北京南-上海虹桥</p>
+                <p>用时：4；48</p>
+                <p class="ui-li-aside">09:00 开</p>
+            </a></li>
+            <li><a href="#">
+                <h2>G1次</h2>
+                <p>北京南-上海虹桥</p>
+                <p>用时：4；48</p>
+                <p class="ui-li-aside">09:00 开</p>
+            </a></li>
+            <li><a href="#">
+                <h2>G1次</h2>
+                <p>北京南-上海虹桥</p>
+                <p>用时：4；48</p>
+                <p class="ui-li-aside">09:00 开</p>
+            </a></li>
+            <li><a href="#">
+                <h2>G1次</h2>
+                <p>北京南-上海虹桥</p>
+                <p>用时：4；48</p>
+                <p class="ui-li-aside">09:00 开</p>
+            </a></li>
+            <li><a href="#">
+                <h2>G1次</h2>
+                <p>北京南-上海虹桥</p>
+                <p>用时：4；48</p>
+                <p class="ui-li-aside">09:00 开</p>
+            </a></li>
+        </ul>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#index2">详细信息</a></li>
+                <li><a href="#">导航</a></li>
+                <li><a href="#">导航</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div data-role="page" id="index2">
+    <div role="main" class="ui-content">
+        <table data-role="table" data-mode="reflow" class="ui-responsive table-stroke">
+            <thead>
+                <tr>
+                    <th>第一列</th>
+                    <th>第二列</th>
+                    <th>第三列</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>123</td>
+                <td>123</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>123456</td>
+                <td>123456</td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="#index" data-role="ui-btn ui-corner-all ui-shadow">返回</a>
+    </div>
+</div>
+
+<script>
+    var getTrainList = function () {
+        if ($("#search-no").val() || ($("#search-begin").val() && $("#search-end").val())) {
+
+        } else {
+            alert("请正确输入查询");
+        }
+    };
+
+    var getInfoByTrainCode = function () {
+
+    };
+
+    var bindEvent = function () {
+        $("#search-submit").on("click", getTrainList);
+        $("#list").on("click","a",getInfoByTrainCode)
+    };
+
+    $(document).on("pageinit", "index", function () {
+        bindEvent();
+    })
+</script>
+
+</body>
+</html>
