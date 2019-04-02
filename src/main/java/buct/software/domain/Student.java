@@ -8,8 +8,7 @@ import lombok.Data;
  */
 @Data
 public class Student {
-    private String sno;
-    private String password;
+    private Integer sno;
     private String sname;
     private String sex;
     private String major;
@@ -17,19 +16,23 @@ public class Student {
     private String klass;
     private String comeYear;
     private String phone;
+    // 年级年级年级，不是分数，不是分数，不是分数！
+    private String grade;
 
-    public Student(String sno, String password,
-                   String sname, String sex, String major,
-                   String klass, String comeYear, String phone) {
+    public Student(Integer sno, String sname,
+                   String sex, String major,
+                   String klass, String comeYear,
+                   String phone, String grade) {
         this.sno = sno;
-        this.password = password;
         this.sname = sname;
         this.sex = sex;
         this.major = major;
         this.klass = klass;
         this.comeYear = comeYear;
         this.phone = phone;
+        this.grade = grade;
     }
+
     public Student(){}
 
 }

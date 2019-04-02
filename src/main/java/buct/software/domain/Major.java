@@ -8,11 +8,13 @@ import lombok.Data;
  */
 @Data
 public class Major {
-    private String major;
+    private Integer majorId;
+    private String majorName;
     private String college;
 
-    public Major(String major, String college) {
-        this.major = major;
+    public Major(Integer majorId,String majorName, String college) {
+        this.majorId=majorId;
+        this.majorName = majorName;
         this.college = college;
     }
     public Major(){}
