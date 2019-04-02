@@ -1,3 +1,12 @@
+
+# 通知公告
+
+现在已经成功导入了css 和 js 资源，现在有了界面
+各组负责后端的同学clone 项目到自己电脑试着运行一下
+注意： JDK 使用 1.8 数据库使用 mysql 8.0
+
+运行成功之后输入 http://localhost:8080/index 即可看到登录界面，更多界面接口请看 IndexControler 中的定义
+
 # 作业发布：
 作业详情请看下面的地址：[作业地址](https://github.com/qianqianjun/Educational-management/blob/master/worksheet1.md)
 

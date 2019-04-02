@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!-- saved from url=(0105)http://jwglxt.buct.edu.cn/jwglxt/kwgl/kscx_cxXsksxxIndex.html?gnmkdm=N358105&layout=default&su=2016014284 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>考试信息查询</title>
+	
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="Copyright" content="zfsoft">	
+<link rel="icon" href="http://jwglxt.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://jwglxt.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
+<style type="text/css">	
+	.active{font-weight: bolder;}
+	#navbar-tabs li{ margin-top: 2px;}
+	#navbar-tabs li a{ border-top: 2px solid transparent;}
+	#navbar-tabs li.active a{border-top: 2px solid #0770cd;}
+</style>	
+<!--jQuery核心框架库 -->
+<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="./js/jquery-migrate-1.4.1.min.js"></script>
+<!--jQuery浏览器检测 -->
+<script type="text/javascript" src="./js/browse-judge.js"></script>
+<script type="text/javascript">
+	//浏览器版本验证
+	var broswer = broswer();
+	if(broswer.msie==true||broswer.safari==true||broswer.mozilla==true||broswer.chrome==true){
+		if(broswer.msie==true&&broswer.version<9){
+		   window.location.href = _path+"/xtgl/init_cxBrowser.html";
+		}
+	}else{
+		 window.location.href = _path+"/xtgl/init_cxBrowser.html";
+	}
+</script>
+<script type="text/javascript">
+var _path 				= "/jwglxt";
+var _systemPath 		= "/jwglxt";
+var _stylePath 			= "/zftal-ui-v5-1.0.2";
+var _reportPath 		= "http://202.4.157.135:80/WebReport";
+var _refreshInterval	= "10";
+var _localeKey 			= "zh_CN";
+</script>
+<!--
+jquery.ui 需要在bootstrap之前加载，解决冲突问题
+http://blog.csdn.net/remote_roamer/article/details/14105999
+-->
+<script type="text/javascript" src="./js/jquery-ui-custom.contact-1.0.0.js"></script>
+<!--Bootstrap布局框架-->
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./css/error.css">
+<link rel="stylesheet" type="text/css" href="./css/zftal-ui.css">
+<script type="text/javascript" src="./js/bootstrap.min.js" charset="utf-8"></script>
+<!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 -->
+<script type="text/javascript" src="./js/jquery.utils.contact-min.js" charset="utf-8"></script>
+<!--jQuery基础工具库：$.browser,$.cookie,$.actual等 -->
+<script type="text/javascript" src="./js/jquery.plugins.contact-min.js" charset="utf-8"></script>
+<!--jQuery自定义event事件库 -->
+<script type="text/javascript" src="./js/jquery.events.contact-min.js" charset="utf-8"></script>
+<!--JavaScript对象扩展库：Array,Date,Number,String -->
+<script type="text/javascript" src="./js/jquery.extends.contact-min.js" charset="utf-8"></script>
+<!--Bootbox弹窗插件-->
+<link rel="stylesheet" type="text/css" href="./css/bootbox.css">
+<script src="./js/bootbox.concat-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/zh_CN.js" type="text/javascript" charset="utf-8"></script>
+
+<!--jQuery模拟滚动条库-->
+<link rel="stylesheet" type="text/css" href="./css/jquery.mCustomScrollbar.min.css">
+<script type="text/javascript" src="./js/jquery.mCustomScrollbar.min.js" charset="utf-8"></script>
+<!--jQuery.chosen美化插件-->
+<link rel="stylesheet" type="text/css" href="./css/chosen-min.css">
+<script type="text/javascript" src="./js/jquery.choosen.concat-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/zh_CN-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.utils.pinyin.min.js" charset="utf-8"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/html5shiv.min.js?ver=20190115" charset="utf-8"></script>
+<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/respond.min.js?ver=20190115" charset="utf-8"></script>
+<![endif]-->
+<!--业务框架jQuery全局设置和通用函数库-->
+<script type="text/javascript" src="./js/jquery.zftal.contact-min.js"></script>
+<!--国际化js库 -->
+<script type="text/javascript" src="./js/jquery.i18n-min.js" charset="utf-8"></script>
+<!--全局国际化js. -->
+<script type="text/javascript" src="./js/i18n-global_zh_CN.js" charset="utf-8"></script>
+<!--业务框架前端脚本国际化库-->
+<script type="text/javascript" src="./js/jquery.zftal_zh_CN-min.js"></script>
+<!--密码强弱判断-->
+<script type="text/javascript" src="./js/jquery.utils.strength.min.js"></script>
+
+	
+
+
+
+
+
+	
+<script type="text/javascript">
+
+	var _path 		= "/jwglxt";
+	var _systemPath = "/jwglxt";
+	var _stylePath  = "/zftal-ui-v5-1.0.2";
+	var _reportPath = "http://202.4.157.135:80/WebReport";
+	var _localeKey 			= "zh_CN";
+	
+	jQuery(function($){
+		$('[data-toggle*="validation"]').trigger("validation");
+		$('[data-toggle*="fixed"]').trigger("fixed");
+		if($.fn.tooltip){
+			$('[data-toggle*="tooltip"]').tooltip({container:'body'});
+		}
+	});
+	
+</script>
+<!--教务系统通用业务js引用:比如学年，学期等公共的信息会放在这里-->
+<script type="text/javascript" src="./js/jwglxt-common_zh_CN.js"></script>
+<!--业务模块的properties初始化-->
+<!--国际化js库 -->
+
+
+<link href="./css/WdatePicker.css" rel="stylesheet" type="text/css"></head>
+<body>
+<input type="hidden" id="pkey" name="pkey" value="">
+	<!-- 头部 开始 -->
+	<header class="navbar-inverse top2">
+		<div class="container" id="navbar_container">
+					<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only"> 考试信息查询</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<a href="http://jwglxt.buct.edu.cn/jwglxt/kwgl/kscx_cxXsksxxIndex.html?gnmkdm=N358105&amp;layout=default&amp;su=2016014284#" id="topButton" class="navbar-brand" onclick="onClickMenu(&#39;/kwgl/kscx_cxXsksxxIndex.html&#39;,&#39;N358105&#39;)">
+					考试信息查询
+				</a>
+				<script type="text/javascript">
+					document.title="考试信息查询";
+				</script>
+			</div>
+		</div>
+<!-- navbar-end  -->
+		</div>
+	</header>
+	
+	<!--头部 结束 -->
+	<div style="width: 100%; padding: 0px; margin: 0px;" id="bodyContainer">
+		<!-- requestMap中的参数为系统级别控制参数，请勿删除 -->
+		<form id="requestMap">
+			 <input type="hidden" id="sessionUserKey" value="2016014284"> 
+			 
+			 	<input type="hidden" id="gnmkdmKey" value="N358105">
+			 
+			 
+		</form>
+		<div class="container container-func sl_all_bg" id="yhgnPage" style="min-height: 480px;">
+			<div id="innerContainer">
+				<!-- 放置页面显示内容 -->
+				
+<!-- tool bar-start  -->
+<div class="row sl_add_btn">
+    <div class="col-sm-12" style="margin-top:15px">
+    <!-- 加载当前菜单栏目下操作     -->
+	<div class="btn-toolbar" role="toolbar" style="float:right;"><div class="btn-group" id="but_ancd"><button type="button" class="btn btn-default btn_dc" href="javascript:void(0);" id="btn_dc"><i class="bigger-100 glyphicon glyphicon-export"></i> 导出</button> </div> </div>
+	<!-- 加载当前菜单栏目下操作 -->
+    </div>
+</div>
+<!-- tool bar-end  -->
+<!--查询条件  开始 -->
+        
+<form id="searchForm" name="form" onsubmit="return false;" action="http://jwglxt.buct.edu.cn/jwglxt/kwgl/kscx_cxXsksxxIndex.html" method="post" class="form-horizontal sl_all_form" role="form">
+	<input type="hidden" name="isXs" value="true" id="isXs">
+	<input type="hidden" id="xskszh" name="xskszh" value="1">
+	<div id="searchBox" class="row"> 
+		<div class="col-md-3 col-sm-4">
+	    <div class="form-group">
+	      <label for="" class="col-sm-4 control-label">学年</label>
+	      <div class="col-sm-8">
+	      	    
+				<select name="cx_xnm" id="cx_xnm" class="form-control chosen-select" style="display: none;">
+    <option value="">全部</option>
+    <option value="2024">2024-2025</option>
+    <option value="2023">2023-2024</option>
+    <option value="2022">2022-2023</option>
+    <option value="2021">2021-2022</option>
+    <option value="2020">2020-2021</option>
+    <option value="2019">2019-2020</option>
+    <option value="2018" selected="selected">2018-2019</option>
+    <option value="2017">2017-2018</option>
+    <option value="2016">2016-2017</option>
+    <option value="2015">2015-2016</option>
+    <option value="2014">2014-2015</option>
+    <option value="2013">2013-2014</option>
+    <option value="2012">2012-2013</option>
+    <option value="2011">2011-2012</option>
+    <option value="2010">2010-2011</option>
+    <option value="2009">2009-2010</option>
+    <option value="2008">2008-2009</option>
+    <option value="2007">2007-2008</option>
+    <option value="2006">2006-2007</option>
+    <option value="2005">2005-2006</option>
+    <option value="2004">2004-2005</option>
+
+
+</select><div class="chosen-container chosen-container-single" style="width: 100%;" title="" id="cx_xnm_chosen"><a class="chosen-single" tabindex="-1"><span>2018-2019</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" name="autocomplete"></div><ul class="chosen-results"></ul></div></div>
+
+
+			 <script type="text/javascript">
+	    	  	jQuery('#cx_xnm').trigger("chosen");
+	    	 </script>	
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-md-3 col-sm-4">
+	    <div class="form-group">
+	      <label for="" class="col-sm-4 control-label">学期</label>
+	      <div class="col-sm-8">
+				
+				<select name="cx_xqm" id="cx_xqm" class="form-control chosen-select" style="display: none;">
+    <option value="">全部</option>
+    <option value="3">1</option>
+    <option value="12" selected="selected">2</option>
+    <option value="16">3</option>
+
+
+</select><div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: 100%;" title="" id="cx_xqm_chosen"><a class="chosen-single" tabindex="-1"><span>2</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" name="autocomplete" readonly=""></div><ul class="chosen-results"></ul></div></div>
+
+
+				<script type="text/javascript">
+					jQuery('#cx_xqm').trigger("chosen");
+				</script>
+	      </div>
+	    </div>
+	  </div>
+		<div class="col-md-3 col-sm-4">
+		  <div class="form-group">
+		    <label for="" class="col-sm-4 control-label">考试名称</label>
+		    <div class="col-sm-8">
+		        <select name="cx_ksmcdmb_id" id="cx_ksmcdmb_id" class="form-control chosen-select" style="display: none;">
+    <option value="">全部</option>
+    <option value="80063F3B2E8C3D1EE053839D04CAB4AF">补考(西区,北区,东区)</option>
+    <option value="80078926158F88FFE053839D04CA90D2">期末考试(西区,北区,东区)</option>
+    <option value="82AF77FA7918BD93E053839D04CAEC6A">期中考试(东区,北区)</option>
+    <option value="82B1E20445CF5A5AE053839D04CAD84E">重修班期末(东区,北区)</option>
+
+
+</select><div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: 100%;" title="" id="cx_ksmcdmb_id_chosen"><a class="chosen-single" tabindex="-1"><span>全部</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" name="autocomplete" readonly=""></div><ul class="chosen-results"></ul></div></div>
+
+
+		        <script type="text/javascript">
+	    	  		jQuery('#cx_ksmcdmb_id').trigger("chosen");
+	    	    </script>
+		    </div>
+		  </div>
+		</div>
+		<div class="col-md-3 col-sm-4">
+			<div class="form-group">
+				<label for="" class="col-sm-4 control-label">考试日期</label>
+				<div class="col-sm-8">
+			        <input type="text" name="cx_ksrq" value="" id="cx_ksrq" class="form-control" onfocus="WdatePicker({dateFmt:&#39;yyyy-MM-dd&#39;,readOnly:true})" placeholder="请点击选择日期">
+				</div>
+			</div>
+		</div>			
+		<div class="col-md-3 col-sm-4">
+		    <div class="form-group">
+				<label for="" class="col-sm-4 control-label">课程</label>
+				<div class="col-sm-8">
+				  <input type="text" class="form-control" name="cx_kch" id="cx_kch" placeholder="按课程代码、课程名称模糊查询" data-toggle="autocomplete" data-autocomplete-type="kc">
+				</div>
+		    </div>
+		</div>	
+		 <div class="col-md-3 col-sm-4">
+			<div class="form-group">
+				<label for="" class="col-sm-4 control-label">考试地点</label>
+				<div class="col-sm-8">
+			        <input type="text" name="kc_cx" value="" id="kc_cx" class="form-control" placeholder="按考场编号、名称模糊查询">
+				</div>
+			</div>
+		</div>		  
+	  	   
+	</div>
+</form>
+
+
+
+<div class="row sl_aff_btn">
+	<div class="col-sm-12">
+		<button type="button" class="btn btn-primary btn-sm" id="search_go"> 查 询 </button>
+	</div>
+</div>
+<!-- table-start  -->
+<div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_tabGrid" dir="ltr" style="width: 1188px;"><div class="ui-widget-overlay jqgrid-overlay" id="lui_tabGrid"></div><div class="loading ui-state-default ui-state-active" id="load_tabGrid" style="display: none;">正在请求数据...</div><div class="ui-jqgrid-view" id="gview_tabGrid" style="width: 1188px;"><div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix" style="display: none;"><span class="ui-jqgrid-title">null</span></div><div class="ui-state-default ui-jqgrid-hdiv" style="width: 1190px;"><div class="ui-jqgrid-hbox"><table class="ui-jqgrid-htable" style="width:2730px" role="grid" aria-labelledby="gbox_tabGrid" cellspacing="0" cellpadding="0" border="0"><thead><tr class="ui-jqgrid-labels ui-sortable" role="rowheader"><th id="tabGrid_cb" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 40px;"><div id="jqgh_tabGrid_cb"><input role="checkbox" id="cb_tabGrid" class="cbox" type="checkbox" name="checkbox"><span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_jxb_id" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 150px; display: none;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_jxb_id" class="ui-jqgrid-sortable">教学班id<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xnmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 80px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xnmc" class="ui-jqgrid-sortable">学年<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xqmmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 80px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xqmmc" class="ui-jqgrid-sortable">学期<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xh" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 140px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xh" class="ui-jqgrid-sortable">学号<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xm" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xm" class="ui-jqgrid-sortable">姓名<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xb" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 60px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xb" class="ui-jqgrid-sortable">性别<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_bj" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_bj" class="ui-jqgrid-sortable">班级<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_kch" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_kch" class="ui-jqgrid-sortable">课程代码<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_kcmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_kcmc" class="ui-jqgrid-sortable">课程名称<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_jsxx" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_jsxx" class="ui-jqgrid-sortable">教师信息<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_cxbj" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_cxbj" class="ui-jqgrid-sortable">重修标记<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_zxbj" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_zxbj" class="ui-jqgrid-sortable">自修标记<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_ksmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_ksmc" class="ui-jqgrid-sortable">考试名称<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_sjbh" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 140px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_sjbh" class="ui-jqgrid-sortable">试卷编号<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_kssj" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 140px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_kssj" class="ui-jqgrid-sortable">考试时间<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_cdmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_cdmc" class="ui-jqgrid-sortable">考试地点<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_cdxqmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_cdxqmc" class="ui-jqgrid-sortable">考试校区<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_zwh" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 70px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_zwh" class="ui-jqgrid-sortable">考试座号<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_ksbz" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_ksbz" class="ui-jqgrid-sortable">考试备注<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_jxbmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 140px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_jxbmc" class="ui-jqgrid-sortable">教学班名称<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_jxbzc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 140px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_jxbzc" class="ui-jqgrid-sortable">教学班组成<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xqmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xqmc" class="ui-jqgrid-sortable">校区名称<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_sksj" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 140px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_sksj" class="ui-jqgrid-sortable">上课时间<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_jxdd" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_jxdd" class="ui-jqgrid-sortable">上课地点<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_njmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 60px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_njmc" class="ui-jqgrid-sortable">年级<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_jgmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_jgmc" class="ui-jqgrid-sortable">学院<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_zymc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_zymc" class="ui-jqgrid-sortable">专业<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th></tr></thead></table></div></div><div class="ui-jqgrid-bdiv" style="height: auto; width: 1190px;"><div style="position:relative;"><div></div><table id="tabGrid" tabindex="0" cellspacing="0" cellpadding="0" border="0" role="grid" aria-multiselectable="true" aria-labelledby="gbox_tabGrid" class="ui-jqgrid-btable" style="width: 2730px;"><tbody><tr class="jqgfirstrow" role="row" style="height:auto"><td role="gridcell" style="height:0px;width:40px;"></td><td role="gridcell" style="height:0px;width:150px;display:none;"></td><td role="gridcell" style="height:0px;width:80px;"></td><td role="gridcell" style="height:0px;width:80px;"></td><td role="gridcell" style="height:0px;width:140px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:60px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:140px;"></td><td role="gridcell" style="height:0px;width:140px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:70px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:140px;"></td><td role="gridcell" style="height:0px;width:140px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:140px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:60px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:100px;"></td></tr><tr name="norecords" class="emptyrow" align="center" valign="middle" style="height:80px;"><td colspan="28" align="center" valign="middle" style="line-height:80px;text-align: center;font-size:12px;">没有符合条件记录!</td></tr><tr></tr></tbody></table></div></div></div><div class="ui-jqgrid-resize-mark" id="rs_mtabGrid">&nbsp;</div><div id="pager" class="ui-state-default ui-jqgrid-pager ui-corner-bottom" dir="ltr" style="width: 1188px;"><div id="pg_pager" class="ui-pager-control" role="group"><table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table" style="width:100%;table-layout:fixed;height:100%;" role="row"><tbody><tr><td id="pager_left" align="left"></td><td id="pager_center" align="center" style="white-space: pre; width: 293px;"><table cellspacing="0" cellpadding="0" border="0" style="table-layout:auto;" class="ui-pg-table"><tbody><tr><td id="first_pager" class="ui-pg-button ui-corner-all ui-state-disabled"><span class="ui-icon glyphicon glyphicon-step-backward"></span></td><td id="prev_pager" class="ui-pg-button ui-corner-all ui-state-disabled"><span class="ui-icon glyphicon glyphicon-chevron-left"></span></td><td class="ui-pg-button ui-state-disabled" style="width:4px;"><span class="ui-separator"></span></td><td dir="ltr"> <input class="ui-pg-input" name="showCount" type="text" size="2" maxlength="7" value="0" role="textbox"> 共 <span id="sp_1_pager">0</span> 页</td><td class="ui-pg-button ui-state-disabled" style="width:4px;"><span class="ui-separator"></span></td><td id="next_pager" class="ui-pg-button ui-corner-all"><span class="ui-icon glyphicon glyphicon-chevron-right"></span></td><td id="last_pager" class="ui-pg-button ui-corner-all"><span class="ui-icon glyphicon glyphicon-step-forward"></span></td><td dir="ltr"><select class="ui-pg-selbox" name="currentPage" role="listbox"><option role="option" value="15" selected="selected">15</option><option role="option" value="20">20</option><option role="option" value="30">30</option><option role="option" value="50">50</option><option role="option" value="70">70</option><option role="option" value="90">90</option><option role="option" value="100">100</option><option role="option" value="150">150</option><option role="option" value="300">300</option><option role="option" value="500">500</option><option role="option" value="800">800</option><option role="option" value="1000">1000</option><option role="option" value="1500">1500</option><option role="option" value="2000">2000</option><option role="option" value="2500">2500</option><option role="option" value="5000">5000</option></select></td></tr></tbody></table></td><td id="pager_right" align="right"><div dir="ltr" style="text-align:right" class="ui-paging-info">无数据显示</div></td></tr></tbody></table></div></div></div>
+
+<!-- table-end  -->
+
+				
+
+
+
+<!--jQuery.jqGrid -->
+<link rel="stylesheet" type="text/css" href="./css/jquery.jqgrid.css">
+<script type="text/javascript" src="./js/jquery.jqgrid.src-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.jqgrid.contact-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/zh_CN.js(1)" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.jqgrid.settings.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.jqGrid-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.typeahead-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="./js/jquery.typeahead-zftal.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="./js/WdatePicker.js"></script>
+<script type="text/javascript" src="./js/cxXsksxxIndex.js"></script>
+
+			</div>
+		</div>
+	</div>
+	<!-- footer -->
+	
+
+<!-- footer --> 
+<div id="footerID" class="footer">
+	<p>版权所有© Copyright 1999-2017  正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301</p>
+</div>
+<!-- footer-end -->
+	<!-- footer-end -->
+
+<script type="text/javascript">
+	jQuery(function($) {	
+		if ($("#navbar-tabs").length > 0) {
+			$("#navbar-tabs li:eq(0) a").tab('show');
+		}
+		
+		setMinheight();
+		
+		$('#yhgnPage').resize(function(){
+			var minHeight  = $(this).data('min-height');
+			var innerHeight =  $('#innerContainer').outerHeight(true);
+			//console.log("minHeight:" + minHeight + ",innerHeight:" + innerHeight);
+			$(this).css('min-height', Math.max(minHeight,innerHeight));
+		});
+		
+		function setMinheight(){
+			//计算grid页面高度
+			var docuemntHeight = $(document).height();
+			var topHeight = $('header').height();
+			var footerHeight = $('.footer').height();
+			var containerHeight = docuemntHeight-topHeight-footerHeight-60;
+			$('#yhgnPage').css('min-height',containerHeight).data('min-height',containerHeight);
+		}
+	});
+	//加载title名称，根据系统内置表设置，取菜单名称或者系统名称
+	jQuery(document).attr("title",'考试信息查询');
+</script>
+
+<div class="ui-widget ui-widget-content ui-corner-all ui-jqdialog" id="alertmod_tabGrid" dir="ltr" tabindex="-1" role="dialog" aria-labelledby="alerthd_tabGrid" aria-hidden="true" style="width: 200px; height: auto; z-index: 950; overflow: hidden; top: 280px; left: 540px;"><div class="ui-jqdialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" id="alerthd_tabGrid" style="cursor: move;"><span class="ui-jqdialog-title" style="float: left;">注意</span><a class="ui-jqdialog-titlebar-close ui-corner-all" style="right: 0.3em;"><span class="ui-icon ui-icon-closethick"></span></a></div><div class="ui-jqdialog-content ui-widget-content" id="alertcnt_tabGrid"><div>请选择记录</div><span tabindex="0"><span tabindex="-1" id="jqg_alrt"></span></span></div><div class="jqResize ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se"></div></div></body></html>

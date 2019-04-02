@@ -1,0 +1,9 @@
+login.html	登录页面
+content		登录之后的主页面
+coursetable	学生课表查询
+selecttopic	毕业设计选题
+selectcourse	学生选课
+examtime		考试时间查询
+examinfo		考试信息查询
+gradeinfo		成绩查询
+process		学生过程资料 （毕业设计子系统）
