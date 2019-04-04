@@ -1,5 +1,7 @@
 package buct.software.utils;
 
+import lombok.Data;
+
 /**
  * @author  高谦
  * 返回给浏览器的信息，用于格式化信息的返回数据

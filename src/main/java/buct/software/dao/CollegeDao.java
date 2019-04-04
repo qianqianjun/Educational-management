@@ -15,8 +15,6 @@ import java.util.List;
 public interface CollegeDao {
     public List<College> getColleges();
 
-    public College getCollegeByName(String coll);
-
-//    public Integer updateCollege(College college);
+    public College getCollegeById(String id);
 }
 

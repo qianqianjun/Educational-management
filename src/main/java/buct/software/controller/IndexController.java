@@ -26,6 +26,4 @@ public class IndexController {
     public String content(){
         return "content";
     }
-
-
 }

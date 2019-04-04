@@ -27,7 +27,5 @@ public class CollegeDaoTest {
     public void getCollegeByName(){
 
 //        College college = collegeDao.getCollegeByName("化学工程学院");
-        College college = collegeDao.getCollegeByName("sd");
-        System.out.println(college);
     }
 }
