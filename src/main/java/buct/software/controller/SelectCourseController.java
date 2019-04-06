@@ -31,8 +31,22 @@ public class SelectCourseController {
         return collegeService.getCollegeById(id);
     }
 
+
+
     @GetMapping("/selectcourse")
     public String selectCourse(){
         return "selectcourse";
+    }
+
+
+    @GetMapping("/examtime")
+    public String wangyillin(){
+        return "examtime";
+    }
+
+
+    @GetMapping("/selecttopic")
+    public String selecttopic(){
+        return "selecttopic";
     }
 }

@@ -1,220 +1,52 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head>
-	
-
-
-
-
-
-
-<title>北京化工大学教务管理系统</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="Copyright" content="zfsoft">
-<link rel="icon" href="http://jwgl.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="http://jwgl.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
-<script type="text/javascript">
-var _path 				= "/jwglxt";
-var _systemPath 		= "/jwglxt";
-var _stylePath 			= "/zftal-ui-v5-1.0.2";
-</script>
-<!--jQuery核心框架库 -->
-<script type="text/javascript" src="js/jquery-1.js"></script>
-<!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 -->
-<script type="text/javascript" src="js/jquery_004.js" charset="utf-8"></script>
-<!--jQuery浏览器检测 -->
-<script type="text/javascript" src="js/browse-judge.js"></script>
-<script type="text/javascript">
-	//\u6d4f\u89c8\u5668\u7248\u672c\u9a8c\u8bc1
-	/*var broswer = broswer();
-	if(broswer.msie==true||broswer.safari==true||broswer.mozilla==true||broswer.chrome==true){
-		if(broswer.msie==true&&broswer.version<9){
-		   window.location.href = _path+"/xtgl/init_cxBrowser.html";
-		}
-	}else{
-		 window.location.href = _path+"/xtgl/init_cxBrowser.html";
-	}*/
-</script>
-<!--Bootstrap布局框架-->
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/zftal-ui.css">
-<script type="text/javascript" src="js/bootstrap.js" charset="utf-8"></script>
-<!--jQuery.chosen美化插件-->
-<link rel="stylesheet" type="text/css" href="css/chosen-min.css">
-<script type="text/javascript" src="js/jquery_002.js" charset="utf-8"></script>
-<script type="text/javascript" src="js/zh_CN-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="js/jquery_005.js" charset="utf-8"></script>
-<!--业务框架jQuery全局设置和通用函数库-->
-<script type="text/javascript" src="js/jquery_003.js"></script>
-<!--业务框架前端脚本国际化库-->
-<script type="text/javascript" src="js/jquery.js"></script>
-<!--[if lt IE 9]>
-<script src="/zftal-ui-v5-1.0.2/assets/js/html5shiv.min.js?ver=20190115" type="text/javascript" charset="utf-8"></script>
-<script src="/zftal-ui-v5-1.0.2/assets/js/respond.min.js?ver=20190115" type="text/javascript" charset="utf-8"></script>
-<![endif]-->
-	
-			<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
-			
-	<meta name="renderer" content="webkit">
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-	<style type="text/css">
-		.btn-lang{
-			width: 76px;
-    		border-color: #357ebd;
-    		font-weight: bold;
-    		height: 30px;
-		}	
-		.btn-lang-enabled {
-			background-color: #428bca;
-			color:#fff;
-		}
-		.btn-lang-disabled {
-			background-color: #fff;
-			color: #333;
-		}
-		.btn-lang-enabled:hover,.btn-lang-enabled:focus {
-			color:#fff;
-		}
-		.btn-group>.btn-lang:last-child{
-			border-top-right-radius: 3px;
-			border-bottom-right-radius: 3px;
-		}
-	</style>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>北京化工大学教务管理系统</title>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./css/zftal-ui.css">
 </head>
 <body style="background:#fafafa;">
-<input type="hidden" name="yzcskz" id="yzcskz" value="3">
-<input type="hidden" name="mmsfjm" id="mmsfjm" value="1">
-<input type="hidden" name="mmsrddcshkzfs" id="mmsrddcshkzfs" value="0">
-<input type="hidden" name="dlsbsdsj" id="dlsbsdsj" value="3">
-
 	<div class="container container_1170">
 		<div class="row sl_log_top">
-			<div class="col-sm-8 logo_1"><img src="images/logo_jw_d.png" style="margin-top:-3px">
+			<div class="col-sm-8 logo_1"><img src="./images/logo_jw_d.png" style="margin-top:-3px">
 				<span id="xtmc">北京化工大学教务管理系统</span>
-			</div>
-			<div class="col-sm-4 text-right hidden-xs">
-				
-			
 			</div>
 		</div>
 		<div class="row sl_log_bor4">
 			<div class="col-sm-8 hidden-xs sl_log_lf">
-				<img class="img-responsive" src="images/login_bg_pic.jpg">
+				<img class="img-responsive" src="./images/login_bg_pic.jpg">
 			</div>
 			<div class="col-sm-4 sl_log_rt">
-				<form class="form-horizontal" role="form" action="http://jwgl.buct.edu.cn/jwglxt/xtgl/login_slogin.html?time=1553349581424" method="post">
-				<input type="hidden" id="csrftoken" name="csrftoken" value="8ae71769-4a46-429e-bb76-9ed07ebcf870,8ae717694a46429ebb769ed07ebcf870">
+				<form class="form-horizontal" role="form" action="/login" method="post">
 					<h5>用户登录</h5>
-					<!-- 防止浏览器自动填充密码 -->
-					<input type="text" style="display: none;" autocomplete="off">
-					<input type="password" style="display: none;" autocomplete="off">
-					<!-- 防止浏览器自动填充密码 end -->
-					
-					
-						<p style="display: none;" id="tips" class="bg_danger sl_danger">
-						</p>
-					
 					<div class="form-group">
 						<div class="input-group">
-							<div class="input-group-addon"><img src="images/log_ic01.png" width="16" height="16"></div>
-							<input type="text" class="form-control" name="yhm" id="yhm" placeholder="用户名" onblur="" autocomplete="off">
+							<div class="input-group-addon"><img src="./images/log_ic01.png" width="16" height="16"></div>
+							<input type="text" class="form-control" name="account" id="yhm" placeholder="用户名" required="required">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
-							<div class="input-group-addon"><img src="images/log_ic02.png" width="16" height="16"></div>
-							<input type="password" name="mm" id="hidMm" style="display:none" autocomplete="off">
-							<input type="password" class="form-control" name="mm" id="mm" value="" placeholder="密码" autocomplete="off">
+							<div class="input-group-addon"><img src="./images/log_ic02.png" width="16" height="16"></div>
+							<input type="password" class="form-control" name="password" id="mm" value="" placeholder="密码" required="required">
 						</div>
-					</div>
-					
-					<!-- 0-弹出验证码-->
-						
-					
-					
-					<div class="form-group"> 
-						<!--<a href="/jwglxt/xtgl/init_fkIndex.html" class="checkbox pull-left" target="_blank">访客登录</a> -->
-						<!-- <a href="#" class="checkbox pull-right" target="_blank">忘记密码了？</a> -->
 					</div>
 					 <div class="form-group" id="myDiv">
-						<!--<a href="/jwglxt/xtgl/init_fkIndex.html" class="checkbox pull-left" target="_blank">访客登录</a> -->
-						
-						   <a href="http://jwgl.buct.edu.cn/jwglxt/pwdmgr/retake/index.zf" id="wjmm" class="checkbox pull-right " target="_blank">忘记密码了？</a>
+						   <a href="#" id="wjmm" class="checkbox pull-right " target="_blank">忘记密码了？</a>
 						
 					</div>
 					<div class="form-group">
-						<button type="button" class="btn btn-primary btn-block" id="dl">登 录</button>
-					</div>		
-						
-						
-						
-					
-					<!-- 登录口提示信息 -->
-					
-					
+						<button type="submit" class="btn btn-primary btn-block" id="dl">登 录</button>
+					</div>
+                    <p th:if="${error_msg}!=null" style="color: red;">[[ ${ error_msg } ]]</p>
 				</form>
-				<div class="sl_log_ewm hidden-xs"><img src="images/login_ewm.gif" width="90" height="90">&nbsp;&nbsp;<span>用手机扫一扫,<br>安全、便捷登录</span></div>
+				<div class="sl_log_ewm hidden-xs"><img src="./images/login_ewm.gif" width="90" height="90">&nbsp;&nbsp;</div>
 			</div>
 		</div>
-	</div>
-	
-
-<!-- footer --> 
+	</div> 
 <div id="footerID" class="footer">
-	<p>版权所有© Copyright 1999-2017  正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301</p>
+	<p>版权所有© 北京化工大学 计科1601班</p>
 </div>
-<!-- footer-end -->
-
-<script type="text/javascript">
-	jQuery(document).ready(function() {
-		//$('#localChange').trigger("chosen");
-		/// detectOS();
-		//用户名密码 输错n次 需输入验证码            
-		  
-	});
-	
-	
-	//ip
-	
-    
-	jQuery(function($){
-		
-		function changeLanguage(lang) {
-			$.ajaxSetup({async : false});
-			jQuery.post(_path + "/xtgl/init_changeLocal.html", {//config-shiro.xml里要加这个
-				language : lang != "en_US" ? "zh_CN" : "en_US"
-			}, function(b) {
-				if (1 == parseInt(b)) {
-					if ($("#topButton").size() > 0) {
-						$("#topButton").click();
-					} else {
-						window.location.reload();
-					}
-				}
-			}, "json");
-			$.ajaxSetup({async : true});
-		}
-		$("button.btn-lang").click(function() {
-			if (!$(this).hasClass("btn-lang-enabled")) {
-				changeLanguage($(this).attr("value"));
-			}
-		})
-		
-		//切换英文
-		if($(".btn-lang-enabled").val()=="en_US"){
-			$("#xtmc").text("");
-			$("title").text("")
-			$("#wpjssq").text("New Teacher Account Application");
-			$("#wjmm").text("Forgot your password?");
-			$("#jzfw").text("Parents visit");
-			$("#dlktsxx").hide();
-		}
-	});
-</script>
-<script type="text/javascript" src="js/jsbn.js"></script>
-<script type="text/javascript" src="js/prng4.js"></script>
-<script type="text/javascript" src="js/rng.js"></script>
-<script type="text/javascript" src="js/rsa.js"></script>
-<script type="text/javascript" src="js/base64.js"></script>
-<script type="text/javascript" src="js/login.js"></script>
-</body></html>
+</body>
+</html>
