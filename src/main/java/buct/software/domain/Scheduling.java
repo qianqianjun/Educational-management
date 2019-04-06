@@ -14,8 +14,7 @@ public class Scheduling {
     private String status;
     private Integer capacity;
     private String address;
-    private Integer startweek;
-    private Integer endweek;
+    private String courseTime;
     // 分数占比，成绩管理系统系统设置值，排课系统不用 care
     private String percent;
     private String majorGrade;
@@ -23,16 +22,15 @@ public class Scheduling {
     public Scheduling(Integer semesterId, String cno,
                       String tno, String status,
                       Integer capacity, String address,
-                      Integer startweek, Integer endweek,
-                      String percent, String majorGrade) {
+                      String courseTime, String percent,
+                      String majorGrade) {
         this.semesterId = semesterId;
         this.cno = cno;
         this.tno = tno;
         this.status = status;
         this.capacity = capacity;
         this.address = address;
-        this.startweek = startweek;
-        this.endweek = endweek;
+        this.courseTime = courseTime;
         this.percent = percent;
         this.majorGrade = majorGrade;
     }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!--author 高谦-->
 <mapper namespace="buct.software.dao.UserDao">
     <select id="Login" parameterType="buct.software.domain.User" resultType="buct.software.domain.User">
         select * from user where user.account=#{account} and user.password=#{password}

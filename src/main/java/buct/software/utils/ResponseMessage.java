@@ -7,15 +7,18 @@ import lombok.Data;
  * 返回给浏览器的信息，用于格式化信息的返回数据
  */
 
+@Data
 public class ResponseMessage {
 
     /**
-     * 静态属性设置的是http 状态码，前端根据这个状态码采取不一样的操作。
+     * 静态属性设置的是 http 状态码，前端根据这个状态码采取不一样的操作。
      */
     public static final Integer SUCCESS=200;
     public static final Integer WRONG=400;
     public static final Integer Exception=500;
     public static final Integer EmptyDate = 404;
+    public static final Integer ERROR=502;
+    public static final Integer LoginOutOfTime=110;
 
     /**
      * 设置消息的静态工具函数，防止从多个方法中重复编写代码；
@@ -62,33 +65,5 @@ public class ResponseMessage {
         this.message = message;
         this.data = data;
     }
-
-    /**
-     * 添加上get set 方法来符合java bean 规范
-     */
     public ResponseMessage() {}
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
 }

@@ -17,6 +17,5 @@ public interface CollegeDao {
 
     public College getCollegeById(String id);
 
-
 }
 

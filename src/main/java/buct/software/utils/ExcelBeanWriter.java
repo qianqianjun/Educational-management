@@ -10,6 +10,8 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 /**
+ *
+ * @author 孟庆强
  * 把domain的字段写入Excel文件
  * <p>
  * 已经测试通过的字段类型有
