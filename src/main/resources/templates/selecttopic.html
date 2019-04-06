@@ -6,9 +6,7 @@ http-equiv="X-UA-Compatible">
 <META http-equiv="X-UA-Compatible" content="IE=edge"> 
 <META name="viewport" content="width=device-width, initial-scale=1"> 
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-<META name="Copyright" content="zfsoft">	<LINK href="/jwglxt/logo/favicon.ico" 
-rel="icon" type="image/x-icon"> <LINK href="/jwglxt/logo/favicon.ico" rel="shortcut icon" 
-type="image/x-icon"> 
+<META name="Copyright" content="zfsoft">	
 <STYLE type="text/css">	
 	.active{font-weight: bolder;}
 	#navbar-tabs li{ margin-top: 2px;}
@@ -17,76 +15,13 @@ type="image/x-icon">
 </STYLE>
 	<!--jQuery核心框架库 --> 
 <SCRIPT src="js/jquery-1.12.4.min.js" type="text/javascript"></SCRIPT>
- 
-<SCRIPT src="js/jquery-migrate-1.4.1.min.js" type="text/javascript"></SCRIPT>
- <!--jQuery浏览器检测 --> 
-<SCRIPT src="js/browse-judge.js" type="text/javascript"></SCRIPT>
- 
-<SCRIPT type="text/javascript">
-	//浏览器版本验证
-	var broswer = broswer();
-	if(broswer.msie==true||broswer.safari==true||broswer.mozilla==true||broswer.chrome==true){
-		if(broswer.msie==true&&broswer.version<9){
-		   window.location.href = _path+"/xtgl/init_cxBrowser.html";
-		}
-	}else{
-		 window.location.href = _path+"/xtgl/init_cxBrowser.html";
-	}
-</SCRIPT>
- 
-<SCRIPT type="text/javascript">
-var _path 				= "/jwglxt";
-var _systemPath 		= "/jwglxt";
-var _stylePath 			= "/zftal-ui-v5-1.0.2";
-var _reportPath 		= "http://202.4.157.135:80/WebReport";
-var _refreshInterval	= "10";
-var _localeKey 			= "zh_CN";
-</SCRIPT>
- <!--
-jquery.ui 需要在bootstrap之前加载，解决冲突问题
-http://blog.csdn.net/remote_roamer/article/details/14105999
---> 
-<SCRIPT src="js/jquery-ui-custom.contact-1.0.0.js" type="text/javascript"></SCRIPT>
  <!--Bootstrap布局框架--> <LINK href="css/bootstrap.min.css" rel="stylesheet" 
 type="text/css"> <LINK href="css/error.css" rel="stylesheet" type="text/css"> 
 <LINK href="css/zftal-ui.css" rel="stylesheet" type="text/css"> 
-<SCRIPT src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- <!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 --> 
+
 <SCRIPT src="js/jquery.utils.contact-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
  <!--jQuery基础工具库：$.browser,$.cookie,$.actual等 --> 
-<SCRIPT src="js/jquery.plugins.contact-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- <!--jQuery自定义event事件库 --> 
-<SCRIPT src="js/jquery.events.contact-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- <!--JavaScript对象扩展库：Array,Date,Number,String --> 
-<SCRIPT src="js/jquery.extends.contact-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- <!--Bootbox弹窗插件--> <LINK href="css/bootbox.css" rel="stylesheet" type="text/css"> 
-<SCRIPT src="js/bootbox.concat-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
  
-<SCRIPT src="js/zh_CN.js" type="text/javascript" charset="utf-8"></SCRIPT>
- <!--jQuery模拟滚动条库--> <LINK href="css/jquery.mCustomScrollbar.min.css" 
-rel="stylesheet" type="text/css"> 
-<SCRIPT src="js/jquery.mCustomScrollbar.min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- <!--jQuery.chosen美化插件--> <LINK href="css/chosen-min.css" rel="stylesheet" 
-type="text/css"> 
-<SCRIPT src="js/jquery.choosen.concat-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- 
-<SCRIPT src="js/zh_CN-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- 
-<SCRIPT src="js/jquery.utils.pinyin.min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- <!--[if lt IE 9]>
-<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/html5shiv.min.js?ver=20190115" charset="utf-8"></script>
-<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/respond.min.js?ver=20190115" charset="utf-8"></script>
-<![endif]--> <!--业务框架jQuery全局设置和通用函数库--> 
-<SCRIPT src="js/jquery.zftal.contact-min.js" type="text/javascript"></SCRIPT>
- <!--国际化js库 --> 
-<SCRIPT src="js/jquery.i18n-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- <!--全局国际化js. --> 
-<SCRIPT src="js/i18n-global_zh_CN.js" type="text/javascript" charset="utf-8"></SCRIPT>
- <!--业务框架前端脚本国际化库--> 
-<SCRIPT src="js/jquery.zftal_zh_CN-min.js" type="text/javascript"></SCRIPT>
- <!--密码强弱判断--> 
-<SCRIPT src="js/jquery.utils.strength.min.js" type="text/javascript"></SCRIPT>
-							 
 <STYLE type="text/css">
 		@media (max-width: 767px) {body{padding-right: 40px;}}
 		.outer_xkxx_list h6 {
@@ -285,47 +220,9 @@ style="margin-bottom: 6px;">0</B></SPAN></A></DIV>
 	
 </SCRIPT>
  <!--教务系统通用业务js引用:比如学年，学期等公共的信息会放在这里--> 
-<SCRIPT src="js/jwglxt-common_zh_CN.js" type="text/javascript"></SCRIPT>
- <!--业务模块的properties初始化--> <!--国际化js库 -->	 <!--jQuery.jqGrid --> <LINK href="css/jquery.jqgrid.css" 
-rel="stylesheet" type="text/css"> 
-<SCRIPT src="js/jquery.jqgrid.src-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- 
-<SCRIPT src="js/jquery.jqgrid.contact-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- 
-<SCRIPT src="js/zh_CN(1).js" type="text/javascript" charset="utf-8"></SCRIPT>
- 
-<SCRIPT src="js/jquery.jqgrid.settings.js" type="text/javascript" charset="utf-8"></SCRIPT>
- 
-<SCRIPT src="js/jquery.jqGrid-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
-     <!--jQuery.validation --> <LINK href="css/jquery.validate-min.css" 
-rel="stylesheet" type="text/css"> 
-<SCRIPT src="js/jquery.validate-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- 
-<SCRIPT src="js/jquery.validate.contact-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- 
-<SCRIPT src="js/jquery.validate.methods.contact-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- 
-<SCRIPT src="js/zh_CN-min(1).js" type="text/javascript" charset="utf-8"></SCRIPT>
- 
-<SCRIPT type="text/javascript">
-	jQuery(function($){
-		$('[data-toggle*="validation"]').trigger("validation");
-	});
-</SCRIPT>
-     
-<SCRIPT src="js/jquery.dragsort.js" type="text/javascript"></SCRIPT>
-     
-<SCRIPT src="js/jquery.filehandle.min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- 
-<SCRIPT src="js/zh_CN(2).js" type="text/javascript" charset="utf-8"></SCRIPT>
- 
-<SCRIPT src="js/jquery.filestyle.js" type="text/javascript" charset="utf-8"></SCRIPT>
-	     
-<SCRIPT src="js/cxXsxtIndex.js" type="text/javascript"></SCRIPT>
 			 </DIV></DIV></DIV><!-- footer -->	 <!-- footer --> 
 <DIV class="footer" id="footerID">
-<P>版权所有© Copyright 1999-2017  正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 
-互联网创新创业园2号301</P></DIV><!-- footer-end -->	 <!-- footer-end --> 
+<P>版权所有© Copyright 计科1601</P></DIV><!-- footer-end -->	 <!-- footer-end --> 
 <SCRIPT type="text/javascript">
 	jQuery(function($) {	
 		if ($("#navbar-tabs").length > 0) {

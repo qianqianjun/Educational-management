@@ -1,11 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0098)http://jwgl.buct.edu.cn/jwglxt/cjcx/cjcx_cxDgXscj.html?gnmkdm=N305005&layout=default&su=2016014274 -->
+<!-- saved from url=(0047)file:///E:/SoftwareEngineering/grade/grade.html -->
 <html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>学生成绩查询</title>
-	
-
-
-
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,21 +16,10 @@
 	#navbar-tabs li.active a{border-top: 2px solid #0770cd;}
 </style>	
 <!--jQuery核心框架库 -->
-<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="./js/jquery-migrate-1.4.1.min.js"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery-migrate-1.4.1.min.js"></script>
 <!--jQuery浏览器检测 -->
-<script type="text/javascript" src="./js/browse-judge.js"></script>
-<script type="text/javascript">
-	//浏览器版本验证
-	var broswer = broswer();
-	if(broswer.msie==true||broswer.safari==true||broswer.mozilla==true||broswer.chrome==true){
-		if(broswer.msie==true&&broswer.version<9){
-		   window.location.href = _path+"/xtgl/init_cxBrowser.html";
-		}
-	}else{
-		 window.location.href = _path+"/xtgl/init_cxBrowser.html";
-	}
-</script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/browse-judge.js"></script>
 <script type="text/javascript">
 var _path 				= "/jwglxt";
 var _systemPath 		= "/jwglxt";
@@ -47,54 +32,50 @@ var _localeKey 			= "zh_CN";
 jquery.ui 需要在bootstrap之前加载，解决冲突问题
 http://blog.csdn.net/remote_roamer/article/details/14105999
 -->
-<script type="text/javascript" src="./js/jquery-ui-custom.contact-1.0.0.js"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery-ui-custom.contact-1.0.0.js"></script>
 <!--Bootstrap布局框架-->
-<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="./css/error.css">
-<link rel="stylesheet" type="text/css" href="./css/zftal-ui.css">
-<script type="text/javascript" src="./css/bootstrap.min.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/error.css">
+<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/zftal-ui.css">
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/css/bootstrap.min.js" charset="utf-8"></script>
 <!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 -->
-<script type="text/javascript" src="./js/jquery.utils.contact-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.utils.contact-min.js" charset="utf-8"></script>
 <!--jQuery基础工具库：$.browser,$.cookie,$.actual等 -->
-<script type="text/javascript" src="./js/jquery.plugins.contact-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.plugins.contact-min.js" charset="utf-8"></script>
 <!--jQuery自定义event事件库 -->
-<script type="text/javascript" src="./js/jquery.events.contact-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.events.contact-min.js" charset="utf-8"></script>
 <!--JavaScript对象扩展库：Array,Date,Number,String -->
-<script type="text/javascript" src="./js/jquery.extends.contact-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.extends.contact-min.js" charset="utf-8"></script>
 <!--Bootbox弹窗插件-->
-<link rel="stylesheet" type="text/css" href="./css/bootbox.css">
-<script src="./js/bootbox.concat-min.js" type="text/javascript" charset="utf-8"></script>
-<script src="./js/zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/bootbox.css">
+<script src="file:///E:/SoftwareEngineering/grade/js/bootbox.concat-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="file:///E:/SoftwareEngineering/grade/js/zh_CN.js" type="text/javascript" charset="utf-8"></script>
 
 <!--jQuery模拟滚动条库-->
-<link rel="stylesheet" type="text/css" href="./css/jquery.mCustomScrollbar.min.css">
-<script type="text/javascript" src="./js/jquery.mCustomScrollbar.min.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/jquery.mCustomScrollbar.min.css">
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.mCustomScrollbar.min.js" charset="utf-8"></script>
 <!--jQuery.chosen美化插件-->
-<link rel="stylesheet" type="text/css" href="./css/chosen-min.css">
-<script type="text/javascript" src="./js/jquery.choosen.concat-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/zh_CN-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/jquery.utils.pinyin.min.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/chosen-min.css">
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.choosen.concat-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/zh_CN-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.utils.pinyin.min.js" charset="utf-8"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/html5shiv.min.js?ver=20190115" charset="utf-8"></script>
 <script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/respond.min.js?ver=20190115" charset="utf-8"></script>
 <![endif]-->
 <!--业务框架jQuery全局设置和通用函数库-->
-<script type="text/javascript" src="./js/jquery.zftal.contact-min.js"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.zftal.contact-min.js"></script>
 <!--国际化js库 -->
-<script type="text/javascript" src="./js/jquery.i18n-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.i18n-min.js" charset="utf-8"></script>
 <!--全局国际化js. -->
-<script type="text/javascript" src="./js/i18n-global_zh_CN.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/i18n-global_zh_CN.js" charset="utf-8"></script>
 <!--业务框架前端脚本国际化库-->
-<script type="text/javascript" src="./js/jquery.zftal_zh_CN-min.js"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.zftal_zh_CN-min.js"></script>
 <!--密码强弱判断-->
-<script type="text/javascript" src="./js/jquery.utils.strength.min.js"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.utils.strength.min.js"></script>
 
 	
 	
-
-
-
-
 	
 <script type="text/javascript">
 
@@ -114,7 +95,7 @@ http://blog.csdn.net/remote_roamer/article/details/14105999
 	
 </script>
 <!--教务系统通用业务js引用:比如学年，学期等公共的信息会放在这里-->
-<script type="text/javascript" src="./js/jwglxt-common_zh_CN.js"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jwglxt-common_zh_CN.js"></script>
 <!--业务模块的properties初始化-->
 <!--国际化js库 -->
 
@@ -163,10 +144,16 @@ http://blog.csdn.net/remote_roamer/article/details/14105999
 <div class="row sl_add_btn">
 	<div class="col-sm-12">
 		<!-- 加载当前菜单栏目下操作N305005 -->
-		<div class="btn-toolbar" role="toolbar" style="float:right;"><div class="btn-group" id="but_ancd"><button type="button" class="btn btn-default btn_dc" href="javascript:void(0);" id="btn_dc"><i class="bigger-100 glyphicon glyphicon-export"></i> 导出</button> </div> </div>
+		<div class="btn-toolbar" role="toolbar" style="float:right;">
+			<div class="btn-group" id="but_ancd">
+				<button type="button" class="btn btn-default btn_dc" href="javascript:void(0);" id="btn_dc">
+				<i class="bigger-100 glyphicon glyphicon-export"></i> 导出</button> 
+			</div> 
+		</div>
 		<!-- 加载当前菜单栏目下操作 -->
 	</div>
 </div> 
+
 <!-- form -start  -->
         
 <form id="searchForm" name="searchForm" onsubmit="return false;" action="http://jwgl.buct.edu.cn/jwglxt/cjcx/cjcx_cxDgXscj.html" method="post" class="form-horizontal sl_all_form" novalidate="novalidate">
@@ -178,33 +165,29 @@ http://blog.csdn.net/remote_roamer/article/details/14105999
       <label for="" class="col-sm-4 control-label">学年</label>
       <div class="col-sm-8">
         <select name="xnm" id="xnm" class="form-control chosen-select" style="display: none;">
-    <option value="">全部</option>
-    <option value="2024">2024-2025</option>
-    <option value="2023">2023-2024</option>
-    <option value="2022">2022-2023</option>
-    <option value="2021">2021-2022</option>
-    <option value="2020">2020-2021</option>
-    <option value="2019">2019-2020</option>
-    <option value="2018" selected="selected">2018-2019</option>
-    <option value="2017">2017-2018</option>
-    <option value="2016">2016-2017</option>
-    <option value="2015">2015-2016</option>
-    <option value="2014">2014-2015</option>
-    <option value="2013">2013-2014</option>
-    <option value="2012">2012-2013</option>
-    <option value="2011">2011-2012</option>
-    <option value="2010">2010-2011</option>
-    <option value="2009">2009-2010</option>
-    <option value="2008">2008-2009</option>
-    <option value="2007">2007-2008</option>
-    <option value="2006">2006-2007</option>
-    <option value="2005">2005-2006</option>
-    <option value="2004">2004-2005</option>
-
-
-</select><div class="chosen-container chosen-container-single" style="width: 100%;" title="" id="xnm_chosen"><a class="chosen-single" tabindex="-1"><span>2018-2019</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" name="autocomplete"></div><ul class="chosen-results"></ul></div></div>
-
-
+		    <option value="">全部</option>
+		    <option value="2024">2024-2025</option>
+		    <option value="2023">2023-2024</option>
+		    <option value="2022">2022-2023</option>
+		    <option value="2021">2021-2022</option>
+		    <option value="2020">2020-2021</option>
+		    <option value="2019">2019-2020</option>
+		    <option value="2018" selected="selected">2018-2019</option>
+		    <option value="2017">2017-2018</option>
+		    <option value="2016">2016-2017</option>
+		    <option value="2015">2015-2016</option>
+		    <option value="2014">2014-2015</option>
+		    <option value="2013">2013-2014</option>
+		    <option value="2012">2012-2013</option>
+		    <option value="2011">2011-2012</option>
+		    <option value="2010">2010-2011</option>
+		    <option value="2009">2009-2010</option>
+		    <option value="2008">2008-2009</option>
+		    <option value="2007">2007-2008</option>
+		    <option value="2006">2006-2007</option>
+		    <option value="2005">2005-2006</option>
+		    <option value="2004">2004-2005</option>
+		</select>
 		<script type="text/javascript">
     		jQuery('#xnm').trigger("chosen");
     	</script>		        
@@ -217,14 +200,11 @@ http://blog.csdn.net/remote_roamer/article/details/14105999
       <label for="" class="col-sm-4 control-label">学期</label>
       <div class="col-sm-8">
         <select name="xqm" id="xqm" class="form-control chosen-select" style="display: none;">
-    <option value="">全部</option>
-    <option value="3">1</option>
-    <option value="12" selected="selected">2</option>
-    <option value="16">3</option>
-
-
-</select><div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: 100%;" title="" id="xqm_chosen"><a class="chosen-single" tabindex="-1"><span>2</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" name="autocomplete" readonly=""></div><ul class="chosen-results"></ul></div></div>
-
+			<option value="">全部</option>
+			<option value="3">1</option>
+			<option value="12" selected="selected">2</option>
+			<option value="16">3</option>
+		</select>
 
 		<script type="text/javascript">
     		jQuery('#xqm').trigger("chosen");
@@ -234,12 +214,10 @@ http://blog.csdn.net/remote_roamer/article/details/14105999
   </div>
   	  
 </div>
- 
-</form>
-
-
+ </form>
 
 <!-- form -end  -->
+
 <!-- btn-start  -->
 <div class="row sl_aff_btn" id="searchBox">
 	  
@@ -260,9 +238,135 @@ http://blog.csdn.net/remote_roamer/article/details/14105999
    
 </div>
 <!-- btn-end  -->
-<!-- table-start  -->
-<button id="btn_sortSetting" class="btn btn-default  btn-sm" type="button" style="line-height: 1;padding: 4px ;" title="" data-original-title="点击设置记录排序优先级!"><i class="glyphicon glyphicon-cog smaller-90"></i></button>
-<div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_tabGrid" dir="ltr" style="width: 1060px;"><div class="ui-widget-overlay jqgrid-overlay" id="lui_tabGrid"></div><div class="loading ui-state-default ui-state-active" id="load_tabGrid" style="display: none;">正在请求数据...</div><div class="ui-jqgrid-view" id="gview_tabGrid" style="width: 1060px;"><div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix" style="display: none;"><span class="ui-jqgrid-title">null</span></div><div class="ui-state-default ui-jqgrid-hdiv" style="width: 1062px;"><div class="ui-jqgrid-hbox"><table class="ui-jqgrid-htable" style="width:2530px" role="grid" aria-labelledby="gbox_tabGrid" cellspacing="0" cellpadding="0" border="0"><thead><tr class="ui-jqgrid-labels ui-sortable" role="rowheader"><th id="tabGrid_" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 50px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_" class="ui-jqgrid-sortable">查看<span class="s-ico" style=""><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xnmmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 90px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xnmmc" class="ui-jqgrid-sortable">学年<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xqmmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 50px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xqmmc" class="ui-jqgrid-sortable">学期<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_kch" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 120px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_kch" class="ui-jqgrid-sortable">课程代码<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_kcmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 120px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_kcmc" class="ui-jqgrid-sortable">课程名称<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_kcxzmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_kcxzmc" class="ui-jqgrid-sortable">课程性质<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xf" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 50px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xf" class="ui-jqgrid-sortable">学分<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_cj" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 50px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_cj" class="ui-jqgrid-sortable">成绩<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_cjbz" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_cjbz" class="ui-jqgrid-sortable">成绩备注<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_jd" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 50px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_jd" class="ui-jqgrid-sortable">绩点<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_ksxz" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_ksxz" class="ui-jqgrid-sortable">成绩性质<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_cjsfzf" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 80px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_cjsfzf" class="ui-jqgrid-sortable">是否成绩作废<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_sfxwkc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 150px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_sfxwkc" class="ui-jqgrid-sortable">是否学位课程<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_kkbmmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 120px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_kkbmmc" class="ui-jqgrid-sortable">开课学院<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_kcbj" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_kcbj" class="ui-jqgrid-sortable">课程标记<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_kclbmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_kclbmc" class="ui-jqgrid-sortable">课程类别<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_kcgsmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_kcgsmc" class="ui-jqgrid-sortable">课程归属<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_jxbmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 120px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_jxbmc" class="ui-jqgrid-sortable">教学班<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_jsxm" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 120px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_jsxm" class="ui-jqgrid-sortable">任课教师<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xh" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 120px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xh" class="ui-jqgrid-sortable">学号<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xm" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 80px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xm" class="ui-jqgrid-sortable">姓名<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xb" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 50px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xb" class="ui-jqgrid-sortable">性别<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xslb" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xslb" class="ui-jqgrid-sortable">学生类别<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_jgmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 120px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_jgmc" class="ui-jqgrid-sortable">学院<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_zymc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 120px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_zymc" class="ui-jqgrid-sortable">专业<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_njmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 50px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_njmc" class="ui-jqgrid-sortable">年级<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_bj" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 120px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_bj" class="ui-jqgrid-sortable">班级<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_bfzcj" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 50px; display: none;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_bfzcj" class="ui-jqgrid-sortable">百分制成绩<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xh_id" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 150px; display: none;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xh_id" class="ui-jqgrid-sortable">xh_id<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xnm" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 150px; display: none;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xnm" class="ui-jqgrid-sortable">xnm<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_xqm" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 150px; display: none;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_xqm" class="ui-jqgrid-sortable">xqm<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_jxb_id" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 150px; display: none;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_jxb_id" class="ui-jqgrid-sortable">jxb_id<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th></tr></thead></table></div></div><div class="ui-jqgrid-bdiv" style="height: auto; width: 1062px;"><div style="position:relative;"><div></div><table id="tabGrid" tabindex="0" cellspacing="0" cellpadding="0" border="0" role="grid" aria-multiselectable="false" aria-labelledby="gbox_tabGrid" class="ui-jqgrid-btable" style="width: 2530px;"><tbody><tr class="jqgfirstrow" role="row" style="height:auto"><td role="gridcell" style="height:0px;width:50px;"></td><td role="gridcell" style="height:0px;width:90px;"></td><td role="gridcell" style="height:0px;width:50px;"></td><td role="gridcell" style="height:0px;width:120px;"></td><td role="gridcell" style="height:0px;width:120px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:50px;"></td><td role="gridcell" style="height:0px;width:50px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:50px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:80px;"></td><td role="gridcell" style="height:0px;width:150px;"></td><td role="gridcell" style="height:0px;width:120px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:120px;"></td><td role="gridcell" style="height:0px;width:120px;"></td><td role="gridcell" style="height:0px;width:120px;"></td><td role="gridcell" style="height:0px;width:80px;"></td><td role="gridcell" style="height:0px;width:50px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:120px;"></td><td role="gridcell" style="height:0px;width:120px;"></td><td role="gridcell" style="height:0px;width:50px;"></td><td role="gridcell" style="height:0px;width:120px;"></td><td role="gridcell" style="height:0px;width:50px;display:none;"></td><td role="gridcell" style="height:0px;width:150px;display:none;"></td><td role="gridcell" style="height:0px;width:150px;display:none;"></td><td role="gridcell" style="height:0px;width:150px;display:none;"></td><td role="gridcell" style="height:0px;width:150px;display:none;"></td></tr><tr name="norecords" class="emptyrow" align="center" valign="middle" style="height:80px;"><td colspan="32" align="center" valign="middle" style="line-height:80px;text-align: center;font-size:12px;">请选择筛选条件!</td></tr><tr></tr></tbody></table></div></div></div><div class="ui-jqgrid-resize-mark" id="rs_mtabGrid">&nbsp;</div><div id="pager" class="ui-state-default ui-jqgrid-pager ui-corner-bottom" dir="ltr" style="width: 1060px;"><div id="pg_pager" class="ui-pager-control" role="group"><table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table" style="width:100%;table-layout:fixed;height:100%;" role="row"><tbody><tr><td id="pager_left" align="left"><table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table navtable" style="float:left;table-layout:auto;"><tbody><tr></tr></tbody></table></td><td id="pager_center" align="center" style="white-space: pre; width: 293px;"><table cellspacing="0" cellpadding="0" border="0" style="table-layout:auto;" class="ui-pg-table"><tbody><tr><td id="first_pager" class="ui-pg-button ui-corner-all ui-state-disabled"><span class="ui-icon glyphicon glyphicon-step-backward"></span></td><td id="prev_pager" class="ui-pg-button ui-corner-all ui-state-disabled"><span class="ui-icon glyphicon glyphicon-chevron-left"></span></td><td class="ui-pg-button ui-state-disabled" style="width:4px;"><span class="ui-separator"></span></td><td dir="ltr"> <input class="ui-pg-input" name="showCount" type="text" size="2" maxlength="7" value="0" role="textbox"> 共 <span id="sp_1_pager">0</span> 页</td><td class="ui-pg-button ui-state-disabled" style="width:4px;"><span class="ui-separator"></span></td><td id="next_pager" class="ui-pg-button ui-corner-all"><span class="ui-icon glyphicon glyphicon-chevron-right"></span></td><td id="last_pager" class="ui-pg-button ui-corner-all"><span class="ui-icon glyphicon glyphicon-step-forward"></span></td><td dir="ltr"><select class="ui-pg-selbox" name="currentPage" role="listbox"><option role="option" value="15" selected="selected">15</option><option role="option" value="20">20</option><option role="option" value="30">30</option><option role="option" value="50">50</option><option role="option" value="70">70</option><option role="option" value="90">90</option><option role="option" value="100">100</option><option role="option" value="150">150</option><option role="option" value="300">300</option><option role="option" value="500">500</option><option role="option" value="800">800</option><option role="option" value="1000">1000</option><option role="option" value="1500">1500</option><option role="option" value="2000">2000</option><option role="option" value="2500">2500</option><option role="option" value="5000">5000</option></select></td></tr></tbody></table></td><td id="pager_right" align="right"><div dir="ltr" style="text-align:right" class="ui-paging-info">无数据显示</div></td></tr></tbody></table></div></div></div>
+
+
+
+<!-- table-start  background-color: pink-->
+
+<div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_tabGrid" dir="ltr" style="width: 1188px;"> <!-- 大框 -->
+	<!-- <div class="ui-widget-overlay jqgrid-overlay" id="lui_tabGrid"> </div> -->
+	<div class="ui-jqgrid-view" id="gview_tabGrid" style="width: 1188px;">
+		<div class="ui-jqgrid-bdiv" style="height: auto; width: 1188px;">
+			<div style="position:relative;">
+			<div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_tabGrid" dir="ltr" style="width: 1188px;">  
+
+				<div class="ui-widget-overlay jqgrid-overlay" id="lui_tabGrid"></div>
+				<div class="loading ui-state-default ui-state-active" id="load_tabGrid">正在请求数据...</div>
+				<div class="ui-jqgrid-view" id="gview_tabGrid" style="width: 1188px;">
+					<div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix" style="display: none;">
+						<span class="ui-jqgrid-title">null</span>
+					</div>
+
+				<div class="ui-jqgrid-bdiv" style="height: auto; width: 1188px;">
+					<div style="position:relative;">
+						<div></div>
+						<table id="tabGrid" tabindex="0" cellspacing="0" cellpadding="0" border="0" role="grid" aria-multiselectable="false" aria-labelledby="gbox_tabGrid" class="ui-jqgrid-btable" style="width: 2530px;">
+							<tbody>
+								<tr class="jqgfirstrow" role="row" style="height:auto">
+									<td role="gridcell" style="height:0px;width:50px;"></td>
+									<td role="gridcell" style="height:0px;width:90px;"></td>
+									<td role="gridcell" style="height:0px;width:50px;"></td>
+									<td role="gridcell" style="height:0px;width:120px;"></td>
+									<td role="gridcell" style="height:0px;width:120px;"></td>
+									<td role="gridcell" style="height:0px;width:100px;"></td>
+									<td role="gridcell" style="height:0px;width:50px;"></td>
+									<td role="gridcell" style="height:0px;width:50px;"></td>
+									<td role="gridcell" style="height:0px;width:100px;"></td>
+									<td role="gridcell" style="height:0px;width:50px;"></td>
+									<td role="gridcell" style="height:0px;width:100px;"></td>
+									<td role="gridcell" style="height:0px;width:80px;"></td>
+									<td role="gridcell" style="height:0px;width:150px;"></td>
+									<td role="gridcell" style="height:0px;width:120px;"></td>
+									<td role="gridcell" style="height:0px;width:100px;"></td>
+									<td role="gridcell" style="height:0px;width:100px;"></td>
+									<td role="gridcell" style="height:0px;width:100px;"></td>
+									<td role="gridcell" style="height:0px;width:120px;"></td>
+									<td role="gridcell" style="height:0px;width:120px;"></td>
+									<td role="gridcell" style="height:0px;width:120px;"></td>
+									<td role="gridcell" style="height:0px;width:80px;"></td>
+									<td role="gridcell" style="height:0px;width:50px;"></td>
+									<td role="gridcell" style="height:0px;width:100px;"></td>
+									<td role="gridcell" style="height:0px;width:120px;"></td>
+									<td role="gridcell" style="height:0px;width:120px;"></td>
+									<td role="gridcell" style="height:0px;width:50px;"></td>
+									<td role="gridcell" style="height:0px;width:120px;"></td>
+									<td role="gridcell" style="height:0px;width:50px;display:none;"></td>
+									<td role="gridcell" style="height:0px;width:150px;display:none;"></td>
+									<td role="gridcell" style="height:0px;width:150px;display:none;"></td>
+									<td role="gridcell" style="height:0px;width:150px;display:none;"></td>
+									<td role="gridcell" style="height:0px;width:150px;display:none;"></td>
+								</tr>
+								<tr name="norecords" class="emptyrow" align="center" valign="middle" style="height:80px;">
+									<td colspan="32" align="center" valign="middle" style="line-height:80px;text-align: center;font-size:12px;">请选择筛选条件!</td>
+								</tr>
+								<tr>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="ui-jqgrid-resize-mark" id="rs_mtabGrid" >&nbsp;</div>
+			<div id="pager" class="ui-state-default ui-jqgrid-pager ui-corner-bottom" dir="ltr" style="width: 1188px; z-index: 1000;height: 28px;">
+				<div id="pg_pager" class="ui-pager-control" role="group">
+					<table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table" style="width:100%;table-layout:fixed;height:100%;" role="row">
+						<tbody>
+							<tr>
+								<td id="pager_left" align="left">
+									<table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table navtable" style="float:left;table-layout:auto;">
+										<tbody><tr></tr></tbody>
+									</table>
+								</td>
+								<td id="pager_center" align="center" style="width: 293px;"><!-- white-space: pre; -->
+									<table cellspacing="0" cellpadding="0" border="0" style="table-layout:auto;" class="ui-pg-table">
+										<tbody>
+											<tr>
+												<td id="first_pager" class="ui-pg-button ui-corner-all ui-state-disabled" style="cursor: default;"> 
+													<span class="ui-icon glyphicon glyphicon-step-backward"></span> 
+												</td>
+												<td id="prev_pager" class="ui-pg-button ui-corner-all ui-state-disabled" style="cursor: default;">
+													<span class="ui-icon glyphicon glyphicon-chevron-left"></span>
+												</td>
+												<td class="ui-pg-button ui-state-disabled" style="width:4px;">
+													<span class="ui-separator"></span>
+												</td>
+												<td dir="ltr"> 
+													<input class="ui-pg-input" name="showCount" type="text" size="2" maxlength="7" value="0" role="textbox"> 共 <span id="sp_1_pager">0</span>页
+												</td>
+												<td class="ui-pg-button ui-state-disabled" style="width: 4px; cursor: default;">
+													<span class="ui-separator"></span>
+												</td>
+												<td id="next_pager" class="ui-pg-button ui-corner-all" style="cursor: default;">
+													<span class="ui-icon glyphicon glyphicon-chevron-right"></span>
+												</td>
+												<td id="last_pager" class="ui-pg-button ui-corner-all">
+													<span class="ui-icon glyphicon glyphicon-step-forward"></span>
+												</td>
+												<td dir="ltr">
+													<select class="ui-pg-selbox" name="currentPage" role="listbox"><option role="option" value="15" selected="selected">15</option><option role="option" value="20">20</option><option role="option" value="30">30</option><option role="option" value="50">50</option><option role="option" value="70">70</option><option role="option" value="90">90</option><option role="option" value="100">100</option><option role="option" value="150">150</option><option role="option" value="300">300</option><option role="option" value="500">500</option><option role="option" value="800">800</option><option role="option" value="1000">1000</option><option role="option" value="1500">1500</option><option role="option" value="2000">2000</option><option role="option" value="2500">2500</option><option role="option" value="5000">5000</option>
+													</select>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+								<td id="pager_right" align="right">
+									<div dir="ltr" style="text-align:right" class="ui-paging-info">无数据显示</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+</div>
+<div class="ui-jqgrid-resize-mark" id="rs_mtabGrid">&nbsp;</div>
+</div>
 
 <!-- table-end  -->
 
@@ -270,30 +374,30 @@ http://blog.csdn.net/remote_roamer/article/details/14105999
 
 
 <!--jQuery.jqGrid -->
-<link rel="stylesheet" type="text/css" href="./css/jquery.jqgrid.css">
-<script type="text/javascript" src="./js/jquery.jqgrid.src-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/jquery.jqgrid.contact-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/zh_CN.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/jquery.jqgrid.settings.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/jquery.jqGrid-min.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/jquery.jqgrid.css">
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.jqgrid.src-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.jqgrid.contact-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/zh_CN.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.jqgrid.settings.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.jqGrid-min.js" charset="utf-8"></script>
 <!--jQuery.validation -->
-<link rel="stylesheet" type="text/css" href="./css/jquery.validate-min.css">
-<script type="text/javascript" src="./js/jquery.validate-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/jquery.validate.contact-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/jquery.validate.methods.contact-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/zh_CN-min.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/jquery.validate-min.css">
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.validate-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.validate.contact-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.validate.methods.contact-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/zh_CN-min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	jQuery(function($){
 		$('[data-toggle*="validation"]').trigger("validation");
 	});
 </script>
 
-<script type="text/javascript" src="./js/jquery.typeahead-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/jquery.typeahead-zftal.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.typeahead-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.typeahead-zftal.js" charset="utf-8"></script>
 
-<script type="text/javascript" src="./js/jquery.dragsort.js"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.dragsort.js"></script>
 
-<script type="text/javascript" src="./js/cxDgXscj.js"></script>
+<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/cxDgXscj.js"></script>
 
 			</div>
 		</div>
@@ -303,7 +407,7 @@ http://blog.csdn.net/remote_roamer/article/details/14105999
 
 <!-- footer --> 
 <div id="footerID" class="footer">
-	<p>版权所有© Copyright 1999-2017  正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301</p>
+	<p>计科1601</p>
 </div>
 <!-- footer-end -->
 	<!-- footer-end -->
@@ -336,4 +440,21 @@ http://blog.csdn.net/remote_roamer/article/details/14105999
 	jQuery(document).attr("title",'学生成绩查询');
 </script>
 
-<div class="ui-widget ui-widget-content ui-corner-all ui-jqdialog" id="alertmod_tabGrid" dir="ltr" tabindex="-1" role="dialog" aria-labelledby="alerthd_tabGrid" aria-hidden="true" style="width: 200px; height: auto; z-index: 950; overflow: hidden; top: 267px; left: 532px;"><div class="ui-jqdialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" id="alerthd_tabGrid" style="cursor: move;"><span class="ui-jqdialog-title" style="float: left;">注意</span><a class="ui-jqdialog-titlebar-close ui-corner-all" style="right: 0.3em;"><span class="ui-icon ui-icon-closethick"></span></a></div><div class="ui-jqdialog-content ui-widget-content" id="alertcnt_tabGrid"><div>请选择记录</div><span tabindex="0"><span tabindex="-1" id="jqg_alrt"></span></span></div><div class="jqResize ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se"></div></div></body></html>
+<div class="ui-widget ui-widget-content ui-corner-all ui-jqdialog" id="alertmod_tabGrid" dir="ltr" tabindex="-1" role="dialog" aria-labelledby="alerthd_tabGrid" aria-hidden="true" style="width: 200px; height: auto; z-index: 950; overflow: hidden; top: 267px; left: 532px;">
+	<div class="ui-jqdialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" id="alerthd_tabGrid" style="cursor:move;">
+		<span class="ui-jqdialog-title" style="float: left;">注意</span>
+		<a class="ui-jqdialog-titlebar-close ui-corner-all" style="right: 0.3em;">
+			<span class="ui-icon ui-icon-closethick">
+			</span>
+		</a>
+	</div>
+	<div class="ui-jqdialog-content ui-widget-content" id="alertcnt_tabGrid">
+		<div>请选择记录</div>
+		<span tabindex="0">
+			<span tabindex="-1" id="jqg_alrt"></span>
+		</span>
+	</div>
+	<div class="jqResize ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se"></div>
+</div>
+</body>
+</html>
