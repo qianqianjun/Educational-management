@@ -16,22 +16,22 @@
 	5.根据论题号查询单个题目的全部信息
 		public Question getSingleQuestionByQuestionid(int questionid)
 		
-	6.添加论题#添加成功则返回true#否则返回false
+	6.添加论题#添加成功则返回true;否则返回false
 		public Boolean addQuestion(Question question)
 		
-	7.根据论题号删除论题#必须有该论题且未被选中才能删除#已删除返回true#未删除返回false
+	7.根据论题号删除论题;必须有该论题且未被选中才能删除;已删除返回true#未删除返回false
 		public Boolean deleteQuestionByQuestionid(int questionid)
 	
-	8.确认学生和选题之间的连接#必须有该论题且该论题未被选中#并且学生也没有被任何其他论题选中#成功返回true#失败返回false
+	8.确认学生和选题之间的连接;必须有该论题且该论题未被选中#并且学生也没有被任何其他论题选中;成功返回true;失败返回false
 		public Boolean sureQuestionStudent(int questionId,int sno)
 		
 	
 选题表(service层)
-	1.往选题表中增加记录#学生不能被论题绑定 论题也不能被任何学生选中#成功返回true 失败返回false
+	1.往选题表中增加记录;学生不能被论题绑定 论题也不能被任何学生选中;成功返回true 失败返回false
 		public Boolean chooseQuestion(int questionid,int sno)
 	2.通过论题号和学生号查询某个选题表记录
 		public QuestionStudentChoose getChoiceByQidSno(int questionid,int sno)
-	3.删除某个选题表的记录#该记录不能是在论题表中绑定过的记录
+	3.删除某个选题表的记录;该记录不能是在论题表中绑定过的记录
 		public Boolean deleteQuestionStudent(int questionid,int sno)
 	4.获取某个学生所有的选题信息
 		public List<Question> getQuestionOfStudent(int sno)
