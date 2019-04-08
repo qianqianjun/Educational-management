@@ -1,6 +1,9 @@
 package buct.software.controller;
-
+import buct.software.domain.Student;
+import buct.software.domain.Teacher;
 import buct.software.domain.User;
+import buct.software.service.StudentService;
+import buct.software.service.TeacherService;
 import buct.software.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,10 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     UserService userService;
+    @Autowired
+    StudentService studentService;
+    @Autowired
+    TeacherService teacherService;
 
     /**
      * 登录页面网址，请求这个地址用于展现登录页面
@@ -64,8 +71,37 @@ public class LoginController {
             return "login";
         }
         else{
-            session.setAttribute("user",user);
-            return "redirect:/index";
+            // 查询详细保存在session 中，也就是说登录的是一个学生的话，
+            // 还要保存学生的信息，如果是一个老师，要保存一个老师的信息
+
+            boolean error=false;
+            if(user.getType()==0){
+                // 是一个学生
+                Student student=studentService.getStudentBySno(user.getAccount());
+                if(student!=null) {
+                    user.setMajor(student.getMajor());
+                    user.setSname(student.getSname());
+                    user.setMajorid(student.getMajorId());
+                }else error=true;
+            }
+            else if(user.getType()==1){
+                // 是一个老师
+                Teacher teacher=teacherService.getTeacherByTno(user.getAccount());
+                if(teacher!=null) {
+                    user.setTname(teacher.getTname());
+                }
+                else{
+                    error=true;
+                }
+            }
+            if(error){
+                paraMap.put("error_msg","数据库中找不到您的详细信息，请联系管理员");
+                return "login";
+            }
+            else {
+                session.setAttribute("user", user);
+                return "redirect:/index";
+            }
         }
     }
 

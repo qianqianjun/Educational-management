@@ -16,4 +16,8 @@
     <select id="getCollegeById" parameterType="String" resultType="College">
         select college.college from college where college.collegeid = #{id}
     </select>
+
+
+
+
 </mapper>

@@ -21,4 +21,8 @@ public class Semester {
     }
 
     public Semester() {}
+    @Override
+    public String toString(){
+        return this.start+"-"+this.end+"学年第"+this.semester+"学期";
+    }
 }

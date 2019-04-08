@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 现在分为教师端和学生端两个界面，接口在没有登录的情况下都会被拦截
  */
 @Controller
-public class IndexController {
+public class IndexControllerPage {
     @RequestMapping("/tcontent")
     public String tcontent(){
         return "teacher_content";

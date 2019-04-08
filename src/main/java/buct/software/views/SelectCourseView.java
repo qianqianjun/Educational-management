@@ -25,7 +25,7 @@ public class SelectCourseView {
     private String courseStatus;
 
     // 排课表特有字段
-    private String tno;
+    private Integer tno;
     private String status;
     private Integer capacity;
     private String address;
@@ -36,6 +36,9 @@ public class SelectCourseView {
 
     // 老师信息
     private String tname;
+
+    // 专业信息
+    private Integer majorId;
 
     public SelectCourseView() {}
 }

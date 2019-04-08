@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>北京化工大学教务管理系统</title>
@@ -18,18 +18,18 @@
 				<img class="img-responsive" src="./images/login_bg_pic.jpg">
 			</div>
 			<div class="col-sm-4 sl_log_rt">
-				<form class="form-horizontal" role="form" action="" method="post">
+				<form class="form-horizontal" role="form" action="/login" method="post">
 					<h5>用户登录</h5>
 					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-addon"><img src="./images/log_ic01.png" width="16" height="16"></div>
-							<input type="text" class="form-control" name="yhm" id="yhm" placeholder="用户名" onblur="" autocomplete="off">
+							<input type="text" class="form-control" name="account" id="yhm" placeholder="用户名" required="required">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-addon"><img src="./images/log_ic02.png" width="16" height="16"></div>
-							<input type="password" class="form-control" name="mm" id="mm" value="" placeholder="密码" autocomplete="off">
+							<input type="password" class="form-control" name="password" id="mm" value="" placeholder="密码" required="required">
 						</div>
 					</div>
 					 <div class="form-group" id="myDiv">
@@ -37,8 +37,9 @@
 						
 					</div>
 					<div class="form-group">
-						<button type="button" class="btn btn-primary btn-block" id="dl">登 录</button>
-					</div>		
+						<button type="submit" class="btn btn-primary btn-block" id="dl">登 录</button>
+					</div>
+					<p style="color: red;" th:if="${error_msg} != null">[[ ${error_msg} ]]</p>
 				</form>
 				<div class="sl_log_ewm hidden-xs"><img src="./images/login_ewm.gif" width="90" height="90">&nbsp;&nbsp;</div>
 			</div>

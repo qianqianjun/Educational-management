@@ -23,7 +23,7 @@ public class PageAspect {
      * bug 已经修复！
      */
 
-    @Pointcut("execution(public * buct.software.controller.IndexController.*(..))")
+    @Pointcut("execution(public * buct.software.controller.*Page.*(..))")
     public void login() {
 
     }
