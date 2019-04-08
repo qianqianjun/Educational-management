@@ -2143,7 +2143,7 @@ h4.title {
 }
 
 .xl_jb {
-	background: #ebf4ea url(../img/img_xl.png) right bottom no-repeat !important;
+	background: #ebf4ea url(../images/img_xl.png) right bottom no-repeat !important;
 	width: 59px;
 	min-height: 65px;
 }
@@ -7555,7 +7555,7 @@ textarea::-webkit-input-placeholder {
 		padding-left: 30px;
 	}
 }
-
+.bootbox .modal-body {padding:15px !important; }
 @media (max-width:320px) {
 	.bootbox .modal-body {
 		padding: 0px;

@@ -1,252 +1,76 @@
 ﻿<!DOCTYPE HTML>
-<!-- saved from url=(0107)http://jwglxt.buct.edu.cn/jwglxt/xsbysjgl/xsxt_cxXsxtIndex.html -->
-<!DOCTYPE html PUBLIC "" ""><HTML lang="zh-CN"><HEAD><META content="IE=11.0000" 
-http-equiv="X-UA-Compatible">
-	 <TITLE>&nbsp;</TITLE>	 
-<META http-equiv="X-UA-Compatible" content="IE=edge"> 
-<META name="viewport" content="width=device-width, initial-scale=1"> 
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-<META name="Copyright" content="zfsoft">	
-<STYLE type="text/css">	
-	.active{font-weight: bolder;}
-	#navbar-tabs li{ margin-top: 2px;}
-	#navbar-tabs li a{ border-top: 2px solid transparent;}
-	#navbar-tabs li.active a{border-top: 2px solid #0770cd;}
-</STYLE>
-	<!--jQuery核心框架库 --> 
-<SCRIPT src="js/jquery-1.12.4.min.js" type="text/javascript"></SCRIPT>
- <!--Bootstrap布局框架--> <LINK href="css/bootstrap.min.css" rel="stylesheet" 
-type="text/css"> <LINK href="css/error.css" rel="stylesheet" type="text/css"> 
-<LINK href="css/zftal-ui.css" rel="stylesheet" type="text/css"> 
+<!DOCTYPE html PUBLIC "" "">
+<HTML lang="zh-CN">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+	<meta name="Copyright" content="zfsoft">	
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+	<!--Bootstrap布局框架--> 
+	<LINK href="css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
+	<LINK href="css/error.css" rel="stylesheet" type="text/css"> 
+	<LINK href="css/zftal-ui.css" rel="stylesheet" type="text/css">
+</head> 
+<BODY>
+	<header class="navbar-inverse top2">
+		<div class="container" id="navbar_container">
+			<div class="container">
+				<div class="navbar-header">
+					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+						<span class="sr-only">学生选题</span> 		
+					</button>				 
+					<A class="navbar-brand" id="topbutton" href="">学生选题</A>				 
+				</div>
+			</div>	 
+		</div>
+	</header><!--头部 结束 -->	 
+	<div id="bodyContainer" style="margin: 0px; padding: 0px; width: 100%;">
+		<div class="container container-func sl_all_bg" id="yhgnPage">		 
+			<div class="panel panel-info">
+				<div class="panel-heading">&nbsp;</div>
+				<div class="panel-body">
+					<div class="nodata">	</div>
+				</div>
+			</div><!-- 右侧内容开始 -->
+			<div class="outer" id="left-content">
+			<div class="outer_left">
+				<A class="glyphicon glyphicon-arrow-left btn-lg" href=""></A>
+				<A class="outer_left_xkxx" href="javascript:;">
+					<H5>毕业设计选题信息</H5>
+					<span>已选 <B id="yxkts" style="margin-bottom: 6px;">0</B></span>
+				</A>
+			</div>
+			<div class="outer_right" id="wrapper">
+				<div class="right_div" id="right_div" style="margin-top: 10px;">
+					<div class="outer_xkxx_list">
+						<H6>毕业设计选题列表(拖动可改变志愿)<span class="pull-right"></span></H6>
+						<UL class="list-group" id="right_ul_xsxt" data-listidx="0"></UL>
+					</div>
+				</div>
+			</div>		 
+			</div>	 
+			<script>
+				$(".outer").animate({width:"40px"},1000);
+				$(".outer_left").click(function() {
+					if($(".outer").css("width")	==	"40px")
+					{
+						$(".outer").animate({width:"740px"},600);
+						$(".outer_left .glyphicon").addClass("glyphicon-arrow-right");
+					}
+					else
+					{
+						$(".outer").animate({width:"40px"},600);
+						$(".outer_left .glyphicon").removeClass("glyphicon-arrow-right");
+					}
+				});		
+			</script>				    	 
+		</div>
+	</div>
+	</div>
+	<div class="footer" id="footerID">
+		<P>版权所有© Copyright 计科1601</P>
+	</div> 
+</BODY>
+</HTML>
 
-<SCRIPT src="js/jquery.utils.contact-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
- <!--jQuery基础工具库：$.browser,$.cookie,$.actual等 --> 
- 
-<STYLE type="text/css">
-		@media (max-width: 767px) {body{padding-right: 40px;}}
-		.outer_xkxx_list h6 {
-		    border-bottom: 1px solid #E6E6E6;
-		}
-		h4 small {
-			    color: #000000;
-			    font-weight: 600;
-			    line-height: 1;
-		}
-		.right_table_head{
-			text-align:center;
-			border-bottom: 1px solid #E6E6E6;
-			height:25px;
-			font-size:12px;
-			width:100%;
-		}
-		
-		.h_num{width:30px;}
-		.outer_xkxx_list .list-group li p.num {
-		    color: #CCCCCC;
-		    font: oblique 24px/40px Arial,Helvetica,sans-serif;
-		    width: 60px;
-		}
-		
-		.arraw-px{width:25px;}
-		.outer_xkxx_list .list-group li p.arraw-px {
-		    width: 25px;
-		}
-		
-		.h_sxbj{width:60px;}
-		.outer_xkxx_list .list-group li p.sxbj{
-		    font: 15px/40px Arial,Helvetica,sans-serif;
-		    width: 60px;
-		}
-		
-		.h_tmmc{width:200px;}
-		.outer_xkxx_list .list-group li p.tmmc{
-		    font: 15px/40px Arial,Helvetica,sans-serif;
-		    width: 200px;
-		}
-		
-		.h_teacher{width:90px;}
-		.outer_xkxx_list .list-group li p.teachers {
-		    padding: 0 5px;
-		    width: 90px;
-		    text-align:center;
-		}
-		
-		.h_jsrssx{width:90px;}
-		.outer_xkxx_list .list-group li p.jsrssx {
-		    font: 12px/20px SimSun;
-		    color:#000000;
-		    width: 90px;
-		    text-align:center;
-		} 
-		
-		.h_addr{width:70px;}
-		.outer_xkxx_list .list-group li p.addr {
-		    font: 12px/20px SimSun;
-		    color:#000000;
-		    width: 70px;
-		}
-		
-		.h_zixf{width:85px;}
-		.outer_xkxx_list .list-group li p.zixf {
-		    font: 15px/40px SimSun;
-		    color:#000000;
-		    width: 85px;
-		    text-align:center;
-		}
-		
-		.h_cz{width:90px;}
-		
-		.btn-lg { 
-			line-height: 2.33;
-			margin-left:-5px;
-		    color: #ffffff;
-		}
-		
-		.but button{
-			margin-top:-6px;
-		} 
-	</STYLE>
-									 
-<META name="GENERATOR" content="MSHTML 11.00.9600.19301"></HEAD> 
-<BODY><INPUT name="pkey" id="pkey" type="hidden">	 <!-- 头部 开始 -->	 <HEADER 
-class="navbar-inverse top2">
-<DIV class="container" id="navbar_container">
-<DIV class="container">
-<DIV class="navbar-header"><BUTTON class="navbar-toggle" type="button" 
-data-toggle="collapse" data-target=".bs-navbar-collapse"><SPAN 
-class="sr-only">学生选题</SPAN> 					<SPAN class="icon-bar"></SPAN><SPAN class="icon-bar"></SPAN><SPAN 
-class="icon-bar"></SPAN></BUTTON>				 <A class="navbar-brand" id="topButton" 
-onclick="onClickMenu('/xsbysjgl/xsxt_cxXsxtIndex.html','N532530')" href="http://jwglxt.buct.edu.cn/jwglxt/xsbysjgl/xsxt_cxXsxtIndex.html?gnmkdm=N532530&amp;layout=default&amp;su=2016014288#">学生选题
-				 </A>				 
-<SCRIPT type="text/javascript">
-					document.title="学生选题";
-				</SCRIPT>
-			 </DIV></DIV><!-- navbar-end  -->		 </DIV></HEADER><!--头部 结束 -->	 
-<DIV id="bodyContainer" style="margin: 0px; padding: 0px; width: 100%;"><!-- requestMap中的参数为系统级别控制参数，请勿删除 -->
-		 
-<FORM id="requestMap"><INPUT id="sessionUserKey" type="hidden" value="2016014288"> 
-			 			 	<INPUT id="gnmkdmKey" type="hidden" value="N532530">			 			 		 </FORM>
-<DIV class="container container-func sl_all_bg" id="yhgnPage">
-<DIV id="innerContainer"><!-- 放置页面显示内容 -->					 <INPUT name="sfzxStatus" id="sfzxStatus" type="hidden" value="1">
-	 <INPUT name="sfyxjStatus" id="sfyxjStatus" type="hidden" value="1">
-	 <INPUT name="kbmbj" id="kbmbj" type="hidden">
-	 <INPUT name="xkxnm" id="xkxnm" type="hidden">
-	 <INPUT name="xkxqm" id="xkxqm" type="hidden">	 <INPUT name="njdm_id" id="njdm_id" type="hidden">
-	 <INPUT name="zyh_id" id="zyh_id" type="hidden">	 <INPUT name="xqh_id" id="xqh_id" type="hidden">
-	 <INPUT name="bmxm" id="bmxm" type="hidden">
-	 <INPUT name="sfktx" id="sfktx" type="hidden" value="1">
-	 <INPUT name="sfkgx" id="sfkgx" type="hidden" value="0">
-	 <INPUT name="sfkxt" id="sfkxt" type="hidden" value="0">	 <INPUT name="sfakdnjzykzrs" id="sfakdnjzykzrs" type="hidden" value="0">
-					 
-<DIV class="panel panel-info">
-<DIV class="panel-heading">&nbsp;</DIV>
-<DIV class="panel-body">
-<DIV 
-class="nodata"><SPAN>对不起，当前时间不可选题，如有需要，请与管理员联系，如已选题，可在右边栏点击查看！</SPAN></DIV></DIV></DIV><!-- 右侧内容开始 -->
-		 
-<DIV class="outer" id="left-content">
-<DIV class="outer_left"><A class="glyphicon glyphicon-arrow-left btn-lg" href="javascript:;"></A>
-				 <A class="outer_left_xkxx" href="javascript:;">
-<H5>毕业设计选题信息</H5><SPAN>已选<B id="yxkts" 
-style="margin-bottom: 6px;">0</B></SPAN></A></DIV>
-<DIV class="outer_right" id="wrapper">
-<DIV class="right_div" id="right_div" style="margin-top: 10px;">
-<DIV class="outer_xkxx_list">
-<H6>毕业设计选题列表(拖动可改变志愿)<SPAN class="pull-right"></SPAN></H6>
-<TABLE class="right_table_head">
-  <THEAD>
-  <TR>
-    <TD class="h_zy">志愿</TD>
-    <TD class="arraw-px" style="display: none;">排序</TD>
-    <TD class="h_sxbj">状态</TD>
-    <TD class="h_tmmc">题目名称</TD>
-    <TD class="h_zdjs">指导教师</TD>
-    <TD class="h_jsrssx">可接收总人数</TD>
-    <TD class="h_cz">操作</TD></TR></THEAD></TABLE>
-<UL class="list-group" id="right_ul_xsxt" data-listidx="0"></UL></DIV></DIV>
-<DIV class="clearfix"></DIV></DIV><!-- 排序保存在这里可以检索服务器上的回传 -->			 <INPUT name="list1SortOrder" type="hidden">
-																	 </DIV><!-- 右侧内容结束 -->		 
-<SCRIPT>
-			$(".outer").animate({width:"40px"},1000);
-			$(".outer_left").click(function() {			
-				if($(".outer").css("width")	==	"40px")
-				{
-					$(".outer").animate({width:"740px"},600);
-					$(".outer_left .glyphicon").addClass("glyphicon-arrow-right");
-				}
-				else
-				{
-					$(".outer").animate({width:"40px"},600);
-					$(".outer_left .glyphicon").removeClass("glyphicon-arrow-right");
-				}
-			});
-			
-			var times_2 = 0;
-			var interval_2 = window.setInterval(function(){
-				if(times_2 >= 10){
-					window.clearInterval(interval_2);
-				}
-				if($.fn.mCustomScrollbar){
-					//滚动条
-					$("#wrapper").mCustomScrollbar({
-						autoHideScrollbar:true,
-						advanced:{
-						    updateOnBrowserResize: true,
-						    updateOnContentResize: true,
-						    autoExpandHorizontalScroll: true
-						}
-					});
-					window.clearInterval(interval_2);
-				}
-				times_2 += 1;
-			}, 1000);
-		</SCRIPT>
-						    	 
-<SCRIPT type="text/javascript">
 
-	var _path 		= "/jwglxt";
-	var _systemPath = "/jwglxt";
-	var _stylePath  = "/zftal-ui-v5-1.0.2";
-	var _reportPath = "http://202.4.157.135:80/WebReport";
-	var _localeKey 			= "zh_CN";
-	
-	jQuery(function($){
-		$('[data-toggle*="validation"]').trigger("validation");
-		$('[data-toggle*="fixed"]').trigger("fixed");
-		if($.fn.tooltip){
-			$('[data-toggle*="tooltip"]').tooltip({container:'body'});
-		}
-	});
-	
-</SCRIPT>
- <!--教务系统通用业务js引用:比如学年，学期等公共的信息会放在这里--> 
-			 </DIV></DIV></DIV><!-- footer -->	 <!-- footer --> 
-<DIV class="footer" id="footerID">
-<P>版权所有© Copyright 计科1601</P></DIV><!-- footer-end -->	 <!-- footer-end --> 
-<SCRIPT type="text/javascript">
-	jQuery(function($) {	
-		if ($("#navbar-tabs").length > 0) {
-			$("#navbar-tabs li:eq(0) a").tab('show');
-		}
-		
-		setMinheight();
-		
-		$('#yhgnPage').resize(function(){
-			var minHeight  = $(this).data('min-height');
-			var innerHeight =  $('#innerContainer').outerHeight(true);
-			//console.log("minHeight:" + minHeight + ",innerHeight:" + innerHeight);
-			$(this).css('min-height', Math.max(minHeight,innerHeight));
-		});
-		
-		function setMinheight(){
-			//计算grid页面高度
-			var docuemntHeight = $(document).height();
-			var topHeight = $('header').height();
-			var footerHeight = $('.footer').height();
-			var containerHeight = docuemntHeight-topHeight-footerHeight-60;
-			$('#yhgnPage').css('min-height',containerHeight).data('min-height',containerHeight);
-		}
-	});
-	jQuery(document).attr("title",'学生选题');
-</SCRIPT>
- </BODY></HTML>

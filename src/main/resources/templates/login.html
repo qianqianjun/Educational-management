@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>北京化工大学教务管理系统</title>
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="./css/zftal-ui.css">
-</head>
+<head th:replace="app/header::static"></head>
 <body style="background:#fafafa;">
 	<div class="container container_1170">
 		<div class="row sl_log_top">
 			<div class="col-sm-8 logo_1"><img src="./images/logo_jw_d.png" style="margin-top:-3px">
-				<span id="xtmc">北京化工大学教务管理系统</span>
+				<span id="xtmc">盗版教务管理系统</span>
 			</div>
 		</div>
 		<div class="row sl_log_bor4">
@@ -41,7 +36,9 @@
 					</div>
 					<p style="color: red;" th:if="${error_msg} != null">[[ ${error_msg} ]]</p>
 				</form>
-				<div class="sl_log_ewm hidden-xs"><img src="./images/login_ewm.gif" width="90" height="90">&nbsp;&nbsp;</div>
+				<div class="sl_log_ewm hidden-xs">
+					<img src="./images/money.jpg" style="width: 322px;height: auto;">&nbsp;&nbsp;
+				</div>
 			</div>
 		</div>
 	</div> 

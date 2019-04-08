@@ -1,247 +1,36 @@
 <!DOCTYPE html>
-<!-- saved from url=(0119)http://jwglxt.buct.edu.cn/jwglxt/design/viewFunc_cxDesignFuncPageIndex.html?gnmkdm=N358163&layout=default&su=2016014284 -->
-<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>考试时间查询</title>
-	
-
-
-
-
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<meta name="Copyright" content="zfsoft">	
-<link rel="icon" href="http://jwglxt.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="http://jwglxt.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
-<style type="text/css">	
-	.active{font-weight: bolder;}
-	#navbar-tabs li{ margin-top: 2px;}
-	#navbar-tabs li a{ border-top: 2px solid transparent;}
-	#navbar-tabs li.active a{border-top: 2px solid #0770cd;}
-</style>	
-<!--jQuery核心框架库 -->
-<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="./js/jquery-migrate-1.4.1.min.js"></script>
-<!--jQuery浏览器检测 -->
-<script type="text/javascript" src="./js/browse-judge.js"></script>
-<script type="text/javascript">
-	//浏览器版本验证
-	var broswer = broswer();
-	if(broswer.msie==true||broswer.safari==true||broswer.mozilla==true||broswer.chrome==true){
-		if(broswer.msie==true&&broswer.version<9){
-		   window.location.href = _path+"/xtgl/init_cxBrowser.html";
-		}
-	}else{
-		 window.location.href = _path+"/xtgl/init_cxBrowser.html";
-	}
-</script>
-<script type="text/javascript">
-var _path 				= "/jwglxt";
-var _systemPath 		= "/jwglxt";
-var _stylePath 			= "/zftal-ui-v5-1.0.2";
-var _reportPath 		= "http://202.4.157.135:80/WebReport";
-var _refreshInterval	= "10";
-var _localeKey 			= "zh_CN";
-</script>
-<!--
-jquery.ui 需要在bootstrap之前加载，解决冲突问题
-http://blog.csdn.net/remote_roamer/article/details/14105999
--->
-<script type="text/javascript" src="./js/jquery-ui-custom.contact-1.0.0.js"></script>
 <!--Bootstrap布局框架-->
 <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="./css/error.css">
 <link rel="stylesheet" type="text/css" href="./css/zftal-ui.css">
-<script type="text/javascript" src="./js/bootstrap.min.js" charset="utf-8"></script>
-<!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 -->
-<script type="text/javascript" src="./js/jquery.utils.contact-min.js" charset="utf-8"></script>
-<!--jQuery基础工具库：$.browser,$.cookie,$.actual等 -->
-<script type="text/javascript" src="./js/jquery.plugins.contact-min.js" charset="utf-8"></script>
-<!--jQuery自定义event事件库 -->
-<script type="text/javascript" src="./js/jquery.events.contact-min.js" charset="utf-8"></script>
-<!--JavaScript对象扩展库：Array,Date,Number,String -->
-<script type="text/javascript" src="./js/jquery.extends.contact-min.js" charset="utf-8"></script>
-<!--Bootbox弹窗插件-->
-<link rel="stylesheet" type="text/css" href="./css/bootbox.css">
-<script src="./js/bootbox.concat-min.js" type="text/javascript" charset="utf-8"></script>
-<script src="./js/zh_CN.js" type="text/javascript" charset="utf-8"></script>
-
-<!--jQuery模拟滚动条库-->
-<link rel="stylesheet" type="text/css" href="./css/jquery.mCustomScrollbar.min.css">
-<script type="text/javascript" src="./js/jquery.mCustomScrollbar.min.js" charset="utf-8"></script>
-<!--jQuery.chosen美化插件-->
-<link rel="stylesheet" type="text/css" href="./css/chosen-min.css">
-<script type="text/javascript" src="./js/jquery.choosen.concat-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/zh_CN-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/jquery.utils.pinyin.min.js" charset="utf-8"></script>
-<!--[if lt IE 9]>
-<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/html5shiv.min.js?ver=20190115" charset="utf-8"></script>
-<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/respond.min.js?ver=20190115" charset="utf-8"></script>
-<![endif]-->
-<!--业务框架jQuery全局设置和通用函数库-->
-<script type="text/javascript" src="./js/jquery.zftal.contact-min.js"></script>
-<!--国际化js库 -->
-<script type="text/javascript" src="./js/jquery.i18n-min.js" charset="utf-8"></script>
-<!--全局国际化js. -->
-<script type="text/javascript" src="./js/i18n-global_zh_CN.js" charset="utf-8"></script>
-<!--业务框架前端脚本国际化库-->
-<script type="text/javascript" src="./js/jquery.zftal_zh_CN-min.js"></script>
-<!--密码强弱判断-->
-<script type="text/javascript" src="./js/jquery.utils.strength.min.js"></script>
-
-	
-	
-
-
-
-
-	
-<script type="text/javascript">
-
-	var _path 		= "/jwglxt";
-	var _systemPath = "/jwglxt";
-	var _stylePath  = "/zftal-ui-v5-1.0.2";
-	var _reportPath = "http://202.4.157.135:80/WebReport";
-	var _localeKey 			= "zh_CN";
-	
-	jQuery(function($){
-		$('[data-toggle*="validation"]').trigger("validation");
-		$('[data-toggle*="fixed"]').trigger("fixed");
-		if($.fn.tooltip){
-			$('[data-toggle*="tooltip"]').tooltip({container:'body'});
-		}
-	});
-	
-</script>
-<!--教务系统通用业务js引用:比如学年，学期等公共的信息会放在这里-->
-<script type="text/javascript" src="./js/jwglxt-common_zh_CN.js"></script>
-<!--业务模块的properties初始化-->
-<!--国际化js库 -->
-
-	<style type="text/css">
-</style>
-
-
-</head>
+<script type="text/javascript" src="./js/bootstrap.min.js" charset="utf-8"></script>	
+<style type="text/css"></style>
 <body>
-<input type="hidden" id="pkey" name="pkey" value="">
 	<!-- 头部 开始 -->
 	<header class="navbar-inverse top2">
 		<div class="container" id="navbar_container">
-					<div class="container">
-			<div class="navbar-header">
-				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-					<span class="sr-only"> 考试时间查询</span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span>
-				</button>
-				<a href="http://jwglxt.buct.edu.cn/jwglxt/design/viewFunc_cxDesignFuncPageIndex.html?gnmkdm=N358163&amp;layout=default&amp;su=2016014284#" id="topButton" class="navbar-brand" onclick="onClickMenu(&#39;/design/viewFunc_cxDesignFuncPageIndex.html&#39;,&#39;N358163&#39;)">
-					考试时间查询
-				</a>
-				<script type="text/javascript">
-					document.title="考试时间查询";
-				</script>
+			<div class="container">
+				<div class="navbar-header">
+					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+						<span class="sr-only"> 考试时间查询</span> 
+					</button>
+					<a href="" id="topButton" class="navbar-brand">
+						考试时间查询
+					</a>
+					<script type="text/javascript">
+						document.title="考试时间查询";
+					</script>
+				</div>
 			</div>
 		</div>
-<!-- navbar-end  -->
-		</div>
-	</header>
-	
+	</header>	
 	<!--头部 结束 -->
 	<div style="width: 100%; padding: 0px; margin: 0px;" id="bodyContainer">
-		<!-- requestMap中的参数为系统级别控制参数，请勿删除 -->
-		<form id="requestMap">
-			 <input type="hidden" id="sessionUserKey" value="2016014284"> 
-			 
-			 	<input type="hidden" id="gnmkdmKey" value="N358163">
-			 
-			 
-		</form>
 		<div class="container container-func sl_all_bg" id="yhgnPage" style="min-height: 480px;">
 			<div id="innerContainer">
-				<!-- 放置页面显示内容 -->
-				
-<!-- tool bar-start  -->
-<div id="main_toolbar" class="row sl_add_btn ">
-	<div class="col-sm-12 col-md-12" id="toolbar_container">
-		<input type="hidden" name="gnczStr" id="gnczStr" value="">
-		<div class="btn-toolbar" role="toolbar" style="float:right;">
-			<div class="btn-group" id="but_ancd">
-						<button type="button" class="btn btn-default btn_dc" href="javascript:void(0);" id="btn_dc" name="btn_dc"><i class="bigger-100 glyphicon glyphicon-export"></i>&nbsp;导出</button>
-			</div> 
-		</div>
-	</div>
-</div>
-<!-- tool bar-end  -->
-
-<!-- body start. -->
-<div id="main_body">
-	<div class="row ">
-				<div class="col-md-12 col-sm-12" id="element_element_1">
-	<!-- JQGrid-start  -->
-	<input type="hidden" value="JW_N358163_CX" name="dcclbh" id="export_dcclbh">
-	<div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_tabGrid_58946573C41C8486E053839D04CA9761" dir="ltr" style="width: 1188px;"><div class="ui-widget-overlay jqgrid-overlay" id="lui_tabGrid_58946573C41C8486E053839D04CA9761"></div><div class="loading ui-state-default ui-state-active" id="load_tabGrid_58946573C41C8486E053839D04CA9761" style="display: none;">正在请求数据...</div><div class="ui-jqgrid-view" id="gview_tabGrid_58946573C41C8486E053839D04CA9761" style="width: 1188px;"><div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix" style="display: none;"><span class="ui-jqgrid-title">null</span></div><div class="ui-state-default ui-jqgrid-hdiv" style="width: 1190px;"><div class="ui-jqgrid-hbox"><table class="ui-jqgrid-htable" style="width:930px" role="grid" aria-labelledby="gbox_tabGrid_58946573C41C8486E053839D04CA9761" cellspacing="0" cellpadding="0" border="0"><thead><tr class="ui-jqgrid-labels ui-sortable" role="rowheader"><th id="tabGrid_58946573C41C8486E053839D04CA9761_cb" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 40px;"><div id="jqgh_tabGrid_58946573C41C8486E053839D04CA9761_cb"><input role="checkbox" id="cb_tabGrid_58946573C41C8486E053839D04CA9761" class="cbox" type="checkbox" name="checkbox"><span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_58946573C41C8486E053839D04CA9761_xnmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_58946573C41C8486E053839D04CA9761_xnmc" class="ui-jqgrid-sortable">考试学年<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_58946573C41C8486E053839D04CA9761_xq" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_58946573C41C8486E053839D04CA9761_xq" class="ui-jqgrid-sortable">考试学期<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_58946573C41C8486E053839D04CA9761_kch" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 150px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_58946573C41C8486E053839D04CA9761_kch" class="ui-jqgrid-sortable">课程代码<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_58946573C41C8486E053839D04CA9761_kcmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 180px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_58946573C41C8486E053839D04CA9761_kcmc" class="ui-jqgrid-sortable">课程名称<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_58946573C41C8486E053839D04CA9761_jxbmc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 180px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_58946573C41C8486E053839D04CA9761_jxbmc" class="ui-jqgrid-sortable">教学班名称<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th><th id="tabGrid_58946573C41C8486E053839D04CA9761_kssj" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr ui-sortable-handle" style="width: 180px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span><div id="jqgh_tabGrid_58946573C41C8486E053839D04CA9761_kssj" class="ui-jqgrid-sortable">考试时间<span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span></div></th></tr></thead></table></div></div><div class="ui-jqgrid-bdiv" style="height: auto; width: 1190px;"><div style="position:relative;"><div></div><table id="tabGrid_58946573C41C8486E053839D04CA9761" data-related_guid="58946573C41C8486E053839D04CA9761" data-widget_guid="14D4A72A3716A0E0E050007F01000B0B" data-func_widget_guid="58944B9C2CD784DBE053839D04CA5AD7" tabindex="0" cellspacing="0" cellpadding="0" border="0" role="grid" aria-multiselectable="true" aria-labelledby="gbox_tabGrid_58946573C41C8486E053839D04CA9761" class="ui-jqgrid-btable" style="width: 930px;"><tbody><tr class="jqgfirstrow" role="row" style="height:auto"><td role="gridcell" style="height:0px;width:40px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:100px;"></td><td role="gridcell" style="height:0px;width:150px;"></td><td role="gridcell" style="height:0px;width:180px;"></td><td role="gridcell" style="height:0px;width:180px;"></td><td role="gridcell" style="height:0px;width:180px;"></td></tr><tr role="row" id="软件工程-0002" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr"><td role="gridcell" style="text-align:center;width: 40px;" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_cb"><input role="checkbox" type="checkbox" id="jqg_tabGrid_58946573C41C8486E053839D04CA9761_软件工程-0002" class="cbox" name="jqg_tabGrid_58946573C41C8486E053839D04CA9761_软件工程-0002"></td><td role="gridcell" style="text-align:left;" title="2018-2019" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_xnmc">2018-2019</td><td role="gridcell" style="text-align:left;" title="2" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_xq">2</td><td role="gridcell" style="text-align:left;" title="CSE48300C" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_kch">CSE48300C</td><td role="gridcell" style="text-align:left;" title="软件工程" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_kcmc">软件工程</td><td role="gridcell" style="text-align:left;" title="软件工程-0002" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_jxbmc">软件工程-0002</td><td role="gridcell" style="text-align:left;" title="2019-06-24 13:30-15:30" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_kssj">2019-06-24 13:30-15:30</td></tr><tr role="row" id="计算机系统结构-0001" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr"><td role="gridcell" style="text-align:center;" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_cb"><input role="checkbox" type="checkbox" id="jqg_tabGrid_58946573C41C8486E053839D04CA9761_计算机系统结构-0001" class="cbox" name="jqg_tabGrid_58946573C41C8486E053839D04CA9761_计算机系统结构-0001"></td><td role="gridcell" style="text-align:left;" title="2018-2019" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_xnmc">2018-2019</td><td role="gridcell" style="text-align:left;" title="2" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_xq">2</td><td role="gridcell" style="text-align:left;" title="CSE42500T" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_kch">CSE42500T</td><td role="gridcell" style="text-align:left;" title="计算机系统结构" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_kcmc">计算机系统结构</td><td role="gridcell" style="text-align:left;" title="计算机系统结构-0001" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_jxbmc">计算机系统结构-0001</td><td role="gridcell" style="text-align:left;" title="2019-06-25 13:30-15:30" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_kssj">2019-06-25 13:30-15:30</td></tr><tr role="row" id="计算机网络-0002" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr"><td role="gridcell" style="text-align:center;" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_cb"><input role="checkbox" type="checkbox" id="jqg_tabGrid_58946573C41C8486E053839D04CA9761_计算机网络-0002" class="cbox" name="jqg_tabGrid_58946573C41C8486E053839D04CA9761_计算机网络-0002"></td><td role="gridcell" style="text-align:left;" title="2018-2019" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_xnmc">2018-2019</td><td role="gridcell" style="text-align:left;" title="2" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_xq">2</td><td role="gridcell" style="text-align:left;" title="CSE33500E" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_kch">CSE33500E</td><td role="gridcell" style="text-align:left;" title="计算机网络" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_kcmc">计算机网络</td><td role="gridcell" style="text-align:left;" title="计算机网络-0002" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_jxbmc">计算机网络-0002</td><td role="gridcell" style="text-align:left;" title="2019-06-14 08:00-10:00" aria-describedby="tabGrid_58946573C41C8486E053839D04CA9761_kssj">2019-06-14 08:00-10:00</td></tr></tbody></table></div></div></div><div class="ui-jqgrid-resize-mark" id="rs_mtabGrid_58946573C41C8486E053839D04CA9761">&nbsp;</div><div id="pager_58946573C41C8486E053839D04CA9761" class="ui-state-default ui-jqgrid-pager ui-corner-bottom" dir="ltr" style="width: 1188px;"><div id="pg_pager_58946573C41C8486E053839D04CA9761" class="ui-pager-control" role="group"><table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table" style="width:100%;table-layout:fixed;height:100%;" role="row"><tbody><tr><td id="pager_58946573C41C8486E053839D04CA9761_left" align="left"><table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table navtable" style="float:left;table-layout:auto;"><tbody><tr></tr></tbody></table></td><td id="pager_58946573C41C8486E053839D04CA9761_center" align="center" style="white-space: pre; width: 293px;"><table cellspacing="0" cellpadding="0" border="0" style="table-layout:auto;" class="ui-pg-table"><tbody><tr><td id="first_pager_58946573C41C8486E053839D04CA9761" class="ui-pg-button ui-corner-all ui-state-disabled"><span class="ui-icon glyphicon glyphicon-step-backward"></span></td><td id="prev_pager_58946573C41C8486E053839D04CA9761" class="ui-pg-button ui-corner-all ui-state-disabled"><span class="ui-icon glyphicon glyphicon-chevron-left"></span></td><td class="ui-pg-button ui-state-disabled" style="width:4px;"><span class="ui-separator"></span></td><td dir="ltr"> <input class="ui-pg-input" name="showCount" type="text" size="2" maxlength="7" value="0" role="textbox"> 共 <span id="sp_1_pager_58946573C41C8486E053839D04CA9761">1</span> 页</td><td class="ui-pg-button ui-state-disabled" style="width:4px;"><span class="ui-separator"></span></td><td id="next_pager_58946573C41C8486E053839D04CA9761" class="ui-pg-button ui-corner-all ui-state-disabled"><span class="ui-icon glyphicon glyphicon-chevron-right"></span></td><td id="last_pager_58946573C41C8486E053839D04CA9761" class="ui-pg-button ui-corner-all ui-state-disabled"><span class="ui-icon glyphicon glyphicon-step-forward"></span></td><td dir="ltr"><select class="ui-pg-selbox" name="currentPage" role="listbox"><option role="option" value="15" selected="selected">15</option><option role="option" value="20">20</option><option role="option" value="30">30</option><option role="option" value="50">50</option><option role="option" value="70">70</option><option role="option" value="90">90</option><option role="option" value="100">100</option><option role="option" value="150">150</option><option role="option" value="300">300</option><option role="option" value="500">500</option><option role="option" value="800">800</option><option role="option" value="1000">1000</option><option role="option" value="1500">1500</option><option role="option" value="2000">2000</option><option role="option" value="2500">2500</option><option role="option" value="5000">5000</option></select></td></tr></tbody></table></td><td id="pager_58946573C41C8486E053839D04CA9761_right" align="right"><div dir="ltr" style="text-align:right" class="ui-paging-info">1 - 3　共 3 条</div></td></tr></tbody></table></div></div></div>
-	
-	<!-- JQGrid-end  -->
-				</div>
-	</div>
-</div>
-<!-- body end. -->
-		<link rel="stylesheet" type="text/css" href="./css/jquery.jqgrid.css">
-		<script type="text/javascript" src="./js/jquery.jqgrid.src-min.js" charset="utf-8"></script>
-		<script type="text/javascript" src="./js/jquery.jqgrid.contact-min.js" charset="utf-8"></script>
-		<script type="text/javascript" src="./js/jquery.jqgrid.settings.js" charset="utf-8"></script>
-		<script type="text/javascript" src="./js/jquery.jqGrid-min.js" charset="utf-8"></script>
-		<script type="text/javascript" src="./js/zh_CN.js(1)" charset="utf-8"></script>
-<!-- js/css resource end. -->
-
-
-<script type="text/javascript" src="./js/N358163-cx-min.js"></script>
-
-				
-
-
-
-			</div>
-		</div>
-	</div>
-	<!-- footer -->
-	
-
-<!-- footer --> 
+            </div>
+	    </div>
+    </div>
 <div id="footerID" class="footer">
-	<p>版权所有© Copyright 1999-2017  正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301</p>
+	<p>版权所有</p>
 </div>
-<!-- footer-end -->
-	<!-- footer-end -->
-
-<script type="text/javascript">
-	jQuery(function($) {	
-		if ($("#navbar-tabs").length > 0) {
-			$("#navbar-tabs li:eq(0) a").tab('show');
-		}
-		
-		setMinheight();
-		
-		$('#yhgnPage').resize(function(){
-			var minHeight  = $(this).data('min-height');
-			var innerHeight =  $('#innerContainer').outerHeight(true);
-			//console.log("minHeight:" + minHeight + ",innerHeight:" + innerHeight);
-			$(this).css('min-height', Math.max(minHeight,innerHeight));
-		});
-		
-		function setMinheight(){
-			//计算grid页面高度
-			var docuemntHeight = $(document).height();
-			var topHeight = $('header').height();
-			var footerHeight = $('.footer').height();
-			var containerHeight = docuemntHeight-topHeight-footerHeight-60;
-			$('#yhgnPage').css('min-height',containerHeight).data('min-height',containerHeight);
-		}
-	});
-	//加载title名称，根据系统内置表设置，取菜单名称或者系统名称
-	jQuery(document).attr("title",'考试时间查询');
-</script>
-
-<div class="ui-widget ui-widget-content ui-corner-all ui-jqdialog" id="alertmod_tabGrid_58946573C41C8486E053839D04CA9761" dir="ltr" tabindex="-1" role="dialog" aria-labelledby="alerthd_tabGrid_58946573C41C8486E053839D04CA9761" aria-hidden="true" style="width: 200px; height: auto; z-index: 950; overflow: hidden; top: 280px; left: 540px;"><div class="ui-jqdialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" id="alerthd_tabGrid_58946573C41C8486E053839D04CA9761" style="cursor: move;"><span class="ui-jqdialog-title" style="float: left;">注意</span><a class="ui-jqdialog-titlebar-close ui-corner-all" style="right: 0.3em;"><span class="ui-icon ui-icon-closethick"></span></a></div><div class="ui-jqdialog-content ui-widget-content" id="alertcnt_tabGrid_58946573C41C8486E053839D04CA9761"><div>请选择记录</div><span tabindex="0"><span tabindex="-1" id="jqg_alrt"></span></span></div><div class="jqResize ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se"></div></div></body></html>

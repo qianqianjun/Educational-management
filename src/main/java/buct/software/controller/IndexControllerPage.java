@@ -9,14 +9,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class IndexControllerPage {
-    @RequestMapping("/tcontent")
-    public String tcontent(){
-        return "teacher_content";
-    }
-
-    @RequestMapping("/scontent")
-    public String scontent(){
-        return "stu_content";
-    }
 
 }

@@ -1,460 +1,69 @@
 <!DOCTYPE html>
-<!-- saved from url=(0047)file:///E:/SoftwareEngineering/grade/grade.html -->
-<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>学生成绩查询</title>
-
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<meta name="Copyright" content="zfsoft">	
-<link rel="icon" href="http://jwgl.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="http://jwgl.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
-<style type="text/css">	
-	.active{font-weight: bolder;}
-	#navbar-tabs li{ margin-top: 2px;}
-	#navbar-tabs li a{ border-top: 2px solid transparent;}
-	#navbar-tabs li.active a{border-top: 2px solid #0770cd;}
-</style>	
-<!--jQuery核心框架库 -->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery-migrate-1.4.1.min.js"></script>
-<!--jQuery浏览器检测 -->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/browse-judge.js"></script>
-<script type="text/javascript">
-var _path 				= "/jwglxt";
-var _systemPath 		= "/jwglxt";
-var _stylePath 			= "/zftal-ui-v5-1.0.2";
-var _reportPath 		= "http://202.4.157.135:80/WebReport";
-var _refreshInterval	= "10";
-var _localeKey 			= "zh_CN";
-</script>
-<!--
-jquery.ui 需要在bootstrap之前加载，解决冲突问题
-http://blog.csdn.net/remote_roamer/article/details/14105999
--->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery-ui-custom.contact-1.0.0.js"></script>
-<!--Bootstrap布局框架-->
-<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/error.css">
-<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/zftal-ui.css">
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/css/bootstrap.min.js" charset="utf-8"></script>
-<!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 -->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.utils.contact-min.js" charset="utf-8"></script>
-<!--jQuery基础工具库：$.browser,$.cookie,$.actual等 -->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.plugins.contact-min.js" charset="utf-8"></script>
-<!--jQuery自定义event事件库 -->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.events.contact-min.js" charset="utf-8"></script>
-<!--JavaScript对象扩展库：Array,Date,Number,String -->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.extends.contact-min.js" charset="utf-8"></script>
-<!--Bootbox弹窗插件-->
-<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/bootbox.css">
-<script src="file:///E:/SoftwareEngineering/grade/js/bootbox.concat-min.js" type="text/javascript" charset="utf-8"></script>
-<script src="file:///E:/SoftwareEngineering/grade/js/zh_CN.js" type="text/javascript" charset="utf-8"></script>
-
-<!--jQuery模拟滚动条库-->
-<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/jquery.mCustomScrollbar.min.css">
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.mCustomScrollbar.min.js" charset="utf-8"></script>
-<!--jQuery.chosen美化插件-->
-<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/chosen-min.css">
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.choosen.concat-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/zh_CN-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.utils.pinyin.min.js" charset="utf-8"></script>
-<!--[if lt IE 9]>
-<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/html5shiv.min.js?ver=20190115" charset="utf-8"></script>
-<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/respond.min.js?ver=20190115" charset="utf-8"></script>
-<![endif]-->
-<!--业务框架jQuery全局设置和通用函数库-->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.zftal.contact-min.js"></script>
-<!--国际化js库 -->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.i18n-min.js" charset="utf-8"></script>
-<!--全局国际化js. -->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/i18n-global_zh_CN.js" charset="utf-8"></script>
-<!--业务框架前端脚本国际化库-->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.zftal_zh_CN-min.js"></script>
-<!--密码强弱判断-->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.utils.strength.min.js"></script>
-
-	
-	
-	
-<script type="text/javascript">
-
-	var _path 		= "/jwglxt";
-	var _systemPath = "/jwglxt";
-	var _stylePath  = "/zftal-ui-v5-1.0.2";
-	var _reportPath = "http://202.4.157.135:80/WebReport";
-	var _localeKey 			= "zh_CN";
-	
-	jQuery(function($){
-		$('[data-toggle*="validation"]').trigger("validation");
-		$('[data-toggle*="fixed"]').trigger("fixed");
-		if($.fn.tooltip){
-			$('[data-toggle*="tooltip"]').tooltip({container:'body'});
-		}
-	});
-	
-</script>
-<!--教务系统通用业务js引用:比如学年，学期等公共的信息会放在这里-->
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jwglxt-common_zh_CN.js"></script>
-<!--业务模块的properties初始化-->
-<!--国际化js库 -->
-
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">	
+		.active{font-weight: bolder;}
+		#navbar-tabs li{ margin-top: 2px;}
+		#navbar-tabs li a{ border-top: 2px solid transparent;}
+		#navbar-tabs li.active a{border-top: 2px solid #0770cd;}
+	</style>	
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/error.css">
+	<link rel="stylesheet" type="text/css" href="./css/zftal-ui.css">
 </head>
 <body>
-<input type="hidden" id="pkey" name="pkey" value="">
 	<!-- 头部 开始 -->
 	<header class="navbar-inverse top2">
 		<div class="container" id="navbar_container">
-					<div class="container">
-			<div class="navbar-header">
-				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-					<span class="sr-only"> 学生成绩查询</span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span>
-				</button>
-				<a href="http://jwgl.buct.edu.cn/jwglxt/cjcx/cjcx_cxDgXscj.html?gnmkdm=N305005&amp;layout=default&amp;su=2016014274#" id="topButton" class="navbar-brand" onclick="onClickMenu(&#39;/cjcx/cjcx_cxDgXscj.html&#39;,&#39;N305005&#39;)">
-					学生成绩查询
-				</a>
-				<script type="text/javascript">
-					document.title="学生成绩查询";
-				</script>
+			<div class="container">
+				<div class="navbar-header">
+					<a href="" id="topButton" class="navbar-brand">学生成绩查询
+					</a>
+				</div>
 			</div>
-		</div>
-<!-- navbar-end  -->
 		</div>
 	</header>
-	
-	<!--头部 结束 -->
 	<div style="width: 100%; padding: 0px; margin: 0px;" id="bodyContainer">
-		<!-- requestMap中的参数为系统级别控制参数，请勿删除 -->
-		<form id="requestMap">
-			 <input type="hidden" id="sessionUserKey" value=""> 
-			 
-			 	<input type="hidden" id="gnmkdmKey" value="N305005">
-			 
-			 
-		</form>
 		<div class="container container-func sl_all_bg" id="yhgnPage" style="min-height: 454px;">
 			<div id="innerContainer">
-				<!-- 放置页面显示内容 -->
-				
-<!-- 功能操作 -->
-<div class="row sl_add_btn">
-	<div class="col-sm-12">
-		<!-- 加载当前菜单栏目下操作N305005 -->
-		<div class="btn-toolbar" role="toolbar" style="float:right;">
-			<div class="btn-group" id="but_ancd">
-				<button type="button" class="btn btn-default btn_dc" href="javascript:void(0);" id="btn_dc">
-				<i class="bigger-100 glyphicon glyphicon-export"></i> 导出</button> 
-			</div> 
-		</div>
-		<!-- 加载当前菜单栏目下操作 -->
-	</div>
-</div> 
-
-<!-- form -start  -->
-        
-<form id="searchForm" name="searchForm" onsubmit="return false;" action="http://jwgl.buct.edu.cn/jwglxt/cjcx/cjcx_cxDgXscj.html" method="post" class="form-horizontal sl_all_form" novalidate="novalidate">
-<input type="hidden" name="jsxx" value="xs" id="jsxx">
-<input type="hidden" id="sxxdm" name="sxxdm" value="10010">
-<div class="row">		
-  <div class="col-md-3 col-sm-6">
-    <div class="form-group">
-      <label for="" class="col-sm-4 control-label">学年</label>
-      <div class="col-sm-8">
-        <select name="xnm" id="xnm" class="form-control chosen-select" style="display: none;">
-		    <option value="">全部</option>
-		    <option value="2024">2024-2025</option>
-		    <option value="2023">2023-2024</option>
-		    <option value="2022">2022-2023</option>
-		    <option value="2021">2021-2022</option>
-		    <option value="2020">2020-2021</option>
-		    <option value="2019">2019-2020</option>
-		    <option value="2018" selected="selected">2018-2019</option>
-		    <option value="2017">2017-2018</option>
-		    <option value="2016">2016-2017</option>
-		    <option value="2015">2015-2016</option>
-		    <option value="2014">2014-2015</option>
-		    <option value="2013">2013-2014</option>
-		    <option value="2012">2012-2013</option>
-		    <option value="2011">2011-2012</option>
-		    <option value="2010">2010-2011</option>
-		    <option value="2009">2009-2010</option>
-		    <option value="2008">2008-2009</option>
-		    <option value="2007">2007-2008</option>
-		    <option value="2006">2006-2007</option>
-		    <option value="2005">2005-2006</option>
-		    <option value="2004">2004-2005</option>
-		</select>
-		<script type="text/javascript">
-    		jQuery('#xnm').trigger("chosen");
-    	</script>		        
-      </div>
-    </div>
-  </div>
-  
- <div class="col-md-3 col-sm-6">
-    <div class="form-group">
-      <label for="" class="col-sm-4 control-label">学期</label>
-      <div class="col-sm-8">
-        <select name="xqm" id="xqm" class="form-control chosen-select" style="display: none;">
-			<option value="">全部</option>
-			<option value="3">1</option>
-			<option value="12" selected="selected">2</option>
-			<option value="16">3</option>
-		</select>
-
-		<script type="text/javascript">
-    		jQuery('#xqm').trigger("chosen");
-    	</script>		      
-      </div>
-    </div>
-  </div>
-  	  
-</div>
- </form>
-
-<!-- form -end  -->
-
-<!-- btn-start  -->
-<div class="row sl_aff_btn" id="searchBox">
-	  
-		<div class="col-md-8 col-sm-8">
-		    <div class="form-group">
-		      <label for="" class="col-sm-12 control-label align-left">
-		       	<span class="text-danger"></span>
-		       		
-		       	<span class="text-danger"></span>
-		       	
-		      </label>
-		    </div>
-		</div>
-		<div class="col-md-4 col-sm-5">
-			<button type="button" class="btn btn-primary btn-sm" id="search_go"> 查 询 </button>
-		</div>
-   
-   
-</div>
-<!-- btn-end  -->
-
-
-
-<!-- table-start  background-color: pink-->
-
-<div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_tabGrid" dir="ltr" style="width: 1188px;"> <!-- 大框 -->
-	<!-- <div class="ui-widget-overlay jqgrid-overlay" id="lui_tabGrid"> </div> -->
-	<div class="ui-jqgrid-view" id="gview_tabGrid" style="width: 1188px;">
-		<div class="ui-jqgrid-bdiv" style="height: auto; width: 1188px;">
-			<div style="position:relative;">
-			<div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_tabGrid" dir="ltr" style="width: 1188px;">  
-
-				<div class="ui-widget-overlay jqgrid-overlay" id="lui_tabGrid"></div>
-				<div class="loading ui-state-default ui-state-active" id="load_tabGrid">正在请求数据...</div>
-				<div class="ui-jqgrid-view" id="gview_tabGrid" style="width: 1188px;">
-					<div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix" style="display: none;">
-						<span class="ui-jqgrid-title">null</span>
+				<div class="row sl_add_btn">
+					<div class="col-sm-12">
+						<div class="btn-toolbar" role="toolbar" style="float:right;">
+							<div class="btn-group" id="but_ancd">
+								<button type="button" class="btn btn-default btn_dc" href="" id="btn_dc"><i class="bigger-100 glyphicon glyphicon-export"></i> 导出</button>
+							</div>
+						</div>
 					</div>
-
-				<div class="ui-jqgrid-bdiv" style="height: auto; width: 1188px;">
-					<div style="position:relative;">
-						<div></div>
-						<table id="tabGrid" tabindex="0" cellspacing="0" cellpadding="0" border="0" role="grid" aria-multiselectable="false" aria-labelledby="gbox_tabGrid" class="ui-jqgrid-btable" style="width: 2530px;">
-							<tbody>
-								<tr class="jqgfirstrow" role="row" style="height:auto">
-									<td role="gridcell" style="height:0px;width:50px;"></td>
-									<td role="gridcell" style="height:0px;width:90px;"></td>
-									<td role="gridcell" style="height:0px;width:50px;"></td>
-									<td role="gridcell" style="height:0px;width:120px;"></td>
-									<td role="gridcell" style="height:0px;width:120px;"></td>
-									<td role="gridcell" style="height:0px;width:100px;"></td>
-									<td role="gridcell" style="height:0px;width:50px;"></td>
-									<td role="gridcell" style="height:0px;width:50px;"></td>
-									<td role="gridcell" style="height:0px;width:100px;"></td>
-									<td role="gridcell" style="height:0px;width:50px;"></td>
-									<td role="gridcell" style="height:0px;width:100px;"></td>
-									<td role="gridcell" style="height:0px;width:80px;"></td>
-									<td role="gridcell" style="height:0px;width:150px;"></td>
-									<td role="gridcell" style="height:0px;width:120px;"></td>
-									<td role="gridcell" style="height:0px;width:100px;"></td>
-									<td role="gridcell" style="height:0px;width:100px;"></td>
-									<td role="gridcell" style="height:0px;width:100px;"></td>
-									<td role="gridcell" style="height:0px;width:120px;"></td>
-									<td role="gridcell" style="height:0px;width:120px;"></td>
-									<td role="gridcell" style="height:0px;width:120px;"></td>
-									<td role="gridcell" style="height:0px;width:80px;"></td>
-									<td role="gridcell" style="height:0px;width:50px;"></td>
-									<td role="gridcell" style="height:0px;width:100px;"></td>
-									<td role="gridcell" style="height:0px;width:120px;"></td>
-									<td role="gridcell" style="height:0px;width:120px;"></td>
-									<td role="gridcell" style="height:0px;width:50px;"></td>
-									<td role="gridcell" style="height:0px;width:120px;"></td>
-									<td role="gridcell" style="height:0px;width:50px;display:none;"></td>
-									<td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-									<td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-									<td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-									<td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-								</tr>
-								<tr name="norecords" class="emptyrow" align="center" valign="middle" style="height:80px;">
-									<td colspan="32" align="center" valign="middle" style="line-height:80px;text-align: center;font-size:12px;">请选择筛选条件!</td>
-								</tr>
-								<tr>
-								</tr>
-							</tbody>
-						</table>
+				</div> 
+				<form id="searchForm" name="searchForm" onsubmit="return false;" action="" method="post" class="form-horizontal sl_all_form" novalidate="novalidate">
+					<div class="row">		
+						<div class="col-md-3 col-sm-6">
+							<div class="form-group">
+								<label  class="col-sm-4 control-label">学年</label>
+							</div>
+						</div> 
+						<div class="col-md-3 col-sm-6">
+							<div class="form-group">
+								<label  class="col-sm-4 control-label">学期</label>
+							</div>
+						</div>  	  
+					</div> 
+				</form>
+				<div class="row sl_aff_btn" id="searchBox">  
+					<div class="col-md-8 col-sm-8">
+					</div>
+					<div class="col-md-4 col-sm-5">
+						<button type="button" class="btn btn-primary btn-sm" id="search_go"> 查 询 </button>
 					</div>
 				</div>
 			</div>
-
-
-			<div class="ui-jqgrid-resize-mark" id="rs_mtabGrid" >&nbsp;</div>
-			<div id="pager" class="ui-state-default ui-jqgrid-pager ui-corner-bottom" dir="ltr" style="width: 1188px; z-index: 1000;height: 28px;">
-				<div id="pg_pager" class="ui-pager-control" role="group">
-					<table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table" style="width:100%;table-layout:fixed;height:100%;" role="row">
-						<tbody>
-							<tr>
-								<td id="pager_left" align="left">
-									<table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table navtable" style="float:left;table-layout:auto;">
-										<tbody><tr></tr></tbody>
-									</table>
-								</td>
-								<td id="pager_center" align="center" style="width: 293px;"><!-- white-space: pre; -->
-									<table cellspacing="0" cellpadding="0" border="0" style="table-layout:auto;" class="ui-pg-table">
-										<tbody>
-											<tr>
-												<td id="first_pager" class="ui-pg-button ui-corner-all ui-state-disabled" style="cursor: default;"> 
-													<span class="ui-icon glyphicon glyphicon-step-backward"></span> 
-												</td>
-												<td id="prev_pager" class="ui-pg-button ui-corner-all ui-state-disabled" style="cursor: default;">
-													<span class="ui-icon glyphicon glyphicon-chevron-left"></span>
-												</td>
-												<td class="ui-pg-button ui-state-disabled" style="width:4px;">
-													<span class="ui-separator"></span>
-												</td>
-												<td dir="ltr"> 
-													<input class="ui-pg-input" name="showCount" type="text" size="2" maxlength="7" value="0" role="textbox"> 共 <span id="sp_1_pager">0</span>页
-												</td>
-												<td class="ui-pg-button ui-state-disabled" style="width: 4px; cursor: default;">
-													<span class="ui-separator"></span>
-												</td>
-												<td id="next_pager" class="ui-pg-button ui-corner-all" style="cursor: default;">
-													<span class="ui-icon glyphicon glyphicon-chevron-right"></span>
-												</td>
-												<td id="last_pager" class="ui-pg-button ui-corner-all">
-													<span class="ui-icon glyphicon glyphicon-step-forward"></span>
-												</td>
-												<td dir="ltr">
-													<select class="ui-pg-selbox" name="currentPage" role="listbox"><option role="option" value="15" selected="selected">15</option><option role="option" value="20">20</option><option role="option" value="30">30</option><option role="option" value="50">50</option><option role="option" value="70">70</option><option role="option" value="90">90</option><option role="option" value="100">100</option><option role="option" value="150">150</option><option role="option" value="300">300</option><option role="option" value="500">500</option><option role="option" value="800">800</option><option role="option" value="1000">1000</option><option role="option" value="1500">1500</option><option role="option" value="2000">2000</option><option role="option" value="2500">2500</option><option role="option" value="5000">5000</option>
-													</select>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-								<td id="pager_right" align="right">
-									<div dir="ltr" style="text-align:right" class="ui-paging-info">无数据显示</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-
 		</div>
 	</div>
-</div>
-</div>
-<div class="ui-jqgrid-resize-mark" id="rs_mtabGrid">&nbsp;</div>
-</div>
-
-<!-- table-end  -->
-
-				
-
-
-<!--jQuery.jqGrid -->
-<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/jquery.jqgrid.css">
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.jqgrid.src-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.jqgrid.contact-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/zh_CN.js" charset="utf-8"></script>
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.jqgrid.settings.js" charset="utf-8"></script>
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.jqGrid-min.js" charset="utf-8"></script>
-<!--jQuery.validation -->
-<link rel="stylesheet" type="text/css" href="file:///E:/SoftwareEngineering/grade/css/jquery.validate-min.css">
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.validate-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.validate.contact-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.validate.methods.contact-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/zh_CN-min.js" charset="utf-8"></script>
-<script type="text/javascript">
-	jQuery(function($){
-		$('[data-toggle*="validation"]').trigger("validation");
-	});
-</script>
-
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.typeahead-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.typeahead-zftal.js" charset="utf-8"></script>
-
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/jquery.dragsort.js"></script>
-
-<script type="text/javascript" src="file:///E:/SoftwareEngineering/grade/js/cxDgXscj.js"></script>
-
-			</div>
-		</div>
+	<div id="footerID" class="footer">
+		<p>计科1601</p>
 	</div>
-	<!-- footer -->
-	
-
-<!-- footer --> 
-<div id="footerID" class="footer">
-	<p>计科1601</p>
-</div>
-<!-- footer-end -->
-	<!-- footer-end -->
-
-<script type="text/javascript">
-	jQuery(function($) {	
-		if ($("#navbar-tabs").length > 0) {
-			$("#navbar-tabs li:eq(0) a").tab('show');
-		}
-		
-		setMinheight();
-		
-		$('#yhgnPage').resize(function(){
-			var minHeight  = $(this).data('min-height');
-			var innerHeight =  $('#innerContainer').outerHeight(true);
-			//console.log("minHeight:" + minHeight + ",innerHeight:" + innerHeight);
-			$(this).css('min-height', Math.max(minHeight,innerHeight));
-		});
-		
-		function setMinheight(){
-			//计算grid页面高度
-			var docuemntHeight = $(document).height();
-			var topHeight = $('header').height();
-			var footerHeight = $('.footer').height();
-			var containerHeight = docuemntHeight-topHeight-footerHeight-60;
-			$('#yhgnPage').css('min-height',containerHeight).data('min-height',containerHeight);
-		}
-	});
-	//加载title名称，根据系统内置表设置，取菜单名称或者系统名称
-	jQuery(document).attr("title",'学生成绩查询');
-</script>
-
-<div class="ui-widget ui-widget-content ui-corner-all ui-jqdialog" id="alertmod_tabGrid" dir="ltr" tabindex="-1" role="dialog" aria-labelledby="alerthd_tabGrid" aria-hidden="true" style="width: 200px; height: auto; z-index: 950; overflow: hidden; top: 267px; left: 532px;">
-	<div class="ui-jqdialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" id="alerthd_tabGrid" style="cursor:move;">
-		<span class="ui-jqdialog-title" style="float: left;">注意</span>
-		<a class="ui-jqdialog-titlebar-close ui-corner-all" style="right: 0.3em;">
-			<span class="ui-icon ui-icon-closethick">
-			</span>
-		</a>
-	</div>
-	<div class="ui-jqdialog-content ui-widget-content" id="alertcnt_tabGrid">
-		<div>请选择记录</div>
-		<span tabindex="0">
-			<span tabindex="-1" id="jqg_alrt"></span>
-		</span>
-	</div>
-	<div class="jqResize ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se"></div>
-</div>
 </body>
 </html>

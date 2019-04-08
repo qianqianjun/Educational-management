@@ -24,8 +24,8 @@ import javax.servlet.http.HttpSession;
 @Aspect
 @Component
 public class ApiAspect {
-//    @Pointcut("execution(public * buct.software.controller.*Api.*(..))")
-//    public void selectCourseApi() {
+//    @Pointcut("execution(app * buct.software.controller.*Api.*(..))")
+//    app void selectCourseApi() {
 //    }
 //
 //    /**
@@ -35,7 +35,7 @@ public class ApiAspect {
 //     * @throws Throwable
 //     */
 //    @Around("selectCourseApi()")
-//    public Object docheck(ProceedingJoinPoint joinPoint) throws Throwable {
+//    app Object docheck(ProceedingJoinPoint joinPoint) throws Throwable {
 //        ServletRequestAttributes attributes = (ServletRequestAttributes)
 //                RequestContextHolder.getRequestAttributes();
 //        HttpServletRequest request = attributes.getRequest();

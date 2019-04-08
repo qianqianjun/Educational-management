@@ -46,10 +46,13 @@ public class LoginController {
             User user=(User) userInfo;
             Integer type=user.getType();
             if(type==0){
-                return "redirect:/tcontent";
+                return "student";
+            }
+            if(type==1){
+                return "student";
             }
             else{
-                return "redirect:/scontent";
+                return "admin";
             }
         }
     }
@@ -73,7 +76,6 @@ public class LoginController {
         else{
             // 查询详细保存在session 中，也就是说登录的是一个学生的话，
             // 还要保存学生的信息，如果是一个老师，要保存一个老师的信息
-
             boolean error=false;
             if(user.getType()==0){
                 // 是一个学生
@@ -88,6 +90,16 @@ public class LoginController {
                 // 是一个老师
                 Teacher teacher=teacherService.getTeacherByTno(user.getAccount());
                 if(teacher!=null) {
+                    user.setTname(teacher.getTname());
+                }
+                else{
+                    error=true;
+                }
+            }
+            else if(user.getType()==2){
+                // 这是管理员
+                Teacher teacher=teacherService.getTeacherByTno(user.getAccount());
+                if(teacher!=null){
                     user.setTname(teacher.getTname());
                 }
                 else{

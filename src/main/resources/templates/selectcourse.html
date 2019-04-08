@@ -1,116 +1,76 @@
-<!DOCTYPE html>
-<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml"><head>
-	<title>自主选课</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="Copyright" content="zfsoft">	
-<link rel="icon" href="http://jwgl.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="http://jwgl.buct.edu.cn/jwglxt/logo/favicon.ico" type="image/x-icon">
-<style type="text/css">	
-	.active{font-weight: bolder;}
-	#navbar-tabs li{ margin-top: 2px;}
-	#navbar-tabs li a{ border-top: 2px solid transparent;}
-	#navbar-tabs li.active a{border-top: 2px solid #0770cd;}
-</style>	
-<!--jQuery核心框架库 -->
-<script type="text/javascript" src="js/jquery-1.js"></script>
-<script type="text/javascript" src="js/jquery-migrate-1.js"></script>
-<script type="text/javascript" src="js/jquery-ui-custom.js"></script>
-<!--Bootstrap布局框架-->
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/error.css">
-<link rel="stylesheet" type="text/css" href="css/zftal-ui.css">
-<script type="text/javascript" src="js/bootstrap.js" charset="utf-8"></script>
-<!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 -->
-<script type="text/javascript" src="js/jquery_007.js" charset="utf-8"></script>
-<!--jQuery基础工具库：$.browser,$.cookie,$.actual等 -->
-<script type="text/javascript" src="js/jquery.js" charset="utf-8"></script>
-<!--jQuery自定义event事件库 -->
-<script type="text/javascript" src="js/jquery_019.js" charset="utf-8"></script>
-<!--JavaScript对象扩展库：Array,Date,Number,String -->
-<script type="text/javascript" src="js/jquery_008.js" charset="utf-8"></script>
-<!--Bootbox弹窗插件-->
-<link rel="stylesheet" type="text/css" href="css/bootbox.css">
-<script src="js/bootbox.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/zh_CN.js" type="text/javascript" charset="utf-8"></script>
-
-<!--jQuery模拟滚动条库-->
-<link rel="stylesheet" type="text/css" href="css/jquery_003.css">
-<script type="text/javascript" src="js/jquery_005.js" charset="utf-8"></script>
-<!--jQuery.chosen美化插件-->
-<link rel="stylesheet" type="text/css" href="css/chosen-min.css">
-<script type="text/javascript" src="js/jquery_016.js" charset="utf-8"></script>
-<script type="text/javascript" src="js/zh_CN-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="js/jquery_017.js" charset="utf-8"></script>
-<!--[if lt IE 9]>
-<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/html5shiv.min.js?ver=20190115" charset="utf-8"></script>
-<script type="text/javascript" src="/zftal-ui-v5-1.0.2/assets/js/respond.min.js?ver=20190115" charset="utf-8"></script>
-<![endif]-->
-<!--业务框架jQuery全局设置和通用函数库-->
-<script type="text/javascript" src="js/jquery_006.js"></script>
-<!--国际化js库 -->
-<script type="text/javascript" src="js/jquery_009.js" charset="utf-8"></script>
-<!--全局国际化js. -->
-<script type="text/javascript" src="js/i18n-global_zh_CN.js" charset="utf-8"></script>
-<!--业务框架前端脚本国际化库-->
-<script type="text/javascript" src="js/jquery_002.js"></script>
-<!--密码强弱判断-->
-<script type="text/javascript" src="js/jquery_018.js"></script>
-</head>
-<body>
-<input type="hidden" id="pkey" name="pkey" value="">
-	<!-- 头部 开始 -->
+﻿<!DOCTYPE HTML>
+<!DOCTYPE html PUBLIC "" "">
+<HTML lang="zh-CN">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+	<meta name="Copyright" content="zfsoft">	
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+	<!--Bootstrap布局框架--> 
+	<LINK href="css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
+	<LINK href="css/error.css" rel="stylesheet" type="text/css"> 
+	<LINK href="css/zftal-ui.css" rel="stylesheet" type="text/css">
+</head> 
+<BODY>
 	<header class="navbar-inverse top2">
 		<div class="container" id="navbar_container">
-					<div class="container">
-			<div class="navbar-header">
-				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-					<span class="sr-only"> 自主选课</span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span>
-				</button>
-				<a href="" id="topButton" class="navbar-brand">
-					自主选课
-				</a>
-				<script type="text/javascript">
-					document.title="自主选课";
-				</script>
-			</div>
+			<div class="container">
+				<div class="navbar-header">
+					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+						<span class="sr-only">学生选题</span> 		
+					</button>				 
+					<A class="navbar-brand" id="topbutton" href="">学生选题</A>				 
+				</div>
+			</div>	 
 		</div>
-		</div>
-	</header>
-	<div style="width: 100%; padding: 0px; margin: 0px;" id="bodyContainer">
-		<div class="container container-func sl_all_bg" id="yhgnPage" style="min-height: 836px;">
-			<div id="innerContainer">
-				已选课程号：
-                <tr th:each="course : ${courseselectedlist}">
-                    <td th:text="${course.cno}"></td>
-                </tr>
-
-				全部课程号：
-				<tr th:each="course : ${allcourses}">
-					<td th:text="${course.cno}"></td>
-				</tr>
-
-				测试内容：
-				<p>[[ ${test} ]]</p>
-				<p th:text="${test}"></p>
-            </div>
-
-<link rel="stylesheet" type="text/css" href="css/jquery_004.css">
-<script type="text/javascript" src="js/jquery_004.js" charset="utf-8"></script>
-<script type="text/javascript" src="js/zzxkYzb.js"></script>
-
+	</header><!--头部 结束 -->	 
+	<div id="bodyContainer" style="margin: 0px; padding: 0px; width: 100%;">
+		<div class="container container-func sl_all_bg" id="yhgnPage">		 
+			<div class="panel panel-info">
+				<div class="panel-heading">&nbsp;</div>
+				<div class="panel-body">
+					<div class="nodata">	</div>
+				</div>
+			</div><!-- 右侧内容开始 -->
+			<div class="outer" id="left-content">
+			<div class="outer_left">
+				<A class="glyphicon glyphicon-arrow-left btn-lg" href=""></A>
+				<A class="outer_left_xkxx" href="javascript:;">
+					<H5>毕业设计选题信息</H5>
+					<span>已选 <B id="yxkts" style="margin-bottom: 6px;">0</B></span>
+				</A>
 			</div>
+			<div class="outer_right" id="wrapper">
+				<div class="right_div" id="right_div" style="margin-top: 10px;">
+					<div class="outer_xkxx_list">
+						<H6>毕业设计选题列表(拖动可改变志愿)<span class="pull-right"></span></H6>
+						<UL class="list-group" id="right_ul_xsxt" data-listidx="0"></UL>
+					</div>
+				</div>
+			</div>		 
+			</div>	 
+			<script>
+				$(".outer").animate({width:"40px"},1000);
+				$(".outer_left").click(function() {
+					if($(".outer").css("width")	==	"40px")
+					{
+						$(".outer").animate({width:"740px"},600);
+						$(".outer_left .glyphicon").addClass("glyphicon-arrow-right");
+					}
+					else
+					{
+						$(".outer").animate({width:"40px"},600);
+						$(".outer_left .glyphicon").removeClass("glyphicon-arrow-right");
+					}
+				});		
+			</script>				    	 
 		</div>
 	</div>
-	<!-- footer -->
-	
+	</div>
+	<div class="footer" id="footerID">
+		<P>版权所有© Copyright 计科1601</P>
+	</div> 
+</BODY>
+</HTML>
 
-<!-- footer --> 
-<div id="footerID" class="footer">
-	<p>版权所有© Copyright 1999-2017  正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301</p>
-</div>
-</body></html>
+
