@@ -15,8 +15,18 @@
         )
     </insert>
 
+    <delete id="deleteQuestionStudent" parameterType="Map">
+        delete from question_student where questionid = #{questionid} and sno = #{sno}
+    </delete>
+
     <select id="getChoiceByQidSno" parameterType="Map" resultType="QuestionStudentChoose">
         select * from question_student where questionid = #{questionid} and sno = #{sno}
+    </select>
+
+    <select id="getQuestionOfStudent" parameterType="int" resultType="Question">
+        select * from question where questionid in (
+          select questionid from question_student where sno = #{sno}
+        )
     </select>
 
 </mapper>
