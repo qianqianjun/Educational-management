@@ -13,8 +13,10 @@ import java.util.List;
  */
 @Service
 public class CollegeService {
+
     @Autowired
     CollegeDao collegeDao;
+
     /**
      * 获取全部学院的功能
      * @return
