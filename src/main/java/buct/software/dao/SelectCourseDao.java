@@ -31,4 +31,22 @@ public interface SelectCourseDao {
      * @return  返回已选课程列表
      */
     List<SelectCourse> getAllCourseHaveBeenSelected(SelectCourse selectCourse);
+
+    /**
+     * 增加选课信息，将一个没有选择的课程添加到学生课表中。
+     * @param selectCourse
+     * @return  返回一个整数 ，表示sql 语句影响的数据库行数
+     */
+    Integer addNewCourseToTable(SelectCourse selectCourse);
+
+
+    /**
+     *  用于删除一个选课表中的数据
+     *  也就是取消选课
+     * @param selectCourse   要取消的课程的信息。
+     * @return
+     */
+    Integer deleteCourseFromTable(SelectCourse selectCourse);
+
+    List<SelectCourseView> getCourseTable(SelectCourse selectCourse);
 }

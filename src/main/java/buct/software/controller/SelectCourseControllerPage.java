@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Map;
+
+/**
+ * @author 高谦
+ * 学生选课子系统的关于页面模板初始化的controller类。
+ */
 @Controller
 public class SelectCourseControllerPage {
     @Autowired
@@ -47,4 +52,5 @@ public class SelectCourseControllerPage {
         parmMap.put("test","这里是 测试的内容");
         return "selectcourse";
     }
+
 }
