@@ -13,20 +13,10 @@
     </resultMap>
     <select id="getColleges" resultMap="getCollegesResultMap">select * from college</select>
 
-<<<<<<< HEAD
     <select id="getCollegeById" parameterType="String" resultType="College">
         select college.college from college where college.collegeid = #{id}
     </select>
 
 
 
-
-=======
-    
-    <select id="getCollegeByName" parameterType="String" resultType="College">
-        select college.college from college where college.college=#{coll}
-    </select>
-
-
->>>>>>> 60940058f823a8a81e7a43145f2e9d3926273e32
 </mapper>

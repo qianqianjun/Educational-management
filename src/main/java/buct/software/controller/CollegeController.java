@@ -13,12 +13,12 @@ public class CollegeController {
     @Autowired
     private CollegeService collegeService;
     @GetMapping(value = "/colleges")
-    public ResponseMessage getcolleges(){
+    public ResponseMessage getColleges(){
         return collegeService.getAllCollege();
     }
 
     @PostMapping(value = "/college")
-    public ResponseMessage getCourseByname(@RequestParam("college") String college){
-        return collegeService.getCollegeByName(college);
+    public ResponseMessage getCourseById(@RequestParam("college") String college){
+        return collegeService.getCollegeById(college);
     }
 }

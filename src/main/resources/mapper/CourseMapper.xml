@@ -4,13 +4,4 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="buct.software.dao.CourseDao">
-    <resultMap id="yuzhongrui" type="buct.software.domain.Course">
-        <id property="cno" jdbcType="varchar" column="cno"></id>
-        <result column="address" javaType="String" jdbcType="VARCHAR" property="address"></result>
-        <result column="phone" javaType="String" jdbcType="VARCHAR" property="phone"></result>
-        <result column="description" javaType="String" jdbcType="VARCHAR" property="description"></result>
-    </resultMap>
-    <select id="getAll" resultMap="yuzhongrui">
-
-    </select>
 </mapper>

@@ -36,4 +36,8 @@ public class Student {
 
     public Student(){}
 
+    public Integer getMajorId(){
+        return this.majorId;
+    }
+
 }

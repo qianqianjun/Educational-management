@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="buct.software.dao.SchedulingDao">
+    <resultMap id="SchedulingMap" type="buct.software.domain.Scheduling">
+        <id column="semesterid" javaType="Integer" jdbcType="INTEGER" property="semesterId"></id>
+        <id column="cno" javaType="String" jdbcType="VARCHAR" property="cno"></id>
+        <id column="tno" javaType="String" jdbcType="VARCHAR" property="tno"></id>
+        <id column="status" javaType="String" jdbcType="VARCHAR" property="status"></id>
+        <id column="capacity" javaType="Integer" jdbcType="INTEGER" property="capacity"></id>
+        <id column="address" javaType="String" jdbcType="VARCHAR" property="address"></id>
+        <id column="percent" javaType="String" jdbcType="VARCHAR" property="percent"></id>
+        <id column="major_grade" javaType="String" jdbcType="VARCHAR" property="majorGrade"></id>
+        <id column="course_time" javaType="String" jdbcType="VARCHAR" property="courseTime"></id>
+    </resultMap>
+
+
+    <select id="getSchedulings"  parameterType="buct.software.domain.Scheduling"  resultMap="SchedulingMap">
+        select * from scheduling s
+        where
+          true
+            <if test="semesterId != null">
+              and  s.semesterid = #{semesterId}
+            </if>
+            <if test="cno != null">
+                and  s.cno = #{cno}
+            </if>
+            <if test="tno != null">
+                and  s.tno = #{tno}
+            </if>
+            <if test="status != null">
+                and  s.status = #{status}
+            </if>
+            <if test="capacity != null">
+                and  s.capacity = #{capacity}
+            </if>
+            <if test="address != null">
+                and  s.address = #{address}
+            </if>
+            <if test="percent != null">
+                and  s.percent = #{percent}
+            </if>
+            <if test="majorGrade != null">
+                and  s.major_grade = #{majorGrade}
+            </if>
+            <if test="courseTime != null">
+                and  s.course_time = #{courseTime}
+            </if>
+    </select>
+</mapper>
