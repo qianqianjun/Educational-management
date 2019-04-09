@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE HTML>
-<!DOCTYPE html PUBLIC "" "">
-<HTML lang="zh-CN">
+<!DOCTYPE html PUBLIC "">
+<HTML lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
@@ -17,36 +17,57 @@
 			<div class="container">
 				<div class="navbar-header">
 					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-						<span class="sr-only">学生选题</span> 		
+						<span class="sr-only">学生选课</span>
 					</button>				 
-					<A class="navbar-brand" id="topbutton" href="">学生选题</A>				 
+					<A class="navbar-brand" id="topbutton" href="">学生选课</A>
 				</div>
 			</div>	 
 		</div>
-	</header><!--头部 结束 -->	 
+	</header>
+	<!--头部 结束 -->
 	<div id="bodyContainer" style="margin: 0px; padding: 0px; width: 100%;">
 		<div class="container container-func sl_all_bg" id="yhgnPage">		 
 			<div class="panel panel-info">
 				<div class="panel-heading">&nbsp;</div>
 				<div class="panel-body">
-					<div class="nodata">	</div>
+					<div class="nodata"></div>
+					这里写所有的课程信息
+
+					<tr th:each="course : ${allcourses}">
+						<td>[[ ${course.cname} ]]</td>
+						<td>[[ ${course.cno} ]]</td>
+						<td>[[ ${course.tname} ]]</td>
+						<td>[[ ${course.address} ]]</td>
+						<div>[[ ${course.description} ]]</div>
+					</tr>
+
+
 				</div>
-			</div><!-- 右侧内容开始 -->
+			</div>
+			<!-- 右侧内容开始 -->
 			<div class="outer" id="left-content">
 			<div class="outer_left">
 				<A class="glyphicon glyphicon-arrow-left btn-lg" href=""></A>
 				<A class="outer_left_xkxx" href="javascript:;">
-					<H5>毕业设计选题信息</H5>
+					<H5>选课信息</H5>
 					<span>已选 <B id="yxkts" style="margin-bottom: 6px;">0</B></span>
 				</A>
 			</div>
 			<div class="outer_right" id="wrapper">
 				<div class="right_div" id="right_div" style="margin-top: 10px;">
 					<div class="outer_xkxx_list">
-						<H6>毕业设计选题列表(拖动可改变志愿)<span class="pull-right"></span></H6>
+						<H6>已选课程<span class="pull-right"></span></H6>
 						<UL class="list-group" id="right_ul_xsxt" data-listidx="0"></UL>
 					</div>
 				</div>
+				<tr th:each="course : ${allcourses}">
+					<td>[[ ${course.cname} ]]</td>
+					<td>[[ ${course.cno} ]]</td>
+					<td>[[ ${course.tname} ]]</td>
+					<td>[[ ${course.address} ]]</td>
+					<div>[[ ${course.description} ]]</div>
+				</tr>
+				<!--这里写的是已选课的列表-->
 			</div>		 
 			</div>	 
 			<script>
@@ -72,5 +93,3 @@
 	</div> 
 </BODY>
 </HTML>
-
-

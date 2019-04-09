@@ -49,7 +49,6 @@ public class SelectCourseControllerPage {
                         selectCourseService.getAllCourseList(semesterId,majorId);
         parmMap.put("courseselectedlist",selectedList);
         parmMap.put("allcourses",courseViews);
-        parmMap.put("test","这里是 测试的内容");
         return "selectcourse";
     }
 

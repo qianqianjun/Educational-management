@@ -49,7 +49,7 @@ public class LoginController {
                 return "student";
             }
             if(type==1){
-                return "student";
+                return "teacher";
             }
             else{
                 return "admin";
