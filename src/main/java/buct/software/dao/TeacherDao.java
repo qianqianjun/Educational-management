@@ -16,4 +16,5 @@ public interface TeacherDao {
 //    public List<Teacher> getAll();
     public void insertTeacher(Teacher teacher);
     public List<Teacher> queryByExample(Teacher example);
+    public void updateTeacher(Teacher teacher);
 }

@@ -17,6 +17,55 @@
             <if test="tno != null">
                 tno = #{tno}
             </if>
+            <if test="tname != null">
+                and tname = #{tname}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex}
+            </if>
+            <if test="phone != null">
+                and phone = #{phone}
+            </if>
+            <if test="email != null">
+                and email = #{email}
+            </if>
+            <if test="collegeId != null">
+                and collegeId = #{collegeId}
+            </if>
+            <if test="office != null">
+                and office = #{office}
+            </if>
+            <if test="rank != null">
+                and rank = #{rank}
+            </if>
         </where>
     </select>
+    <update id="updateTeacher" parameterType="buct.software.domain.Teacher">
+        update teacher
+        <set>
+
+            <if test="tname != null">
+                , tname = #{tname}
+            </if>
+            <if test="sex != null">
+                , sex = #{sex}
+            </if>
+            <if test="phone != null">
+                , phone = #{phone}
+            </if>
+            <if test="email != null">
+                , email = #{email}
+            </if>
+            <if test="collegeId != null">
+                , collegeId = #{collegeId}
+            </if>
+            <if test="office != null">
+                , office = #{office}
+            </if>
+            <if test="rank != null">
+                , rank = #{rank}
+            </if>
+        </set>
+        where tno = #{tno}
+    </update>
 </mapper>

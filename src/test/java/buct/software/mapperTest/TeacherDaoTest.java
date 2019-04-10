@@ -34,10 +34,24 @@ public class TeacherDaoTest {
         teacher.setEmail("2");
         teacher.setOffice("2");
         teacher.setRank("22");
+        teacher.setCollegeId(1);
         teacher.setSex("2");
         teacher.setPhone("2q1");
         teacher.setTname("222");
         List<Teacher> teachers = teacherDao.queryByExample(teacher);
         System.out.println(teachers);
+    }
+    @Test
+    public void updateTeacher(){
+        Teacher teacher = new Teacher();
+        teacher.setEmail("2020202@gmail.com");
+        teacher.setOffice("intn");
+        teacher.setRank("doc");
+        teacher.setCollegeId(1);
+        teacher.setSex("男");
+        teacher.setPhone("1303213321");
+        teacher.setTname("sim");
+        teacher.setTno(21);
+        teacherDao.updateTeacher(teacher);
     }
 }
