@@ -9,7 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-
+/**
+ * @author 孟庆强
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TeacherDaoTest {

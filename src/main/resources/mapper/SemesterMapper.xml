@@ -3,6 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
+<!-- 孟庆强 -->
 <mapper namespace="buct.software.dao.SemesterDao">
     <insert id="insertSemester" parameterType="buct.software.domain.Semester">
     insert into semester values (#{semesterId},

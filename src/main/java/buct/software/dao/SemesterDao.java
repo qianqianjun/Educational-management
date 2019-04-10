@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * @author 高谦
  * 学期表 semester 数据库操作类
+ * @implements 孟庆强
  */
 
 public interface SemesterDao {
