@@ -3,8 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--author 高谦-->
+<!-- implements 孟庆强 -->
 <mapper namespace="buct.software.dao.TeacherDao">
     <select id="getByTno" parameterType="Integer" resultType="buct.software.domain.Teacher">
         select * from teacher where teacher.tno=#{tno}
+    </select>
+    <insert id="insertTeacher" parameterType="buct.software.domain.Teacher">
+        insert into teacher values (#{tno},#{tname},#{sex},#{phone},#{email},#{collegeId},#{office},#{rank})
+    </insert>
+    <select id="queryByExample" parameterType="buct.software.domain.Teacher" resultType="buct.software.domain.Teacher">
+        select * from teacher
+        <where>
+            <if test="tno != null">
+                tno = #{tno}
+            </if>
+        </where>
     </select>
 </mapper>

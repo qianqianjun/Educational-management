@@ -38,11 +38,11 @@
 - buct.software.dao.PowerDao
 - buct.software.domain.Power
 - mapper/PowerMapper.xml
-- buct.software.mapperTest.PowerTest
+- buct.software.mapperTest.PowerDaoTest
 
 ### PowerService层:
 - buct.software.service.PowerService
-- buct.software.ServiceTest.PowerTest
+- buct.software.ServiceTest.PowerServiceTest
 
 # 通知公告
 

@@ -12,7 +12,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SemesterTest {
+public class SemesterServiceTest {
     @Autowired
     SemesterService semesterService;
     @Test

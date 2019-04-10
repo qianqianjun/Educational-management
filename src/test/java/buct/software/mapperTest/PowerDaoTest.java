@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PowerTest {
+public class PowerDaoTest {
     @Autowired
     PowerDao powerDao;
 
