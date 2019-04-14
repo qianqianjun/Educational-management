@@ -1,3 +1,49 @@
+# 三组组内公告(仅放在本组分支)
+## 本周任务(第7周)
+- 本周完成Service层和Dao层的基本开发
+- Dao层包括 Dao,Domain,Mapper,Test
+- 服务层包括：Service,Test
+- 前端框架构思和实现
+## 完成度
+### 孟庆强
+完成了power表格的Dao和Service，督促组员进行任务
+## 分工
+1. 孟庆强:权限表，负责整周任务调度
+2. 段浩南和李展鹏: 负责成绩单个录入的前端
+3. 刘威负责学生表，李金东负责学期表，王家伟负责老师表
+4. 陆俊健负责文档撰写，具体要求查看wiki中要求和组长通知
+## 杂项
+- 遇到不会的问题群里交流
+- 用idea进行git使用方便一些奥
+- 本周周记继续由段浩南撰写
+- 数据库表更新于微信群,可能继续更新变动,做好改代码心里准本.
+- pull项目后需要更改的点 application中的端口号 数据库账号 密码
+## 要求
+### 全体同学
+- 必须完成任务，否侧我会搞你的
+- 在自己的文件html或者java等标注出作者
+- git提交的时候写出自己更新的信息
+- 每完成一点，提交到git该分支一点，并且每次更新都要在该md文件中的完成报告栏目写出自己的工作任务完成了哪些
+- 勤奋点，省的让被人BBBBB
+### 前端同学
+   本周要求你实现小批量学生数据插入的界面，基于女生挖出的界面，如果没有的话自己根据
+   html代码风格写，要求如下:
+   - 可以一个一个加入，在vue.js 前端先储存,最后点击按钮一并提交到后端中
+   - 再未提交到后段之前可以查看自己添加了那些学生的内容，并且可以删除(在vue.js中)
+   - 条件查询学生信息构思，查看女生是否完成该页面，如果未完成，自己构思
+### 后端同学
+所有方法都要测试，写方法注释和类注释
+## 组长更新了权限表的例子包括
+### PowerDao层:
+- buct.software.dao.PowerDao
+- buct.software.domain.Power
+- mapper/PowerMapper.xml
+- buct.software.mapperTest.PowerDaoTest
+
+### PowerService层:
+- buct.software.service.PowerService
+- buct.software.ServiceTest.PowerServiceTest
+
 # 通知公告
 
 - 现在已经成功导入了css 和 js 资源，有了简单界面，各组负责后端的同学clone 项目到自己电脑试着运行一下。注意： JDK 使用 1.8 数据库使用 mysql 8.0，运行成功之后输入 http://localhost:8080/index 即可看到登录界面，更多界面接口请看 IndexControler 中的定义

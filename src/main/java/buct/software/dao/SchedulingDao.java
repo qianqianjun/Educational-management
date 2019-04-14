@@ -1,10 +1,11 @@
 package buct.software.dao;
 
-import buct.software.domain.Scheduling;
+
+
 import buct.software.views.SchedulingView;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+
 
 /**
  * @author 高谦

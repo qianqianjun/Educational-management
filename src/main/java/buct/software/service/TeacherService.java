@@ -4,20 +4,42 @@ import buct.software.dao.TeacherDao;
 import buct.software.domain.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+/**
+ * @author 孟庆强
+ */
 @Service
 public class TeacherService {
     @Autowired
     TeacherDao teacherDao;
 
     public Teacher getTeacherByTno(Integer tno) {
-        if(tno!=null){
-            return null;
+        Teacher teacher = teacherDao.getByTno(tno);
+        return teacher;
+    }
+
+    @Transactional
+    public void addTeachers(List<Teacher> teachers) {
+        for (Teacher teacher : teachers) {
+            teacherDao.insertTeacher(teacher);
         }
-        Teacher teacher =teacherDao.getByTno(tno);
-        if(teacher==null)
-            return null;
-        else
-            return teacher;
+    }
+
+    @Transactional
+    public void updateTeachers(List<Teacher> teachers) {
+        for (Teacher teacher : teachers) {
+            teacherDao.updateTeacher(teacher);
+        }
+    }
+
+    public void addTeacher(Teacher teachers) {
+        teacherDao.insertTeacher(teachers);
+    }
+
+    public void updateTeacherById(Integer id, Teacher teacher) {
+        teacher.setTno(id);
+        teacherDao.updateTeacher(teacher);
     }
 }
