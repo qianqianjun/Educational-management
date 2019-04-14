@@ -1,13 +1,17 @@
 package buct.software.controller;
 import buct.software.domain.SelectCourse;
+import buct.software.domain.User;
 import buct.software.service.CollegeService;
 import buct.software.service.GradeManagementService;
 import buct.software.service.SelectCourseService;
+import buct.software.service.SemesterService;
 import buct.software.utils.ResponseMessage;
 import buct.software.views.SelectCourseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +26,8 @@ public class GradeManagementControllerApi {
     CollegeService collegeService;
     @Autowired
     SelectCourseService selectCourseService;
-
+    @Autowired
+    SemesterService semesterService;
 
     /* 学生端*/
     /**
@@ -32,9 +37,11 @@ public class GradeManagementControllerApi {
      * @return  这个学期的课表
      */
     @RequestMapping("/getcoursegrade")
-    public ResponseMessage getCourseGrade(){
-        Integer semesterId = 0;
-        Integer sno = 2016014274;
+    public ResponseMessage getCourseGrade( HttpServletRequest request){
+        HttpSession session=request.getSession();
+        Integer semesterId=semesterService.getCurrentSemesterId();
+        User user=(User) session.getAttribute("user");
+        Integer sno = user.getAccount();
         ArrayList<SelectCourse> courseGradeTable=(ArrayList<SelectCourse>)
                 gradeManagementService.getCourseGrade(semesterId,sno);
         System.out.println("查询到"+courseGradeTable.size());
@@ -50,10 +57,10 @@ public class GradeManagementControllerApi {
      * @return  该学生的成绩信息
      */
     @RequestMapping("/getstudentgrade")
-    public ResponseMessage getStudentGrade(){
-        Integer semesterId = 0;
-        Integer cno = 123;
-        Integer sno = 2016014274;
+    public ResponseMessage getStudentGrade(@RequestParam("semesterId") Integer semesterId,
+                                           @RequestParam("cno") Integer cno,
+                                           @RequestParam("sno") Integer sno){
+
         ArrayList<SelectCourse> studentGradeTable=(ArrayList<SelectCourse>)
                 gradeManagementService.getStudentGrade(semesterId,cno,sno);
         System.out.println("查询到"+studentGradeTable.size());
@@ -66,11 +73,11 @@ public class GradeManagementControllerApi {
      * @return  该学生的成绩信息
      */
     @RequestMapping("/setstudentgradeById")
-    public ResponseMessage setStudentGrade(){
-        Integer semesterId = 0;
-        Integer cno = 123;
-        Integer sno = 2016014274;
-        String detail = "66,66,66";
+    public ResponseMessage setStudentGrade(@RequestParam("semesterId") Integer semesterId,
+                                           @RequestParam("cno") Integer cno,
+                                           @RequestParam("sno") Integer sno,
+                                           @RequestParam("detail") String detail){
+
         gradeManagementService.setStudentGradeById(semesterId,cno,sno,detail);
         return new ResponseMessage(ResponseMessage.SUCCESS,"修改成功！",detail);
 
