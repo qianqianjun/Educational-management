@@ -42,4 +42,17 @@ public class CollegeService {
         message.setData(Co);
         return message;
     }
+
+    /**
+     * 获取所有学院名字
+     * @return
+     */
+    public ResponseMessage getCollegeNames() {
+        List<String> data = collegeDao.getCollegeNames();
+        ResponseMessage message=ResponseMessage.getMessage(data!=null,ResponseMessage.SUCCESS,
+                "查询成功！", ResponseMessage.EmptyDate,"查询结果为空！");
+        message.setData(data);
+        return message;
+    }
+
 }
