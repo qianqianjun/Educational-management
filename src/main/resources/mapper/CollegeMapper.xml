@@ -17,7 +17,9 @@
         select college.college from college where college.collegeid = #{id}
     </select>
 
-
+    <select id="getCollegeNames" resultType="String">
+        select collegename from college
+    </select>
 
 
 </mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="buct.software.dao.MajorDao">
+    <select id="getMajorNamesByCollegeName" parameterType="String" resultType="String">
+        select majorname from college,major where
+          collegename=#{collegeName}
+          and college.collegeid = major.collegeid
+    </select>
+
+    <select id="getMajorIdByMajorName" resultType="Integer">
+        select majorid from major where majorname=#{majorName}
+    </select>
+
+</mapper>
