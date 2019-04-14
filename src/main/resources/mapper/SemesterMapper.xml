@@ -16,4 +16,7 @@
     <select id="getSemesterMostId" resultType="buct.software.domain.Semester">
         select * from semester order by semester.semesterid desc limit 1
     </select>
+    <select id="getSemesterId" resultType="Integer">
+        select semesterid from semester where start=#{year} and semester=#{semester}
+    </select>
 </mapper>

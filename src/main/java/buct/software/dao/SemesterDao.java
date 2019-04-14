@@ -1,9 +1,13 @@
 package buct.software.dao;
 
+
+import org.springframework.stereotype.Repository;
+
 import buct.software.domain.Semester;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 
 /**
  * @author 高谦
@@ -13,7 +17,11 @@ import java.util.List;
 
 @Repository
 public interface SemesterDao {
+    public Integer getSemesterId(String year, String semester);
+
     public void insertSemester(Semester semester);
+
     public List<Semester> getAll();
+
     public List<Semester> getSemesterMostId();
 }
