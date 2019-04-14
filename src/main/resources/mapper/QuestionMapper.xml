@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="buct.software.dao.QuestionDao">
+    <!--id对应的是dao中方法-->
+    <select id="getSingleQuestionBySno" parameterType="int" resultType="Question">
+        select * from  question where sno = #{sno}
+    </select>
+
+
+    <select id="getPartQuestionsByMajorid" parameterType="int"
+            resultType="QuestionStudentInquiry">
+        select question.topic,question.difficulty,question.tno,question.ischosen from question
+        where
+            question.majorid = #{majorid}
+
+    </select>
+
+    <select id="getQuestionsByMajorid" parameterType="int"
+            resultType="Question">
+        select * from question
+        where
+             question.majorid = #{majorid}
+    </select>
+
+    <select id="getQuestionByQustionId" parameterType="int" resultType="Question">
+        select * from question where questionid = #{questionId}
+    </select>
+
+    <select id="getQuestionByTno" parameterType="int" resultType="Question">
+        select * from question where tno = #{tno}
+    </select>
+
+    <insert id="addQuestion"  parameterType="Question" >
+        insert into question(
+        questionid,
+        topic,
+        content,
+        difficulty,
+        tno,
+        majorid,
+        sno,
+        ischosen
+        )values(
+        #{questionid},
+        #{topic},
+        #{content},
+        #{difficulty},
+        #{tno},
+        #{majorid},
+        #{sno},
+        #{ischosen}
+        )
+    </insert>
+
+    <delete id="deleteQuestion" parameterType="int">
+      delete from question where questionid = #{questionId}
+    </delete>
+    <!--多个参数包装到hashmap中，然后参数名称不要有大写，不要太长-->
+    <update id="sureQuestionStudent" parameterType="Map">
+        update question set sno=#{sno}, ischosen=true where questionid=#{id}
+    </update>
+</mapper>

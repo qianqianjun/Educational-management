@@ -12,13 +12,15 @@ import org.springframework.web.bind.annotation.*;
 public class CollegeController {
     @Autowired
     private CollegeService collegeService;
+
     @GetMapping(value = "/colleges")
     public ResponseMessage getColleges(){
         return collegeService.getAllCollege();
     }
 
     @PostMapping(value = "/college")
-    public ResponseMessage getCourseById(@RequestParam("college") String college){
+    public ResponseMessage getCourseById(@RequestParam("college") String college) {
         return collegeService.getCollegeById(college);
     }
+
 }
