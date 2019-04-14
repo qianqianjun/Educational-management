@@ -7,4 +7,37 @@
     <select id="getBySno" parameterType="Integer" resultType="buct.software.domain.Student">
         select * from student where student.sno= #{sno}
     </select>
+    <insert id="insertStudnet" parameterType="buct.software.domain.Student">
+        insert into student values (#{sno},#{sname},#{sex},#{major},#{klass},#{comeYear},#{phone},#{grade})
+    </insert>
+    <update id="updateStudent" parameterType="buct.software.domain.Student">
+        update student
+        <set>
+            <if test="sname!=null">
+                sname = #{sname}
+            </if>
+            <if test="sex!=null">
+                sex = #{sex}
+            </if>
+            <if test="major!=null">
+                major = #{major}
+            </if>
+            <if test="comeYear!=null">
+                come_year = #{comeYear}
+            </if>
+            <if test="grade!=null">
+                grade = #{grade}
+            </if>
+            <if test="phone!=null">
+                phone = #{phone}
+            </if>
+            <!--<if test="majorId!=null">-->
+            <!--= #{majorId}-->
+            <!--</if>-->
+            <where>
+                sno = #{sno}
+            </where>
+        </set>
+    </update>
+
 </mapper>

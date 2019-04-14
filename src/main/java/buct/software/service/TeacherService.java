@@ -16,14 +16,8 @@ public class TeacherService {
     TeacherDao teacherDao;
 
     public Teacher getTeacherByTno(Integer tno) {
-        if (tno != null) {
-            return null;
-        }
         Teacher teacher = teacherDao.getByTno(tno);
-        if (teacher == null)
-            return null;
-        else
-            return teacher;
+        return teacher;
     }
 
     @Transactional
