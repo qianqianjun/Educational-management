@@ -1,8 +1,13 @@
 package buct.software.utils;
+
+import lombok.Data;
+
 /**
  * @author 高谦
  * 简介: 用于解析 浏览器的User-Agent 对象的简单工具类
  */
+
+@Data
 public class UserAgentParser {
     public static  String Android="Mozilla/5.0 (Linux; Android 7.0; JMM-AL00) " +
             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 " +
@@ -39,34 +44,5 @@ public class UserAgentParser {
     public String getSystem(){
         String sys=this.parms[1].substring(1);
         return sys;
-    }
-
-    //下面是各种get set 方法：
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    /**
-     * 作者： 沈强
-     * @param system 系统类型字符串
-     */
-    public void setSystem(String system) {
-        this.system = system;
-    }
-
-    public void setPlatform(String platform) {
-        this.platform = platform;
-    }
-
-    public String[] getParms() {
-        return parms;
-    }
-
-    public void setParms(String[] parms) {
-        this.parms = parms;
     }
 }

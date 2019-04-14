@@ -13,10 +13,8 @@ import java.util.List;
  */
 @Service
 public class CollegeService {
-
     @Autowired
     CollegeDao collegeDao;
-
     /**
      * 获取全部学院的功能
      * @return
@@ -31,12 +29,12 @@ public class CollegeService {
     }
 
     /**
-     * 根据学院名字，来获取学院的其他信息
-     * @param college  学院的名字
+     * 根据学院id，来获取学院的其他信息
+     * @param id  学院的id
      * @return
      */
-    public ResponseMessage getCollegeByName(String college){
-        College Co=collegeDao.getCollegeByName(college);
+    public ResponseMessage getCollegeById(String id) {
+        College Co=collegeDao.getCollegeById(id);
         ResponseMessage message=ResponseMessage.getMessage(Co!=null,ResponseMessage.SUCCESS,
                 "查询成功！", ResponseMessage.EmptyDate,"查询结果为空！");
         message.setData(Co);

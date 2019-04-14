@@ -1,6 +1,8 @@
 package buct.software.dao;
 
 import buct.software.domain.Course;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,6 +14,5 @@ import java.util.List;
 
 @Repository
 public interface CourseDao {
-    public List<Course> getAll();
-    public Course getByCno(String cno);
+
 }
