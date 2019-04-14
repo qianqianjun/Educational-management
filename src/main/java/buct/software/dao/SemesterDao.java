@@ -1,6 +1,7 @@
 package buct.software.dao;
 
 import buct.software.domain.Semester;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * @implements 孟庆强
  */
 
+@Repository
 public interface SemesterDao {
     public void insertSemester(Semester semester);
     public List<Semester> getAll();

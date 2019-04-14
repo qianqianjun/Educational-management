@@ -28,7 +28,8 @@ public class SemesterService {
 
     public Integer getCurrentSemesterId() {
         List<Semester> all = semesterDao.getSemesterMostId();
-        return all.get(0).getSemesterId();
+        return 1;
+        //return all.get(0).getSemesterId();
     }
 
     public List<String> getSemesterList() {
