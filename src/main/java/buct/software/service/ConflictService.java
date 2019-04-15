@@ -33,7 +33,7 @@ public class ConflictService {
         if(semesterId!=null || tno!=null || timeStr!=null)
             return false;
         List<String> courseTimeStrList=schedulingDao.getTeacherTaskTime(semesterId,tno);
-        return CourseDataUtil.isConflict(timeStr,courseTimeStrList);
+        return !CourseDataUtil.isConflict(timeStr,courseTimeStrList);
     }
 
     /**
@@ -47,7 +47,7 @@ public class ConflictService {
         if(semesterId!=null || sno!=null || timeStr!=null)
             return false;
         List<String> courseTimeStrList=schedulingDao.getStudentTaskTime(semesterId,sno);
-        return CourseDataUtil.isConflict(timeStr,courseTimeStrList);
+        return !CourseDataUtil.isConflict(timeStr,courseTimeStrList);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ConflictService {
         if(semesterId!=null || room!=null || timeStr!=null)
             return false;
         List<String> courseTimeStrList=schedulingDao.getRoomTaskTime(semesterId,room);
-        return CourseDataUtil.isConflict(timeStr,courseTimeStrList);
+        return !CourseDataUtil.isConflict(timeStr,courseTimeStrList);
     }
 
 }
