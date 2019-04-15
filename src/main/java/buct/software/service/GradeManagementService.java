@@ -2,6 +2,7 @@ package buct.software.service;
 
 import buct.software.dao.GradeManagementDao;
 import buct.software.domain.SelectCourse;
+import buct.software.utils.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class GradeManagementService {
     @Autowired
     GradeManagementDao gradeManagementDao;
+    ExcelUtil excelUtil;
     /*学生端*/
     /**
      * 根据学期号获取该学生的课程成绩信息。
@@ -61,5 +63,27 @@ public class GradeManagementService {
     }
 
 
-
+    /**
+     * excel导入数据库
+     */
+    public Boolean setStudentGradeInGroup(Integer semesterId,Integer cno,String fileName) {
+        System.out.println("导入数据开始。。。。。。");
+        try {
+            List<Object[]> list = excelUtil.importExcel(fileName);
+            for (int i = 0; i < list.size(); i++) {
+                SelectCourse parma = new SelectCourse();
+                parma.setCno(cno);
+                parma.setSemesterId(semesterId);
+                parma.setSno((Integer) list.get(i)[0]);
+                parma.setDetail((String) list.get(i)[1]);//先规定三栏成绩写在一格里，逗号分隔
+                gradeManagementDao.setStudentGradeById(parma); //执行insert
+            }
+            System.out.println("导入数据结束。。。。。。");
+            return true;
+        } catch (Exception e) {
+            System.out.println("导入数据失败。。。。。。");
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

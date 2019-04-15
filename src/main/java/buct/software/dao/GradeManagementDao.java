@@ -37,5 +37,4 @@ public interface GradeManagementDao {
      */
     Integer setStudentGradeById(SelectCourse studentGrade);
 
-
 }

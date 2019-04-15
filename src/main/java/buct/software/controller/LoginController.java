@@ -36,7 +36,7 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/index")
-    public String index(HttpServletRequest request){
+    public String index(HttpServletRequest request,Map<String,Object> parmMap){
         HttpSession session=request.getSession();
         Object userInfo=session.getAttribute("user");
         if(userInfo==null){
@@ -45,6 +45,7 @@ public class LoginController {
         else{
             User user=(User) userInfo;
             Integer type=user.getType();
+            parmMap.put("userinfo",user);
             if(type==0){
                 return "student";
             }

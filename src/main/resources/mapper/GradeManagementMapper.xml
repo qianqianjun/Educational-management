@@ -27,6 +27,4 @@
         update select_course set detail = #{detail} where semesterid=#{semesterId} and sno=#{sno} and cno=#{cno}
     </update>
 
-
-
 </mapper>

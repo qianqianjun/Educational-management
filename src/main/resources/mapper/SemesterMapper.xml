@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 孟庆强 -->
+<mapper namespace="buct.software.dao.SemesterDao">
+    <insert id="insertSemester" parameterType="buct.software.domain.Semester">
+    insert into semester values (#{semesterId},
+    #{start},#{end},#{semester})
+    </insert>
+    <select id="getAll" resultType="buct.software.domain.Semester">
+        select * from semester
+    </select>
+    <select id="getSemesterMostId" resultType="buct.software.domain.Semester">
+        select * from semester order by semester.semesterid desc limit 1
+    </select>
+    <select id="getSemesterId" resultType="Integer">
+        select semesterid from semester where start=#{year} and semester=#{semester}
+    </select>
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="buct.software.dao.SchedulingDao">
+    <resultMap id="getCourseMap" type="buct.software.views.SchedulingView">
+        <id property="tno" javaType="String" column="tno"  jdbcType="VARCHAR" ></id>
+        <id property="address" javaType="String" column="address"  jdbcType="VARCHAR" ></id>
+        <id property="time" javaType="String" column="course_time"  jdbcType="VARCHAR" ></id>
+        <id property="status" javaType="String" column="status"  jdbcType="VARCHAR" ></id>
+        <id property="capacity" javaType="Integer" column="capacity"  jdbcType="INTEGER" ></id>
+    </resultMap>
+    <select id="getCourse" resultMap="getCourseMap">
+          select tno,address,course_time,status,capacity from scheduling
+          where
+            semesterid=#{semesterId}
+          and
+            cno=#{cno}
+    </select>
+    <select id="deleteCourse" resultType="Boolean">
+        delete from scheduling where semesterid=#{semesterId} and cno=#{cno}
+    </select>
+    <select id="deleteCourseMajor" resultType="Boolean">
+        delete from schedule_major
+        where
+          semesterid=#{semesterId}
+        and
+          cno=#{cno}
+        and
+          majorid=#{majorId}
+        and
+          grade=#{grade}
+    </select>
+
+    <select id="addCourse" resultType="Boolean">
+        insert into scheduling values (#{semesterId},#{cno},#{tno},#{status},#{capacity},
+        #{address},null,null,#{time});
+    </select>
+    <select id="addCourseMajor" resultType="Boolean">
+        insert into schedule_major values(#{semesterId},#{cno},#{majorId},#{grade})
+    </select>
+    <select id="getCourseMajorCount" resultType="Integer">
+        select count(*) from schedule_major where semesterid=#{semesterId} and cno=#{cno}
+    </select>
+    <select id="checkCourseMajor" resultType="Integer">
+        select 1 from schedule_major
+        where
+          semesterid=#{semesterId}
+        and
+          cno=#{cno}
+        and
+          majorid=#{majorId}
+        and
+          grade=#{grade}
+    </select>
+</mapper>
