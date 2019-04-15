@@ -31,7 +31,7 @@ public class PlanningService {
         return message;
     }
 
-    public ResponseMessage addWillCourse(String cno,String cname,String college,
+    public ResponseMessage addWillCourse(Integer cno,String cname,String college,
                                          String description,String status,String year,
                                          String semester,String majorName,String grade){
         Boolean flag = courseDao.checkCourse(cno);
@@ -51,7 +51,8 @@ public class PlanningService {
         return message;
     }
 
-    public ResponseMessage deleteWillCourse(String cno,String year,String semester,
+    // 这里修改了一下  高谦
+    public ResponseMessage deleteWillCourse(Integer cno,String year,String semester,
                                             String majorName,String grade){
         Integer semesterId = semesterDao.getSemesterId(year,semester);
         Integer majorId = majorDao.getMajorIdByMajorName(majorName);
