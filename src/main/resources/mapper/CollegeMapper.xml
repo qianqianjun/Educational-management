@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="buct.software.dao.CollegeDao">
+    <resultMap id="getCollegesResultMap" type="buct.software.domain.College">
+        <id column="collegeid" javaType="Integer" jdbcType="INTEGER" property="collegeId"></id>
+        <result column="collegename" javaType="String" jdbcType="VARCHAR" property="collegeName"></result>
+        <result column="address" javaType="String" jdbcType="VARCHAR" property="address"></result>
+        <result column="phone" javaType="String" jdbcType="VARCHAR" property="phone"></result>
+        <result column="description" javaType="String" jdbcType="VARCHAR" property="description"></result>
+    </resultMap>
+    <select id="getColleges" resultMap="getCollegesResultMap">select * from college</select>
+
+    <select id="getCollegeById" parameterType="String" resultType="College">
+        select college.college from college where college.collegeid = #{id}
+    </select>
+
+    <select id="getCollegeNames" resultType="String">
+        select collegename from college
+    </select>
+
+
+</mapper>

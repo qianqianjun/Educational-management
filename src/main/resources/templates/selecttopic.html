@@ -1,0 +1,67 @@
+﻿<!DOCTYPE HTML>
+<!DOCTYPE html PUBLIC "">
+<HTML lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="app/header::static"></head>
+<BODY>
+	<header class="navbar-inverse top2">
+		<div class="container" id="navbar_container">
+			<div class="container">
+				<div class="navbar-header">
+					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+						<span class="sr-only">学生选题</span> 		
+					</button>				 
+					<A class="navbar-brand" id="topbutton" href="">学生选题</A>				 
+				</div>
+			</div>	 
+		</div>
+	</header><!--头部 结束 -->	 
+	<div id="bodyContainer" style="margin: 0px; padding: 0px; width: 100%;">
+		<div class="container container-func sl_all_bg" id="yhgnPage">		 
+			<div class="panel panel-info">
+				<div class="panel-heading">&nbsp;</div>
+				<div class="panel-body">
+					<div class="nodata">	</div>
+				</div>
+			</div><!-- 右侧内容开始 -->
+			<div class="outer" id="left-content">
+			<div class="outer_left">
+				<A class="glyphicon glyphicon-arrow-left btn-lg" href=""></A>
+				<A class="outer_left_xkxx" href="javascript:;">
+					<H5>毕业设计选题信息</H5>
+					<span>已选 <B id="yxkts" style="margin-bottom: 6px;">0</B></span>
+				</A>
+			</div>
+			<div class="outer_right" id="wrapper">
+				<div class="right_div" id="right_div" style="margin-top: 10px;">
+					<div class="outer_xkxx_list">
+						<H6>毕业设计选题列表(拖动可改变志愿)<span class="pull-right"></span></H6>
+						<UL class="list-group" id="right_ul_xsxt" data-listidx="0"></UL>
+					</div>
+				</div>
+			</div>		 
+			</div>	 
+			<script>
+				$(".outer").animate({width:"40px"},1000);
+				$(".outer_left").click(function() {
+					if($(".outer").css("width")	==	"40px")
+					{
+						$(".outer").animate({width:"740px"},600);
+						$(".outer_left .glyphicon").addClass("glyphicon-arrow-right");
+					}
+					else
+					{
+						$(".outer").animate({width:"40px"},600);
+						$(".outer_left .glyphicon").removeClass("glyphicon-arrow-right");
+					}
+				});		
+			</script>				    	 
+		</div>
+	</div>
+	</div>
+	<div class="footer" id="footerID">
+		<P>版权所有© Copyright 计科1601</P>
+	</div> 
+</BODY>
+</HTML>
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 孟庆强 -->
+<mapper namespace="buct.software.dao.PowerDao">
+    <select id="getPower" resultType="buct.software.domain.Power">
+        select * from power
+    </select>
+    <delete id="deletePower">
+        delete  from power
+    </delete>
+    <update id="updatePower" parameterType="buct.software.domain.Power">
+        update power
+        <set>
+            power.selectCourse = #{ selectCourse },
+            power.score = #{score},
+            power.abnormal = #{abnormal}
+        </set>
+    </update>
+    <insert id="insertPower" parameterType="buct.software.domain.Power">
+        insert into power values (#{selectCourse},#{score},#{abnormal})
+    </insert>
+</mapper>

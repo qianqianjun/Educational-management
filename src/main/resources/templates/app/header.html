@@ -1,0 +1,64 @@
+<!--作者： 高谦-->
+<!--这里是网页的公共模板块，减少页面html 代码使用。-->
+<!--使用方法不熟悉的请见 https://blog.csdn.net/wangmx1993328/article/details/84747497-->
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<!--用于引入css js 等静态资源的模板块-->
+<head th:fragment="static">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>盗版教务管理系统</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/zftal-ui.css" />
+    <script type="text/javascript" src="js/bootstrap.min.js" charset="utf-8"></script>
+</head>
+
+
+<!--用于首页的 标题，登出按钮，和用户登录信息的展示。-->
+<div class="navbar navbar-default navbar-static-top top1" th:fragment="header" >
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand logo_2" href="">
+                <img src="images/logo_jw_w.png" style="margin-top:-3px" />
+                <span id="xtmc">盗版教务管理系统&nbsp;&nbsp;
+                    <span th:if="${userinfo.type}==0"> 学生端</span>
+                    <span th:if="${userinfo.type}==1"> 教师端</span>
+                    <span th:if="${userinfo.type}==2"> 后台系统</span>
+                </span>
+            </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right  hidden-xs">
+            <li>
+                <a href="" class="dropdown-toggle grxx" data-toggle="dropdown" style="color: white;font-weight: bolder;font-size: 20px;">
+                    欢迎您 高谦
+                    <span th:if="${userinfo.type}==0">同学</span>
+                    <span th:if="${userinfo.type}==1">老师</span>
+                    <span th:if="${userinfo.type}==2">管理员</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="divider"></li>
+                    <li><a href="/logout"><i class="top_png tc"></i>退出</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<!--定义首页的导航按钮-->
+<div class="navbar_index" th:fragment="menu">
+    <div class="container" id="myDiv1">
+        <nav id="cdNav" class="navbar-collapse bs-navbar-collapse collapse" role="navigation" aria-expanded="false">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a role="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">选课<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a target="_blank" href="/selectcourse">自主选课</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+</html>

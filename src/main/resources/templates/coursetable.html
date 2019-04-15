@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+  <!--jQuery核心框架库 用于显示输入框--> 
+  <script type="text/javascript" src="js/jquery-1.js"></script>
+  <!--Bootstrap布局框架--> 
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/zftal-ui.css" />
+  <!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 -->
+  <script type="text/javascript" src="js/jquery_008.js" charset="utf-8"></script>
+  <!--jQuery.chosen美化插件--> 
+  <link rel="stylesheet" type="text/css" href="css/chosen-min.css" /> 
+  <script type="text/javascript" src="js/jquery_016.js" charset="utf-8"></script> 
+  <script type="text/javascript" src="js/zh_CN-min.js" charset="utf-8"></script> 
+  <script type="text/javascript" src="js/jquery_017.js" charset="utf-8"></script>
+</head>
+<body> 
+	<header class="navbar-inverse top2">
+		<div class="container">
+			<a id="topButton" class="navbar-brand">学生课表查询 </a> 
+		</div>
+	</header>
+	<div class="container container-func sl_all_bg" id="yhgnPage" style="min-height: 1597px;">
+		<form id="ajaxForm1" name="form" onsubmit="return false;" action="" method="post" class="form-horizontal sl_all_form sl_all_bg" style="margin-bottom: 12px;" role="form" data-toggle="validation" novalidate="novalidate"> 
+			<div class="row" id="cxtjDiv"> 
+				<div class="col-md-4 col-sm-5"> 
+					<div class="form-group"> 
+						<label for="" class="col-sm-4 control-label" id="xn"> <span style="color:red;">*</span>学年 </label> 
+						<div class="col-sm-8"> 
+							<select name="xnm" id="xnm1" class="form-control chosen-select" validate="{required:true}" style="display: none;"> <option value="">---请选择---</option> <option value="2020">2020-2021</option> <option value="2019">2019-2020</option> <option value="2018" selected="selected">2018-2019</option> <option value="2017">2017-2018</option> <option value="2016">2016-2017</option> </select> 
+							<div class="chosen-container chosen-container-single" style="width: 100%;" title="" id="xnm1_chosen"> 
+								<div class="chosen-drop"> 
+									<div class="chosen-search"> 
+										<input type="text" autocomplete="off" name="autocomplete"> 
+										</div>
+									</div> 
+								</div>
+							</div> 
+						</div> 
+					</div> 
+
+					<div class="col-md-4 col-sm-5"> 
+						<div class="form-group"> 
+							<label for="" class="col-sm-4 control-label" id="xq"> <span style="color:red;">*</span>学期 </label> 
+							<div class="col-sm-8"> 
+								<select name="xqm" id="xqm1" class="form-control chosen-select" validate="{required:true}" style="display: none;"> <option value="">---请选择---</option> <option value="3">1</option> <option value="12" selected="selected">2</option> <option value="16">3</option> </select>
+								<div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: 100%;" title="" id="xqm1_chosen"> 
+									<div class="chosen-drop"> 
+										<div class="chosen-search"> 
+											<input type="text" autocomplete="off" name="autocomplete" readonly="" /> 
+										</div>
+									</div> 
+								</div>
+							</div> 
+						</div> 
+					</div>
+
+					<div class="col-md-4 col-sm-2"> 
+						<div class="form-group"> 
+							<div class="col-sm-12"> 
+								<button type="button" class="btn btn-primary btn-sm pull-right" id="search_go1" onclick=""> <span class="bigger-120 glyphicon glyphicon-search"></span> 查询 </button> 
+							</div> 
+						</div> 
+					</div> 
+				</div> 
+				<script type="text/javascript">
+            $('.chosen-select').trigger("chosen");
+				</script> 
+			</form>
+		</div>
+		<div id="footerID" class="footer"> 
+			<p>计科1601</p>
+		</div>
+	</body>
+</html>
+

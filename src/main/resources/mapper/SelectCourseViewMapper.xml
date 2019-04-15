@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="buct.software.dao.SelectCourseDao">
+
+    <resultMap id="getAllAvaiableCourseWithConditionMap" type="buct.software.views.SelectCourseView">
+        <!--排课表信息-->
+        <id column="semesterid" javaType="Integer" jdbcType="INTEGER" property="semesterId"></id>
+        <result column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></result>
+        <result column="capacity" javaType="Integer" jdbcType="INTEGER" property="capacity"></result>
+        <result column="address" javaType="String" jdbcType="VARCHAR" property="address"></result>
+        <result column="course_time" javaType="String" jdbcType="VARCHAR" property="courseTime"></result>
+        <result column="percent" javaType="String" jdbcType="VARCHAR" property="percent"></result>
+        <result column="major_grade" javaType="String" jdbcType="VARCHAR" property="majorGrade"></result>
+        <result column="status" javaType="String" jdbcType="VARCHAR" property="status"></result>
+
+        <!--course 表-->
+        <result column="cname" javaType="String" jdbcType="VARCHAR" property="cname"></result>
+        <result column="college" javaType="String" jdbcType="VARCHAR" property="college"></result>
+        <result column="description" javaType="String" jdbcType="VARCHAR" property="description"></result>
+        <result column="courseStatus" javaType="String" jdbcType="VARCHAR" property="courseStatus"></result>
+
+        <!--teacher 表-->
+        <result column="tno" javaType="Integer" jdbcType="INTEGER" property="tno"></result>
+        <result column="tname" javaType="String" jdbcType="VARCHAR" property="tname"></result>
+    </resultMap>
+
+    <select id="getAllAvaiableCourseWithCondition"
+            parameterType="buct.software.views.SelectCourseView"
+            resultMap="getAllAvaiableCourseWithConditionMap">
+        select
+        teacher.tno, teacher.tname,course.cname,course.college,course.description,course.status as courseStatus,
+        scheduling.cno,scheduling.capacity,scheduling.address,scheduling.course_time,scheduling.percent,
+        scheduling.major_grade,scheduling.status,scheduling.semesterid
+        from scheduling left join teacher on scheduling.tno=teacher.tno left join course on scheduling.cno=course.cno
+        <where>
+            scheduling.status=1
+            <if test="cname != null">
+                and course.cname=#{cname}
+            </if>
+            <if test="college != null">
+                and course.college=#{college}
+            </if>
+            <if test="tname != null">
+                and teacher.tname=#{tname}
+            </if>
+            <if test="capacity != null">
+                and scheduling.capacity > #{capacity}
+            </if>
+            <if test="cno != null">
+                and  scheduling.cno= #{cno}
+            </if>
+        </where>
+    </select>
+
+
+
+    <resultMap id="getAllAvaiableCourseMap" type="buct.software.views.SelectCourseView">
+        <!--排课表信息-->
+        <id column="semesterid" javaType="Integer" jdbcType="INTEGER" property="semesterId"></id>
+        <result column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></result>
+        <result column="capacity" javaType="Integer" jdbcType="INTEGER" property="capacity"></result>
+        <result column="address" javaType="String" jdbcType="VARCHAR" property="address"></result>
+        <result column="course_time" javaType="String" jdbcType="VARCHAR" property="courseTime"></result>
+        <result column="percent" javaType="String" jdbcType="VARCHAR" property="percent"></result>
+        <result column="major_grade" javaType="String" jdbcType="VARCHAR" property="majorGrade"></result>
+        <result column="status" javaType="String" jdbcType="VARCHAR" property="status"></result>
+
+        <!--course 表-->
+        <result column="cname" javaType="String" jdbcType="VARCHAR" property="cname"></result>
+        <result column="college" javaType="String" jdbcType="VARCHAR" property="college"></result>
+        <result column="description" javaType="String" jdbcType="VARCHAR" property="description"></result>
+        <result column="courseStatus" javaType="String" jdbcType="VARCHAR" property="courseStatus"></result>
+
+        <!--teacher 表-->
+        <result column="tno" javaType="Integer" jdbcType="INTEGER" property="tno"></result>
+        <result column="tname" javaType="String" jdbcType="VARCHAR" property="tname"></result>
+    </resultMap>
+    <select id="getAllAvaiableCourse"
+            parameterType="buct.software.domain.ScheduleMajor"
+            resultMap="getAllAvaiableCourseMap">
+        select
+        teacher.tno, teacher.tname,course.cname,course.college,course.description,course.status as courseStatus,
+        scheduling.cno,scheduling.capacity,scheduling.address,scheduling.course_time,scheduling.percent,
+        scheduling.major_grade,scheduling.status,scheduling.semesterid,schedule_major.majorid
+        from scheduling left join schedule_major on scheduling.semesterid=schedule_major.semesterid and scheduling.cno=schedule_major.cno
+        left join teacher on scheduling.tno=teacher.tno left join course on scheduling.cno=course.cno
+        <where>
+            scheduling.status=1 and scheduling.semesterid=#{semesterId} and schedule_major.majorid=#{majorId}
+        </where>
+    </select>
+
+
+    <resultMap id="getAllCourseHaveBeenSelectedMap" type="buct.software.domain.SelectCourse">
+        <!--选课表信息-->
+        <id column="semesterid" javaType="Integer" jdbcType="INTEGER" property="semesterId"></id>
+        <result column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></result>
+        <result column="sno" javaType="Integer" jdbcType="INTEGER" property="sno"></result>
+        <result column="detail" javaType="String" jdbcType="VARCHAR" property="detail"></result>
+        <result column="grade" javaType="Integer" jdbcType="INTEGER" property="grade"></result>
+
+    </resultMap>
+    <select id="getAllCourseHaveBeenSelected"
+            parameterType="buct.software.domain.SelectCourse"
+            resultMap="getAllCourseHaveBeenSelectedMap">
+        select * from select_course where semesterid=#{semesterId} and select_course.sno=#{sno}
+    </select>
+
+
+
+    <insert id="addNewCourseToTable" parameterType="buct.software.domain.SelectCourse">
+        insert into select_course
+        <set>
+            <if test="semesterId != null">semesterid=#{semesterId},</if>
+            <if test="sno != null">sno=#{sno},</if>
+            <if test="cno != null">cno=#{cno},</if>
+            <if test="grade != null">grade=#{grade},</if>
+            <if test="detail != null">detail=#{detail},</if>
+        </set>
+    </insert>
+
+
+    <delete id="deleteCourseFromTable" parameterType="buct.software.domain.SelectCourse">
+        delete from select_course where semesterid=#{semesterId} and sno=#{sno} and cno=#{cno}
+    </delete>
+
+
+
+    <resultMap id="getCourseTableMap" type="buct.software.views.SelectCourseView">
+        <!--排课表信息-->
+        <id column="semesterid" javaType="Integer" jdbcType="INTEGER" property="semesterId"></id>
+        <result column="address" javaType="String" jdbcType="VARCHAR" property="address"></result>
+        <result column="course_time" javaType="String" jdbcType="VARCHAR" property="courseTime"></result>
+
+        <!--course 表-->
+        <result column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></result>
+        <result column="cname" javaType="String" jdbcType="VARCHAR" property="cname"></result>
+        <result column="college" javaType="String" jdbcType="VARCHAR" property="college"></result>
+        <result column="description" javaType="String" jdbcType="VARCHAR" property="description"></result>
+        <result column="courseStatus" javaType="String" jdbcType="VARCHAR" property="courseStatus"></result>
+
+        <!--teacher 表-->
+        <result column="tname" javaType="String" jdbcType="VARCHAR" property="tname"></result>
+    </resultMap>
+    <select id="getCourseTable"
+            parameterType="buct.software.domain.SelectCourse" resultMap="getCourseTableMap">
+        select course.cname,course.cno,teacher.tname,scheduling.address,scheduling.course_time,scheduling.semesterid from scheduling
+        left join select_course on scheduling.semesterid=select_course.semesterid and scheduling.cno=select_course.cno
+        left join course on scheduling.cno=course.cno left join teacher on scheduling.tno=teacher.tno
+        <where>
+            select_course.semesterid=#{semesterId} and select_course.sno=#{sno}
+        </where>
+    </select>
+</mapper>
