@@ -1427,6 +1427,9 @@ li {
 	color: #8099af;
 	font: normal 12px/20px microsoft YaHei;
 	margin: 15px;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
 }
 
 .index_main {
@@ -1585,6 +1588,8 @@ li {
 
 .index_grxx .media-body {
 	margin-top: 20px;
+	padding-top: 20px;
+	padding-left:30px;
 }
 
 .index_grxx .media-body .media-heading {

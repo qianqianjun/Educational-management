@@ -1,10 +1,11 @@
 package buct.software.controller;
+import buct.software.domain.SelectCourse;
 import buct.software.domain.Student;
 import buct.software.domain.Teacher;
 import buct.software.domain.User;
-import buct.software.service.StudentService;
-import buct.software.service.TeacherService;
-import buct.software.service.UserService;
+import buct.software.service.*;
+import buct.software.views.SelectCourseView;
+import buct.software.views.StudentGradeIndexView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,6 +30,10 @@ public class LoginController {
     StudentService studentService;
     @Autowired
     TeacherService teacherService;
+    @Autowired
+    SelectCourseService selectCourseService;
+    @Autowired
+    SemesterService semesterService;
 
     /**
      * 登录页面网址，请求这个地址用于展现登录页面
@@ -39,6 +45,7 @@ public class LoginController {
     public String index(HttpServletRequest request,Map<String,Object> parmMap){
         HttpSession session=request.getSession();
         Object userInfo=session.getAttribute("user");
+        Integer semesterId= semesterService.getCurrentSemesterId();
         if(userInfo==null){
             return "login";
         }
@@ -47,6 +54,10 @@ public class LoginController {
             Integer type=user.getType();
             parmMap.put("userinfo",user);
             if(type==0){
+                List<SelectCourseView> courseTable=selectCourseService.getCourseTable(semesterId,user.getAccount());
+                List<StudentGradeIndexView> gradeList=selectCourseService.getGrade(semesterId,user.getAccount());
+                parmMap.put("courseTable",courseTable);
+                parmMap.put("gradeList",gradeList);
                 return "student";
             }
             if(type==1){
@@ -85,6 +96,8 @@ public class LoginController {
                     user.setMajor(student.getMajor());
                     user.setSname(student.getSname());
                     user.setMajorid(student.getMajorId());
+                    user.setCollege(student.getCollege());
+                    user.setKlass(student.getKlass());
                 }else error=true;
             }
             else if(user.getType()==1){

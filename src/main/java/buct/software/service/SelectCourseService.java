@@ -2,9 +2,14 @@ package buct.software.service;
 import buct.software.dao.SelectCourseDao;
 import buct.software.domain.ScheduleMajor;
 import buct.software.domain.SelectCourse;
+import buct.software.domain.Student;
 import buct.software.views.SelectCourseView;
+import buct.software.views.StudentGradeIndexView;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -122,5 +127,19 @@ public class SelectCourseService {
         selectCourse.setSno(sno);
         List<SelectCourseView> courseTable=selectCourseDao.getCourseTable(selectCourse);
         return courseTable;
+    }
+
+    /**
+     * 将学生的成绩信息显示在界面上。
+     * @param semesterId
+     * @param sno
+     * @return
+     */
+    public List<StudentGradeIndexView> getGrade(Integer semesterId,Integer sno){
+        SelectCourse selectCourse=new SelectCourse();
+        selectCourse.setSno(sno);
+        selectCourse.setSemesterId(semesterId);
+        List<StudentGradeIndexView> lists=selectCourseDao.getGrade(selectCourse);
+        return lists;
     }
 }

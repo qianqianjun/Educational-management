@@ -52,4 +52,22 @@ public class SelectCourseControllerPage {
         return "selectcourse";
     }
 
+    /**
+     * 学生课表查询界面的初始化controller 接口
+     * @param parMap 参数列表
+     * @param request  servlet request对象
+     * @return  返回初始化的界面
+     */
+    @GetMapping("/coursetable")
+    public String getCourseTable(Map<String,Object> parMap,HttpServletRequest request){
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user");
+        Integer sno=user.getAccount();
+        Integer semesterId=semesterService.getCurrentSemesterId();
+        ArrayList<SelectCourseView> courseTable=(ArrayList<SelectCourseView>)
+                selectCourseService.getCourseTable(semesterId,sno);
+        parMap.put("coursetable",courseTable);
+        return "coursetable";
+    }
+
 }
