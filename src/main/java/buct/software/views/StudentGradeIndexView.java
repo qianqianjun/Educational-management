@@ -13,7 +13,7 @@ public class StudentGradeIndexView {
     private Integer semester;
     private Integer cno;
     private String cname;
-    private Integer grade;
+    private Integer totalScore;
     private Integer type;
     private String typeStr;
     public StudentGradeIndexView(){}

@@ -11,14 +11,14 @@ public class SelectCourse {
     private Integer semesterId;
     private Integer cno;
     private Integer sno;
-    private Integer grade;
+    private Integer totalScore;
     private String detail;
 
     public SelectCourse(Integer semesterId, Integer cno, Integer sno, Integer grade, String detail) {
         this.semesterId = semesterId;
         this.cno = cno;
         this.sno = sno;
-        this.grade = grade;
+        this.totalScore = grade;
         this.detail = detail;
     }
     public SelectCourse(){}
