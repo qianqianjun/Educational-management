@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
 <head>
 	<meta charset="utf-8">
 	<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
@@ -20,11 +20,6 @@
 	<!-- 引入 jQuery Mobile 库 -->
 	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<title>自主选课</title>
-	<script>
-		$(document).on("pagecreate",function(){
-			getcolleges();
-		});
-	</script>
 </head>
 <body>
 <div data-role="page" id="pageone">
@@ -52,8 +47,8 @@
   			<input data-type="search" placeholder="课程名" v-model="cname">
 		<br>
   		<label>开课学院：</label>
-  		<select v-for="college in colleges">
-  			<option value="college">{{college}}</option>
+  		<select>
+  			<option th:each="college : ${collegelist}" value="${college.collegeName}">[[${college.collegeName} ]]</option>
   		</select>
   		<br>
   		<label>有无余量：</label>
@@ -95,20 +90,13 @@
 		el:"#pageone",
 		data:{
 			cname:null,
-			colleges:[],
+			college:null,
 			capacity:null,
 			courses:[],
 			cno:null,
 			tname:null
 		},
 		methods:{
-			getcollege:function(){
-				this.$http.get("/getcolleges/").then(function(value){
-					this.colleges=value.body;
-					console.log(value);
-				}),function(reason){
-					alert("请求出错");
-				},
 			getcourse:function(){
 				this.$http.post("/filtercourse/",{college:this.college,cname:this.cname,
 				capacity:this.capacity,cno:this.cno,tname:this.tname},{emulateJSON:true}).then(function(value){
