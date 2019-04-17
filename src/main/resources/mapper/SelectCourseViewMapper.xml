@@ -47,7 +47,9 @@
                 and teacher.tname=#{tname}
             </if>
             <if test="capacity != null">
-                and scheduling.capacity > #{capacity}
+                <if test="capacity!=2">
+                    and scheduling.capacity > #{capacity}
+                </if>
             </if>
             <if test="cno != null">
                 and  scheduling.cno= #{cno}
@@ -99,7 +101,7 @@
         <result column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></result>
         <result column="sno" javaType="Integer" jdbcType="INTEGER" property="sno"></result>
         <result column="detail" javaType="String" jdbcType="VARCHAR" property="detail"></result>
-        <result column="grade" javaType="Integer" jdbcType="INTEGER" property="grade"></result>
+        <result column="totalscore" javaType="Integer" jdbcType="INTEGER" property="totalScore"></result>
 
     </resultMap>
     <select id="getAllCourseHaveBeenSelected"
@@ -116,7 +118,7 @@
             <if test="semesterId != null">semesterid=#{semesterId},</if>
             <if test="sno != null">sno=#{sno},</if>
             <if test="cno != null">cno=#{cno},</if>
-            <if test="grade != null">grade=#{grade},</if>
+            <if test="totalScore != null">totalscore=#{totalScore},</if>
             <if test="detail != null">detail=#{detail},</if>
         </set>
     </insert>
@@ -160,13 +162,13 @@
         <result column="semester" javaType="Integer" jdbcType="INTEGER" property="semester"></result>
         <result column="start" javaType="Integer" jdbcType="INTEGER" property="start"></result>
         <result column="end" javaType="Integer" jdbcType="INTEGER" property="end"></result>
-        <result column="grade" javaType="Integer" jdbcType="INTEGER" property="grade"></result>
+        <result column="totalscore" javaType="Integer" jdbcType="INTEGER" property="totalScore"></result>
         <result column="type" javaType="Integer" jdbcType="INTEGER" property="type"></result>
         <result column="cname" javaType="String" jdbcType="VARCHAR" property="cname"></result>
     </resultMap>
     <select id="getGrade" resultMap="getGradMap" parameterType="buct.software.domain.SelectCourse">
-        select semester.start,semester.end,semester.semester,course.cname,select_course.grade,select_course.cno,select_course.type from select_course left join course on select_course.cno=course.cno
+        select semester.start,semester.end,semester.semester,course.cname,select_course.totalscore,select_course.cno from select_course left join course on select_course.cno=course.cno
         left join semester on select_course.semesterid=semester.semesterid
-        where select_course.grade is not null and select_course.semesterid=#{semesterId} and select_course.sno=#{sno};
+        where select_course.totalscore is not null and select_course.semesterid=#{semesterId} and select_course.sno=#{sno};
     </select>
 </mapper>
