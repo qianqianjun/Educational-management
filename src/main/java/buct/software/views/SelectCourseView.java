@@ -45,6 +45,9 @@ public class SelectCourseView {
     // 专业信息
     private Integer majorId;
 
+    // 课程类别
+    private Integer courseType;
+
     public SelectCourseView() {}
     public void setCourseTime(String time){
         this.courseTime=time;

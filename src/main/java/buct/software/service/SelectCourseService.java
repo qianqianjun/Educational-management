@@ -117,13 +117,13 @@ public class SelectCourseService {
 
     /**
      * 得到课程表的函数
-     * @param semesterId  学期id
+     * @param semester  学期id
      * @param sno 学生学号
      * @return  学生课表
      */
-    public List<SelectCourseView> getCourseTable(Integer semesterId, Integer sno) {
+    public List<SelectCourseView> getCourseTable(Integer semester, Integer sno) {
         SelectCourse selectCourse=new SelectCourse();
-        selectCourse.setSemesterId(semesterId);
+        selectCourse.setSemesterId(semester);
         selectCourse.setSno(sno);
         List<SelectCourseView> courseTable=selectCourseDao.getCourseTable(selectCourse);
         return courseTable;
