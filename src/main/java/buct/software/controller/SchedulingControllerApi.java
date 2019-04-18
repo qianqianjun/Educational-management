@@ -6,7 +6,7 @@ import buct.software.service.MajorService;
 import buct.software.service.PlanningService;
 import buct.software.service.SchedulingService;
 import buct.software.utils.ResponseMessage;
-import com.sun.org.apache.xalan.internal.xsltc.runtime.StringValueHandler;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PostMapping;
