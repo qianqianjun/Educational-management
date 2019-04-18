@@ -1,6 +1,5 @@
 package buct.software.controller;
 
-import org.apache.commons.collections4.Get;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -31,4 +30,13 @@ public class TestController {
         return "selecttopic";
     }
 
+    @GetMapping("/mobilelogin")
+    public String mobileindex(){
+        return "MobileLogin";
+    }
+
+    @GetMapping("/mobilestudenthome")
+    public String mobilestudenthome(){
+        return "msh";
+    }
 }
