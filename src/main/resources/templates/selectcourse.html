@@ -2,19 +2,17 @@
 <!DOCTYPE html PUBLIC "">
 <HTML lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="Copyright" content="zfsoft">
-	<script src="js/jquery.min.js" type="text/javascript"></script>
-	<!--Bootstrap布局框架-->
-	<LINK href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<LINK href="css/error.css" rel="stylesheet" type="text/css">
-	<LINK href="css/zftal-ui.css" rel="stylesheet" type="text/css">
-    <link href="css/selectcourse.css" rel="stylesheet" type="text/css">
-    <script src="js/bootstrap.min.js"></script>
-    <!-- 网站引用Vue文件 -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>学生选课系统</title>
+        <!--网站引用Vue文件 -->
     <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
     <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/zftal-ui.css" />
+    <link href="css/selectcourse.css" rel="stylesheet" type="text/css">
 </head>
 <BODY>
 <header class="navbar-inverse top2">
@@ -35,7 +33,7 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">&nbsp;</div>
 			<!--在下面开始写布局部分-->
-
+			<div id="selectcourse_content">
             <!--第一部分：查询-->
 			<form role="form" name="form1">
 				<div class="form-group">
@@ -49,7 +47,7 @@
 			</form>
 
 			<!--第二部分-->
-			<table id="selector">
+			<table id="selectcourse_selector">
 				<tr>
 					<th><label>学院:</label></th>
 					<td>
@@ -105,7 +103,7 @@
 										<div v-if="msgs == null" style="width: 200px;margin: auto;">
 											没有可用的选课记录
 										</div>
-										<div class="panel panel-default" v-for= "msg in msgs">
+										<div class="panel panel-default" v-for= "msg in msgs" v-cloak>
 											<div class="panel-heading">
 												 <a class="panel-title" data-toggle="collapse" data-parent="#panel-1" v-bind:href="'#panel-element-'+msg.cno">{{msg.cno}}-{{msg.cname}}-{{msg.college}} </a>
 											</div>
@@ -113,8 +111,8 @@
 												<div class="panel-body">
 													<div>{{msg.description}}</div>
 													<div style="text-align: right;">
-													<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.capacity,1)" style="">选课</button>
-														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.capacity,2)">退选</button></div>
+													<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.capacity,1)" @click="select_course(msg.cno)">选课</button>
+														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.capacity,2)" @click="cancel_course(msg.cno)">退选</button></div>
 												</div>
 											</div>
 										</div>
@@ -128,7 +126,7 @@
 											<div v-if="msgs == null" style="width: 200px;margin: auto;">
 												没有可用的选课记录
 											</div>
-											<div class="panel panel-default" v-for= "msg in msgs" >
+											<div class="panel panel-default" v-for= "msg in msgs" v-cloak>
 												<div class="panel-heading">
 													 <a class="panel-title" data-toggle="collapse" data-parent="#panel-2" v-bind:href="'#panel-element-'+msg.cno">{{msg.cno}}-{{msg.cname}}-{{msg.college}} </a>
 												</div>
@@ -136,8 +134,8 @@
 													<div class="panel-body">
 														<div>{{msg.description}}</div>
 														<div style="text-align: right;">
-														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.capacity,1)" style="">选课</button>
-														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.capacity,2)">退选</button></div>
+														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.capacity,1)" @click="select_course(msg.cno)">选课</button>
+														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.capacity,2)" @click="cancel_course(msg.cno)">退选</button></div>
 													</div>
 												</div>
 											</div>
@@ -152,7 +150,7 @@
 											<div v-if="msgs == null" style="width: 200px;margin: auto;">
 												没有可用的选课记录
 											</div>
-											<div class="panel panel-default" v-for= "msg in msgs" >
+											<div class="panel panel-default" v-for= "msg in msgs" v-cloak>
 												<div class="panel-heading">
 													 <a class="panel-title" data-toggle="collapse" data-parent="#panel-3" v-bind:href="'#panel-element-'+msg.cno">{{msg.cno}}-{{msg.cname}}-{{msg.college}} </a>
 												</div>
@@ -160,8 +158,9 @@
 													<div class="panel-body">
 														<div>{{msg.description}}</div>
 														<div style="text-align: right;">
-														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.capacity,1)" style="">选课</button>
-														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.capacity,2)">退选</button></div>													</div>
+														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.capacity,1)" @click="select_course(msg.cno)">选课</button>
+														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.capacity,2)" @click="cancel_course(msg.cno)">退选</button></div>
+														</div>
 												</div>
 											</div>
 										</div>
@@ -172,126 +171,64 @@
 					</div>
 				</div>
 			</div>
-<!-- 			<div class="container">
-				<div class="row clearfix">
-					<div class="col-md-12 column">
-						<div class="tabbable" id="tabs-644980" style="    position: relative;left: -9px;top: 15px;">
-							<ul class="nav nav-tabs" style="position: relative;left: 15px;">
-								<li>
-									<a href="#panel-108995" data-toggle="tab">公共选修</a>
-								</li>
-								<li class="active">
-									<a href="#panel-685737" data-toggle="tab">专业选修</a>
-								</li>
-								<li>
-									<a href="#panel-108996" data-toggle="tab">通识课</a>
-								</li>
-							</ul>
-							<div class="tab-content">
-								<div class="tab-pane" id="panel-108995">
-									<p>
-									<div class="container">
-										<div class="row clearfix">
-											<div class="col-md-12 column">
-												<div class="panel-group" id="panel-386402">
-													<div class="panel panel-default">
-														<div class="panel-heading">
-															<a class="panel-title" data-toggle="collapse" data-parent="#panel-386402" href="#panel-element-748967">数据结构</a>
-														</div>
-														<div id="panel-element-748967" class="panel-collapse collapse in">
-															<div class="panel-body">
-																万静老师手把手教学<button type="submit" class="btn btn-default">选课</button>
-															</div>
-														</div>
-													</div>
-													<div class="panel panel-default">
-														<div class="panel-heading">
-															<a class="panel-title" data-toggle="collapse" data-parent="#panel-386402" href="#panel-element-159815">离散数学</a>
-														</div>
-														<div id="panel-element-159815" class="panel-collapse collapse">
-															<div class="panel-body">
-																领略尤枫老师独特魅力<button type="submit" class="btn btn-default">选课</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									</p>
-								</div>
-								<div class="tab-pane active" id="panel-685737">
-									<p>
-									<div class="container">
-										<div class="row clearfix">
-											<div class="col-md-12 column">
-												<div class="panel-group" id="panel-571009">
-													<div class="panel panel-default">
-														<div class="panel-heading">
-															<a class="panel-title" data-toggle="collapse" data-parent="#panel-571009" href="#panel-element-730441">第一门课</a>
-														</div>
-														<div id="panel-element-730441" class="panel-collapse collapse in">
-															<div class="panel-body">
-																一一一<button type="submit" class="btn btn-default">选课</button>
-															</div>
-														</div>
-													</div>
-													<div class="panel panel-default">
-														<div class="panel-heading">
-															<a class="panel-title" data-toggle="collapse" data-parent="#panel-571009" href="#panel-element-67565">第二门课</a>
-														</div>
-														<div id="panel-element-67565" class="panel-collapse collapse">
-															<div class="panel-body">
-																二二二<button type="submit" class="btn btn-default">选课</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									</p>
-								</div>
-								<div class="tab-pane active2" id="panel-108996">
-									<p>
-									<div class="container">
-										<div class="row clearfix">
-											<div class="col-md-12 column">
-												<div class="panel-group" id="panel-571008">
-													<div class="panel panel-default">
-														<div class="panel-heading">
-															<a class="panel-title" data-toggle="collapse" data-parent="#panel-108996" href="#panel-element-730442">西方文化入门</a>
-														</div>
-														<div id="panel-element-730442" class="panel-collapse collapse in">
-															<div class="panel-body">
-																感受西方文化<button type="submit" class="btn btn-default">选课</button>
-															</div>
-														</div>
-													</div>
-													<div class="panel panel-default">
-														<div class="panel-heading">
-															<a class="panel-title" data-toggle="collapse" data-parent="#panel-108996" href="#panel-element-675655">管理心理学</a>
-														</div>
-														<div id="panel-element-675655" class="panel-collapse collapse">
-															<div class="panel-body">
-																直达你的灵魂<button type="submit" class="btn btn-default">选课</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
- -->
+		</div>
+		</div>
+		<script th:inline="javascript">
+			var vm2 = new Vue({
+				el:"#selectcourse_content",
+				data:{
+					input_search:"",
+					msgs:null,
+					input_college:"",
+					input_capacity:""
+				},
+				methods:{
+					getdata:function(){
+						
+					},
+					canbeselect:function(capacity,flag){
+						if(flag == 1){
+							if(capacity != 0)
+								return '';
+							else 
+								return 'disabled';
+						}
+						else{
+							//退选选项
+							if(capacity == 0)
+								return 'disabled';
+							else 
+								return '';
+						}
+					},
+					search:function(){
+						
+					},
+					select_course:function(coursenumber){
 
+					},
+					cancel_course:function(coursenumber){
 
+					}
+				},
+				mounted:function(){
+					this.$http.post("/filtercourse",{
+						college:this.input_college,
+						cno:"",
+						cname:"",
+						tname:"",
+						capacity:this.input_capacity
+					},
+						{emulateJSON:true}).then(function (value) {
+		                console.log(value)
+		                this.msgs=value.body.data;
+
+		            },function (reason) {
+		                alert("请求出错");
+		            })
+				}
+			})
+		</script>
 			<!-- 右侧内容开始 -->
 		<div class="outer" id="left-content">
 			<div class="outer_left">
@@ -335,57 +272,6 @@
 		</script>
 	</div>
 </div>
-</div>
-<script type="text/javascript">
-	var vm2 = new Vue({
-		el:"#bodyContainer",
-		data:{
-			input_search:"",
-			msgs:null,
-			input_college:"",
-			input_capacity:""
-		},
-		methods:{
-			getdata:function(){
-				
-			},
-			canbeselect:function(capacity,flag){
-				if(flag == 1){
-					if(capacity != 0)
-						return '';
-					else 
-						return 'disabled';
-				}
-				else{
-					//退选选项
-					if(capacity == 0)
-						return 'disabled';
-					else 
-						return '';
-				}
-			},
-			search:function(){
-				
-			}
-		},
-		mounted:function(){
-			this.$http.post("/filtercourse",{
-				college:this.input_college,
-				cno:"",
-				cname:"",
-				tname:"",
-				capacity:this.input_capacity
-			},
-				{emulateJSON:true}).then(function (value) {
-                console.log(value)
-                this.msgs=value.body.data;
-
-            },function (reason) {
-                alert("请求出错");
-            })
-		}
-	})
-</script>
 <div class="footer" id="footerID">
 	<P>版权所有? Copyright 计科1601</P>
 </div>
