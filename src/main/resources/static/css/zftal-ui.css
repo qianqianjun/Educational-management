@@ -4708,6 +4708,7 @@ input.form-control{
 .control-label {
 	padding-right: 5px;
 	min-height: 30px;
+	line-height: 35px;
 	display:inline-block;
 }
 

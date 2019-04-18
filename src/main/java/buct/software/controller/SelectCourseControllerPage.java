@@ -1,6 +1,7 @@
 package buct.software.controller;
 import buct.software.domain.College;
 import buct.software.domain.SelectCourse;
+import buct.software.domain.Semester;
 import buct.software.domain.User;
 import buct.software.service.CollegeService;
 import buct.software.service.SelectCourseService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.soap.SAAJMetaFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,17 +44,18 @@ public class SelectCourseControllerPage {
         User user=(User) session.getAttribute("user");
         Integer sno=user.getAccount();
         Integer majorId=user.getMajorid();
+        List<Semester> semesters=semesterService.getSemesterDomain();
         Integer semesterId=semesterService.getCurrentSemesterId();
         ArrayList<SelectCourse> selectedList=
                 (ArrayList<SelectCourse>) selectCourseService.getSelectedCourseList(sno,semesterId);
 
-
-        System.out.println("这里完成了");
         ArrayList<SelectCourseView> courseViews=
                 (ArrayList<SelectCourseView>)
                         selectCourseService.getAllCourseList(semesterId,majorId);
         parmMap.put("courseselectedlist",selectedList);
         parmMap.put("allcourses",courseViews);
+        parmMap.put("semesterlist",semesters);
+
         return "selectcourse";
     }
 

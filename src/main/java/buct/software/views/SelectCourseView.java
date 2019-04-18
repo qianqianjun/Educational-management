@@ -44,7 +44,7 @@ public class SelectCourseView {
 
     // 专业信息
     private Integer majorId;
-
+    
     // plan 表信息
     private Integer courseType;
 
