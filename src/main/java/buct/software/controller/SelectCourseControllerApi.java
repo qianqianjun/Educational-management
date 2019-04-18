@@ -1,5 +1,7 @@
 package buct.software.controller;
 import buct.software.domain.SelectCourse;
+import buct.software.domain.Semester;
+import buct.software.domain.User;
 import buct.software.service.CollegeService;
 import buct.software.service.SelectCourseService;
 import buct.software.service.SemesterService;
@@ -8,7 +10,10 @@ import buct.software.views.SelectCourseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *  @author  高谦
@@ -64,13 +69,15 @@ public class SelectCourseControllerApi {
 
     /**
      * 选定一个课程，根据课程的课程号和学生的学号将信息加入到选课表中。
-     * @param sno  学生学号
      * @param cno  课程号
+     * @param request 别管他，用于获取学号的，注意，如果不登录直接请求接口，会报错！报错！postman检测不了这个接口。
      * @return  返回一个ResponseMessage ，标注是否添加成功！
      */
     @PostMapping("/setcourseselected")
-    public ResponseMessage addCourseSelected(@RequestParam("sno") Integer sno,
-                                             @RequestParam("cno") Integer cno){
+    public ResponseMessage addCourseSelected(@RequestParam("cno") Integer cno, HttpServletRequest request){
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user");
+        Integer sno=user.getAccount();
         Integer semesterId=semesterService.getCurrentSemesterId();
         SelectCourse selectCourse=selectCourseService.addCourseToTable(semesterId,sno,cno);
         if(selectCourse==null){
@@ -84,12 +91,15 @@ public class SelectCourseControllerApi {
     /**
      *  取消一门选课
      * @param cno  取消的课程号
-     * @param sno  取消的学生学号
+     * @param request 别管他，用于获取学号的，注意，如果不登录直接请求接口，会报错！报错！postman检测不了这个接口。
      * @return
      */
     @PostMapping("/canclecourse")
     public ResponseMessage cancleCourse(@RequestParam("cno") Integer cno,
-                                        @RequestParam("sno") Integer sno){
+                                        HttpServletRequest request){
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user");
+        Integer sno=user.getAccount();
         Integer semesterId=semesterService.getCurrentSemesterId();
         SelectCourse selectCourse=selectCourseService.removeCourse(semesterId,cno,sno);
         if(selectCourse==null){
@@ -102,16 +112,29 @@ public class SelectCourseControllerApi {
 
     /**
      * 生成学生的选课表信息。
-     * @param semesterId   学期id
-     * @param sno 学号
+     * @param start 学年开始的年
+     * @param semester  某个学年的学期
+     * @param request 别管他，用于获取学号的，注意，如果不登录直接请求接口，会报错！报错！postman检测不了这个接口。
      * @return  这个学期的课表
      */
     @GetMapping("/getcoursetable")
-    public ResponseMessage getCourseTable(@RequestParam("semesterid") Integer semesterId,
-                                         @RequestParam("sno") Integer sno){
+    public ResponseMessage getCourseTable(@RequestParam("semester") Integer semester,
+                                         @RequestParam("start") Integer start,
+                                         HttpServletRequest request){
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user");
+        Integer sno=user.getAccount();
+        Semester temp=semesterService.getSemesterByStartAndSemester(start,semester);
         ArrayList<SelectCourseView> courseTable=(ArrayList<SelectCourseView>)
-                selectCourseService.getCourseTable(semesterId,sno);
+                selectCourseService.getCourseTable(temp.getSemesterId(),sno);
         return new ResponseMessage(ResponseMessage.SUCCESS,"查询成功！",courseTable);
+    }
 
+
+
+    @GetMapping("/getsemesterlist")
+    public ResponseMessage getsemesterlist(){
+        List<Semester> semesters=semesterService.getSemesterDomain();
+        return new ResponseMessage(200,"全部的信息",semesters);
     }
 }

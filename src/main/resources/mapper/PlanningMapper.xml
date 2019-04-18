@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="buct.software.dao.PlanningDao">
+    <resultMap id="getWillCoursesMap" type="buct.software.views.PlanningView">
+        <id  property="cno" javaType="Integer" column="cno" jdbcType="INTEGER"></id>
+        <id  property="cname" javaType="String" column="cname" jdbcType="VARCHAR"></id>
+        <id  property="college" javaType="String" column="college" jdbcType="VARCHAR"></id>
+        <id  property="description" javaType="String" column="description" jdbcType="VARCHAR"></id>
+        <id  property="ifOpen" javaType="Boolean" column="ifopen" jdbcType="BOOLEAN"></id>
+    </resultMap>
+    <select id="getWillCourses" resultMap="getWillCoursesMap">
+        select distinct course.cno,cname,college,description,ifopen from semester,major,planning,course
+        where
+          semester.semesterid = planning.semesterid
+        and
+          major.majorid = planning.majorid
+        and
+          course.cno = planning.cno
+        and
+          start = #{year}
+        and
+          semester = #{semester}
+        and
+          majorname = #{majorName}
+        and
+          grade = #{grade}
+    </select>
+
+    <select id="addWillCourse" resultType="Boolean">
+        insert into planning values (#{semesterId},#{majorId},#{grade},#{cno},false)
+    </select>
+
+    <select id="checkWillCourse" resultType="Boolean">
+        select count(*) from planning
+        where
+          semesterid=#{semesterId}
+        and
+          majorid=#{majorId}
+        and
+          grade=#{grade}
+        and
+          cno=#{cno}
+    </select>
+
+    <select id="deleteWillCourse" resultType="Boolean">
+        delete from planning
+        where
+          semesterid=#{semesterId}
+        and
+          majorid=#{majorId}
+        and
+          grade=#{grade}
+        and
+          cno=#{cno}
+    </select>
+    <select id="checkIfOpen" resultType="Boolean">
+        select ifopen from planning
+        where
+          semesterid=#{semesterId}
+        and
+          majorid=#{majorId}
+        and
+          grade=#{grade}
+        and
+          cno=#{cno}
+    </select>
+    <select id="changeIfOpen" resultType="Boolean">
+        update planning set ifopen=#{ifOpen}
+        where
+          semesterid=#{semesterId}
+        and
+          majorid=#{majorId}
+        and
+          grade=#{grade}
+        and
+          cno=#{cno}
+    </select>
+</mapper>

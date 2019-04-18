@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+	<meta charset="utf-8">
+	<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- meta使用viewport以确保页面可自由缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 引入 jQuery Mobile 样式 -->
+	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<!-- 引入 jQuery 库 -->
+	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!-- 引入 jQuery Mobile 库 -->
+	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<title>自主选课</title>
+</head>
+<body>
+<div data-role="page" id="pageone">
+	
+	<!-- 面板 -->
+	<div data-role="panel" id="myPanel"> 
+    	<a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">首页</a>
+    	<a href="#" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
+    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
+    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">成绩查询</a>
+    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">已选论题</a>
+    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">查看论题</a>
+  	</div>
+  	
+  	<!-- 头部 -->
+	<div data-role="header">
+    	<a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext"></a>
+    	<h1>教务管理系统</h1>
+  	</div>
+  	
+  	<!-- 主体 -->
+  	<div data-role="main" class="ui-content">
+		<br>
+  		<br>
+  			<input data-type="search" placeholder="课程名" v-model="cname">
+		<br>
+  		<label>开课学院：</label>
+  		<select>
+            <option value="" style="display: none"></option>
+  			<option th:each="college : ${collegelist}" value="${college.collegeName}">[[${college.collegeName} ]]</option>
+  		</select>
+  		<br>
+  		<label>有无余量：</label>
+  		<select v-model="capacity">
+  			<option value="-1">所有</option>
+  			<option value="0">有</option>
+  			<option value="2">无</option>
+  		</select>
+  		<br>
+  		<button type="button" class="btn btn-default" @click="getcourse()">查询</button>
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="btn-group">
+                        <button class="btn btn-default" type="button" style="height:50px;width:110px" value="0" @click="getcoursebytype(0)">
+                            <em class="glyphicon glyphicon-align-left"></em>必修</button>
+                        <button class="btn btn-default" type="button" style="height:50px;width:110px" value="1" @click="getcoursebytype(1)">
+                            <em class="glyphicon glyphicon-align-center"></em>选修</button>
+                        <button class="btn btn-default" type="button" style="height:50px;width:110px" value="2" @click="getcoursebytype(2)">
+                            <em class="glyphicon glyphicon-align-right"></em>通识</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="panel-group" id="panel-431649">
+			<div class="panel panel-default" v-for="course in courses">
+				<div class="panel-heading">
+					 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-431649"
+                        v-bind:href="'#'+course.cno">{{course.cname}}</a>
+				</div>
+				<div v-bind:id="course.cno" class="panel-collapse collapse">
+					<div class="panel-body">
+						<p>{{course.description}}</p>
+						<input type="submit" v-model="choice" value="选课" @click="selectcourse(course.cno)">
+                        <input type="submit" v-model="choice" value="退选" @click="cancelcourse(course.cno)">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- 底部 -->
+    <div data-role="footer" data-position="fixed">
+        <h1>版权所有</h1>
+    </div>
+
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	var one = new Vue({
+		el:"#pageone",
+		data:{
+			cname:null,
+			college:null,
+			capacity:null,
+			courses:[],
+			cno:null,
+			tname:null,
+			allcourse:[],
+			choice:null,
+		},
+		methods:{
+			getcourse:function(){
+				this.$http.post("/filtercourse/",{college:this.college,cname:this.cname,
+				capacity:this.capacity,cno:this.cno,tname:this.tname},{emulateJSON:true}).then(function(value){
+					this.courses=value.body.data;
+					this.allcourse=value.body.data;
+					console.log(value.body.data.cno);
+				},function(reason){
+					alert("请求出错");
+				});
+			},
+			selectcourse:function(parm){
+			    this.$http.post("/setcourseselected",{cno:parm},{emulateJSON:true}).then(function(value){
+			        if(value.body.code==200){
+			            alert("选课成功");
+			            this.value="退选"
+			        }
+			        else{
+			            alert("选课失败");
+			        }
+			    })
+			},
+			cancelcourse:function(parm){
+			    this.$http.post("/canclecourse",{cno:parm},{emulateJSON:true}).then(function(value){
+			        if(value.body.code==200){
+			            alert("退选成功");
+			            this.value="选课"
+			        }
+			        else{
+			            alert("退选失败");
+			        }
+			    })
+			},
+			getcoursebytype:function(parm){
+			    console.log(parm);
+			    var arr=new Array();
+			    console.log(this.allcourse);
+			    this.courses = arr ;
+			}
+		}
+	})
+</script>

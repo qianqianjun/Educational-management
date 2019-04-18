@@ -1,16 +1,22 @@
 package buct.software.controller;
+import buct.software.domain.College;
 import buct.software.domain.SelectCourse;
+import buct.software.domain.Semester;
 import buct.software.domain.User;
 import buct.software.service.CollegeService;
 import buct.software.service.SelectCourseService;
 import buct.software.service.SemesterService;
+import buct.software.utils.ResponseMessage;
 import buct.software.views.SelectCourseView;
+import org.apache.poi.hssf.record.ObjRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.soap.SAAJMetaFactory;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,18 +44,48 @@ public class SelectCourseControllerPage {
         User user=(User) session.getAttribute("user");
         Integer sno=user.getAccount();
         Integer majorId=user.getMajorid();
+        List<Semester> semesters=semesterService.getSemesterDomain();
         Integer semesterId=semesterService.getCurrentSemesterId();
         ArrayList<SelectCourse> selectedList=
                 (ArrayList<SelectCourse>) selectCourseService.getSelectedCourseList(sno,semesterId);
 
-
-        System.out.println("这里完成了");
         ArrayList<SelectCourseView> courseViews=
                 (ArrayList<SelectCourseView>)
                         selectCourseService.getAllCourseList(semesterId,majorId);
         parmMap.put("courseselectedlist",selectedList);
         parmMap.put("allcourses",courseViews);
+        parmMap.put("semesterlist",semesters);
+
         return "selectcourse";
     }
 
+    /**
+     * 学生课表查询界面的初始化controller 接口
+     * @param parMap 参数列表
+     * @param request  servlet request对象
+     * @return  返回初始化的界面
+     */
+    @GetMapping("/coursetable")
+    public String getCourseTable(Map<String,Object> parMap,HttpServletRequest request){
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user");
+        Integer sno=user.getAccount();
+        Integer semesterId=semesterService.getCurrentSemesterId();
+        ArrayList<SelectCourseView> courseTable=(ArrayList<SelectCourseView>)
+                selectCourseService.getCourseTable(semesterId,sno);
+        parMap.put("coursetable",courseTable);
+        return "coursetable";
+    }
+
+    @GetMapping("/selectcoursemobile")
+    public String selectcoursemobile(Map<String, Object> parmMap){
+        ResponseMessage res=collegeService.getAllCollege();
+        List<College> collegeList=(List<College>) res.getData();
+        parmMap.put("collegelist",collegeList);
+        return "selectcoursemobile";
+    }
+    @GetMapping("/coursetablemobile")
+    public String coursetablemobile(Map<String, Object> parmMap){
+        return "coursetablemobile";
+    }
 }

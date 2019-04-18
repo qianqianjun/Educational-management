@@ -16,6 +16,8 @@ public class Student {
     private String klass;
     private String comeYear;
     private String phone;
+    private String college;
+    private Integer collegeId;
     // 年级年级年级，不是分数，不是分数，不是分数！
     private String grade;
     private Integer majorId;
@@ -35,5 +37,9 @@ public class Student {
     }
 
     public Student(){}
+
+    public Integer getMajorId(){
+        return this.majorId;
+    }
 
 }
