@@ -81,5 +81,8 @@ public class SelectCourseControllerPage {
         parmMap.put("collegelist",collegeList);
         return "selectcoursemobile";
     }
-
+    @GetMapping("/coursetablemobile")
+    public String coursetablemobile(Map<String, Object> parmMap){
+        return "coursetablemobile";
+    }
 }
