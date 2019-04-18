@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Test</h1>
+<tr th:each="quesInfo:${quesInfos}">
+    <td th:text="${quesInfo.questionid}"></td>
+    <td th:text="${quesInfo.topic}"></td>
+</tr>
+
+</body>
+</html>

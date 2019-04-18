@@ -46,6 +46,15 @@ public class QuestionStudentChooseService {
         System.out.println(isChoosen);
         return isChoosen;
     }
+    //根据学生号选择该学生所有的选题信息
+    public List<QuestionStudentChoose> getChoiceBySno(int sno){
+        return questionStudentDao.getChoiceBySno(sno);
+    }
+    //根据老师工号选择选题信息
+    public List<QuestionStudentChoose> getChoiceByTno(int tno){
+        return questionStudentDao.getChoiceByTno(tno);
+    }
+
 
     //根据论题号和学生号获得论题选择信息
     public QuestionStudentChoose getChoiceByQidSno(int questionid,int sno){
@@ -54,22 +63,4 @@ public class QuestionStudentChooseService {
         map.put("sno",sno);
         return questionStudentDao.getChoiceByQidSno(map);
     }
-
-    //根据学生号选择该学生所有的选题信息
-    public List<QuestionStudentChoose> getChoiceBySno(int sno){
-        return questionStudentDao.getChoiceBySno(sno);
-    }
-
-    //根据老师工号选择选题信息
-    public List<QuestionStudentChoose> getChoiceByTno(int tno){
-        return questionStudentDao.getChoiceByTno(tno);
-    }
-
-
-
-
-
-
-
-
 }

@@ -35,7 +35,7 @@ public class LoginController {
      * @param request  这里是 一个HttpServletRequest 用于获取 session 相关信息。
      * @return
      */
-    @RequestMapping("/index")
+    @RequestMapping(value = "/index")
     public String index(HttpServletRequest request,Map<String,Object> parmMap){
         HttpSession session=request.getSession();
         Object userInfo=session.getAttribute("user");

@@ -1,24 +1,74 @@
 package buct.software.controller;
 
-import buct.software.domain.Question;
+import buct.software.domain.*;
 import buct.software.service.QuestionService;
+import buct.software.service.StudentService;
+import buct.software.service.TeacherService;
 import buct.software.utils.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yuzhongrui
  * 用来测试接口是否正常工作
  */
 
-@RestController
+@Controller
 public class QuestionController {
     @Autowired
     private QuestionService questionService;
+
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private TeacherService teacherService;
+
+    @RequestMapping("/StuLookThroughQues")
+    public String StuLookThroughQues(HttpServletRequest request, Map<String,Object> map){
+        //需要返回的列表数据有 题目 难度 出题老师姓名 是否选中
+        HttpSession session =  request.getSession();
+        Object userInfo = session.getAttribute("user");
+        User user = (User) userInfo;
+        int sno = user.getAccount();
+        Student student = studentService.getStudentBySno(sno);
+        int studentMajor = student.getMajorId();
+        List<QuestionStudentInquiry> questionStudentInquiry = questionService.getPartQuestionByMajorid(studentMajor);
+        map.put("quesInfos",questionStudentInquiry);
+//        System.out.println(questionStudentInquiry.get(0));//debug
+        return "StuLookThroughQues";
+    }
+
+    @RequestMapping("/StuQuesDetails")
+    public String StuQuesDetails(HttpServletRequest request,
+     Map<String,Object> map,@RequestParam("questionid") int questionid
+    ){
+        HttpSession session =  request.getSession();
+        Object userInfo = session.getAttribute("user");
+        User user = (User) userInfo;
+        int sno = user.getAccount();
+        Question question = questionService.getSingleQuestionByQuestionid(questionid);
+        int tno = question.getTno();
+        Teacher teacher = teacherService.getTeacherByTno(tno);
+        map.put("quesInfo",question);
+        map.put("teaInfo",teacher);
+        return "StuQuesDetails";
+    }
+
+
+
+    @GetMapping("getPQBM")
+    public ResponseMessage getPartQuestionByMajorid(){
+        return questionService.messageGetPartQuestionByMajorid(1);
+    }
+
+
 
 
     @GetMapping("getQBM")
@@ -27,10 +77,6 @@ public class QuestionController {
     }
 
 
-    @GetMapping("getPQBM")
-    public ResponseMessage getPartQuestionByMajorid(){
-        return questionService.messageGetPartQuestionByMajorid(1);
-    }
 
 
     @GetMapping("getQBT")
