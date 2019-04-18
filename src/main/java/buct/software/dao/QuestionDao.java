@@ -62,6 +62,7 @@ public interface QuestionDao {
      */
     public List<Question> getQuestionsByMajorid(int majorid);
 
+    public List<Question> getAllQuestions();
 
     //根据学生号查找论题，便于确认学生是否已经有选题
     public Question getSingleQuestionBySno(int sno);

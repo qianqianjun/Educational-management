@@ -61,6 +61,25 @@ public class QuestionController {
         return "StuQuesDetails";
     }
 
+    @RequestMapping("/TeaLookThroughQues")
+    public String TeaLookThroughQues(HttpServletRequest request,Map<String,Object> map){
+        HttpSession session =  request.getSession();
+        Object userInfo = session.getAttribute("user");
+        User user = (User) userInfo;
+        int tno = user.getAccount();
+        List<Question> questions = questionService.getQuestionByTno(tno);
+        map.put("quesInfos",questions);
+        return "TeaLookThroughQues";
+    }
+
+    @RequestMapping("/ManageQues")
+    public String ManageQues(HttpServletRequest request,Map<String,Object> map){
+        List<Question> questions = questionService.getAllQuestions();
+//        System.out.println(questions.get(0));//debug
+        map.put("quesInfos",questions);
+        return "ManageQues";
+    }
+
 
 
     @GetMapping("getPQBM")

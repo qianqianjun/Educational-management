@@ -124,6 +124,10 @@ public class QuestionService {
         return questionDao.getQuestionsByMajorid(majorid);
     }
 
+    public List<Question> getAllQuestions(){
+        return questionDao.getAllQuestions();
+    }
+
 
     /**
      * 功能：根据学生号查找论题

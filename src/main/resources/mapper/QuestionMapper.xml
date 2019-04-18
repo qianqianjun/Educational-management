@@ -6,6 +6,10 @@
 <mapper namespace="buct.software.dao.QuestionDao">
     <!--id对应的是dao中方法-->
 
+    <select id="getAllQuestions" resultType="Question">
+        select * from question
+    </select>
+
 
     <select id="getPartQuestionsByMajorid" parameterType="int"
             resultType="QuestionStudentInquiry">
