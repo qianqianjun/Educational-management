@@ -148,6 +148,11 @@
 			    console.log(parm);
 			    var arr=new Array();
 			    console.log(this.allcourse);
+			    for(var i = 0;i<this.allcourse.length;i++){
+			    	if(parm == this.allcourse[i].courseType){
+			    		arr.push(this.allcourse[i]);
+			    	}
+			    }
 			    this.courses = arr ;
 			}
 		}
