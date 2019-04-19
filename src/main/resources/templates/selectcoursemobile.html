@@ -27,7 +27,7 @@
 	<!-- 面板 -->
 	<div data-role="panel" id="myPanel"> 
     	<a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">首页</a>
-    	<a href="#" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
+    	<a href="#coursetablemobile.html" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
     	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
     	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">成绩查询</a>
     	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">已选论题</a>
@@ -78,13 +78,19 @@
 			<div class="panel panel-default" v-for="course in courses">
 				<div class="panel-heading">
 					 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-431649"
-                        v-bind:href="'#'+course.cno">{{course.cname}}</a>
+                        v-bind:href="'#'+course.cno">{{course.cname}}/{{course.college}}/{{course.tname}}</a>
 				</div>
 				<div v-bind:id="course.cno" class="panel-collapse collapse">
 					<div class="panel-body">
-						<p>{{course.description}}</p>
-						<input type="submit" v-model="choice" value="选课" @click="selectcourse(course.cno)">
-                        <input type="submit" v-model="choice" value="退选" @click="cancelcourse(course.cno)">
+						<p>上课地点:{{course.address}}
+							<br>
+							上课时间:{{course.startWeek}}-{{course.endWeek}}周周{{course.week}}{{course.startStep}}-{{course.endStep}}节
+							<br>
+							课程容量:{{course.capacity}}
+							<br>
+							课程描述:{{course.description}}</p>
+						<input type="submit" value="选课" @click="selectcourse(course.cno)">
+                        <input type="submit" value="退选" @click="cancelcourse(course.cno)">
 					</div>
 				</div>
 			</div>
@@ -109,7 +115,6 @@
 			cno:null,
 			tname:null,
 			allcourse:[],
-			choice:null,
 		},
 		methods:{
 			getcourse:function(){
@@ -131,7 +136,7 @@
 			        else{
 			            alert("选课失败");
 			        }
-			    })
+			    });
 			},
 			cancelcourse:function(parm){
 			    this.$http.post("/canclecourse",{cno:parm},{emulateJSON:true}).then(function(value){
@@ -142,7 +147,7 @@
 			        else{
 			            alert("退选失败");
 			        }
-			    })
+			    });
 			},
 			getcoursebytype:function(parm){
 			    console.log(parm);
@@ -154,6 +159,7 @@
 			    	}
 			    }
 			    this.courses = arr ;
+			    console.log(arr);
 			}
 		}
 	})

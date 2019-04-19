@@ -64,7 +64,7 @@
 		<div>
   		<span v-if="start!=null">{{start}}</span>
   		<span v-if="semester!=null">{{semester}}</span>
-  		<input type="submit" value="查询" @click="getcoursetable(semester)">
+  		<input type="submit" value="查询" @click="getcoursetable()">
 		</div>
   		<h3 style="text-align:center">XXX的课表</h3>
   		<table style="width:100%;">
@@ -95,7 +95,7 @@
 						<span>周日</span>
 					</td>
 				</tr>
-				<tr>
+				<tr v-for="course in courses">
 					<td class="one_table_title">
 						<span>1</span>
 					</td>
@@ -114,235 +114,6 @@
 					<td class="one_table_title">
 					</td>
 				</tr>
-				<tr>
-					<td class="one_table_title">
-						<span>2</span>
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-				</tr>
-				<tr>
-					<td class="one_table_title">
-						<span>3</span>
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-				</tr>
-				<tr>
-					<td class="one_table_title">
-						<span>4</span>
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-				</tr>
-				<tr>
-					<td class="one_table_title">
-						<span>5</span>
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-				</tr>
-				<tr>
-					<td class="one_table_title">
-						<span>6</span>
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-				</tr>
-				<tr>
-					<td class="one_table_title">
-						<span>7</span>
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-				</tr>
-				<tr>
-					<td class="one_table_title">
-						<span>8</span>
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-				</tr>
-				<tr>
-					<td class="one_table_title">
-						<span>9</span>
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-				</tr>
-				<tr>
-					<td class="one_table_title">
-						<span>10</span>
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-				</tr>
-				<tr>
-					<td class="one_table_title">
-						<span>11</span>
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-				</tr>
-				<tr>
-					<td class="one_table_title">
-						<span>12</span>
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-				</tr>
-				<tr>
-					<td class="one_table_title">
-						<span>13</span>
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-					<td class="one_table_title">
-					</td>
-				</tr>
-
   			</tbody>
   		</table>
   	</div>
@@ -357,15 +128,19 @@
   			data:{
   				start:null,
   				semester:null,
+  				courses:[],
   			},
   			methods:{
-  				getcoursetable:function(parm){
-  					console.log(parm);
-  					this.$http.get("/getcoursetable/",{semesterid:parm}).then(function(value){
+  				getcoursetable:function(){
+  					console.log(this.semester);
+  					console.log(this.start);
+  					this.$http.get("/getcoursetable/",{params:{semester:this.semester,start:this.start}}).then(function(value){
   						console.log(value.body.data);
-  					}),function(reason){
+  						courses = value.body.data;
+  					},function(reason){
+  						console.log(reason);
   						alert("请求出错");
-  					}
+  					});
   				}
   			}
   		})
