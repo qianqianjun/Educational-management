@@ -1,11 +1,14 @@
 package buct.software.controller;
+import buct.software.domain.College;
 import buct.software.domain.SelectCourse;
 import buct.software.domain.Semester;
 import buct.software.domain.User;
 import buct.software.service.CollegeService;
 import buct.software.service.SelectCourseService;
 import buct.software.service.SemesterService;
+import buct.software.utils.ResponseMessage;
 import buct.software.views.SelectCourseView;
+import org.apache.poi.hssf.record.ObjRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,4 +79,15 @@ public class SelectCourseControllerPage {
         return "coursetable";
     }
 
+    @GetMapping("/selectcoursemobile")
+    public String selectcoursemobile(Map<String, Object> parmMap){
+        ResponseMessage res=collegeService.getAllCollege();
+        List<College> collegeList=(List<College>) res.getData();
+        parmMap.put("collegelist",collegeList);
+        return "selectcoursemobile";
+    }
+    @GetMapping("/coursetablemobile")
+    public String coursetablemobile(Map<String, Object> parmMap){
+        return "coursetablemobile";
+    }
 }
