@@ -6,7 +6,9 @@ import buct.software.domain.User;
 import buct.software.service.CollegeService;
 import buct.software.service.SelectCourseService;
 import buct.software.service.SemesterService;
+import buct.software.utils.ResponseMessage;
 import buct.software.views.SelectCourseView;
+import org.apache.poi.hssf.record.ObjRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,8 +75,21 @@ public class SelectCourseControllerPage {
         Integer semesterId=semesterService.getCurrentSemesterId();
         ArrayList<SelectCourseView> courseTable=(ArrayList<SelectCourseView>)
                 selectCourseService.getCourseTable(semesterId,sno);
+        List<Semester> semesters=semesterService.getSemesterDomain();
         parMap.put("coursetable",courseTable);
+        parMap.put("semesterlist",semesters);
         return "coursetable";
     }
 
+    @GetMapping("/selectcoursemobile")
+    public String selectcoursemobile(Map<String, Object> parmMap){
+        ResponseMessage res=collegeService.getAllCollege();
+        List<College> collegeList=(List<College>) res.getData();
+        parmMap.put("collegelist",collegeList);
+        return "selectcoursemobile";
+    }
+    @GetMapping("/coursetablemobile")
+    public String coursetablemobile(Map<String, Object> parmMap){
+        return "coursetablemobile";
+    }
 }

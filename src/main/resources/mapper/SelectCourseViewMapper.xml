@@ -54,6 +54,9 @@
                 <if test="capacity!=2">
                     and scheduling.capacity > #{capacity}
                 </if>
+                <if test="capacity==2">
+                    and scheduling.capacity =0
+                </if>
             </if>
             <if test="cno != null">
                 and  scheduling.cno= #{cno}
