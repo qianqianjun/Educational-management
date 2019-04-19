@@ -164,7 +164,10 @@ public class LoginController {
         session.setAttribute("user",null);
         return "redirect:/index";
     }
-
+    @RequestMapping(value="/mobilelogin")
+    public String mobilelogin(){
+        return "mobilelogin";
+    }
 }
 
 
