@@ -51,12 +51,8 @@
 						<UL class="list-group" id="right_ul_xsxt" data-listidx="0"></UL>
 					</div>
 				</div>
-				<tr th:each="course : ${allcourses}">
-					<td>[[ ${course.cname} ]]</td>
+				<tr th:each="course : ${courseselectedlist}">
 					<td>[[ ${course.cno} ]]</td>
-					<td>[[ ${course.tname} ]]</td>
-					<td>[[ ${course.address} ]]</td>
-					<div>[[ ${course.description} ]]</div>
 				</tr>
 				<!--这里写的是已选课的列表-->
 			</div>		 

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 引入 jQuery Mobile 样式 -->
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- 引入 jQuery 库 -->
+    <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <!-- 引入 jQuery Mobile 库 -->
+    <script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <style type="text/css">
+        th {
+            border-bottom: 1px solid #d6d6d6;
+        }
+
+        tr:nth-child(even) {
+            background: #e9e9e9;
+        }
+
+        #btn-search{
+            position: fixed;
+            top: 16%;
+            right: 2%;
+            z-index: 2;
+        }
+
+        #btn-add{
+            position: fixed;
+            top: 22%;
+            right: 2%;
+            z-index: 2;
+        }
+
+        #pagebox{
+            text-align: center;
+        }
+
+    </style>
+
+    <meta charset="UTF-8">
+    <meta charset="gbk"/>
+    <title>Login</title>
+</head>
+<body>
+<div data-role="page" id="Homepage">
+
+    <!-- 面板 -->
+    <div data-role="panel" id="myPanel">
+        <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
+        <a href="#" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
+        <a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
+        <a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">成绩查询</a>
+        <a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">已选论题</a>
+        <a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">查看论题</a>
+    </div>
+
+    <!-- 头部 -->
+    <div data-role="header">
+        <form  role="form" action="/logout" method="post">
+            <div>
+                <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">更多</a>
+                <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right">注销</button>
+            </div>
+        </form>
+        <h1>教务管理系统</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <div id="studentInform" border-top:1px solid #000>
+            <table data-role="table" class="ui-responsive">
+                <thead>
+                <tr>
+                    <th v-model="sname">姓名</th>
+                    <th v-model="college">学院</th>
+                    <th v-model="major">专业</th>
+                    <th v-model="class">班级</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>[[${sname}]]</td>
+                    <td>[[${major}]]</td>
+                    <td>[[${college}]]</td>
+                    <td>[[${Klass}]]</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="newInform" data-role="collapsibleset">
+            <div id="news">
+                <h3>通知</h3>
+                <a href="#">消息</a>
+            </div>
+            <div id="newClass">
+                <h3>课表</h3>
+                <a href="#">课程</a>
+            </div>
+            <div id="newGrade">
+                <h3>成绩</h3>
+                <a href="#">成绩</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div data-role="footer" data-position="fixed">
+        <h1>版权所有</h1>
+    </div>
+
+    <script>
+        new Vue({
+            el: 'userInform',
+            data:{
+                sno:null,
+                sname:null,
+                major:null,
+                userInform:[]
+            }
+        })
+    </script>
+</div>
+
+</body>
+</html>

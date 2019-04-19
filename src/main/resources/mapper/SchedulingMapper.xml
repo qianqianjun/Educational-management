@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="buct.software.dao.SchedulingDao">
     <resultMap id="getCourseMap" type="buct.software.views.SchedulingView">
-        <id property="tno" javaType="String" column="tno"  jdbcType="VARCHAR" ></id>
+        <id property="tno" javaType="Integer" column="tno"  jdbcType="INTEGER" ></id>
         <id property="address" javaType="String" column="address"  jdbcType="VARCHAR" ></id>
         <id property="time" javaType="String" column="course_time"  jdbcType="VARCHAR" ></id>
         <id property="status" javaType="String" column="status"  jdbcType="VARCHAR" ></id>
@@ -52,5 +52,22 @@
           majorid=#{majorId}
         and
           grade=#{grade}
+    </select>
+
+    <!--下面的三条用于老师时间，学生时间，教室使用时间的冲突检测。  高谦编写-->
+    <select id="getTeacherTaskTime" resultType="String">
+        select scheduling.course_time from scheduling where scheduling.semesterid=#{semesterId}
+        and scheduling.tno=#{tno}
+    </select>
+
+    <select id="getStudentTaskTime" resultType="String">
+        select scheduling.course_time from scheduling
+        left join select_course
+        on select_course.semesterid=scheduling.semesterid and select_course.cno=scheduling.cno
+        where select_course.semesterid=#{semesterId} and select_course.sno=#{sno}
+    </select>
+
+    <select id="getRoomTaskTime" resultType="String">
+        select scheduling.course_time from scheduling where scheduling.semesterid=#{semesterId} and scheduling.address=#{room}
     </select>
 </mapper>

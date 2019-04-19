@@ -2,9 +2,14 @@ package buct.software.service;
 import buct.software.dao.SelectCourseDao;
 import buct.software.domain.ScheduleMajor;
 import buct.software.domain.SelectCourse;
+import buct.software.domain.Student;
 import buct.software.views.SelectCourseView;
+import buct.software.views.StudentGradeIndexView;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -112,15 +117,29 @@ public class SelectCourseService {
 
     /**
      * 得到课程表的函数
-     * @param semesterId  学期id
+     * @param semester  学期id
      * @param sno 学生学号
      * @return  学生课表
      */
-    public List<SelectCourseView> getCourseTable(Integer semesterId, Integer sno) {
+    public List<SelectCourseView> getCourseTable(Integer semester, Integer sno) {
         SelectCourse selectCourse=new SelectCourse();
-        selectCourse.setSemesterId(semesterId);
+        selectCourse.setSemesterId(semester);
         selectCourse.setSno(sno);
         List<SelectCourseView> courseTable=selectCourseDao.getCourseTable(selectCourse);
         return courseTable;
+    }
+
+    /**
+     * 将学生的成绩信息显示在界面上。
+     * @param semesterId
+     * @param sno
+     * @return
+     */
+    public List<StudentGradeIndexView> getGrade(Integer semesterId,Integer sno){
+        SelectCourse selectCourse=new SelectCourse();
+        selectCourse.setSno(sno);
+        selectCourse.setSemesterId(semesterId);
+        List<StudentGradeIndexView> lists=selectCourseDao.getGrade(selectCourse);
+        return lists;
     }
 }

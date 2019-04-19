@@ -32,8 +32,7 @@ public class GradeManagementControllerApi {
     /* 学生端*/
     /**
      * 学生某学期的成绩信息。
-     * @param semesterId   学期id
-     * @param sno 学号
+     * @param request
      * @return  这个学期的课表
      */
     @RequestMapping("/getcoursegrade")
