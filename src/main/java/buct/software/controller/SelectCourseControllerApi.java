@@ -41,10 +41,21 @@ public class SelectCourseControllerApi {
                                         @RequestParam("capacity") String capacity,
                                         @RequestParam("cno") String cno,
                                         @RequestParam("cname") String cname,
-                                        @RequestParam("tname") String tname){
+                                        @RequestParam("tname") String tname,
+                                        HttpServletRequest request){
+        Integer semesterId=semesterService.getCurrentSemesterId();
+        User user=(User)request.getAttribute("user");
+        Integer sno=user.getAccount();
         ArrayList<SelectCourseView> courseViews=
                 (ArrayList<SelectCourseView>) selectCourseService.getCourseList(college,capacity,cno,cname,tname);
-        return new ResponseMessage(ResponseMessage.SUCCESS,"请求成功",courseViews);
+        ArrayList<SelectCourse> selectedList=
+                (ArrayList<SelectCourse>) selectCourseService.getSelectedCourseList(sno,semesterId);
+
+
+        Object[] res=new Object[2];
+        res[0]=courseViews;
+        res[1]=selectedList;
+        return new ResponseMessage(ResponseMessage.SUCCESS,"请求成功",res);
     }
 
     /**
@@ -135,10 +146,28 @@ public class SelectCourseControllerApi {
     }
 
 
-
+    /**
+     * 获取所有学期的api 接口。
+     * @return
+     */
     @GetMapping("/getsemesterlist")
     public ResponseMessage getsemesterlist(){
         List<Semester> semesters=semesterService.getSemesterDomain();
         return new ResponseMessage(200,"全部的信息",semesters);
     }
+
+
+    /**
+     *  这是一个测试的接口，可以直接删除。
+     * @return
+     */
+    @GetMapping("/test")
+    public ResponseMessage test(){
+        Integer sno=2016014302;
+        Integer semesterId=1;
+        ArrayList<SelectCourse> selectedList=
+                (ArrayList<SelectCourse>) selectCourseService.getSelectedCourseList(sno,semesterId);
+        return new ResponseMessage(200,"请求成功！",selectedList);
+    }
+
 }
