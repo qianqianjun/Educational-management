@@ -73,7 +73,9 @@ public class SelectCourseControllerPage {
         Integer semesterId=semesterService.getCurrentSemesterId();
         ArrayList<SelectCourseView> courseTable=(ArrayList<SelectCourseView>)
                 selectCourseService.getCourseTable(semesterId,sno);
+        List<Semester> semesters=semesterService.getSemesterDomain();
         parMap.put("coursetable",courseTable);
+        parMap.put("semesterlist",semesters);
         return "coursetable";
     }
 
