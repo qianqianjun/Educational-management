@@ -125,6 +125,10 @@ public class SelectCourseControllerApi {
         User user=(User) session.getAttribute("user");
         Integer sno=user.getAccount();
         Semester temp=semesterService.getSemesterByStartAndSemester(start,semester);
+        if(temp==null){
+            // 当前没有这个学期
+            return new ResponseMessage(ResponseMessage.semesterNotFound,"当前没有这个学期",null);
+        }
         ArrayList<SelectCourseView> courseTable=(ArrayList<SelectCourseView>)
                 selectCourseService.getCourseTable(temp.getSemesterId(),sno);
         return new ResponseMessage(ResponseMessage.SUCCESS,"查询成功！",courseTable);
