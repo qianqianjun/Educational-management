@@ -75,10 +75,10 @@
             </div>
         </div>
 		<div class="panel-group" id="panel-431649">
-			<div class="panel panel-default" v-for="course in courses">
-				<div class="panel-heading">
-					 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-431649"
-                        v-bind:href="'#'+course.cno">{{course.cname}}/{{course.college}}/{{course.tname}}</a>
+			<div class="panel panel-default" v-for="course in course_selected">
+				<div class="panel-heading" style="background:#94f575e3">
+					<a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-431649"
+					   v-bind:href="'#'+course.cno">{{course.cname}}/{{course.college}}/{{course.tname}}</a>
 				</div>
 				<div v-bind:id="course.cno" class="panel-collapse collapse">
 					<div class="panel-body">
@@ -89,8 +89,30 @@
 							课程容量:{{course.capacity}}
 							<br>
 							课程描述:{{course.description}}</p>
-						<input type="submit" value="选课" @click="selectcourse(course.cno)">
-                        <input type="submit" value="退选" @click="cancelcourse(course.cno)">
+						<div>
+							<input type="submit" class="btn btn-default btn-danger" value="退选" @click="canclecourse(course.cno)">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default" v-for="course in course_not_selected">
+				<div class="panel-heading">
+					<a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-431649"
+					   v-bind:href="'#'+course.cno">{{course.cname}}/{{course.college}}/{{course.tname}}</a>
+				</div>
+				<div v-bind:id="course.cno" class="panel-collapse collapse">
+					<div class="panel-body">
+						<p>上课地点:{{course.address}}
+							<br>
+							上课时间:{{course.startWeek}}-{{course.endWeek}}周周{{course.week}}{{course.startStep}}-{{course.endStep}}节
+							<br>
+							课程容量:{{course.capacity}}
+							<br>
+							课程描述:{{course.description}}</p>
+						<div>
+							<input type="submit" class="btn btn-default btn-primary" value="选课" @click="selectcourse(course.cno)">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -108,21 +130,43 @@
 	var one = new Vue({
 		el:"#pageone",
 		data:{
+			hide1:null,
+			hide2:null,
 			cname:null,
 			college:null,
 			capacity:null,
 			courses:[],
 			cno:null,
 			tname:null,
-			allcourse:[],
+			all_course:null,
+			course_selected:null,
+			course_not_selected:null,
+			course_selected_cno:null,
 		},
 		methods:{
+			contains:function(arr,elem){
+				for(var i=0;i<arr.length;i++){
+					if(arr[i].cno==elem.cno){ return true;}
+				}
+				return false;
+			},
 			getcourse:function(){
 				this.$http.post("/filtercourse/",{college:this.college,cname:this.cname,
 				capacity:this.capacity,cno:this.cno,tname:this.tname},{emulateJSON:true}).then(function(value){
-					this.courses=value.body.data;
-					this.allcourse=value.body.data;
-					console.log(value.body.data.cno);
+					this.courses=value.body.data[0];
+					this.all_course=value.body.data[0];
+					this.course_selected_cno = value.body.data[1];
+					console.log(value.body.data);
+					this.course_selected=[];
+					this.course_not_selected=[];
+					for(var i=0;i<this.all_course.length;i++){
+						if(this.contains(this.course_selected_cno,this.all_course[i])){
+							this.course_selected.push(this.all_course[i]);
+						}
+						else{
+							this.course_not_selected.push(this.all_course[i]);
+						}
+					}
 				},function(reason){
 					alert("请求出错");
 				});
@@ -130,19 +174,51 @@
 			selectcourse:function(parm){
 			    this.$http.post("/setcourseselected",{cno:parm},{emulateJSON:true}).then(function(value){
 			        if(value.body.code==200){
+			            var index=0;
+			            for(var i=0;i<this.course_not_selected.length;i++){
+			            	if(this.course_not_selected[i].cno==parm){
+			            		this.course_selected.push(this.course_not_selected[i]);
+			            		index=i;
+			            		break;
+			            	}
+			            }
+			            var arr=new Array();
+			            for(var k=0;k<this.course_not_selected.length;k++){
+			            	if(k!=index){
+			            		arr.push(this.course_not_selected[k]);
+			            	}
+			            }
+			            this.course_not_selected=arr;
+			            console.log(this.course_selected);
+			            console.log(this.course_not_selected);
 			            alert("选课成功");
-			            this.value="退选"
 			        }
 			        else{
 			            alert("选课失败");
 			        }
 			    });
 			},
-			cancelcourse:function(parm){
+			canclecourse:function(parm){
 			    this.$http.post("/canclecourse",{cno:parm},{emulateJSON:true}).then(function(value){
 			        if(value.body.code==200){
+			            var index=0;
+			            for(var i=0;i<this.course_selected.length;i++){
+			            	if(this.course_selected[i].cno==parm){
+			            		this.course_not_selected.push(this.course_selected[i]);
+			            		index=i;
+			            		break;
+			            	}
+			            }
+			            var arr=new Array();
+			            for(var k=0;k<this.course_selected.length;k++){
+			            	if(k!=index){
+			            		arr.push(this.course_selected[k]);
+			            	}
+			            }
+			            this.course_selected=arr;
+			            console.log(this.course_selected);
+			            console.log(this.course_not_selected);
 			            alert("退选成功");
-			            this.value="选课"
 			        }
 			        else{
 			            alert("退选失败");
@@ -152,10 +228,10 @@
 			getcoursebytype:function(parm){
 			    console.log(parm);
 			    var arr=new Array();
-			    console.log(this.allcourse);
-			    for(var i = 0;i<this.allcourse.length;i++){
-			    	if(parm == this.allcourse[i].courseType){
-			    		arr.push(this.allcourse[i]);
+			    console.log(this.all_course);
+			    for(var i = 0;i<this.all_course.length;i++){
+			    	if(parm == this.all_course[i].courseType){
+			    		arr.push(this.all_course[i]);
 			    	}
 			    }
 			    this.courses = arr ;
