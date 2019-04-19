@@ -1,4 +1,5 @@
 package buct.software.controller;
+import buct.software.domain.College;
 import buct.software.domain.SelectCourse;
 import buct.software.domain.Semester;
 import buct.software.domain.User;
@@ -49,10 +50,12 @@ public class SelectCourseControllerPage {
         ArrayList<SelectCourseView> courseViews=
                 (ArrayList<SelectCourseView>)
                         selectCourseService.getAllCourseList(semesterId,majorId);
+
+        ArrayList<College> colleges=(ArrayList<College>) collegeService.getAllCollege().getData();
         parmMap.put("courseselectedlist",selectedList);
         parmMap.put("allcourses",courseViews);
         parmMap.put("semesterlist",semesters);
-
+        parmMap.put("colleges",colleges);
         return "selectcourse";
     }
 
