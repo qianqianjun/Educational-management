@@ -44,7 +44,8 @@ public class SelectCourseControllerApi {
                                         @RequestParam("tname") String tname,
                                         HttpServletRequest request){
         Integer semesterId=semesterService.getCurrentSemesterId();
-        User user=(User)request.getAttribute("user");
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user");
         Integer sno=user.getAccount();
         ArrayList<SelectCourseView> courseViews=
                 (ArrayList<SelectCourseView>) selectCourseService.getCourseList(college,capacity,cno,cname,tname);
