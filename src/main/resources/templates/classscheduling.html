@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>教务后台管理系统</title>
+  <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
+   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+</head>
+
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">教务后台管理系统</a>
+    <!--input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"-->
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="#">登出</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="home"></span>
+                首页
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="check-square"></span>
+                权限管理
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="users"></span>
+                学生信息维护
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="users"></span>
+                教师信息维护
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="calendar"></span>
+                学期管理
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">
+                <span data-feather="bar-chart-2"></span>
+                排课管理
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="book-open"></span>
+                毕业设计管理
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="help-circle"></span>
+                帮助
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+          <!DOCTYPE html >
+          <html>
+          <head>
+              <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+              <title>排课管理</title>
+              <script language="javascript"  type="text/javascript">
+                    <!--课程安排-->
+                    var flag_1=0;
+                    function $(id)
+                    {
+                        return document.getElementById(id);
+                        }
+                    function controlDIV1()
+                    {
+                        if(flag_1==0)
+                        {
+                            dv1.style.display="block";
+                            btn1.value="取消";
+                            flag_1=1;
+                        }
+                        else
+                        {
+                            dv1.style.display="none";
+                            btn1.value="查询";
+                            flag_1=0;
+                        }
+                        }
+                </script>
+              <script language="javascript"  type="text/javascript">
+              <!--课表查询-->
+                    var flag_0=0;
+                    function $(id)
+                    {
+                        return document.getElementById(id);
+                        }
+                    function controlDIV0()
+                    {
+                        if(flag_0==0)
+                        {
+                            dv0.style.display="block";
+                            btn0.value="取消";
+                            flag_0=1;
+                        }
+                        else
+                        {
+                            dv0.style.display="none";
+                            btn0.value="查询";
+                            flag_0=0;
+                        }
+                        }
+                </script>
+          </head>
+          <body>
+          <style>
+                body
+                    {
+                        background-color:#d0e4fe;
+                    }
+           </style>
+          <!--下面是课程表-->
+          <fieldset><h5>课程表查询</h5>
+
+              <a>学年</a><input name="学年" type="text" />
+              <a>学期</a><input name="学期" type="text" />
+              <a>学院</a><input name="学院" type="text" />
+              <a>专业</a><input name="专业" type="text" />
+              <input type="button" id="btn0" value="查询" onclick="controlDIV0()"/>
+              <div id="dv0" style="display:none">
+                  <HR>
+                  <h6 align="center">课程表</h6>
+                  <table width="100%" border="5;" cellspacing="1.5;" cellpadding="5;">
+                      <tr class="success">
+                          <td align="center" valign="middle">时间</td>
+                          <td align="center" valign="middle">星期一</td>
+                          <td align="center" valign="middle">星期二</td>
+                          <td align="center" valign="middle">星期三</td>
+                          <td align="center" valign="middle">星期四</td>
+                          <td align="center" valign="middle">星期五</td>
+                          <td align="center" valign="middle">星期六</td>
+                          <td align="center" valign="middle">星期天</td>
+                      </tr>
+                      <tr class="success">
+                          <td rowspan="5" align="center" valign="middle">上午</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                      <tr class="success">
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                      <tr class="success">
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                      <tr class="success">
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                      <tr class="success">
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                      <tr class="success">
+                          <td class="success" rowspan="5" align="center" valign="middle">下午</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                      <tr class="success">
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                      <tr class="success">
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                      <tr class="success">
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                      <tr class="success">
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                      <tr class="success">
+                          <td class="success" rowspan="3" align="center" valign="middle">晚上</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                      <tr class="success">
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                      <tr class="success">
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                          <td align="center" valign="middle">&nbsp;</td>
+                      </tr>
+                  </table>
+              </div>
+          </fieldset>
+          <HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="100%" color=black SIZE=5>
+        <!--下面是课程安排-->
+          <fieldset><legend><h5>课程安排</h5></legend>
+              <a>学年</a><input name="学年" type="text" />
+              <a>学期</a><input name="学期" type="text" />
+              <a>学院</a><input name="学院" type="text" />
+              <a>专业</a><input name="专业" type="text" />
+              <input type="button" id="btn1" value="查询" onclick="controlDIV1()"/>
+
+              <div id="dv1" style="display:none">
+                <HR>
+                  <table width="75%" border="2" cellspacing="1.5" cellpadding="5">
+                      <li style="width:100%;height:20px;font-size:15px;line-height:20px;background:#39F;color:#ffffff;text-align:left">XXXX年-XXXX年第X学期XXXX专业课程需求表单</li>
+                      <thead>
+                        <tr align="center">
+                            <th>cno</th>
+                            <th>cname</th>
+                            <th>college</th>
+                            <th>description</th>
+                            <th>ifopen</th>
+                            <th>OP</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>高等数学</td>
+                            <td>信息科学技术学院</td>
+                            <td>高等数学是由微积分学，较深入的代数学、几何学以及它们之间的交叉内容所形成的一门基础学科。主要内容包括：数列、极限、微积分、空间解析几何与线性代数、级数、常微分方程。工科、理科、财经类研究生考试的基础科目。</td>
+                            <td>1</td>
+                            <td>
+                                <a href="/schedulingForm">课程安排</a>
+                            </td>
+                        </tr>
+                      </tbody>
+                  </table>
+
+              </div>
+
+
+
+
+          </fieldset>
+          </body>
+          </html>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+  <script>
+    feather.replace()
+  </script>
+
+  <!-- Graphs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+</body>
+
+</html>

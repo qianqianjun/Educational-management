@@ -1,0 +1,274 @@
+<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>教务后台管理系统</title>
+    <link rel="stylesheet"  type="text/css" href="css/dashboard.css"/>
+    <link rel="stylesheet"  type="text/css" href="css/bootstrap.min.css"/>
+
+</head>
+
+<body>
+<nav class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">教务后台管理系统</a>
+    <!--input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"-->
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">登出</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="home"></span>
+                            首页
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="check-square"></span>
+                            权限管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="users"></span>
+                            学生信息维护
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="users"></span>
+                            教师信息维护
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="calendar"></span>
+                            学期管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span data-feather="bar-chart-2"></span>
+                            排课管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="book-open"></span>
+                            毕业设计管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="help-circle"></span>
+                            帮助
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <!--内嵌界面-->
+          <html xmlns="http://www.w3.org/1999/xhtml">
+            <style>
+                body{
+                        background-color:#d0e4fe;
+                }
+                h1{
+                        color:orange;
+                        text-align:center;
+                }
+                p{font-size:20px;
+                }
+            </style>
+            <script>
+                var i = 0;
+                function copy() {
+                    var sourceNode = document.getElementById("div3");
+                    var clonedNode = sourceNode.cloneNode(true);
+                    clonedNode.setAttribute("id", "div-" + i);
+                    sourceNode.parentNode.appendChild(clonedNode);
+                    i=i+1;
+                }
+            </script>
+            <body>
+            <div id="div0">
+                <h5>教师安排</h5>
+                    <h7>教师：</h7><input type="search" class="header_search" id="search1" placeholder="输入教师工号或名字"/>
+                    <input type="button" id="btn3" value="查询">
+                    <HR>
+                    <table width="75%" border="2" cellspacing="1.5" cellpadding="5">
+                        <tr>
+                            <td align="center" valign="middle">tno</td>
+                            <td align="center" valign="middle">tname</td>
+                            <td align="center" valign="middle">description</td>
+                            <td align="center" valign="middle">OP</td>
+                        </tr>
+                    </table>
+            </div>
+            <div id="div1">
+                <h5>教室安排</h5>
+                <h7>教室：</h7><input type="search" class="header_search" id="search_Input" placeholder="输入教室编号"/>
+                <input type="button" id="btn4" value="查询">
+                <HR>
+                <table width="75%" border="2" cellspacing="1.5" cellpadding="5">
+                    <tr>
+                        <td align="center" valign="middle">campus</td>
+                        <td align="center" valign="middle">class_no</td>
+                        <td align="center" valign="middle">OP</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="div2">
+                <h5>时间安排</h5>
+                <hr>
+                <div id="div4" align="right">
+                    <input type="button" id="btn5" value="添加其它时间段" onclick="copy()" >
+                </div>
+                <div id="div3">
+                    <form action="" method="get">
+                        <label>周数：
+                            <select id="select1" name="time_start" style="width:70px;height:25px" onchange="sel()">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                            </select>
+
+                        </label>
+                        <label>至
+                            <select name="time_end" style="width:70px;height:25px">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                            </select>
+                        </label>
+                        <label>星期：
+                            <select name="week" style="width:70px;height:25px">
+                                <option value="1">星期一</option>
+                                <option value="2">星期二</option>
+                                <option value="3">星期三</option>
+                                <option value="4">星期四</option>
+                                <option value="5">星期五</option>
+                                <option value="6">星期六</option>
+                                <option value="7">星期日</option>
+                            </select>
+                        </label>
+                        <label>节数：
+                            <select name="section1" style="width:70px;height:25px">
+                                <option value="1">第一节</option>
+                                <option value="2">第二节</option>
+                                <option value="3">第三节</option>
+                                <option value="4">第四节</option>
+                                <option value="5">第五节</option>
+                                <option value="6">第六节</option>
+                                <option value="7">第七节</option>
+                                <option value="8">第八节</option>
+                                <option value="9">第九节</option>
+                                <option value="10">第十节</option>
+                                <option value="11">第十一节</option>
+                                <option value="12">第十二节</option>
+                                <option value="13">第十三节</option>
+                            </select>
+                        </label>
+                        <label>至
+                            <select name="section2" style="width:70px;height:25px">
+                                <option value="1">第一节</option>
+                                <option value="2">第二节</option>
+                                <option value="3">第三节</option>
+                                <option value="4">第四节</option>
+                                <option value="5">第五节</option>
+                                <option value="6">第六节</option>
+                                <option value="7">第七节</option>
+                                <option value="8">第八节</option>
+                                <option value="9">第九节</option>
+                                <option value="10">第十节</option>
+                                <option value="11">第十一节</option>
+                                <option value="12">第十二节</option>
+                                <option value="13">第十三节</option>
+                            </select>
+                        </label>
+                    </form>
+                    <HR>
+                </div>
+            </div>
+            <div id="div5" align="right" style=" padding-left:100px">
+                <button formaction="" >确认</button>
+                <a style="padding-right:100px"></a>
+                <button formaction="" >取消</button>
+            </div>
+            </body>
+            </html>
+
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+  ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+  </script>
+
+<!-- Graphs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+</body>
+
+</html>
+
