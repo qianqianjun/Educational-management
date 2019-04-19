@@ -75,16 +75,16 @@
             <table data-role="table" class="ui-responsive">
                 <thead>
                 <tr>
-                    <th v-model="college">学院</th>
+                    <th v-model="colege">学院</th>
                     <th v-model="major">专业</th>
-                    <th v-model="class">班级</th>
+                    <th v-model="klass">班级</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>[[${major}]]</td>
-                    <td>[[${college}]]</td>
-                    <td>[[${Klass}]]</td>
+                    <td>[[${userinfo.major}]]</td>
+                    <td>[[${userinfo.college}]]</td>
+                    <td>[[${userinfo.klass}]]</td>
                 </tr>
                 </tbody>
             </table>
@@ -100,13 +100,30 @@
         <div id="newClass" style="border-style: ridge">
             <p1>课表</p1>
             <br>
-            <a href="#">软件工程 A阶202</a>
+            <p th:if="${#lists.isEmpty(courseTable)}" style="margin-left: 20px;">当前没有选课信息</p>
+            <a class="list-group-item" th:each="course : ${courseTable}">
+							<span class="title">
+								[[ ${course.startWeek} ]]-[[${course.endWeek}]]周
+								([[ ${course.startStep} ]]-[[${course.endStep}]]节)
+								-星期[[${course.week}]]-[[${course.cname}]]-
+								[[${course.address}]]-
+								[[${course.tname}]]
+							</span>
+            </a>
+            <!--<a href="#">软件工程 A阶202</a>-->
         </div>
         <br>
         <div id="newGrade" style="border-style: ridge">
             <p1>成绩</p1>
             <br>
-            <a href="#">Java程序设计</a>
+            <p th:if="${#lists.isEmpty(gradeList)}" style="margin-left: 20px;">当前学期没有成绩信息</p>
+            <div class="list-group">
+                <a class="list-group-item" th:each="grade : ${gradeList}">
+                    <span class="title"> [[${grade.start}]]-[[${grade.end}]]-[[${grade.semester}]]-[[${grade.typeStr}]]-[[${grade.cname}]] </span>
+                    <span class="fraction float_r">[[${grade.totalScore}]]</span>
+                </a>
+            </div>
+            <!--<a href="#">Java程序设计</a>-->
         </div>
     </div>
 
