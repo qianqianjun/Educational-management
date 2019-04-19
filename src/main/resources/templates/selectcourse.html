@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>学生选课系统</title>
         <!--网站引用Vue文件 -->
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
-    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
 
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="css/zftal-ui.css" />
     <link href="css/selectcourse.css" rel="stylesheet" type="text/css">
 </head>
-<BODY>
+<BODY id="selectcourse_content">
 <header class="navbar-inverse top2">
 	<div class="container" id="navbar_container">
 		<div class="container">
@@ -33,7 +33,7 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">&nbsp;</div>
 			<!--在下面开始写布局部分-->
-			<div id="selectcourse_content">
+			
             <!--第一部分：查询-->
 			<form role="form" name="form1">
 				<div class="form-group">
@@ -51,13 +51,13 @@
 				<tr>
 					<th><label>学院:</label></th>
 					<td>
-						<label @click="getdata()">
+						<label>
 							所有
-							<input type="radio" name="college" value="" checked v-model="input_college">
+							<input type="radio" name="college" value="" checked v-model="input_college" @click="getdata()">
 						</label>
-						<label class="section" th:each="college : ${colleges}" @click="getdata()">
+						<label class="section" th:each="college : ${colleges}">
 							[[${college.collegeName}]]
-							<input type="radio" name="college"  th:value="${college.collegeName}" v-model="input_college"/>
+							<input type="radio" name="college"  th:value="${college.collegeName}" v-model="input_college" @click="getdata()"/>
 						</label>
 					</td>
 				</tr>
@@ -100,10 +100,10 @@
 								<div class="tab-pane active" id="panel-first">
 									<!-- 如果存在记录 -->
 									<div class="panel-group"  id="panel-1">
-										<div v-if="msgs == null" style="width: 200px;margin: auto;">
+										<div v-if="course_selected_place.length + course_not_selected_place.length == 0" style="width: 200px;margin: auto;">
 											没有可用的选课记录
 										</div>
-										<div class="panel panel-default" v-for= "msg in msgs" v-if="msg.courseStatus == 1" v-cloak>
+										<div class="panel panel-default" v-for= "msg in msgs[0]" v-if="msg.courseStatus == 1" v-cloak>
 											<div class="panel-heading">
 												 <a class="panel-title" data-toggle="collapse" data-parent="#panel-1" v-bind:href="'#panel-element-'+msg.cno">{{msg.cno}}-{{msg.cname}}(教课老师:{{msg.tname}})-{{msg.college}} </a>
 											</div>
@@ -114,8 +114,8 @@
 													<div style="font-weight: bold;">上课地点:{{msg.address}}</div>
 													<div style="font-weight: bold;">剩余容量:{{msg.capacity}}</div>
 													<div style="text-align: right;">
-													<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.capacity,1)" @click="select_course(msg.cno)">选课</button>
-														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.capacity,2)" @click="cancel_course(msg.cno)">退选</button></div>
+													<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)" @click="select_course(msg.cno)">选课</button>
+														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.cno,msg.capacity,2)" @click="cancel_course(msg.cno)">退选</button></div>
 												</div>
 											</div>
 										</div>
@@ -126,10 +126,10 @@
 									<div class="tab-pane active" id="panel-second">
 										<!-- 如果存在记录 -->
 										<div class="panel-group"  id="panel-2">
-											<div v-if="msgs == null" style="width: 200px;margin: auto;">
+											<div v-if="course_selected_place.length + course_not_selected_place.length == 0" style="width: 200px;margin: auto;">
 												没有可用的选课记录
 											</div>
-											<div class="panel panel-default" v-for= "msg in msgs" v-if="msg.courseStatus == 2" v-cloak>
+											<div class="panel panel-default" v-for= "msg in msgs[0]" v-if="msg.courseStatus == 2" v-cloak>
 												<div class="panel-heading">
 													 <a class="panel-title" data-toggle="collapse" data-parent="#panel-2" v-bind:href="'#panel-element-'+msg.cno">{{msg.cno}}-{{msg.cname}}(教课老师:{{msg.tname}})-{{msg.college}} </a>
 												</div>
@@ -140,8 +140,8 @@
 														<div style="font-weight: bold;">上课地点:{{msg.address}}</div>
 														<div style="font-weight: bold;">剩余容量:{{msg.capacity}}</div>
 														<div style="text-align: right;">
-														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.capacity,1)" @click="select_course(msg.cno)">选课</button>
-														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.capacity,2)" @click="cancel_course(msg.cno)">退选</button></div>
+														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)" @click="select_course(msg.cno)">选课</button>
+														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.cno,msg.capacity,2)" @click="cancel_course(msg.cno)">退选</button></div>
 													</div>
 												</div>
 											</div>
@@ -153,10 +153,10 @@
 									<div class="tab-pane active" id="panel-third">
 									<!-- 如果存在记录 -->
 										<div class="panel-group"  id="panel-3">
-											<div v-if="msgs == null" style="width: 200px;margin: auto;">
+											<div v-if="course_selected_place.length + course_not_selected_place.length == 0" style="width: 200px;margin: auto;">
 												没有可用的选课记录
 											</div>
-											<div class="panel panel-default" v-for= "msg in msgs" v-if="msg.courseStatus == 3" v-cloak>
+											<div class="panel panel-default" v-for= "msg in msgs[0]" v-if="msg.courseStatus == 3" v-cloak>
 												<div class="panel-heading">
 													 <a class="panel-title" data-toggle="collapse" data-parent="#panel-3" v-bind:href="'#panel-element-'+msg.cno">{{msg.cno}}-{{msg.cname}}(教课老师:{{msg.tname}})-{{msg.college}} </a>
 												</div>
@@ -167,8 +167,8 @@
 														<div style="font-weight: bold;">上课地点:{{msg.address}}</div>
 														<div style="font-weight: bold;">剩余容量:{{msg.capacity}}</div>
 														<div style="text-align: right;">
-														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.capacity,1)" @click="select_course(msg.cno)">选课</button>
-														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.capacity,2)" @click="cancel_course(msg.cno)">退选</button></div>
+														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)" @click="select_course(msg.cno)">选课</button>
+														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.cno,msg.capacity,2)" @click="cancel_course(msg.cno)">退选</button></div>
 														</div>
 												</div>
 											</div>
@@ -182,125 +182,291 @@
 			</div>
 		</div>
 		</div>
-		<script th:inline="javascript">
-			var vm = new Vue({
-				el:"#selectcourse_content",
-				data:{
-					input_search:"",
-					msgs:null,
-					input_college:"",
-					input_capacity:""
-				},
-				methods:{
-					getdata:function(){						
-						this.$http.post("/filtercourse",{
-							college:this.input_college,
-							cno:"",
-							cname:"",
-							tname:"",
-							capacity:this.input_capacity
-						},
-							{emulateJSON:true}).then(function (value) {
-			                console.log(value)
-			                this.msgs=value.body.data;
-
-			            },function (reason) {
-			                alert("请求出错");
-			            })
-					},
-					canbeselect:function(capacity,flag){
-						if(flag == 1){
-							if(capacity != 0)
-								return '';
-							else 
-								return 'disabled';
-						}
-						else{
-							//退选选项
-							if(capacity == 0)
-								return 'disabled';
-							else 
-								return '';
-						}
-					},
-					search:function(){
-						
-					},
-					select_course:function(coursenumber){
-						this.$http.post("/setcourseselected",{
-							cno:coursenumber
-						},
-						{emulateJSON:true}).then(function(value){
-							console.log(value)
-							if(value.body.code == 200)
-								alert("选课成功")
-							else
-								alert("选课失败,可能原因:容量不足或已选上")
-						},function(reason){
-							alert("选课失败,可能原因:容量不足或已选上");
-						})
-					},
-					cancel_course:function(coursenumber){
-						this.$http.post("/canclecourse",{
-							cno:coursenumber
-						},
-						{emulateJSON:true}).then(function(value){
-							console.log(value)
-							if(value.body.code == 200)
-								alert("退选成功")
-							else
-								alert("退课失败,可能原因:未选择此课")
-						},function(reason){
-							alert("退课失败,可能原因:未选择此课");
-						})
-					}
-				},
-				mounted:function(){
-					this.getdata()
-				}
-			})
-		</script>
+		
 			<!-- 右侧内容开始 -->
 		<div class="outer" id="left-content">
-			<div class="outer_left">
+			<div class="outer_left" id="outer_left_button">
 				<A class="glyphicon glyphicon-arrow-left btn-lg" href=""></A>
 				<A class="outer_left_xkxx" href="javascript:;">
 					<H5>选课信息</H5>
-					<span>已选 <B id="yxkts" style="margin-bottom: 6px;">0</B></span>
+					<span>已选 <B id="yxkts" style="margin-bottom: 6px;">{{course_selected_place.length}}</B></span>
 				</A>
 			</div>
 			<div class="outer_right" id="wrapper">
 				<div class="right_div" id="right_div" style="margin-top: 10px;">
 					<div class="outer_xkxx_list">
-						<H6>已选课程<span class="pull-right"></span></H6>
-						<UL class="list-group" id="right_ul_xsxt" data-listidx="0"></UL>
+						<div class="page-header">
+						    <h1>
+						        <small>已选课程</small>
+						    </h1>
+						</div>
 					</div>
 				</div>
-				<tr th:each="course : ${courseselectedlist}">
-					<td>[[ ${course.cno} ]]</td>
-				</tr>
+				<!-- 键入已选课程区域 -->
+				<ul class="list-group">
+					<div v-if="course_selected_place.length==0" style="text-align: center;">无选课信息</div>
+					<li class="list-group-item" v-for="place in course_selected_place">
+						<div>
+							{{msgs[0][place].cno}}-{{msgs[0][place].cname}}(教课老师:{{msgs[0][place].tname}})-{{msgs[0][place].college}}
+						</div>
+						<div style="text-align: right;">
+							<button type="button" class="'btn btn-default btn-danger" @click="cancel_course(msgs[0][place].cno)">退选</button>
+						</div>
+					</li>
+				</ul>
 				<!--这里写的是已选课的列表-->
 			</div>
 		</div>
-		<script>
-			$(".outer").animate({width:"40px"},1000);
-			$(".outer_left").click(function() {
-				if($(".outer").css("width")	==	"40px")
+		 <script>
+		 window.onload=function(){
+			$("#left-content").animate({width:"40px"},1000);
+			$("#outer_left_button").click(function() {
+				if($("#left-content").css("width")	==	"40px")
 				{
-					$(".outer").animate({width:"740px"},600);
-					$(".outer_left .glyphicon").addClass("glyphicon-arrow-right");
+					$("#left-content").animate({width:"740px"},600);
+					$("#outer_left_button").addClass("glyphicon-arrow-right");
 				}
 				else
 				{
-					$(".outer").animate({width:"40px"},600);
-					$(".outer_left .glyphicon").removeClass("glyphicon-arrow-right");
+					$("#left-content").animate({width:"40px"},600);
+					$("#outer_left_button").removeClass("glyphicon-arrow-right");
 				}
 			});
+		}
 		</script>
-	</div>
 </div>
+
+<script>
+    
+	var vm = new Vue({
+		el:"#bodyContainer",
+		data:{
+			input_search:"",
+			msgs:[],
+			input_college:"",
+			input_capacity:"",
+			course_not_selected_place:[],
+			course_selected_place:[]
+		},
+		methods:{
+			getdata:function(){
+				this.input_search = ""
+				this.course_selected_place=[]
+				this.course_not_selected_place=[]
+				this.$http.post("/filtercourse",{
+					college:this.input_college,
+					cno:"",
+					cname:"",
+					tname:"",
+					capacity:this.input_capacity
+				},
+					{emulateJSON:true}).then(function (value) {
+	                this.msgs=value.body.data;
+					var i,j;
+	                for(i=this.msgs[0].length - 1;i >= 0;i--){
+
+	                	for(j = this.msgs[1].length - 1;j >= 0 ;j--){
+
+	                		if(this.msgs[0][i].cno == this.msgs[1][j].cno){
+	                			// 添加已选择的课表位置
+	                			this.course_selected_place.push(i)
+	                			break;
+	                		}
+	                	}
+	                	if(j == -1){
+	                			//添加未选择课表位置
+                			this.course_not_selected_place.push(i)
+                		}
+	                }
+			        
+	            },function (reason) {
+	                alert("请求出错");
+	            })
+				this.$forceUpdate(); //强制刷新，解决页面不会重新渲染的问题
+			},
+			search:function(){
+				//查询
+				var n = parseInt(this.input_search)
+				if(!isNaN(n)){
+					//是数字
+					this.$http.post("/filtercourse",{
+						college:this.input_college,
+						cno:this.input_search,
+						cname:"",
+						tname:"",
+						capacity:this.input_capacity
+					},
+						{emulateJSON:true}).then(function (value) {
+		                this.msgs=value.body.data;
+		                this.course_selected_place=[]
+						this.course_not_selected_place=[]
+						var i,j;
+		                for(i=this.msgs[0].length - 1;i >= 0;i--){
+
+		                	for(j = this.msgs[1].length - 1;j >= 0 ;j--){
+
+		                		if(this.msgs[0][i].cno == this.msgs[1][j].cno){
+		                			// 添加已选择的课表位置
+		                			this.course_selected_place.push(i)
+		                			break;
+		                		}
+		                	}
+		                	if(j == -1){
+		                			//添加未选择课表位置
+	                			this.course_not_selected_place.push(i)
+	                		}
+		                }
+
+		            },function (reason) {
+		            	//alert("未查询到课程号")
+		            })
+				}
+				else{
+					this.course_selected_place=[]
+					this.course_not_selected_place=[]
+					this.$http.post("/filtercourse",{
+						college:this.input_college,
+						cno:"",
+						cname:this.input_search,
+						tname:"",
+						capacity:this.input_capacity
+					},
+						{emulateJSON:true}).then(function (value) {
+		                this.msgs=value.body.data;
+		                this.course_selected_place=[]
+						this.course_not_selected_place=[]
+						var i,j;
+		                for(i=this.msgs[0].length - 1;i >= 0;i--){
+
+		                	for(j = this.msgs[1].length - 1;j >= 0 ;j--){
+
+		                		if(this.msgs[0][i].cno == this.msgs[1][j].cno){
+		                			// 添加已选择的课表位置
+		                			this.course_selected_place.push(i)
+		                			break;
+		                		}
+		                	}
+		                	if(j == -1){
+		                			//添加未选择课表位置
+	                			this.course_not_selected_place.push(i)
+	                		}
+		                }
+		                if(this.msgs[0].length == 0){
+		                	this.course_selected_place=[]
+							this.course_not_selected_place=[]
+							this.$http.post("/filtercourse",{
+								college:this.input_college,
+								cno:"",
+								cname:"",
+								tname:this.input_search,
+								capacity:this.input_capacity
+							},
+								{emulateJSON:true}).then(function (value) {
+				                this.msgs=value.body.data;
+				                this.course_selected_place=[]
+								this.course_not_selected_place=[]
+								var i,j;
+				                for(i=this.msgs[0].length - 1;i >= 0;i--){
+
+				                	for(j = this.msgs[1].length - 1;j >= 0 ;j--){
+
+				                		if(this.msgs[0][i].cno == this.msgs[1][j].cno){
+				                			// 添加已选择的课表位置
+				                			this.course_selected_place.push(i)
+				                			break;
+				                		}
+				                	}
+				                	if(j == -1){
+				                			//添加未选择课表位置
+			                			this.course_not_selected_place.push(i)
+			                		}
+				                }
+				                
+							},function (reason) {
+								//alert("未查询到教师")
+				            })
+		                }
+					},function (reason) {
+						//alert("未查询到课程名")
+		            })
+				}
+			},
+			canbeselect:function(coursenumber,capacity,flag){
+				if(flag == 1){
+					//选课选项
+					if(capacity != 0){
+						for(var temp = 0;temp < this.course_not_selected_place.length;temp++){
+							if(coursenumber == this.msgs[0][this.course_not_selected_place[temp]].cno){
+								return "";
+							}
+						}
+					}
+					return 'disabled';
+				}
+				else{
+					//退选选项
+					
+					for(var temp = 0;temp < this.course_selected_place.length;temp++){
+						if(coursenumber == this.msgs[0][this.course_selected_place[temp]].cno){
+							return "";
+						}
+					}
+					
+					return 'disabled';
+				}
+			},
+			select_course:function(coursenumber){
+				
+				this.$http.post("/setcourseselected",{
+					cno:coursenumber
+				},
+				{emulateJSON:true}).then(function(value){
+					console.log(value)
+					if(value.body.code == 200){
+						alert("选课成功");
+						this.getdata()
+						console.log(this.course_selected_place);
+						console.log(this.course_not_selected_place);
+						this.$forceUpdate(); //强制刷新，解决页面不会重新渲染的问题
+					}
+					else
+						alert("选课失败,可能原因:容量不足或已选上")
+				},function(reason){
+					alert("选课失败,可能原因:容量不足或已选上");
+				})
+				
+			},
+			cancel_course:function(coursenumber){
+
+				this.$http.post("/canclecourse",{
+					cno:coursenumber
+				},
+				{emulateJSON:true}).then(function(value){
+					console.log(value)
+					if(value.body.code == 200){
+						alert("退选成功");
+						this.getdata()
+						console.log(this.course_selected_place);
+						console.log(this.course_not_selected_place);
+						this.$forceUpdate(); //强制刷新，解决页面不会重新渲染的问题
+					}
+					else
+						alert("退课失败,可能原因:未选择此课")
+				},function(reason){
+					alert("退课失败,可能原因:未选择此课");
+				})
+				
+			}
+		},
+		mounted:function(){
+			this.getdata();
+		}
+	});
+</script>
+
 <div class="footer" id="footerID">
 	<P>版权所有? Copyright 计科1601</P>
 </div>
 </BODY>
+
 </HTML>
