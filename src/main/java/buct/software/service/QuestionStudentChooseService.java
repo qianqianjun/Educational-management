@@ -46,10 +46,12 @@ public class QuestionStudentChooseService {
         System.out.println(isChoosen);
         return isChoosen;
     }
+
     //根据学生号选择该学生所有的选题信息
     public List<QuestionStudentChoose> getChoiceBySno(int sno){
         return questionStudentDao.getChoiceBySno(sno);
     }
+
     //根据老师工号选择选题信息
     public List<QuestionStudentChoose> getChoiceByTno(int tno){
         return questionStudentDao.getChoiceByTno(tno);

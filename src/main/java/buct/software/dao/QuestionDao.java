@@ -64,6 +64,9 @@ public interface QuestionDao {
 
     public List<Question> getAllQuestions();
 
+    //删除学生和选题之间的连接
+    public void deleteStudentQuestion(int questionid);
+
     //根据学生号查找论题，便于确认学生是否已经有选题
     public Question getSingleQuestionBySno(int sno);
 }

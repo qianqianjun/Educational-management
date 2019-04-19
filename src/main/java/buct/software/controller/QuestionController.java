@@ -2,10 +2,12 @@ package buct.software.controller;
 
 import buct.software.domain.*;
 import buct.software.service.QuestionService;
+import buct.software.service.QuestionStudentChooseService;
 import buct.software.service.StudentService;
 import buct.software.service.TeacherService;
 import buct.software.utils.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.trace.http.HttpTrace;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +18,6 @@ import java.util.Map;
 
 /**
  * @author yuzhongrui
- * 用来测试接口是否正常工作
  */
 
 @Controller
@@ -30,8 +31,11 @@ public class QuestionController {
     @Autowired
     private TeacherService teacherService;
 
+    @Autowired
+    private QuestionStudentChooseService questionStudentChooseService;
     @RequestMapping("/StuLookThroughQues")
-    public String StuLookThroughQues(HttpServletRequest request, Map<String,Object> map){
+    public String StuLookThroughQues(HttpServletRequest request,
+                                     Map<String,Object> map){
         //需要返回的列表数据有 题目 难度 出题老师姓名 是否选中
         HttpSession session =  request.getSession();
         Object userInfo = session.getAttribute("user");
@@ -47,7 +51,8 @@ public class QuestionController {
 
     @RequestMapping("/StuQuesDetails")
     public String StuQuesDetails(HttpServletRequest request,
-     Map<String,Object> map,@RequestParam("questionid") int questionid
+                                 Map<String,Object> map,
+                                 @RequestParam("questionid") int questionid
     ){
         HttpSession session =  request.getSession();
         Object userInfo = session.getAttribute("user");
@@ -56,13 +61,15 @@ public class QuestionController {
         Question question = questionService.getSingleQuestionByQuestionid(questionid);
         int tno = question.getTno();
         Teacher teacher = teacherService.getTeacherByTno(tno);
+
         map.put("quesInfo",question);
         map.put("teaInfo",teacher);
         return "StuQuesDetails";
     }
 
     @RequestMapping("/TeaLookThroughQues")
-    public String TeaLookThroughQues(HttpServletRequest request,Map<String,Object> map){
+    public String TeaLookThroughQues(HttpServletRequest request,
+                                     Map<String,Object> map){
         HttpSession session =  request.getSession();
         Object userInfo = session.getAttribute("user");
         User user = (User) userInfo;
@@ -73,12 +80,77 @@ public class QuestionController {
     }
 
     @RequestMapping("/ManageQues")
-    public String ManageQues(HttpServletRequest request,Map<String,Object> map){
+    public String ManageQues(HttpServletRequest request,
+                             Map<String,Object> map){
         List<Question> questions = questionService.getAllQuestions();
-//        System.out.println(questions.get(0));//debug
         map.put("quesInfos",questions);
         return "ManageQues";
     }
+    @RequestMapping(value = "/ManageQues",method = RequestMethod.POST)
+    public String ManageQues(HttpServletRequest request,
+                             @RequestParam("questionid")int questionid,
+                             Map<String,Object> map){
+        boolean isDeleted = questionService.deleteStudentQuestion(questionid);
+        map.put("isDeleted",isDeleted);
+        return "forward:/ManageQues";
+    }
+
+
+
+    @RequestMapping(value = "/TeaAddQues")
+    public String TeaAddQues(
+            HttpServletRequest request
+    ){
+        return "TeaAddQues";
+    }
+    @RequestMapping(value = "/TeaAddQues",method = RequestMethod.POST)
+    public String TeaAddQues(HttpServletRequest request, @RequestParam("topic")String topic,@RequestParam("content")String content, @RequestParam("difficulty")int difficulty,
+                             @RequestParam("majorid")int majorid,
+                             Map<String,Object>map){
+        HttpSession session = request.getSession();
+        Object user = session.getAttribute("user");
+        int tno = ((User)user).getAccount();
+        Question question = new Question();
+        question.setTno(tno);
+
+        question.setTopic(topic);
+        question.setContent(content);
+        question.setDifficulty(difficulty);
+        question.setMajorid(majorid);
+        boolean isAdded = questionService.addQuestion(question);
+        map.put("isAdded",isAdded);
+        return "forward/TeaAddQues";
+    }
+
+
+
+    @RequestMapping(value = "/TeaQuesDetails")
+    public String TeaQuesDetails(HttpServletRequest request,@RequestParam("questionid")int questionid,
+                                 Map<String,Object>map){
+        HttpSession session = request.getSession();
+        Object user = session.getAttribute("user");
+        int tno = ((User)user).getAccount();
+    Question question = questionService.getSingleQuestionByQuestionid(questionid);
+    map.put("question",question);
+    List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceByTno(tno);
+    map.put("choices",questionStudentChooses);
+    return "TeaQuesDetails";
+    }
+
+    @RequestMapping(value = "/sureQuesStu")
+    public String sureQuesStu(HttpServletRequest  request,
+                              @RequestParam("questionid")int questionid,
+                              @RequestParam("sno")int sno,
+                              Map<String,Object>map){
+        boolean isSured = questionService.sureQuestionStudent(questionid,sno);
+        map.put("isSured",isSured);
+        return "forward:/TeaQuesDetails";
+    }
+
+
+
+
+
 
 
 

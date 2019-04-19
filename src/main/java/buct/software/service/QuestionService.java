@@ -25,6 +25,21 @@ public class QuestionService {
     //若查询单个为空 返回null
     //若查询列表为空 返回[]
 
+    /**
+     *  删除学生和选题之间的连接
+     *  选题必须存在且有学生选择
+     */
+   public boolean deleteStudentQuestion(int questionid){
+       boolean isDeleted = false;
+       Question question = questionDao.getQuestionByQustionId(questionid);
+       if(question.isIschosen()==true){
+           questionDao.deleteStudentQuestion(questionid);
+           isDeleted = true;
+       }
+       return isDeleted;
+   }
+
+
 
     /**
      * 功能：根据专业 获取论题的部分内容
@@ -123,7 +138,7 @@ public class QuestionService {
     public List<Question> getQuestionByMajorid(int majorid){
         return questionDao.getQuestionsByMajorid(majorid);
     }
-
+    //得到所有选题
     public List<Question> getAllQuestions(){
         return questionDao.getAllQuestions();
     }

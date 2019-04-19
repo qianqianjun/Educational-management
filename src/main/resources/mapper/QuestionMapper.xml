@@ -6,6 +6,11 @@
 <mapper namespace="buct.software.dao.QuestionDao">
     <!--id对应的是dao中方法-->
 
+    <update id="deleteStudentQuestion" parameterType="int">
+        update question set sno = -1 and ischosen = false
+        where questionid = ${questionid}
+    </update>
+
     <select id="getAllQuestions" resultType="Question">
         select * from question
     </select>
@@ -17,6 +22,8 @@
         question join teacher on question.tno = teacher.tno
         where
             question.majorid = #{majorid}
+        order by
+            question.difficulty
     </select>
 
 
