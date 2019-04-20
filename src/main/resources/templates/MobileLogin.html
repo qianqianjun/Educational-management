@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <!-- meta使用viewport以确保页面可自由缩放 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,6 @@
 
     <!-- 引入 jQuery Mobile 库 -->
     <script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<<<<<<< HEAD
 
     <style type="text/css">
         th {
@@ -42,12 +41,7 @@
         }
 
     </style>
-
-    <meta charset="UTF-8">
-    <meta charset="gbk"/>
-=======
     <meta charset="utf-8"/>
->>>>>>> 751b234f8c093eeff08d164fc45d4491c4604b9c
     <title>Login</title>
 </head>
 <body>
@@ -68,7 +62,7 @@
             <br>
             <button type="submit">登录</button>
         </form>
-
+        <p style="color: red;" th:if="${error_msg} != null">[[ ${error_msg} ]]</p>
     </div>
     <div data-role="footer" data-position="fixed">
         <h1>版权所有© 北京化工大学 计科1601班</h1>
