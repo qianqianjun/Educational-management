@@ -22,7 +22,7 @@
 	<title>查看课表</title>
 	<style>
 		.temp{display: inline-block;width: 22%;margin-right: 32px;}
-		.main{background-color: #00d9ff0d;position:relative;margin-top: 20px;}
+		.main{background-color: #00d9ff0d;position:relative;margin-top: 40px;}
 		.jie{width:12%;display: inline-block;text-align: center; float:left;border: 0.5px solid #b7bec3;padding-top:5px;padding-bottom:5px;}
 		.stage{width:5%;display: inline-block;text-align: center;float:left;border: 0.5px solid #b7bec3;padding-top:5px;padding-bottom:5px;}
 		.weekhead{width:12%;float:left;display: inline-block;text-align: center;border: 0.5px solid #b7bec3;padding-top:5px;padding-bottom:5px;}
@@ -150,10 +150,6 @@
     </div>
     </div>
   </div>
-  	<!-- 底部 -->
-    <div data-role="footer" data-position="fixed">
-        <h1>版权所有© 北京化工大学 计科1601班</h1>
-    </div>
 </div>
 
 </body>
@@ -170,7 +166,7 @@
                 var div=document.createElement("div");
                 div.setAttribute("class","item-class");
                 var height=(cInfo.endStep-cInfo.startStep+1)*50;
-                var top=(cInfo.startStep+1)*50;
+                var top=(cInfo.startStep-1)*50+32;
                 div.style.height=""+height+"px";
                 div.style.top=""+top+"px";
                 var content_class=document.createElement("div");
