@@ -73,7 +73,7 @@ public class QuesitonScoreController {
        questionScore.setPaper(paper);
        questionScore.setExtracredit(extracredit);
        questionScoreService.addQuestionScore(questionScore);
-       return "forward:/TeaAddScore";
+       return "redirect:/TeaAddScore";
     }
 
 
@@ -114,7 +114,7 @@ public class QuesitonScoreController {
         questionScore.setExtracredit(extracredit);
         boolean isChanged = questionScoreService.changeQuestionScore(questionScore);
         map.put("isChanged",isChanged);
-        return "forward:/ManageScore";
+        return "redirect:/ManageScore";
     }
 
 

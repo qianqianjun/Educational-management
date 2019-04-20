@@ -33,7 +33,7 @@ public class QuestionStudentChooseController {
         int sno = user.getAccount();
         boolean isChosen = questionStudentChooseService.chooseQuestion(questionid,sno);
         //不确定能否直接请求转发成功，可能有bug
-        return "forward:/StuQuesDetails";
+        return "redirect:/StuQuesDetails";
     }
 
     //学生所有的选题信息

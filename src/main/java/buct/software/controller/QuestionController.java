@@ -131,7 +131,7 @@ public class QuestionController {
         question.setMajorid(majorid);
         boolean isAdded = questionService.addQuestion(question);
         map.put("isAdded",isAdded);
-        return "forward:/TeaAddQues";
+        return "redirect:/TeaAddQues";
     }
 
 
@@ -160,7 +160,7 @@ public class QuestionController {
                               Map<String,Object>map){
         boolean isSured = questionService.sureQuestionStudent(questionid,sno);
         map.put("isSured",isSured);
-        return "forward:/TeaQuesDetails";
+        return "redirect:/TeaQuesDetails";
     }
 
 
