@@ -1,0 +1,6 @@
+学生端
+1.  StuChooseQues 改为get传参
+2.  修正重复学生选题操作会报错的bug
+3.  修正了跳转回StuQuesDetails页面报错的问题
+4.  修正了StuQuesDetails页面 isChosen 接口无法显示的问题
+

@@ -23,6 +23,8 @@ public class QuestionStudentChooseService {
     @Autowired
     QuestionService questionService;
 
+    @Autowired
+    QuestionStudentChooseService questionStudentChooseService;
     /**
      * 功能：往选题表中增加记录
      * 学生不能被论题绑定，论题也不能被任何学生选中
@@ -36,6 +38,9 @@ public class QuestionStudentChooseService {
             return isChoosen;
         if(question.isIschosen()==true || questionSno!=null)//论题没有被选择，学生也没有绑定任何论题
             return isChoosen;
+        QuestionStudentChoose questionStudentChoose = questionStudentChooseService.getChoiceByQidSno(questionid,sno);
+        if (questionStudentChoose!=null)//如果该论题和学生的连接 已经投递，则显示已经插入成功
+            return true;
 
         HashMap<String,Object> map = new HashMap<String, Object>();
         map.put("questionid",questionid);

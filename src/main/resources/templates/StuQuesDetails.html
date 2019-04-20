@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p  th:text="${quesInfo.questionid}"></p>
+    <br>
+    <p th:text="${teaInfo.tname}"></p>
+
+    <a th:href="@{'/StuChooseQues?questionid='+${quesInfo.questionid}}">choose</a>
+    <br>
+    <p th:text="${isChosen}">   
+</body>
+</html>

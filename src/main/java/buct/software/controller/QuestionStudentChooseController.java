@@ -22,7 +22,7 @@ public class QuestionStudentChooseController {
     @Autowired
     QuestionService questionService;
 
-    @RequestMapping(value = "/StuChooseQues",method = RequestMethod.POST)
+    @RequestMapping(value = "/StuChooseQues")
     public String StuChooseQues(HttpServletRequest request,
                                 @RequestParam("questionid")int questionid,
                                 Map<String,Object> map){
@@ -31,12 +31,6 @@ public class QuestionStudentChooseController {
         User user = (User) userInfo;
         int sno = user.getAccount();
         boolean isChosen = questionStudentChooseService.chooseQuestion(questionid,sno);
-        if(isChosen==true){
-            map.put("isChosen",true);
-        }
-        else {
-            map.put("isChosen",false);
-        }
         //不确定能否直接请求转发成功，可能有bug
         return "forward:/StuQuesDetails";
     }

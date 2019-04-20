@@ -49,7 +49,7 @@ public class QuestionController {
         return "StuLookThroughQues";
     }
 
-    @RequestMapping("/StuQuesDetails")
+    @RequestMapping(value = "/StuQuesDetails")
     public String StuQuesDetails(HttpServletRequest request,
                                  Map<String,Object> map,
                                  @RequestParam("questionid") int questionid
@@ -61,7 +61,11 @@ public class QuestionController {
         Question question = questionService.getSingleQuestionByQuestionid(questionid);
         int tno = question.getTno();
         Teacher teacher = teacherService.getTeacherByTno(tno);
-
+        QuestionStudentChoose questionStudentChoose = questionStudentChooseService.getChoiceByQidSno(questionid,sno);
+        boolean isChosen=false;   //检验该学生是否投递选择
+        if(questionStudentChoose!=null)
+            isChosen=true;
+        map.put("isChosen",isChosen);
         map.put("quesInfo",question);
         map.put("teaInfo",teacher);
         return "StuQuesDetails";

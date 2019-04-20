@@ -8,7 +8,9 @@
 <h1>Test</h1>
 <tr th:each="quesInfo:${quesInfos}">
     <td th:text="${quesInfo.questionid}"></td>
-    <td th:text="${quesInfo.topic}"></td>
+    <a th:href="@{'/StuQuesDetails?questionid='+${quesInfo.questionid}}">To Details</a>
+    <td th:text="${quesInfo.topic}  "></td>
+    <br/>
 </tr>
 
 </body>
