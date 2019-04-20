@@ -4,6 +4,7 @@ import buct.software.dao.StudentDao;
 import buct.software.domain.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,5 +35,14 @@ public class StudentService {
     public List<Student> getStudentsByExample(Student student) {
         return studentDao.getStudentsByExample(student);
     }
+    @Transactional
+    public void saveStudents(List<Student> students) {
+        for (Student student : students) {
+            studentDao.insertStudnet(student);
+        }
+    }
 
+    public void saveStudent(Student student) {
+        studentDao.insertStudnet(student);
+    }
 }

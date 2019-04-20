@@ -4,9 +4,9 @@ import buct.software.domain.Student;
 import buct.software.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -33,17 +33,28 @@ public class StudentControllerPage {
 
     @RequestMapping("/StudentsAdd")
     public String studentsAdd(HttpServletRequest httpServletRequest) {
-        httpServletRequest.setAttribute("student",new Student());
+        httpServletRequest.setAttribute("student", new Student());
         return "StudentsAdd";
     }
 
     @PostMapping("/DoStudentsAdd")
-    public String doStudentsAdd(@ModelAttribute(value = "student") Student student,HttpServletRequest httpServletRequest) {
-        Student student1 = (Student)httpServletRequest.getAttribute("student");
-        System.out.println(student);
-        System.out.println(student1);
+    public String doStudentsAdd(@RequestParam("sno") Integer sno,
+                                @RequestParam("sex") String sex,
+                                @RequestParam("sname") String sname,
+                                @RequestParam("major") String major,
+                                @RequestParam("klass") String klass,
+                                @RequestParam("comeYear") String comeYear,
+                                @RequestParam("phone") String phone,
+                                @RequestParam("grade") String grade,
+                                @RequestParam("college") String college,
+                                @RequestParam("collegeId") Integer collegeId,
+                                @RequestParam("majorId") Integer majorId) {
+        System.out.println(sno);
+        System.out.println(phone);
+        Student student = new Student(sno, sname, sex, major, klass, comeYear, phone, college, collegeId, grade, majorId);
+        studentService.saveStudent(student);
         return "StudentsInfo";
-}
+    }
 
 
     @PostMapping("/SearchStudents")

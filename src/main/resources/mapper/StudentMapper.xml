@@ -11,7 +11,7 @@
         select * from student
     </select>
     <insert id="insertStudnet" parameterType="buct.software.domain.Student">
-        insert into student values (#{sno},#{sname},#{sex},#{major},#{klass},#{comeYear},#{phone},#{grade})
+        insert into student values (#{sno},#{sname},#{sex},#{major},#{klass},#{comeYear},#{phone},#{grade},#{majorId},#{college},#{collegeId})
     </insert>
     <select id="getStudentsByExample" parameterType="buct.software.domain.Student"
             resultType="buct.software.domain.Student">
