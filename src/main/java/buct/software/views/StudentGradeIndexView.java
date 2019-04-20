@@ -14,16 +14,5 @@ public class StudentGradeIndexView {
     private Integer cno;
     private String cname;
     private Integer totalScore;
-    private Integer type;
-    private String typeStr;
     public StudentGradeIndexView(){}
-    public void setType(Integer type1){
-        if(type1==0)
-            this.typeStr="专业必修";
-        if(type1==1)
-            this.typeStr="专业选修";
-        if(type1==2)
-            this.typeStr="通识教育";
-        this.type=type1;
-    }
 }

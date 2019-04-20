@@ -47,8 +47,9 @@ public class SelectCourseControllerApi {
         HttpSession session=request.getSession();
         User user=(User) session.getAttribute("user");
         Integer sno=user.getAccount();
+        Integer majorid=user.getMajorid();
         ArrayList<SelectCourseView> courseViews=
-                (ArrayList<SelectCourseView>) selectCourseService.getCourseList(college,capacity,cno,cname,tname);
+                (ArrayList<SelectCourseView>) selectCourseService.getCourseList(semesterId,majorid,college,capacity,cno,cname,tname);
         ArrayList<SelectCourse> selectedList=
                 (ArrayList<SelectCourse>) selectCourseService.getSelectedCourseList(sno,semesterId);
 
@@ -92,6 +93,7 @@ public class SelectCourseControllerApi {
         Integer sno=user.getAccount();
         Integer semesterId=semesterService.getCurrentSemesterId();
         SelectCourse selectCourse=selectCourseService.addCourseToTable(semesterId,sno,cno);
+
         if(selectCourse==null){
             return new ResponseMessage(ResponseMessage.INSERT_EXCEPTION,"插入失败",null);
         }
