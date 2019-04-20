@@ -1,5 +1,4 @@
 package buct.software.controller;
-import buct.software.domain.SelectCourse;
 import buct.software.domain.Student;
 import buct.software.domain.Teacher;
 import buct.software.domain.User;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -64,7 +64,7 @@ public class LoginController {
                 return "teacher";
             }
             else{
-                return "admin";
+                return "HomePage";
             }
         }
     }

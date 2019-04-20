@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="common/backstageNavigator.html :: head"></div>
+
+</head>
+
+<body>
+<div th:replace="common/backstageNavigator.html :: banner"></div>
+<div class="container-fluid" id="SM">
+    <div class="row">
+        <div th:replace="common/backstageNavigator.html :: navi"></div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2">当前学期</h1>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-10">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <h3 class="mb-0">
+                                <a class="text-dark" href="#">{{CurrentSemester}}</a>
+                            </h3>
+                            <h1></h1>
+                            <strong class="d-inline-block mb-2 text-primary">开始时间：{{CurrentStart}} </strong>
+                            <strong class="d-inline-block mb-2 text-primary">结束时间：{{CurrentEnd}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2">开启新学期</h1>
+            </div>
+            <form>
+                <div class="row">
+                    <div class="col-3">
+                        <select class="custom-select" v-model='NewSemesterFirst'>
+                            <option selected>学年</option>
+                            <option value="2017-2018学年">2017-2018学年</option>
+                            <option value="2018-2019学年">2018-2019学年</option>
+                            <option value="2019-2020学年">2019-2020学年</option>
+                            <option value="2020-2021学年">2020-2021学年</option>
+                            <option value="2021-2022学年">2021-2022学年</option>
+                            <option value="2022-2023学年">2022-2023学年</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <select class="custom-select" v-model='NewSemesterLast'>
+                            <option selected>学期</option>
+                            <option value="第1学期">第1学期</option>
+                            <option value="第2学期">第2学期</option>
+                            <option value="第3学期">第3学期</option>
+                        </select>
+                    </div>
+                </div>
+                <h1></h1>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">开始时间</span>
+                            </div>
+                            <input type="date" class="form-control" v-model='NewStart'>
+                        </div>
+                    </div>
+                </div>
+                <h1></h1>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">结束时间</span>
+                            </div>
+                            <input type="date" class="form-control" v-model='NewEnd'>
+                        </div>
+                    </div>
+                </div>
+                <h1></h1>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-outline-primary mr-sm-2" type="button" data-toggle="modal"
+                                data-target="#confirm">
+                            <span data-feather="plus"></span>
+                            开启
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirm">提醒</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            是否确定开启新学期？
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                    @click="CreateNewSemester">确定
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<script>
+    var sm = new Vue({
+        el: '#SM',
+        data: {
+            CurrentSemester: '2018-2019学年 第2学期',
+            CurrentStart: '2019-2-20',
+            CurrentEnd: '2019-6-20',
+            NewSemesterFirst: '',
+            NewSemesterLast: '',
+            NewStart: '',
+            NewEnd: ''
+        },
+        methods: {
+            CreateNewSemester: function () {
+                this.CurrentSemester = this.NewSemesterFirst + ' ' + this.NewSemesterLast;
+                this.CurrentStart = this.NewStart;
+                this.CurrentEnd = this.NewEnd;
+            }
+        }
+    })
+</script>
+
+<!-- Bootstrap core JavaScript
+  ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+</body>
+
+</html>

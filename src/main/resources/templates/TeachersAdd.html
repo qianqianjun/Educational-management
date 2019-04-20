@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="common/backstageNavigator.html :: head"></div>
+</head>
+
+<body>
+<div th:replace="common/backstageNavigator.html :: banner"></div>
+
+<div class="container-fluid" id="TA">
+    <div class="row">
+        <div th:replace="common/backstageNavigator.html :: navi"></div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2">添加教师</h1>
+            </div>
+            <form>
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">工号</span>
+                        </div>
+                        <input class="form-control mr-sm-2" type="number" v-model="tno" placeholder="工号">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">姓名</span>
+                        </div>
+                        <input class="form-control mr-sm-2" type="text" v-model="tname" placeholder="姓名">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">性别</span>
+                        </div>
+                        <input class="form-control mr-sm-2" type="text" v-model="sex" placeholder="性别">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">手机</span>
+                        </div>
+                        <input class="form-control mr-sm-2" type="text" v-model="phone" placeholder="手机">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">邮箱</span>
+                        </div>
+                        <input class="form-control mr-sm-2" type="text" v-model="email" placeholder="邮箱">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">学院号</span>
+                        </div>
+                        <input class="form-control mr-sm-2" type="number" v-model="collegeId" placeholder="学院号">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">办公室地址</span>
+                        </div>
+                        <input class="form-control mr-sm-2" type="text" v-model="office" placeholder="办公室地址">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">职称</span>
+                        </div>
+                        <input class="form-control mr-sm-2" type="text" v-model="rank" placeholder="职称">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <button class="btn btn-outline-primary mr-sm-2" type="submit">
+                        <span data-feather="user-plus"></span>
+                        提交
+                    </button>
+                </div>
+            </form>
+        </main>
+    </div>
+</div>
+
+<script>
+    var ta = new Vue({
+        el: '#TA',
+        data: {
+            tno: 0,
+            tname: '',
+            sex: '',
+            phone: '',
+            email: '',
+            office: '',
+            collegeId: 0,
+            rank: ''
+        }
+    })
+</script>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+</body>
+
+</html>
