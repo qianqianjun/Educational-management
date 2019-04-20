@@ -45,4 +45,7 @@ public class StudentService {
     public void saveStudent(Student student) {
         studentDao.insertStudnet(student);
     }
+    public void updateStudent(Student student){
+        studentDao.updateStudent(student);
+    }
 }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="common/backstageNavigator.html :: head"></div>
@@ -18,28 +18,32 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">学号</span>
                     </div>
-                    <input class="form-control mr-sm-2" th:name="sno" type="number" v-model="searchStudent.sno" placeholder="学号"
+                    <input class="form-control mr-sm-2" th:name="sno" type="number" v-model="searchStudent.sno"
+                           placeholder="学号"
                            aria-label="Search">
                 </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">姓名</span>
                     </div>
-                    <input class="form-control mr-sm-2" th:name="sname" type="text" v-model="searchStudent.sname" placeholder="姓名"
+                    <input class="form-control mr-sm-2" th:name="sname" type="text" v-model="searchStudent.sname"
+                           placeholder="姓名"
                            aria-label="Search">
                 </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">专业</span>
                     </div>
-                    <input class="form-control mr-sm-2" th:name="major" type="text" v-model="searchStudent.major" placeholder="专业"
+                    <input class="form-control mr-sm-2" th:name="major" type="text" v-model="searchStudent.major"
+                           placeholder="专业"
                            aria-label="Search">
                 </div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">年级</span>
                     </div>
-                    <input class="form-control mr-sm-2" type="text" th:name="grade" v-model="searchStudent.grade" placeholder="年级"
+                    <input class="form-control mr-sm-2" type="text" th:name="grade" v-model="searchStudent.grade"
+                           placeholder="年级"
                            aria-label="Search">
                 </div>
                 <button class="btn btn-outline-primary mr-sm-2" type="submit">
@@ -48,7 +52,7 @@
                 </button>
             </form>
             <h1></h1>
-            <a href="/StudentsAdd" class="btn btn-outline-primary mr-sm-2" role="button">
+            <a href="/StudentsAddAction" class="btn btn-outline-primary mr-sm-2" role="button">
                 <span data-feather="user-plus"></span>
                 添加学生
             </a>
@@ -71,7 +75,7 @@
                     <td>{{student.major}}</td>
                     <td>{{student.grade}}</td>
                     <td>
-                        <button class="btn btn-outline-primary btn-sm" type="submit">修改</button>
+                        <button class="btn btn-outline-primary btn-sm" v-on:click="change(student.sno)">修改</button>
                     </td>
                 </tr>
                 </tbody>
@@ -85,6 +89,12 @@
     // var allStudents =[[${allStudents}]]
     var si = new Vue({
         el: '#SI',
+        methods: {
+            change: function (sno) {
+                window.location = "/UpdateStudent?sno=" + sno;
+            }
+
+        },
         data: {
             searchStudent: {
                 sno: null,
@@ -101,6 +111,7 @@
             },
             students: [[${allStudent}]]
         }
+
     })
 </script>
 

@@ -38,27 +38,36 @@
                 sname = #{sname}
             </if>
             <if test="sex!=null">
-                sex = #{sex}
+                ,sex = #{sex}
             </if>
             <if test="major!=null">
-                major = #{major}
+                ,major = #{major}
+            </if>
+            <if test="klass!=null">
+                ,klass = #{klass}
             </if>
             <if test="comeYear!=null">
-                come_year = #{comeYear}
+                ,come_year = #{comeYear}
             </if>
             <if test="grade!=null">
-                grade = #{grade}
+                ,grade = #{grade}
             </if>
             <if test="phone!=null">
-                phone = #{phone}
+                ,phone = #{phone}
             </if>
-            <!--<if test="majorId!=null">-->
-            <!--= #{majorId}-->
-            <!--</if>-->
-            <where>
-                sno = #{sno}
-            </where>
+            <if test="majorId!=null">
+                ,majorid= #{majorId}
+            </if>
+            <if test="college!=null">
+                ,college= #{college}
+            </if>
+            <if test="collegeId!=null">
+                ,collegeid= #{collegeId}
+            </if>
         </set>
+        <where>
+            sno = #{sno}
+        </where>
     </update>
 
 </mapper>

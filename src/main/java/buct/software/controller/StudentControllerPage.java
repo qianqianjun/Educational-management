@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class StudentControllerPage {
@@ -31,9 +32,9 @@ public class StudentControllerPage {
         return "StudentsInfo";
     }
 
-    @RequestMapping("/StudentsAdd")
+    @RequestMapping("/StudentsAddAction")
     public String studentsAdd(HttpServletRequest httpServletRequest) {
-        httpServletRequest.setAttribute("student", new Student());
+        httpServletRequest.setAttribute("needUpdateStudent", null);
         return "StudentsAdd";
     }
 
@@ -52,8 +53,12 @@ public class StudentControllerPage {
         System.out.println(sno);
         System.out.println(phone);
         Student student = new Student(sno, sname, sex, major, klass, comeYear, phone, college, collegeId, grade, majorId);
-        studentService.saveStudent(student);
-        return "StudentsInfo";
+        if (studentService.getStudentBySno(sno) == null) {
+            studentService.saveStudent(student);
+        } else {
+            studentService.updateStudent(student);
+        }
+        return "forward:/StudentsInfo";
     }
 
 
@@ -69,10 +74,6 @@ public class StudentControllerPage {
         String sname = (httpServletRequest.getParameter("sname").equals("")) ? null : httpServletRequest.getParameter("sname");
         String major = (httpServletRequest.getParameter("major").equals("")) ? null : httpServletRequest.getParameter("major");
         String grade = (httpServletRequest.getParameter("grade").equals("")) ? null : httpServletRequest.getParameter("grade");
-//        System.out.println(sno);
-//        System.out.println(sname);
-//        System.out.println(major);
-//        System.out.println(grade);
         student.setSno(sno);
         student.setSname(sname);
         student.setGrade(grade);
@@ -82,4 +83,26 @@ public class StudentControllerPage {
         httpServletRequest.getSession().setAttribute("allStudent", studentsByExample);
         return "forward:/StudensPage";
     }
+
+    @RequestMapping("/UpdateStudent")
+    public String updateStudent(HttpServletRequest httpServletRequest) {
+        String sno = httpServletRequest.getParameter("sno");
+        int sno_int = Integer.parseInt(sno);
+        System.out.println(sno_int);
+        Student student = studentService.getStudentBySno(sno_int);
+        httpServletRequest.getSession().setAttribute("needUpdateStudent", student);
+        System.out.println(student);
+        return "forward:/StudentsChange";
+    }
+
+    @RequestMapping("/StudentsChange")
+    public String studentsChange(Map<String, Object> paramMap, HttpServletRequest httpServletRequest) {
+//        System.out.println("22222");
+//        Object needUpdateStudent = httpServletRequest.getSession().getAttribute("needUpdateStudent");
+//        httpServletRequest.setAttribute("");
+        Object student = httpServletRequest.getSession().getAttribute("needUpdateStudent");
+        paramMap.put("needUpdateStudent", student);
+        return "StudentsAdd";
+    }
+
 }
