@@ -1,5 +1,4 @@
 package buct.software.controller;
-import buct.software.domain.SelectCourse;
 import buct.software.domain.Student;
 import buct.software.domain.Teacher;
 import buct.software.domain.User;
@@ -79,7 +78,7 @@ public class LoginController {
                 return "teacher";
             }
             else{
-                return "admin";
+                return "HomePage";
             }
         }
     }
