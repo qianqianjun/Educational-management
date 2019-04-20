@@ -13,6 +13,8 @@ public class SelectCourse {
     private Integer sno;
     private Integer totalScore;
     private String detail;
+    // 这个参数别管他，没用！但是也别删！
+    private Integer addition;
 
     public SelectCourse(Integer semesterId, Integer cno, Integer sno, Integer grade, String detail) {
         this.semesterId = semesterId;

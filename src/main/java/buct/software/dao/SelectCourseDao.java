@@ -61,4 +61,11 @@ public interface SelectCourseDao {
      * @return 成绩列表
      */
     List<StudentGradeIndexView> getGrade(SelectCourse selectCourse);
+
+    /**
+     * 选课和退课之后修改课程容量
+     * @param selectCourse  传进来的参数。
+     * @return
+     */
+    Integer changeCapacity(SelectCourse selectCourse);
 }

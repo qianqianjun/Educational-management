@@ -89,7 +89,7 @@
 						<p th:if="${#lists.isEmpty(gradeList)}" style="margin-left: 20px;">当前学期没有成绩信息</p>
 						<div class="list-group">
 							<a class="list-group-item" th:each="grade : ${gradeList}">
-								<span class="title"> [[${grade.start}]]-[[${grade.end}]]-[[${grade.semester}]]-[[${grade.typeStr}]]-[[${grade.cname}]] </span>
+								<span class="title"> [[${grade.start}]]-[[${grade.end}]]-[[${grade.semester}]]-[[${grade.cname}]] </span>
 								<span class="fraction float_r">[[${grade.totalScore}]]</span>
 							</a>
 						</div>
