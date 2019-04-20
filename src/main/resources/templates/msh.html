@@ -51,9 +51,9 @@
 
     <!-- 面板 -->
     <div data-role="panel" id="myPanel">
-        <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
-        <a href="#" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
-        <a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
+        <a href="/index" data-ajax="false" class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
+        <a href="/coursetablemobile" data-ajax="false" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
+        <a href="/selectcoursemobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
         <a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">成绩查询</a>
         <a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">已选论题</a>
         <a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">查看论题</a>
@@ -109,6 +109,7 @@
 								[[${course.address}]]-
 								[[${course.tname}]]
 							</span>
+                            <br>
             </a>
             <!--<a href="#">软件工程 A阶202</a>-->
         </div>
@@ -129,7 +130,7 @@
 
     <!-- 底部 -->
     <div data-role="footer" data-position="fixed">
-        <h1>版权所有</h1>
+        <h1>版权所有© 北京化工大学 计科1601班</h1>
     </div>
 
 </div>
