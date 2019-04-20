@@ -117,6 +117,7 @@ public class SelectCourseService {
         selectCourse.setCno(cno);
         selectCourse.setSno(sno);
         selectCourse.setSemesterId(semesterId);
+        selectCourse.setAddition(1);
         Integer affectRows=selectCourseDao.deleteCourseFromTable(selectCourse);
         Integer ok=selectCourseDao.changeCapacity(selectCourse);
         if(affectRows>0 && ok>0){

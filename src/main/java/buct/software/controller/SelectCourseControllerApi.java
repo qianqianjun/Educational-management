@@ -159,18 +159,4 @@ public class SelectCourseControllerApi {
         return new ResponseMessage(200,"全部的信息",semesters);
     }
 
-
-    /**
-     *  这是一个测试的接口，可以直接删除。
-     * @return
-     */
-    @GetMapping("/test")
-    public ResponseMessage test(){
-        Integer sno=2016014302;
-        Integer semesterId=1;
-        ArrayList<SelectCourse> selectedList=
-                (ArrayList<SelectCourse>) selectCourseService.getSelectedCourseList(sno,semesterId);
-        return new ResponseMessage(200,"请求成功！",selectedList);
-    }
-
 }
