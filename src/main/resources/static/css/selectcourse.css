@@ -1,0 +1,12 @@
+#selectcourse_selector{
+	margin: 20px;
+	border-collapse: separate;
+	border-spacing: 0px 8px;
+}
+#selectcourse_selector label{
+	margin:0px 15px;
+}
+#selectcourse_selector th label{
+	margin-left: 10px;
+	text-align: left;
+}

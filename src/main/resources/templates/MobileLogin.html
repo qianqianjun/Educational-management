@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 引入 jQuery Mobile 样式 -->
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- 引入 jQuery 库 -->
+    <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <!-- 引入 jQuery Mobile 库 -->
+    <script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <style type="text/css">
+        th {
+            border-bottom: 1px solid #d6d6d6;
+        }
+
+        tr:nth-child(even) {
+            background: #e9e9e9;
+        }
+
+        #btn-search{
+            position: fixed;
+            top: 16%;
+            right: 2%;
+            z-index: 2;
+        }
+
+        #btn-add{
+            position: fixed;
+            top: 22%;
+            right: 2%;
+            z-index: 2;
+        }
+
+        #pagebox{
+            text-align: center;
+        }
+
+    </style>
+    <meta charset="utf-8"/>
+    <title>Login</title>
+</head>
+<body>
+<div data-role="page" id="Loginpage">
+    <div data-role="header">
+        <h1>教务管理系统</h1>
+    </div>
+
+    <div data-role="content">
+        <h3 style="text-align:center">用户登录</h3>
+        <br>
+        <form role="form" action="/login" method="post">
+            <p2><span id="nameTitle">用户名</span></p2>
+            <input type="text" name="account" placeholder="学号或工号" required="required">
+            <br>
+            <p2><span id="keyTitle">密码</span></p2>
+            <input type="password" name="password" placeholder="密码" required="required">
+            <br>
+            <button type="submit">登录</button>
+        </form>
+        <p style="color: red;" th:if="${error_msg} != null">[[ ${error_msg} ]]</p>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <h1>版权所有© 北京化工大学 计科1601班</h1>
+    </div>
+</div>
+</body>
+</html>

@@ -1,75 +1,249 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <!--jQuery核心框架库 用于显示输入框--> 
-  <script type="text/javascript" src="js/jquery-1.js"></script>
-  <!--Bootstrap布局框架--> 
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="css/zftal-ui.css" />
-  <!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 -->
-  <script type="text/javascript" src="js/jquery_008.js" charset="utf-8"></script>
-  <!--jQuery.chosen美化插件--> 
-  <link rel="stylesheet" type="text/css" href="css/chosen-min.css" /> 
-  <script type="text/javascript" src="js/jquery_016.js" charset="utf-8"></script> 
-  <script type="text/javascript" src="js/zh_CN-min.js" charset="utf-8"></script> 
-  <script type="text/javascript" src="js/jquery_017.js" charset="utf-8"></script>
+    <!--Bootstrap布局框架-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/zftal-ui.css" />
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <style>
+		.temp{display: inline-block;width: 22%;margin-right: 32px;}
+		.main{background-color: #00d9ff0d;position:relative;margin-top: 20px;}
+		.jie{width:4%;display: inline-block;text-align: center; float:left;border: 0.5px solid #b7bec3;padding-top:5px;padding-bottom:5px;}
+		.stage{width:5%;display: inline-block;text-align: center;float:left;border: 0.5px solid #b7bec3;padding-top:5px;padding-bottom:5px;}
+		.weekhead{width:13%;float:left;display: inline-block;text-align: center;border: 0.5px solid #b7bec3;padding-top:5px;padding-bottom:5px;}
+		.title{margin-bottom:20px;}
+		.day{height:500px;}
+		.evening{height:360px;}
+		.day_title{text-align:center;width:5%;font-size:20px;float: left;display: inline-block;height:500px;line-height: 250px;font-size:30px;border: 0.5px solid #b7bec3;}
+		.evening_title{text-align:center;width:5%;font-size:20px;float: left;display: inline-block;height:300px;line-height: 150px;font-size:30px;border: 0.5px solid #b7bec3;}
+		.even_numset{width:4%;float:left;height:300px;border: 0.5px solid #b7bec3;}
+		.numset{width:4%;float:left;height:500px;border: 0.5px solid #b7bec3;}
+		.jie-item{height:100px;border-bottom: 0.5px solid #b7bec3;line-height: 100px;text-align: center;font-size:20px;font-weight:bolder;}
+		.item-col{height:500px;width:13%;border: 0.5px solid #b7bec3;float:left;display: inline-block;}
+		.item-col-evening{height:300px;width:13%;border: 0.5px solid #b7bec3;float:left;display: inline-block;}
+		.each-col{position:absolute;top:77px;height:1300px;width:13%;}
+
+		.item-class{position: absolute;width: 100%;height: 200px;text-align: center;border-top: 0.3px solid #b7bec3;border-bottom: 0.3px solid #b7bec3;}
+		.content-class{width: 90%;display: inline-block;text-align: left;height: 140px;overflow: hidden;}
+		.content-row{margin-top: 10px;}
+		.content_tip{font-weight: bolder;}
+	</style>
 </head>
 <body> 
-	<header class="navbar-inverse top2">
-		<div class="container">
-			<a id="topButton" class="navbar-brand">学生课表查询 </a> 
+<header class="navbar-inverse top2">
+	<div class="container">
+		<a id="topButton" class="navbar-brand">学生课表查询 </a>
+	</div>
+</header>
+<div class="container container-func sl_all_bg" id="coursetablearea" style="min-height: 1597px;">
+	<div class="row" id="cxtjDiv">
+		<div class="col-md-4 col-sm-4">
+			<div class="form-group">
+				<label for="xnm1" class="col-sm-4 control-label" id="xn"><span style="color:red;">*</span>学年 </label>
+				<div class="col-sm-8">
+					<select name="xnm" id="xnm1" class="form-control chosen-select" v-model="start">
+						<option th:value="${semester.start}"  th:each="semester : ${semesterlist}">[[${semester.start}]] - [[${semester.end}]]</option>
+					</select>
+				</div>
+			</div>
 		</div>
-	</header>
-	<div class="container container-func sl_all_bg" id="yhgnPage" style="min-height: 1597px;">
-		<form id="ajaxForm1" name="form" onsubmit="return false;" action="" method="post" class="form-horizontal sl_all_form sl_all_bg" style="margin-bottom: 12px;" role="form" data-toggle="validation" novalidate="novalidate"> 
-			<div class="row" id="cxtjDiv"> 
-				<div class="col-md-4 col-sm-5"> 
-					<div class="form-group"> 
-						<label for="" class="col-sm-4 control-label" id="xn"> <span style="color:red;">*</span>学年 </label> 
-						<div class="col-sm-8"> 
-							<select name="xnm" id="xnm1" class="form-control chosen-select" validate="{required:true}" style="display: none;"> <option value="">---请选择---</option> <option value="2020">2020-2021</option> <option value="2019">2019-2020</option> <option value="2018" selected="selected">2018-2019</option> <option value="2017">2017-2018</option> <option value="2016">2016-2017</option> </select> 
-							<div class="chosen-container chosen-container-single" style="width: 100%;" title="" id="xnm1_chosen"> 
-								<div class="chosen-drop"> 
-									<div class="chosen-search"> 
-										<input type="text" autocomplete="off" name="autocomplete"> 
-										</div>
-									</div> 
-								</div>
-							</div> 
-						</div> 
-					</div> 
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label for="xqm1" class="col-sm-4 control-label" id="xq"> <span style="color:red;">*</span>学期 </label>
+                <div class="col-sm-8">
+                    <select name="xqm" id="xqm1" class="form-control chosen-select" v-model="semester">
+                        <option value="1" >1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
-					<div class="col-md-4 col-sm-5"> 
-						<div class="form-group"> 
-							<label for="" class="col-sm-4 control-label" id="xq"> <span style="color:red;">*</span>学期 </label> 
-							<div class="col-sm-8"> 
-								<select name="xqm" id="xqm1" class="form-control chosen-select" validate="{required:true}" style="display: none;"> <option value="">---请选择---</option> <option value="3">1</option> <option value="12" selected="selected">2</option> <option value="16">3</option> </select>
-								<div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: 100%;" title="" id="xqm1_chosen"> 
-									<div class="chosen-drop"> 
-										<div class="chosen-search"> 
-											<input type="text" autocomplete="off" name="autocomplete" readonly="" /> 
-										</div>
-									</div> 
-								</div>
-							</div> 
-						</div> 
-					</div>
+		<div class="col-md-4 col-sm-4">
+			<div class="form-group">
+				<div class="col-sm-12">
+					<button type="button" class="btn btn-primary btn-sm pull-right"  @click="search()">查询</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row main">
+		<h3 class="title">{{start}}-{{parseInt(start)+1}}学年第{{semester}}学期</h3>
+        <div id="table">
+		<div class="header">
+			<div class="stage">时间段</div>
+			<div class="jie">节次</div>
+			<div class="weekhead">星期一</div>
+			<div class="weekhead">星期二</div>
+			<div class="weekhead">星期三</div>
+			<div class="weekhead">星期四</div>
+			<div class="weekhead">星期五</div>
+			<div class="weekhead">星期六</div>
+			<div class="weekhead">星期日</div>
+		</div>
 
-					<div class="col-md-4 col-sm-2"> 
-						<div class="form-group"> 
-							<div class="col-sm-12"> 
-								<button type="button" class="btn btn-primary btn-sm pull-right" id="search_go1" onclick=""> <span class="bigger-120 glyphicon glyphicon-search"></span> 查询 </button> 
-							</div> 
-						</div> 
-					</div> 
-				</div> 
-				<script type="text/javascript">
-            $('.chosen-select').trigger("chosen");
-				</script> 
-			</form>
+        <!--上午的课表-->
+		<div class="day">
+			<div class="day_title">
+				上<br>午
+			</div>
+			<div class="numset">
+				<div class="jie-item">1</div>
+				<div class="jie-item">2</div>
+				<div class="jie-item">3</div>
+				<div class="jie-item">4</div>
+				<div class="jie-item">5</div>
+			</div>
+
+            <!--下面是七列，代表的是星期几下午的课表-->
+			<div class="item-col">
+				<div class="each-col" id="col-1">
+				</div>
+			</div>
+			<div class="item-col">
+				<div class="each-col" id="col-2">
+
+				</div>
+			</div>
+			<div class="item-col">
+				<div class="each-col" id="col-3">
+
+				</div>
+			</div>
+			<div class="item-col">
+				<div class="each-col" id="col-4">
+
+				</div>
+			</div>
+			<div class="item-col">
+				<div class="each-col" id="col-5">
+
+				</div>
+			</div>
+			<div class="item-col">
+				<div class="each-col" id="col-6">
+
+				</div>
+			</div>
+			<div class="item-col">
+				<div class="each-col" id="col-7">
+
+				</div>
+			</div>
 		</div>
-		<div id="footerID" class="footer"> 
-			<p>计科1601</p>
+
+        <!--下午的课表-->
+		<div class="day">
+			<div class="day_title">
+				下<br>午
+			</div>
+			<div class="numset">
+				<div class="jie-item">6</div>
+				<div class="jie-item">7</div>
+				<div class="jie-item">8</div>
+				<div class="jie-item">9</div>
+				<div class="jie-item">10</div>
+			</div>
+
+            <!--下面是七列，代表的是星期几下午的课表-->
+			<div class="item-col"></div>
+			<div class="item-col"></div>
+			<div class="item-col"></div>
+			<div class="item-col"></div>
+			<div class="item-col"></div>
+			<div class="item-col"></div>
+			<div class="item-col"></div>
 		</div>
-	</body>
+
+        <!--晚上的课表-->
+		<div class="evening">
+			<div class="evening_title">
+				晚<br>上
+			</div>
+			<div class="even_numset">
+				<div class="jie-item">11</div>
+				<div class="jie-item">12</div>
+				<div class="jie-item">13</div>
+			</div>
+			<div class="item-col-evening"></div>
+			<div class="item-col-evening"></div>
+			<div class="item-col-evening"></div>
+			<div class="item-col-evening"></div>
+			<div class="item-col-evening"></div>
+			<div class="item-col-evening"></div>
+			<div class="item-col-evening"></div>
+		</div>
+	</div>
+    </div>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el:'#coursetablearea',
+        data:{
+            all_course:[],
+            semester:null,
+            start:null
+        },
+        methods:{
+            parserHtml:function(cInfo){
+                var div=document.createElement("div");
+                div.setAttribute("class","item-class");
+                var height=(cInfo.endStep-cInfo.startStep+1)*100;
+                var top=(cInfo.startStep-1)*100;
+                div.style.height=""+height+"px";
+                div.style.top=""+top+"px";
+                var margintop=(height-140)/2;
+                var content_class=document.createElement("div");
+                content_class.setAttribute("class","content-class");
+                content_class.style.marginTop=""+margintop+"px";
+
+                var time="("+cInfo.startStep+"-"+cInfo.endStep+"节) ";
+                time+=""+cInfo.startWeek+"-"+cInfo.endWeek+"周";
+                content_class.innerHTML="<h5>"+cInfo.cname+"</h5>" +
+                    "<div class='content-row'><span class='content_tip'>时间：</span>"+time+"</div>" +
+                    "<div class='content-row'><span class='content_tip'>地点：</span>"+cInfo.address+"</div>" +
+                    "<div class='content-row'><span class='content_tip'>教师：</span>"+cInfo.tname+"</div>";
+                div.append(content_class);
+
+                var insertid=parseInt(cInfo.courseTime.split(",")[1]);
+                document.getElementById("col-"+insertid).appendChild(div);
+                //colset[insertid].append(div);
+            },
+            search:function(){
+                console.log(this.semester);
+                console.log(this.start);
+                this.$http.get("/getcoursetable/",{params : {semester:this.semester,start:this.start}}).then(function(value){
+                    if(value.body.code==302){
+                        alert(value.body.message);
+                        window.location.href="/index";
+                    }
+                    if(value.body.code==505){
+                        document.getElementById("table").style.display="none";
+                        alert(value.body.message);
+                        for(var i=1;i<8;i++){
+                            document.getElementById("col-"+i).innerHTML="";
+                        }
+                    }
+                    else{
+                        for(var i=1;i<8;i++){
+                            document.getElementById("col-"+i).innerHTML="";
+                        }
+                        this.all_course=value.body.data;
+                        for(var i=0;i<this.all_course.length;i++){
+                            this.parserHtml(this.all_course[i]);
+                        }
+                        document.getElementById("table").style.display="block";
+                    }
+                },function(reason){
+                    alert("请求出错");
+                });
+            },
+        }
+    });
+</script>
 </html>
+
 

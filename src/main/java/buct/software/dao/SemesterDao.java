@@ -24,4 +24,12 @@ public interface SemesterDao {
     public List<Semester> getAll();
 
     public List<Semester> getSemesterMostId();
+
+    /**
+     * @author 高谦
+     * 查询特定的学期
+     * @param parm  查询条件数据集合
+     * @return
+     */
+    Semester getSemesterByStartAndSemester(Semester parm);
 }
