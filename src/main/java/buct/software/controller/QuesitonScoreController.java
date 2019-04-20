@@ -31,7 +31,18 @@ public class QuesitonScoreController {
         Object user = session.getAttribute("user");
         int sno = ((User)user).getAccount();
         QuestionScore questionScore = questionScoreService.getQuestionScoreBySno(sno);
+
+        double total = 0;
+
+        if(questionScore==null)
+            total = -1;
+        else{
+            total =  questionScore.getEarlyperformance()*0.1+questionScore.getMidexam()*0.2+questionScore.getThesisanswer()*0.3+questionScore.getPaper()*0.3+questionScore.getExtracredit()*0.1;
+        }
+
+        map.put("total",total);
         map.put("quesScore",questionScore);
+
         return "StuScore";
     }
 

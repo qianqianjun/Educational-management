@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,7 @@ public class QuestionController {
 
     @Autowired
     private TeacherService teacherService;
+
 
     @Autowired
     private QuestionStudentChooseService questionStudentChooseService;
@@ -144,7 +146,13 @@ public class QuestionController {
         Question question = questionService.getSingleQuestionByQuestionid(questionid);
         map.put("question",question);
         List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceByQid(questionid);
+        List<Student> students = new ArrayList<>();
+        for(int i=0;i<questionStudentChooses.size();i++)
+        {
+            students.add(studentService.getStudentBySno(questionStudentChooses.get(i).getSno()));
+        }//添加学生详细信息
         map.put("choices",questionStudentChooses);
+        map.put("students",students);
         return "TeaQuesDetails";
     }
 

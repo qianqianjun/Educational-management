@@ -4,3 +4,4 @@
 4.  修正了StuQuesDetails页面 isChosen 接口无法显示的问题
 5.  修复页面无法正常加载问题
 6.  修复老师论题详情页无法正确显示选择该题学生的问题
+7.  /StuScore 增加总成绩接口： total
