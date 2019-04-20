@@ -207,7 +207,8 @@
                     "<div class='content-row'><span class='content_tip'>地点：</span>"+cInfo.address+"</div>" +
                     "<div class='content-row'><span class='content_tip'>教师：</span>"+cInfo.tname+"</div>";
                 div.append(content_class);
-                var insertid=parseInt(cInfo.courseTime.split(",")[1])-1;
+
+                var insertid=parseInt(cInfo.courseTime.split(",")[1]);
                 document.getElementById("col-"+insertid).appendChild(div);
                 //colset[insertid].append(div);
             },

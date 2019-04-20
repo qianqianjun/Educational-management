@@ -39,16 +39,17 @@
         scheduling.major_grade,scheduling.status,scheduling.semesterid,planning.type
         from scheduling left join teacher on scheduling.tno=teacher.tno left join course on scheduling.cno=course.cno
         left join planning on scheduling.semesterid=planning.semesterid and scheduling.cno=planning.cno
+        left join schedule_major on scheduling.semesterid=schedule_major.semesterid and scheduling.cno=schedule_major.cno
         <where>
             scheduling.status=1
             <if test="cname != null">
-                and course.cname=#{cname}
+                and course.cname like #{cname}
             </if>
             <if test="college != null">
-                and course.college=#{college}
+                and course.college =#{college}
             </if>
             <if test="tname != null">
-                and teacher.tname=#{tname}
+                and teacher.tname like #{tname}
             </if>
             <if test="capacity != null">
                 <if test="capacity!=2">
@@ -61,6 +62,7 @@
             <if test="cno != null">
                 and  scheduling.cno= #{cno}
             </if>
+            and scheduling.semesterid=#{semesterId} and schedule_major.majorid=#{majorId}
         </where>
     </select>
 
@@ -176,7 +178,6 @@
         <result column="start" javaType="Integer" jdbcType="INTEGER" property="start"></result>
         <result column="end" javaType="Integer" jdbcType="INTEGER" property="end"></result>
         <result column="totalscore" javaType="Integer" jdbcType="INTEGER" property="totalScore"></result>
-        <result column="type" javaType="Integer" jdbcType="INTEGER" property="type"></result>
         <result column="cname" javaType="String" jdbcType="VARCHAR" property="cname"></result>
     </resultMap>
     <select id="getGrade" resultMap="getGradMap" parameterType="buct.software.domain.SelectCourse">
@@ -184,4 +185,10 @@
         left join semester on select_course.semesterid=semester.semesterid
         where select_course.totalscore is not null and select_course.semesterid=#{semesterId} and select_course.sno=#{sno};
     </select>
+
+
+    <update id="changeCapacity">
+        update scheduling set scheduling.capacity=scheduling.capacity+#{addition} where scheduling.semesterid=#{semesterId}
+        and scheduling.cno=#{cno}
+    </update>
 </mapper>

@@ -24,29 +24,29 @@ import javax.servlet.http.HttpSession;
 @Aspect
 @Component
 public class ApiAspect {
-//    @Pointcut("execution(public * buct.software.controller.*Api.*(..))")
-//    public void selectCourseApi() {
-//    }
-//
-//    /**
-//     *  权限拦截器，没有登录就返回特定的数据包和 状态码。
-//     * @param joinPoint
-//     * @return  可能是一个到 登录页面的重定向，也有可能是拦截完成 到对用的地址。
-//     * @throws Throwable
-//     */
-//    @Around("selectCourseApi()")
-//    public Object docheck(ProceedingJoinPoint joinPoint) throws Throwable {
-//        ServletRequestAttributes attributes = (ServletRequestAttributes)
-//                RequestContextHolder.getRequestAttributes();
-//        HttpServletRequest request = attributes.getRequest();
-//        HttpSession session = request.getSession();
-//        if (session.getAttribute("user") == null) {
-//            ResponseMessage responseMessage=new
-//                    ResponseMessage(ResponseMessage.LoginOutOfTime,
-//                    "登录过期，请重新登录",
-//                    null);
-//            return responseMessage;
-//        }
-//        return joinPoint.proceed();
-//    }
+    @Pointcut("execution(public * buct.software.controller.*Api.*(..))")
+    public void selectCourseApi() {
+    }
+
+    /**
+     *  权限拦截器，没有登录就返回特定的数据包和 状态码。
+     * @param joinPoint
+     * @return  可能是一个到 登录页面的重定向，也有可能是拦截完成 到对用的地址。
+     * @throws Throwable
+     */
+    @Around("selectCourseApi()")
+    public Object docheck(ProceedingJoinPoint joinPoint) throws Throwable {
+        ServletRequestAttributes attributes = (ServletRequestAttributes)
+                RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") == null) {
+            ResponseMessage responseMessage=new
+                    ResponseMessage(ResponseMessage.LoginOutOfTime,
+                    "登录过期，请重新登录",
+                    null);
+            return responseMessage;
+        }
+        return joinPoint.proceed();
+    }
 }

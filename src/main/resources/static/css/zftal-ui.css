@@ -1598,7 +1598,7 @@ li {
 
 .index_grxx .media-body p {
 	color: #7a7a7a;
-	font: normal 12px/22px "microsoft YaHei"
+	font: normal 18px/22px "microsoft YaHei"
 }
 
 .index_grxx .media-body p.fs1 {
@@ -1747,7 +1747,7 @@ li {
 	float: left;
 	margin-left: 10px;
 	color: #6e6e6e;
-	font: normal 12px/30px SimSun;
+	font: normal 15px/30px SimSun;
 }
 
 .index_rctx .list-group-item .but1 {

@@ -90,6 +90,8 @@ public class SelectCourseControllerPage {
     }
     @GetMapping("/coursetablemobile")
     public String coursetablemobile(Map<String, Object> parmMap){
+        List<Semester> semesters=semesterService.getSemesterDomain();
+        parmMap.put("semesterlist",semesters);
         return "coursetablemobile";
     }
 }

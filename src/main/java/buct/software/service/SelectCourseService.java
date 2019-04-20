@@ -36,7 +36,14 @@ public class SelectCourseService {
     }
 
     /**
-     *  查询函数，用于作为查询的条件
+     *
+     *
+     * @return
+     */
+    /**
+     * 查询函数，用于作为查询的条件
+     * @param semesterId  学期 id
+     * @param majorId  专业id
      * @param college  开课学院
      * @param capacity  容量 ：这里设置的是是否显示没有余量的课程。
      * @param cno  课程号
@@ -44,19 +51,21 @@ public class SelectCourseService {
      * @param tname  老师名称
      * @return
      */
-    public List<SelectCourseView> getCourseList(String college,String capacity,
+    public List<SelectCourseView> getCourseList(Integer semesterId,Integer majorId,String college,String capacity,
                                                 String cno,String cname,String tname){
         SelectCourseView view=new SelectCourseView();
         if(!capacity.equals(""))
             view.setCapacity(Integer.parseInt(capacity));
         if (!cname.equals(""))
-            view.setCname(cname);
+            view.setCname("%"+cname+"%");
         if(!cno.equals(""))
             view.setCno(Integer.parseInt(cno));
         if(!college.equals(""))
             view.setCollege(college);
         if(!tname.equals(""))
-            view.setTname(tname);
+            view.setTname("%"+tname+"%");
+        view.setMajorId(majorId);
+        view.setSemesterId(semesterId);
         return selectCourseDao.getAllAvaiableCourseWithCondition(view);
     }
 
@@ -86,7 +95,9 @@ public class SelectCourseService {
         selectCourse.setSno(sno);
         selectCourse.setCno(cno);
         Integer accectRows=selectCourseDao.addNewCourseToTable(selectCourse);
-        if(accectRows>0){
+        selectCourse.setAddition(-1);
+        Integer ok=selectCourseDao.changeCapacity(selectCourse);
+        if(accectRows>0 && ok>0){
             return selectCourse;
         }
         else{
@@ -106,8 +117,10 @@ public class SelectCourseService {
         selectCourse.setCno(cno);
         selectCourse.setSno(sno);
         selectCourse.setSemesterId(semesterId);
+        selectCourse.setAddition(1);
         Integer affectRows=selectCourseDao.deleteCourseFromTable(selectCourse);
-        if(affectRows>0){
+        Integer ok=selectCourseDao.changeCapacity(selectCourse);
+        if(affectRows>0 && ok>0){
             return selectCourse;
         }
         else{
