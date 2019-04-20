@@ -1,6 +1,10 @@
 package buct.software.dao;
+import buct.software.views.MobileSchedulingView;
 import buct.software.views.SchedulingView;
+import lombok.Data;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 
 /**
@@ -18,7 +22,7 @@ public interface SchedulingDao {
     public Boolean addCourseMajor(Integer semesterId,Integer cno,Integer majorId,String grade);
     public Integer getCourseMajorCount(Integer semesterId,Integer cno);
     public Integer checkCourseMajor(Integer semesterId,String cno,Integer majorId,String grade);
-
+    public List<MobileSchedulingView> getCoursesByTnoAndTnameAndAddress(Integer tno, String tname,String address);
     //几个用于检测冲突的查询方法
 
     /**
@@ -37,4 +41,5 @@ public interface SchedulingDao {
      * @return
      */
     public List<String> getRoomTaskTime(Integer semesterId,String room);
+
 }

@@ -70,4 +70,30 @@
     <select id="getRoomTaskTime" resultType="String">
         select scheduling.course_time from scheduling where scheduling.semesterid=#{semesterId} and scheduling.address=#{room}
     </select>
+
+
+    <select id="getCoursesByTnoAndTnameAndAddress" resultType="buct.software.views.MobileSchedulingView">
+    <bind name="_tname" value="'%'+ tname + '%'"></bind>
+    <bind name="_tno" value="'%' + tno + '%'"></bind>
+    <bind name="_address" value="'%' + address + '%'"></bind>
+        select scheduling.tno,tname,scheduling.cno,cname,address,course_time,capacity from scheduling,teacher,course
+        <where>
+            scheduling.tno = teacher.tno
+            and
+            scheduling.cno = course.cno
+            <if test="tname != 'null'">
+                and
+                teacher.tname like #{_tname}
+            </if>
+            <if test="tno != -1">
+                and
+                scheduling.tno like #{_tno}
+            </if>
+            <if test="address != 'null'">
+                and
+                scheduling.address like #{_address}
+            </if>
+        </where>
+
+    </select>
 </mapper>

@@ -6,6 +6,7 @@ import buct.software.dao.SchedulingDao;
 import buct.software.dao.SemesterDao;
 import buct.software.domain.Scheduling;
 import buct.software.utils.ResponseMessage;
+import buct.software.views.MobileSchedulingView;
 import buct.software.views.SchedulingView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,6 +81,16 @@ public class SchedulingService {
         ResponseMessage message=ResponseMessage.getMessage(flag!=false,ResponseMessage.SUCCESS,
                 " 删除成功！", ResponseMessage.WRONG,"删除失败！");
         message.setData(flag);
+        return message;
+    }
+
+    public ResponseMessage getCoursesByTnoAndTnameAndAddress(Integer tno,String tname,String address){
+        System.out.println(tname);
+        List<MobileSchedulingView> mobileSchedulingView = schedulingDao.getCoursesByTnoAndTnameAndAddress(tno,
+                tname,address);
+        ResponseMessage message=ResponseMessage.getMessage(mobileSchedulingView!=null,ResponseMessage.SUCCESS,
+                " 查找成功！", ResponseMessage.WRONG,"查找失败！");
+        message.setData(mobileSchedulingView);
         return message;
     }
 }

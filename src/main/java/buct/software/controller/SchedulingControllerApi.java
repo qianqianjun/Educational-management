@@ -143,4 +143,11 @@ public class SchedulingControllerApi {
                                         @RequestParam("grade") String grade){
         return schedulingService.deleteCourse(cno,year,semester,majorName,grade);
     }
+
+    @PostMapping("/getCoursesByTnoAndTnameAndAddress")
+    public ResponseMessage getCoursesByTnoAndTnameAndAddress(@RequestParam("tno") Integer tno,
+                                                             @RequestParam("tname") String tname,
+                                                             @RequestParam("address") String address){
+        return  schedulingService.getCoursesByTnoAndTnameAndAddress(tno,tname,address);
+    }
 }
