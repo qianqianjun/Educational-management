@@ -7,8 +7,8 @@
     <!--id对应的是dao中方法-->
 
     <update id="deleteStudentQuestion" parameterType="int">
-        update question set sno = -1 and ischosen = false
-        where questionid = ${questionid}
+        update question set sno = '-1' , ischosen = '0'
+        where questionid = #{questionid}
     </update>
 
     <select id="getAllQuestions" resultType="Question">

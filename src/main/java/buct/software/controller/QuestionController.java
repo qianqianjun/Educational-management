@@ -88,7 +88,7 @@ public class QuestionController {
                              Map<String,Object> map){
         boolean isDeleted = questionService.deleteStudentQuestion(questionid);
         map.put("isDeleted",isDeleted);
-        return "forward:/ManageQues";
+        return "redirect:/ManageQues";
     }
 
 
@@ -140,9 +140,6 @@ public class QuestionController {
     public String TeaQuesDetails(HttpServletRequest request,
                                  @RequestParam("questionid")int questionid,
                                  Map<String,Object>map){
-//        HttpSession session = request.getSession();
-//        Object user = session.getAttribute("user");
-//        int tno = ((User)user).getAccount();
         Question question = questionService.getSingleQuestionByQuestionid(questionid);
         map.put("question",question);
         List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceByQid(questionid);
