@@ -48,7 +48,6 @@ public class QuestionStudentChooseService {
         questionStudentDao.chooseQuestion(map);
         if(questionStudentDao.getChoiceByQidSno(map)!=null)
             isChoosen = true;
-        System.out.println(isChoosen);
         return isChoosen;
     }
 
@@ -69,5 +68,10 @@ public class QuestionStudentChooseService {
         map.put("questionid",questionid);
         map.put("sno",sno);
         return questionStudentDao.getChoiceByQidSno(map);
+    }
+
+    //根据题目找到所有选该题的学生
+    public List<QuestionStudentChoose> getChoiceByQid(int questionid){
+        return questionStudentDao.getChoiceByQid(questionid);
     }
 }

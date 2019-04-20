@@ -19,12 +19,11 @@ public interface QuestionStudentDao {
     public List<QuestionStudentChoose> getChoiceBySno(int sno);
     //老师根据工号查询所有选自己题的学生
     public List<QuestionStudentChoose> getChoiceByTno(int tno);
-    //根据专业获取选题信息
-
-
-
     //根据学生学号和论题号查询，为了判断是否插入选题表成功
     public QuestionStudentChoose getChoiceByQidSno(HashMap map);//int questionid,int sno
+    //根据题目找到所有选该题的学生
+    public List<QuestionStudentChoose> getChoiceByQid(int questionid);
+
 
 
 

@@ -22,6 +22,7 @@ public class QuestionStudentChooseController {
     @Autowired
     QuestionService questionService;
 
+    //学生向后端发送选题申请
     @RequestMapping(value = "/StuChooseQues")
     public String StuChooseQues(HttpServletRequest request,
                                 @RequestParam("questionid")int questionid,
@@ -35,11 +36,12 @@ public class QuestionStudentChooseController {
         return "forward:/StuQuesDetails";
     }
 
+    //学生所有的选题信息
     @RequestMapping(value = "/StuChoice")
     public String StuChoice(HttpServletRequest request,
                             Map<String,Object> map){
         HttpSession session =  request.getSession();
-        Object user = session.getAttribute("uesr");
+        Object user = session.getAttribute("user");
         int sno = ((User)user).getAccount();
         List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceBySno(sno);
         List<Question> questions = new ArrayList<>();
@@ -49,11 +51,6 @@ public class QuestionStudentChooseController {
         map.put("quesInfos",questions);
         return "StuChoice";
     }
-
-
-
-
-
 
 
 //以下皆为测试API

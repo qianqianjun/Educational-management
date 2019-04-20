@@ -7,6 +7,7 @@ import buct.software.domain.QuestionStudentChoose;
 import buct.software.domain.User;
 import buct.software.service.QuestionStudentChooseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import buct.software.service.QuestionScoreService;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 public class QuesitonScoreController {
     @Autowired
     QuestionScoreService questionScoreService;

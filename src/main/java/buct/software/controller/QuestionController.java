@@ -71,17 +71,7 @@ public class QuestionController {
         return "StuQuesDetails";
     }
 
-    @RequestMapping("/TeaLookThroughQues")
-    public String TeaLookThroughQues(HttpServletRequest request,
-                                     Map<String,Object> map){
-        HttpSession session =  request.getSession();
-        Object userInfo = session.getAttribute("user");
-        User user = (User) userInfo;
-        int tno = user.getAccount();
-        List<Question> questions = questionService.getQuestionByTno(tno);
-        map.put("quesInfos",questions);
-        return "TeaLookThroughQues";
-    }
+
 
     @RequestMapping("/ManageQues")
     public String ManageQues(HttpServletRequest request,
@@ -100,6 +90,18 @@ public class QuestionController {
     }
 
 
+    @RequestMapping("/TeaLookThroughQues")
+    public String TeaLookThroughQues(HttpServletRequest request,
+                                     Map<String,Object> map){
+        HttpSession session =  request.getSession();
+        Object userInfo = session.getAttribute("user");
+        User user = (User) userInfo;
+        int tno = user.getAccount();
+        List<Question> questions = questionService.getQuestionByTno(tno);
+        map.put("quesInfos",questions);
+        return "TeaLookThroughQues";
+    }
+
 
     @RequestMapping(value = "/TeaAddQues")
     public String TeaAddQues(
@@ -107,8 +109,12 @@ public class QuestionController {
     ){
         return "TeaAddQues";
     }
+
     @RequestMapping(value = "/TeaAddQues",method = RequestMethod.POST)
-    public String TeaAddQues(HttpServletRequest request, @RequestParam("topic")String topic,@RequestParam("content")String content, @RequestParam("difficulty")int difficulty,
+    public String TeaAddQues(HttpServletRequest request,
+                             @RequestParam("topic")String topic,
+                             @RequestParam("content")String content,
+                             @RequestParam("difficulty")int difficulty,
                              @RequestParam("majorid")int majorid,
                              Map<String,Object>map){
         HttpSession session = request.getSession();
@@ -123,22 +129,23 @@ public class QuestionController {
         question.setMajorid(majorid);
         boolean isAdded = questionService.addQuestion(question);
         map.put("isAdded",isAdded);
-        return "forward/TeaAddQues";
+        return "forward:/TeaAddQues";
     }
 
 
 
     @RequestMapping(value = "/TeaQuesDetails")
-    public String TeaQuesDetails(HttpServletRequest request,@RequestParam("questionid")int questionid,
+    public String TeaQuesDetails(HttpServletRequest request,
+                                 @RequestParam("questionid")int questionid,
                                  Map<String,Object>map){
-        HttpSession session = request.getSession();
-        Object user = session.getAttribute("user");
-        int tno = ((User)user).getAccount();
-    Question question = questionService.getSingleQuestionByQuestionid(questionid);
-    map.put("question",question);
-    List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceByTno(tno);
-    map.put("choices",questionStudentChooses);
-    return "TeaQuesDetails";
+//        HttpSession session = request.getSession();
+//        Object user = session.getAttribute("user");
+//        int tno = ((User)user).getAccount();
+        Question question = questionService.getSingleQuestionByQuestionid(questionid);
+        map.put("question",question);
+        List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceByQid(questionid);
+        map.put("choices",questionStudentChooses);
+        return "TeaQuesDetails";
     }
 
     @RequestMapping(value = "/sureQuesStu")
@@ -150,12 +157,6 @@ public class QuestionController {
         map.put("isSured",isSured);
         return "forward:/TeaQuesDetails";
     }
-
-
-
-
-
-
 
 
     @GetMapping("getPQBM")
@@ -170,9 +171,6 @@ public class QuestionController {
     public ResponseMessage getQuestionByMajorid(){
         return questionService.messageGetQuestionByMajorid(1);
     }
-
-
-
 
     @GetMapping("getQBT")
     public ResponseMessage getQuestionByTno(){
