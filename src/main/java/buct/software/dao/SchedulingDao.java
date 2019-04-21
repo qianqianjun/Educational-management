@@ -1,10 +1,7 @@
 package buct.software.dao;
-<<<<<<< HEAD
 import buct.software.domain.Scheduling;
 import buct.software.domain.SelectCourse;
-=======
 import buct.software.views.MobileSchedulingView;
->>>>>>> ClassScheduling
 import buct.software.views.SchedulingView;
 import buct.software.views.SchedulingCourseView;
 import org.springframework.stereotype.Repository;
