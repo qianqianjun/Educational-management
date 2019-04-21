@@ -23,7 +23,7 @@ public class PlanningService {
     MajorDao majorDao;
 
     public ResponseMessage getWillCourses(String year,String semester,
-                                          String majorName,String grade){
+                                          String majorName,Integer grade){
         List<PlanningView> data = planningDao.getWillCourses(year,semester,majorName,grade);
         ResponseMessage message=ResponseMessage.getMessage(data!=null,ResponseMessage.SUCCESS,
                 "查询成功！", ResponseMessage.EmptyDate,"查询结果为空！");
@@ -33,7 +33,7 @@ public class PlanningService {
 
     public ResponseMessage addWillCourse(Integer cno,String cname,String college,
                                          String description,String status,String year,
-                                         String semester,String majorName,String grade){
+                                         String semester,String majorName,Integer grade){
         Boolean flag = courseDao.checkCourse(cno);
         if(flag == false){
             courseDao.addCourse(cno,cname,college,description,status);
@@ -53,7 +53,7 @@ public class PlanningService {
 
     // 这里修改了一下  高谦
     public ResponseMessage deleteWillCourse(Integer cno,String year,String semester,
-                                            String majorName,String grade){
+                                            String majorName,Integer grade){
         Integer semesterId = semesterDao.getSemesterId(year,semester);
         Integer majorId = majorDao.getMajorIdByMajorName(majorName);
         planningDao.deleteWillCourse(semesterId,majorId,grade,cno);

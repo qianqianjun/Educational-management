@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+	<!-- meta使用viewport以确保页面可自由缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- 引入 jQuery Mobile 样式 -->
+	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+	<!-- 引入 jQuery 库 -->
+	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	<!-- 引入 jQuery Mobile 库 -->
+	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+	
+
+
+	<style type="text/css">
+		th {
+		    border-bottom: 1px solid #d6d6d6;
+		}
+
+		tr:nth-child(even) {
+		    background: #e9e9e9;
+		}
+
+		#btn-search{
+			position: fixed;
+			top: 16%;
+			right: 2%;
+			z-index: 2;
+		}
+
+		#btn-add{
+			position: fixed;
+			top: 22%;
+			right: 2%;
+			z-index: 2;
+		}
+
+		#pagebox{
+			text-align: center;
+		}
+
+	</style>
+
+	<title>排课子系统</title>
+</head>
+
+<body>
+<div data-role="page" id="pageone">
+
+  	<!-- 头部 -->
+	<div data-role="header">
+    	<!--<a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">更多</a> -->
+    	<div style="text:align:left;">
+			<h1>课程查询</h1>
+		</div>
+  	</div>
+  	
+  	<!-- 主体 -->
+  	<div data-role="main" class="ui-content">
+  		<a href="/schedulingsearchmobile" target="_self" class="ui-btn ui-shadow ui-corner-all ui-icon-search ui-btn-icon-notext" id="btn-search">搜索</a>
+  		
+  		<table data-role="table" data-mode="columntoggle" class="ui-responsive" id="SI">
+      		<thead>
+        		<tr>
+			        <th data-priority="1">课程号</th>
+			        <th data-priority="1">课程名</th>
+					<th data-priority="1">教师名</th>
+					<th data-priority="1">教师工号</th>
+			        <th data-priority="1">教学地点</th>
+			        <th data-priority="1">课程容量</th>
+			        <th data-priority="1">上课时间</th>
+					<th data-priority="1">专业年级</th>
+        		</tr>
+      		</thead>
+      		<tbody>
+		        
+		        <!--<tr v-for="(student, index) in students">
+					<td>{{student.cno}}</td>
+					<td>{{student.cname}}</td>
+					<td>{{student.tname}}</td>
+					<td>{{student.tno}}</td>
+					<td>{{student.claSite}}</td>
+					<td>{{student.claSize}}</td>
+					<td>{{student.ctime}}</td>
+					<td>{{student.grade}}</td>
+				</tr>-->
+				
+		        <tr th:each="willCourse:${data}">
+					<td th:text="${willCourse.tno}"></td>
+					<td th:text="${willCourse.tname}"></td>
+					<td th:text="${willCourse.cno}"></td>
+					<td th:text="${willCourse.cname}"></td>
+					<td th:text="${willCourse.address}"></td>
+					<td th:text="${willCourse.time}"></td>
+					<td th:text="${willCourse.capacity}"></td>
+				</tr> 
+      		</tbody>
+    	</table>
+    
+  	</div>
+
+  	<!-- 底部 -->
+  	<div data-role="footer" data-position="fixed">
+    	<h1>版权所有</h1>
+  	</div>
+
+</div>
+
+</body>
+
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/jquery.mobile-1.4.3.js"></script>
+<script src="vue.js"></script>
+
+<!--<script>
+
+
+	//获取查询信息
+    var getCourseList = function () {
+
+        //数据校验
+        if ($("#search_cla").val() || ($("#search_name").val() || $("#search_no").val())) 
+		{
+
+            var searchButton = $(this);
+            
+			//searchButton.button("option", "disabled", true);
+            //$.mobile.loading("show");
+			
+            var _data = {};
+            
+            if ($("#search_name").val()) 
+			{
+                _data.TeacherName = $("#search_name").val();
+            }
+			else if($("search_no").val())
+			{
+				_data.TeacherNo = $("#search_no").val();
+			}
+			else
+			{
+				_data.ClassSite = $("search_cla").val();
+			}
+ 
+			window.location.href='file:///E:/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9%20(4)/Scheduling.html';
+			
+			//$.mobile.loading("hide");
+            //searchButton.button("option", "disabled", false);
+              
+        } else {
+            alert("请输入教师姓名或教师工号或教学地点");
+        }
+    };
+	
+	//绑定事件
+    var bindEvent = function () {
+        
+		$("#search_submit").on("click", getCourseList);
+		
+    };
+
+    $(document).on("pageshow", "#pagetwo", function () {
+        
+        bindEvent();
+    });
+	
+</script>-->
+<!--<script>
+var si = new Vue({
+        el: '#SI',
+        methods: {
+            change: function (sno) {
+                window.location = "/UpdateStudent?sno=" + sno;
+            }
+
+        },
+        data: {
+            searchStudent: {
+                cno: null,
+                cname: '',
+                tname: '',
+                tno: '',
+                claSite: '',
+                claSize: '',
+                ctime: '',
+                grade: ''
+            },
+			students: [{
+				cno: 'C S E 6 6 6 6 6 C',
+				cname: 'C++程序设计',
+				tname: '呵呵呵',
+				tno: '2 0 0 0 0 1 4 2 8 0',
+				claSite: 'B阶303',
+				claSize: '100/180',
+				ctime: '6 - 8节',
+				grade: '大二'
+			},{
+				cno: 'C S E 7 7 7 7 7 C',
+				cname: 'JAVA程序设计',
+				tname: '嘻嘻嘻',
+				tno: '1 9 9 9 0 1 4 2 7 8',
+				claSite: 'B阶301',
+				claSize: '10/100',
+				ctime: '1 - 3节',
+				grade: '大二'
+			},{
+				cno: 'C S E 1 2 3 4 5 C',
+				cname: 'JAVA程序设计',
+				tname: '哈哈哈',
+				tno: '1 9 9 9 0 1 4 2 7 8',
+				claSite: 'A阶301',
+				claSize: '77/140',
+				ctime: '4 - 6节',
+				grade: '大三'
+			}]
+			
+            students: [[${allStudent}]]
+        }
+
+    })
+</script>-->
+
+</html>
+
+
+
+
+
