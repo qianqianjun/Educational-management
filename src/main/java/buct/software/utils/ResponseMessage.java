@@ -21,6 +21,8 @@ public class ResponseMessage {
     public static final Integer ERROR=501;
     public static final Integer DELETE_EXCEPTION =503;
     public static final Integer INSERT_EXCEPTION = 504;
+    public static final Integer TIME_CONFLICT = 507;
+    public static Integer semesterNotFound=505;
 
     /**
      * 设置消息的静态工具函数，防止从多个方法中重复编写代码；

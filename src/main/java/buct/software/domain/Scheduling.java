@@ -2,17 +2,16 @@ package buct.software.domain;
 
 import lombok.Data;
 
-import javax.validation.constraints.Null;
-
 /**
  * @author 高谦
  * 排课表实体类
+ * 修改了这里的 cno 和 tno 的类型。
  */
 @Data
 public class Scheduling {
     private Integer semesterId;
-    private String cno;
-    private String tno;
+    private Integer cno;
+    private Integer tno;
     private String status;
     private Integer capacity;
     private String address;
@@ -25,11 +24,11 @@ public class Scheduling {
         this.semesterId = semesterId;
     }
 
-    public void setCno(String cno) {
+    public void setCno(Integer cno) {
         this.cno = cno;
     }
 
-    public void setTno(String tno) {
+    public void setTno(Integer tno) {
         this.tno = tno;
     }
 
@@ -61,11 +60,11 @@ public class Scheduling {
         return semesterId;
     }
 
-    public String getCno() {
+    public Integer getCno() {
         return cno;
     }
 
-    public String getTno() {
+    public Integer getTno() {
         return tno;
     }
 
@@ -93,8 +92,8 @@ public class Scheduling {
         return majorGrade;
     }
 
-    public Scheduling(Integer semesterId, String cno,
-                      String tno, String status,
+    public Scheduling(Integer semesterId, Integer cno,
+                      Integer tno, String status,
                       Integer capacity, String address,
                       String courseTime, String percent,
                       String majorGrade) {

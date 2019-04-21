@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author 刘权达
  * 数据表 scheduling 服务层
- * 未完成
+ * 未完成  高谦修改了一下 tno sno 的数据类型 String -> Integer
  */
 @Service
 public class SchedulingService {
@@ -28,7 +28,7 @@ public class SchedulingService {
     @Autowired
     MajorDao majorDao;
 
-    public ResponseMessage getCourse(String cno,String year,String semester,
+    public ResponseMessage getCourse(Integer cno,String year,String semester,
                                      String majorName,String grade){
         Integer semesterId = semesterDao.getSemesterId(year,semester);
         Integer majorId = majorDao.getMajorIdByMajorName(majorName);
@@ -44,7 +44,7 @@ public class SchedulingService {
         return message;
     }
 
-    public ResponseMessage addCourse(String cno,String tno,String year,String semester,
+    public ResponseMessage addCourse(Integer cno,Integer tno,String year,String semester,
                                      String majorName,String grade,String status,
                                      String capacity1,String address,String time){
         Integer capacity=Integer.valueOf(capacity1);
@@ -62,7 +62,7 @@ public class SchedulingService {
         return message;
     }
 
-    public ResponseMessage deleteCourse(String cno,String year,String semester,
+    public ResponseMessage deleteCourse(Integer cno,String year,String semester,
                                         String majorName,String grade){
         Integer semesterId = semesterDao.getSemesterId(year,semester);
         Integer majorId = majorDao.getMajorIdByMajorName(majorName);

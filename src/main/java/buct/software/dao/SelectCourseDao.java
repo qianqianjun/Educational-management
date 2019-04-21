@@ -1,7 +1,9 @@
 package buct.software.dao;
 import buct.software.domain.ScheduleMajor;
+import buct.software.domain.Scheduling;
 import buct.software.domain.SelectCourse;
 import buct.software.views.SelectCourseView;
+import buct.software.views.StudentGradeIndexView;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -48,5 +50,29 @@ public interface SelectCourseDao {
      */
     Integer deleteCourseFromTable(SelectCourse selectCourse);
 
+    /**
+     * 获得学生选课的课表
+     * @param selectCourse
+     * @return
+     */
     List<SelectCourseView> getCourseTable(SelectCourse selectCourse);
+
+    /**
+     * 获取成绩列表
+     * @return 成绩列表
+     */
+    List<StudentGradeIndexView> getGrade(SelectCourse selectCourse);
+
+    /**
+     * 选课和退课之后修改课程容量
+     * @param selectCourse  传进来的参数。
+     * @return
+     */
+    Integer changeCapacity(SelectCourse selectCourse);
+
+    /**
+     * 使用 semssterid 和cno 获取 排课表信息
+     * @return
+     */
+    Scheduling getSchedulingBySemesterIdAndCno(Scheduling scheduling);
 }

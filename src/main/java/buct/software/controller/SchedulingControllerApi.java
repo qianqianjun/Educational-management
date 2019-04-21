@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author  刘权达大佬无敌宇宙第一帅
+ * 排课子系统api
+ */
 @RestController
 public class SchedulingControllerApi {
     @Autowired
@@ -46,7 +50,7 @@ public class SchedulingControllerApi {
     }
 
     @PostMapping("/addWillCourse")
-    public ResponseMessage addWillCourse(@RequestParam("cno") String cno,
+    public ResponseMessage addWillCourse(@RequestParam("cno") Integer cno,
                                          @RequestParam("cname") String cname,
                                          @RequestParam("college") String college,
                                          @RequestParam("description") String description,
@@ -59,8 +63,17 @@ public class SchedulingControllerApi {
                 semester,Name,grade);
     }
 
+    /**
+     *
+     * @param cno  这里改动了一下
+     * @param year
+     * @param semester
+     * @param majorName
+     * @param grade
+     * @return
+     */
     @PostMapping("/deleteWillCourse")
-    public  ResponseMessage deleteWillCourse(@RequestParam("cno") String cno,
+    public  ResponseMessage deleteWillCourse(@RequestParam("cno") Integer cno,
                                              @RequestParam("year") String year,
                                              @RequestParam("semester") String semester,
                                              @RequestParam("majorName") String majorName,
@@ -68,8 +81,16 @@ public class SchedulingControllerApi {
         return planningService.deleteWillCourse(cno,year,semester,majorName,grade);
     }
 
+    /**
+     * @param cno 这里改动了一下
+     * @param year
+     * @param semester
+     * @param majorName
+     * @param grade
+     * @return
+     */
     @PostMapping("/getCourse")
-    public ResponseMessage getCourse(@RequestParam("cno") String cno,
+    public ResponseMessage getCourse(@RequestParam("cno") Integer cno,
                                      @RequestParam("year") String year,
                                      @RequestParam("semester") String semester,
                                      @RequestParam("majorName") String majorName,
@@ -77,9 +98,23 @@ public class SchedulingControllerApi {
         return schedulingService.getCourse(cno,year,semester,majorName,grade);
     }
 
+    /**
+     *
+     * @param cno  这里改变了一下
+     * @param tno  这里改变了一下
+     * @param year
+     * @param semester
+     * @param majorName
+     * @param grade
+     * @param status
+     * @param capacity
+     * @param address
+     * @param time
+     * @return
+     */
     @PostMapping("/addCourse")
-    public ResponseMessage addCourse(@RequestParam("cno") String cno,
-                                     @RequestParam("tno") String tno,
+    public ResponseMessage addCourse(@RequestParam("cno") Integer cno,
+                                     @RequestParam("tno") Integer tno,
                                      @RequestParam("year") String year,
                                      @RequestParam("semester") String semester,
                                      @RequestParam("majorName") String majorName,
@@ -92,8 +127,16 @@ public class SchedulingControllerApi {
                 status,capacity,address,time);
     }
 
+    /**
+     * @param cno 这里改变了一下
+     * @param year
+     * @param semester
+     * @param majorName
+     * @param grade
+     * @return
+     */
     @PostMapping("/deleteCourse")
-    public ResponseMessage deleteCourse(@RequestParam("cno") String cno,
+    public ResponseMessage deleteCourse(@RequestParam("cno") Integer cno,
                                         @RequestParam("year") String year,
                                         @RequestParam("semester") String semester,
                                         @RequestParam("majorName") String majorName,

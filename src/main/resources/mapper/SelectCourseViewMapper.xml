@@ -25,6 +25,9 @@
         <!--teacher 表-->
         <result column="tno" javaType="Integer" jdbcType="INTEGER" property="tno"></result>
         <result column="tname" javaType="String" jdbcType="VARCHAR" property="tname"></result>
+
+        <!--planning 表-->
+        <result column="type" javaType="Integer" jdbcType="INTEGER" property="courseType"></result>
     </resultMap>
 
     <select id="getAllAvaiableCourseWithCondition"
@@ -33,25 +36,33 @@
         select
         teacher.tno, teacher.tname,course.cname,course.college,course.description,course.status as courseStatus,
         scheduling.cno,scheduling.capacity,scheduling.address,scheduling.course_time,scheduling.percent,
-        scheduling.major_grade,scheduling.status,scheduling.semesterid
+        scheduling.major_grade,scheduling.status,scheduling.semesterid,planning.type
         from scheduling left join teacher on scheduling.tno=teacher.tno left join course on scheduling.cno=course.cno
+        left join planning on scheduling.semesterid=planning.semesterid and scheduling.cno=planning.cno
+        left join schedule_major on scheduling.semesterid=schedule_major.semesterid and scheduling.cno=schedule_major.cno
         <where>
             scheduling.status=1
             <if test="cname != null">
-                and course.cname=#{cname}
+                and course.cname like #{cname}
             </if>
             <if test="college != null">
-                and course.college=#{college}
+                and course.college =#{college}
             </if>
             <if test="tname != null">
-                and teacher.tname=#{tname}
+                and teacher.tname like #{tname}
             </if>
             <if test="capacity != null">
-                and scheduling.capacity > #{capacity}
+                <if test="capacity!=2">
+                    and scheduling.capacity > #{capacity}
+                </if>
+                <if test="capacity==2">
+                    and scheduling.capacity =0
+                </if>
             </if>
             <if test="cno != null">
                 and  scheduling.cno= #{cno}
             </if>
+            and scheduling.semesterid=#{semesterId} and schedule_major.majorid=#{majorId}
         </where>
     </select>
 
@@ -77,6 +88,8 @@
         <!--teacher 表-->
         <result column="tno" javaType="Integer" jdbcType="INTEGER" property="tno"></result>
         <result column="tname" javaType="String" jdbcType="VARCHAR" property="tname"></result>
+        <!--planning 表-->
+        <result column="type" javaType="Integer" jdbcType="INTEGER" property="courseType"></result>
     </resultMap>
     <select id="getAllAvaiableCourse"
             parameterType="buct.software.domain.ScheduleMajor"
@@ -84,9 +97,10 @@
         select
         teacher.tno, teacher.tname,course.cname,course.college,course.description,course.status as courseStatus,
         scheduling.cno,scheduling.capacity,scheduling.address,scheduling.course_time,scheduling.percent,
-        scheduling.major_grade,scheduling.status,scheduling.semesterid,schedule_major.majorid
+        scheduling.major_grade,scheduling.status,scheduling.semesterid,schedule_major.majorid,planning.type
         from scheduling left join schedule_major on scheduling.semesterid=schedule_major.semesterid and scheduling.cno=schedule_major.cno
-        left join teacher on scheduling.tno=teacher.tno left join course on scheduling.cno=course.cno
+        left join teacher on scheduling.tno=teacher.tno left join course on scheduling.cno=course.cno left join planning on
+        scheduling.semesterid=planning.semesterid and scheduling.cno=planning.cno
         <where>
             scheduling.status=1 and scheduling.semesterid=#{semesterId} and schedule_major.majorid=#{majorId}
         </where>
@@ -99,7 +113,7 @@
         <result column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></result>
         <result column="sno" javaType="Integer" jdbcType="INTEGER" property="sno"></result>
         <result column="detail" javaType="String" jdbcType="VARCHAR" property="detail"></result>
-        <result column="grade" javaType="Integer" jdbcType="INTEGER" property="grade"></result>
+        <result column="totalscore" javaType="Integer" jdbcType="INTEGER" property="totalScore"></result>
 
     </resultMap>
     <select id="getAllCourseHaveBeenSelected"
@@ -116,7 +130,7 @@
             <if test="semesterId != null">semesterid=#{semesterId},</if>
             <if test="sno != null">sno=#{sno},</if>
             <if test="cno != null">cno=#{cno},</if>
-            <if test="grade != null">grade=#{grade},</if>
+            <if test="totalScore != null">totalscore=#{totalScore},</if>
             <if test="detail != null">detail=#{detail},</if>
         </set>
     </insert>
@@ -143,14 +157,42 @@
 
         <!--teacher 表-->
         <result column="tname" javaType="String" jdbcType="VARCHAR" property="tname"></result>
+        <!--planning 表-->
+        <result column="type" javaType="Integer" jdbcType="INTEGER" property="courseType"></result>
     </resultMap>
     <select id="getCourseTable"
             parameterType="buct.software.domain.SelectCourse" resultMap="getCourseTableMap">
-        select course.cname,course.cno,teacher.tname,scheduling.address,scheduling.course_time,scheduling.semesterid from scheduling
+        select course.cname,course.cno,teacher.tname,scheduling.address,scheduling.course_time,scheduling.semesterid,planning.type from scheduling
         left join select_course on scheduling.semesterid=select_course.semesterid and scheduling.cno=select_course.cno
-        left join course on scheduling.cno=course.cno left join teacher on scheduling.tno=teacher.tno
+        left join course on scheduling.cno=course.cno left join teacher on scheduling.tno=teacher.tno left join planning
+        on scheduling.semesterid=planning.semesterid and scheduling.cno=planning.cno
         <where>
             select_course.semesterid=#{semesterId} and select_course.sno=#{sno}
         </where>
+    </select>
+
+
+    <resultMap id="getGradMap" type="buct.software.views.StudentGradeIndexView">
+        <id column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></id>
+        <result column="semester" javaType="Integer" jdbcType="INTEGER" property="semester"></result>
+        <result column="start" javaType="Integer" jdbcType="INTEGER" property="start"></result>
+        <result column="end" javaType="Integer" jdbcType="INTEGER" property="end"></result>
+        <result column="totalscore" javaType="Integer" jdbcType="INTEGER" property="totalScore"></result>
+        <result column="cname" javaType="String" jdbcType="VARCHAR" property="cname"></result>
+    </resultMap>
+    <select id="getGrade" resultMap="getGradMap" parameterType="buct.software.domain.SelectCourse">
+        select semester.start,semester.end,semester.semester,course.cname,select_course.totalscore,select_course.cno from select_course left join course on select_course.cno=course.cno
+        left join semester on select_course.semesterid=semester.semesterid
+        where select_course.totalscore is not null and select_course.semesterid=#{semesterId} and select_course.sno=#{sno};
+    </select>
+
+
+    <update id="changeCapacity">
+        update scheduling set scheduling.capacity=scheduling.capacity+#{addition} where scheduling.semesterid=#{semesterId}
+        and scheduling.cno=#{cno}
+    </update>
+
+    <select id="getSchedulingBySemesterIdAndCno" resultType="buct.software.domain.Scheduling">
+        select * from scheduling where scheduling.semesterid=#{semesterId} and scheduling.cno=#{cno}
     </select>
 </mapper>
