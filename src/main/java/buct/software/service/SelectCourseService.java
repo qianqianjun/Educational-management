@@ -1,6 +1,7 @@
 package buct.software.service;
 import buct.software.dao.SelectCourseDao;
 import buct.software.domain.ScheduleMajor;
+import buct.software.domain.Scheduling;
 import buct.software.domain.SelectCourse;
 import buct.software.domain.Student;
 import buct.software.views.SelectCourseView;
@@ -154,5 +155,18 @@ public class SelectCourseService {
         selectCourse.setSemesterId(semesterId);
         List<StudentGradeIndexView> lists=selectCourseDao.getGrade(selectCourse);
         return lists;
+    }
+
+    /**
+     * 使用 semesterid 和cno获取排课表信息
+     * @param semesterId  学期的id
+     * @param cno  课程号
+     * @return
+     */
+    public Scheduling getCourseInfoWithCondition(Integer semesterId, Integer cno) {
+        Scheduling scheduling=new Scheduling();
+        scheduling.setSemesterId(semesterId);
+        scheduling.setCno(cno);
+        return selectCourseDao.getSchedulingBySemesterIdAndCno(scheduling);
     }
 }

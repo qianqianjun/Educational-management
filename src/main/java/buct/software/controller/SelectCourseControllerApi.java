@@ -1,12 +1,15 @@
 package buct.software.controller;
+import buct.software.domain.Scheduling;
 import buct.software.domain.SelectCourse;
 import buct.software.domain.Semester;
 import buct.software.domain.User;
 import buct.software.service.CollegeService;
+import buct.software.service.ConflictService;
 import buct.software.service.SelectCourseService;
 import buct.software.service.SemesterService;
 import buct.software.utils.ResponseMessage;
 import buct.software.views.SelectCourseView;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +30,8 @@ public class SelectCourseControllerApi {
     SelectCourseService selectCourseService;
     @Autowired
     SemesterService semesterService;
+    @Autowired
+    ConflictService conflictService;
     /**
      * 根据条件查询课程的接口
      * @param college  开课学院
@@ -87,13 +92,18 @@ public class SelectCourseControllerApi {
      * @return  返回一个ResponseMessage ，标注是否添加成功！
      */
     @PostMapping("/setcourseselected")
-    public ResponseMessage addCourseSelected(@RequestParam("cno") Integer cno, HttpServletRequest request){
+    public ResponseMessage addCourseSelected(@RequestParam("cno") Integer cno,HttpServletRequest request){
         HttpSession session=request.getSession();
         User user=(User) session.getAttribute("user");
         Integer sno=user.getAccount();
         Integer semesterId=semesterService.getCurrentSemesterId();
+        Scheduling courseSchedulig=selectCourseService.getCourseInfoWithCondition(semesterId,cno);
+        String timeStr=courseSchedulig.getCourseTime();
+        Boolean ok=conflictService.student(semesterId,sno,timeStr);
+        if(!ok){
+            return new ResponseMessage(ResponseMessage.TIME_CONFLICT,"选课时间冲突",null);
+        }
         SelectCourse selectCourse=selectCourseService.addCourseToTable(semesterId,sno,cno);
-
         if(selectCourse==null){
             return new ResponseMessage(ResponseMessage.INSERT_EXCEPTION,"插入失败",null);
         }

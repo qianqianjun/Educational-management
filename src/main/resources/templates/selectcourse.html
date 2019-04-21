@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>学生选课系统</title>
         <!--网站引用Vue文件 -->
-	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
-	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+	<script src="js/vue.min.js"></script>
+	<script src="js/vue-resource.min.js"></script>
 
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -379,10 +379,16 @@
 						//console.log(this.course_not_selected_place);
 						//this.$forceUpdate(); //强制刷新，解决页面不会重新渲染的问题
 					}
-					else
-						alert("选课失败,可能原因:容量不足或已选上")
+					else{
+					    if(value.body.code==507){
+					        alert("选课时间冲突！")
+						}
+						else{
+						    alert("选课失败！");
+						}
+					}
 				},function(reason){
-					alert("选课失败,可能原因:容量不足或已选上");
+					alert("选课失败!请联系管理员！");
 				})
 				
 			},
@@ -403,9 +409,9 @@
 						//this.$forceUpdate(); //强制刷新，解决页面不会重新渲染的问题
 					}
 					else
-						alert("退课失败,可能原因:未选择此课")
+						alert("退课失败!")
 				},function(reason){
-					alert("退课失败,可能原因:未选择此课");
+					alert("退课失败!");
 				})
 				
 			}

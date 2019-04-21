@@ -191,4 +191,8 @@
         update scheduling set scheduling.capacity=scheduling.capacity+#{addition} where scheduling.semesterid=#{semesterId}
         and scheduling.cno=#{cno}
     </update>
+
+    <select id="getSchedulingBySemesterIdAndCno" resultType="buct.software.domain.Scheduling">
+        select * from scheduling where scheduling.semesterid=#{semesterId} and scheduling.cno=#{cno}
+    </select>
 </mapper>
