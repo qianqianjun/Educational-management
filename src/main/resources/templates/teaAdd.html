@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="mobileBackmanagement/jwgl.css">
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <title></title>
+</head>
+<body>
+<!--老师添加-->
+<div data-role="page" id="teaAddVue">
+    <!--头部-->
+    <div data-role="header" style="background-color: steelblue" data-position="fixed">
+        <a class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-back" style="background-color: steelblue" data-rel="back"></a>
+        <h1>北京化工大学教务网</h1>
+    </div>
+    <!--主部-->
+    <div data-role="main" class="ui-content">
+        <form>
+            <label>姓名:</label>
+            <input type="text" v-model="tname" placeholder="姓名..">
+            <label>岗位:</label>
+            <input type="text" v-model="office" placeholder="岗位..">
+            <label>职称:</label>
+            <input type="text" v-model="title" placeholder="职称..">
+            <label>性别:</label>
+            <select v-model="sex">
+                <option selected="selected">男</option>
+                <option>女</option>
+            </select>
+            <label>学院:</label>
+            <input type="text" v-model="college" placeholder="学院..">
+            <label>电子邮箱:</label>
+            <input type="text" v-model="email" placeholder="电子邮箱..">
+            <label>电话号码:</label>
+            <input type="text" name="phone" id="stuPhone" v-model="phone" placeholder="电话号码..">
+            <a data-role="button" data-icon="plus" class="ui-right" @click="addTeacher()">增加</a>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    var stu = new Vue({
+        el: '#teaAddVue',
+        data: {
+            tname: null,
+            office: null,
+            title: null,
+            college: null,
+            sex: null,
+            phone: null,
+            email: null,
+        },
+        methods: {
+            addTeacher:function () {
+                alert(this.tname);
+                if(this.tname==null||this.office==null||this.title==null||this.college==null||this.sex==null||this.phone==null||this.email==null) {
+                    alert("输入有误！")
+                } else {
+                    this.$http.post("/**********",{tname:this.tname,office:this.office,title:this.title,sex:this.sex,
+                            college:this.college,email:this.email,phone:this.phone},
+                        {emulateJSON:true}).then(function(value) {
+                        if(value.body.code == 1) {
+                            alert("增加成功！");
+                        } else {
+                            alert("增加失败!");
+                        }
+                    })
+                }
+            },
+        }
+    })
+</script>

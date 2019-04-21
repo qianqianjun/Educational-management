@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="jwgl.css">
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <title></title>
+</head>
+<body>
+<!-- 学生编辑页面 -->
+<div data-role="page" id="stuChangeVue">
+    <!--头部-->
+    <div data-role="header" style="background-color: steelblue" data-position="fixed">
+        <a href="#index" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext" style="background-color: steelblue"></a>
+        <h1>北京化工大学教务网</h1>
+    </div>
+    <!--主部-->
+    <div data-role="main" class="ui-content">
+        <form>
+            <fieldset data-role="fieldcontain">
+                <h3>学号:[[${student.sno}]]</h3>
+                <label>姓名:</label>
+                <input type="text" v-model="sname" placeholder="..">
+
+                <label>班级:</label>
+                <input type="text" v-model="klass" placeholder="..">
+
+                <label>性别:</label>
+                <select v-model="sex" placeholder="">
+                    <option>男</option>
+                    <option>女</option>
+                </select>
+
+                <label>专业:</label>
+                <input type="text" v-model="major" placeholder="..">
+
+                <label>年级:</label>
+                <input type="text" v-model="grade" placeholder="..">
+
+                <label>电话号码:</label>
+                <input type="text" v-model="phone" placeholder="..">
+
+                <label>入学年份:</label>
+                <input type="text" v-model="come_year" placeholder="..">
+            </fieldset>
+            <a data-role="button" data-icon="edit" class="ui-right" @click="modiStudent()">修改</a> <!--#########################-->
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    var stu = new Vue({
+        el: '#stuChangeVue',
+        data: {
+            sname:null,
+            sex:null,
+            klass:null,
+            major:null,
+            grade:null,
+            phone:null,
+            come_year:null,
+        },
+        methods: {
+            modiStudent: function (parm) {
+                alert("12312")
+                // this.$http.post("/**********",{sno:parm,sname:this.sname,klass:this.klass,sex:this.sex,
+                //         major:this.major,grade:this.grade,phone:this.phone,come_year: this.come_year},
+                //     {emulateJSON:true}).then(function(value) {
+                //     if(value.body.code == 1) {
+                //         alert("修改成功！");
+                //     } else {
+                //         alert("修改失败!");
+                //     }
+                // })
+            }
+        }
+    })
+</script>
+
+</html>

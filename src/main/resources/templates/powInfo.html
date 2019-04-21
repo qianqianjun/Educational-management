@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="jwgl.css">
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div data-role="page" id="powInfo">
+    <!-- 头部 -->
+    <div data-role="header" style="background-color: steelblue" data-position="fixed">
+        <a class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext" style="background-color: steelblue"></a>
+        <h1>北京化工大学教务网</h1>
+    </div>
+
+    <!-- 主体 -->
+    <h3>权限状态</h3>
+    <div data-role="main" class="ui-content">
+        <h3>选课开关</h3>
+        <label>当前状态: {{ nselectcousta }}</label>
+        <a data-role="button" @click="selectCourse()">{{ selectcousta }}</a>
+        <h3>初级录入</h3>
+        <label>当前状态: {{ nscoresta }}</label>
+        <a data-role="button" @click="selectScore()">{{ scoresta }}</a>
+        <h3>学籍异动</h3>
+        <label>当前状态: {{ nabnormalsta }}</label>
+        <a data-role="button" @click="selectAbnormal()">{{ abnormalsta }}</a>
+    </div>
+
+    <!-- 底部 -->
+    <div data-role="footer" data-transition="fixed">
+        <h1>版权所有</h1>
+    </div>
+</div>
+</body>
+
+<script>
+    var pow = new Vue({
+        el: '#powInfo',
+        data: {
+            selectcousta: '开启',
+            scoresta: '开启',
+            abnormalsta: '开启',
+            nselectcousta: '关闭',
+            nscoresta: '关闭',
+            nabnormalsta: '关闭',
+        },
+        methods: {
+            selectCourse: function () {
+                if(this.selectcousta == '开启') {
+                    this.selectcousta = '关闭';
+                    this.nselectcousta = '开启';
+                } else {
+                    this.selectcousta = '开启';
+                    this.nselectcousta = '关闭';
+                }
+            },
+            selectScore: function () {
+                if(this.scoresta == '开启') {
+                    this.scoresta = '关闭';
+                    this.nscoresta = '开启';
+                } else {
+                    this.scoresta = '开启';
+                    this.nscoresta = '关闭';
+                }
+            },
+            selectAbnormal: function () {
+                if(this.abnormalsta == '开启') {
+                    this.abnormalsta = '关闭';
+                    this.nabnormalsta = '开启';
+                } else {
+                    this.abnormalsta = '开启';
+                    this.nabnormalsta = '关闭';
+                }
+            }
+        }
+    })
+</script>
