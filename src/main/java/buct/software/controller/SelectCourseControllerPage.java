@@ -53,11 +53,13 @@ public class SelectCourseControllerPage {
                 (ArrayList<SelectCourseView>)
                         selectCourseService.getAllCourseList(semesterId,majorId);
 
+
         ArrayList<College> colleges=(ArrayList<College>) collegeService.getAllCollege().getData();
         parmMap.put("courseselectedlist",selectedList);
         parmMap.put("allcourses",courseViews);
         parmMap.put("semesterlist",semesters);
         parmMap.put("colleges",colleges);
+
         return "selectcourse";
     }
 
@@ -76,22 +78,38 @@ public class SelectCourseControllerPage {
         ArrayList<SelectCourseView> courseTable=(ArrayList<SelectCourseView>)
                 selectCourseService.getCourseTable(semesterId,sno);
         List<Semester> semesters=semesterService.getSemesterDomain();
+        Semester semester=semesterService.getCurrentSemesterInfo();
         parMap.put("coursetable",courseTable);
         parMap.put("semesterlist",semesters);
+        parMap.put("currentSemester",semester);
         return "coursetable";
     }
 
+    /**
+     * 学生手机端选课界面的接口controller
+     * @param parmMap  传递到前端的参数集合
+     * @return
+     */
     @GetMapping("/selectcoursemobile")
     public String selectcoursemobile(Map<String, Object> parmMap){
         ResponseMessage res=collegeService.getAllCollege();
         List<College> collegeList=(List<College>) res.getData();
+
         parmMap.put("collegelist",collegeList);
         return "selectcoursemobile";
     }
+
+    /**
+     * 学生手机端课程表的展示界面。
+     * @param parmMap  传递到前端的参数。
+     * @return
+     */
     @GetMapping("/coursetablemobile")
     public String coursetablemobile(Map<String, Object> parmMap){
         List<Semester> semesters=semesterService.getSemesterDomain();
+        Semester semester=semesterService.getCurrentSemesterInfo();
         parmMap.put("semesterlist",semesters);
+        parmMap.put("currentSemester",semester);
         return "coursetablemobile";
     }
 }

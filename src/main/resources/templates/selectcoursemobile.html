@@ -48,7 +48,7 @@
 		<br>
   		<label>开课学院：</label>
   		<select v-model="college">
-            <option value="" style="display: none"></option>
+            <option value="" >所有</option>
   			<option th:each="college : ${collegelist}" th:value="${college.collegeName}">[[${college.collegeName} ]]</option>
   		</select>
   		<br>
@@ -132,9 +132,9 @@
 		data:{
 			hide1:null,
 			hide2:null,
-			cname:null,
-			college:null,
-			capacity:null,
+			cname:"",
+			college:"",
+			capacity:"-1",
 			courses:[],
 			cno:null,
 			tname:null,

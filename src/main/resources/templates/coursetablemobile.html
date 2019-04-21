@@ -64,6 +64,7 @@
   <div data-role="main" class="ui-content">
   	<label>学年:</label>
   	<select v-model="start">
+        <option th:value="${currentSemester.start}">当前学年</option>
         <option th:value="${semester.start}"  th:each="semester : ${semesterlist}">[[${semester.start}]] - [[${semester.end}]]</option>
   	</select>
   	<label>学期:</label>
@@ -157,8 +158,8 @@
 	var noe_coursetable = new Vue({
 		el:"#pageone",
 		data:{
-			start:null,
-			semester:null,
+			start:[[${currentSemester.start}]],
+			semester:"1",
 			courses:[],
 		},
 		methods:{
