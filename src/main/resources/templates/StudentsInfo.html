@@ -63,8 +63,13 @@
                 <tr>
                     <th scope="col">学号</th>
                     <th scope="col">姓名</th>
+                    <th scope="col">性别</th>
                     <th scope="col">专业</th>
                     <th scope="col">年级</th>
+                    <th scope="col">班级</th>
+                    <th scope="col">入学时间</th>
+                    <th scope="col">学院</th>
+                    <th scope="col">电话</th>
                     <th scope="col">操作</th>
                 </tr>
                 </thead>
@@ -72,8 +77,14 @@
                 <tr v-for="(student, index) in students">
                     <td>{{student.sno}}</td>
                     <td>{{student.sname}}</td>
+                    <td>{{student.sex}}</td>
+
                     <td>{{student.major}}</td>
                     <td>{{student.grade}}</td>
+                    <td>{{student.klass}}</td>
+                    <td>{{student.comeYear}}</td>
+                    <td>{{student.college}}</td>
+                    <td>{{student.phone}}</td>
                     <td>
                         <button class="btn btn-outline-primary btn-sm" v-on:click="change(student.sno)">修改</button>
                     </td>

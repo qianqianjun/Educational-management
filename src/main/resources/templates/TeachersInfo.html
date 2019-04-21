@@ -64,6 +64,10 @@
                     <th scope="col">姓名</th>
                     <th scope="col">性别</th>
                     <th scope="col">学院号</th>
+                    <th scope="col">手机号</th>
+                    <th scope="col">电子邮箱</th>
+                    <th scope="col">职称</th>
+                    <th scope="col">办公室地址</th>
                     <th scope="col">操作</th>
                 </tr>
                 </thead>
@@ -74,6 +78,10 @@
                     <td>{{teacher.tname}}</td>
                     <td>{{teacher.sex}}</td>
                     <td>{{teacher.collegeId}}</td>
+                    <td>{{teacher.phone}}</td>
+                    <td>{{teacher.email}}</td>
+                    <td>{{teacher.rank}}</td>
+                    <td>{{teacher.office}}</td>
                     <td>
                         <button class="btn btn-outline-primary btn-sm" v-on:click="change(teacher.tno)" type="button">
                             修改
