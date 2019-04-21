@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- meta使用viewport以确保页面可自由缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- 引入 jQuery Mobile 样式 -->
+	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+	<!-- 引入 jQuery 库 -->
+	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	<!-- 引入 jQuery Mobile 库 -->
+	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+	<style type="text/css">
+		th {
+		    border-bottom: 1px solid #d6d6d6;
+			
+		}
+
+		tr:nth-child(even) {
+		    background: #e9e9e9;
+		}
+
+		#btn-search{
+			position: fixed;
+			top: 16%;
+			right: 2%;
+			z-index: 2;
+		}
+
+		#btn-add{
+			position: fixed;
+			top: 22%;
+			right: 2%;
+			z-index: 2;
+		}
+
+		#pagebox{
+			text-align: center;
+		}
+
+	</style>
+
+	<title>查看论题</title>
+</head>
+<body>
+	<div data-roal = "page" id = "detail" >
+	<!-- 面板 -->
+	<div data-role="panel" id="mypanel" data-display="push"> 
+		<a href="/TeaLookThroughQues"  target="_self" class="ui-btn ui-icon-home ui-btn-icon-left">查看论题</a>
+    	<a href="/TeaAddQues"  target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">发布论题</a>
+    	<a href="/TeaAddScore"  target="_self" class="ui-btn ui-icon-info ui-btn-icon-left">成绩评定</a>
+    	
+    	
+	</div>
+	<!-- 头部 -->
+	<div data-role="header" >
+	<!-- 侧边栏按钮 -->
+		<a href="#mypanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">侧边栏</a>
+		<h1>论题详情</h1>
+	</div>
+	
+	<body >
+	<h2 th:text="${question.topic}"></h2>
+	</body>
+	
+	<form method="post" action="#">
+	<div class="ui-field-contain">
+	<textarea name="addinfo" id="info" th:text="${question.content}"></textarea>
+	<!--   修改论题
+		<div style="text-align: center;">
+		<input type="submit" data-inline="true" value="修改">
+		</div>
+	-->
+	</form>
+	
+	<form method="post" action="#" th:action="@{/sureQuesStu}">
+	<fieldset class="ui-field-contain">
+	<label for="sno">选择学生:</label>
+	<select name="sno" id="sno" >
+	
+	<option th:each="student:${students}" th:value="${student.sno}"  th:text="${student.sname}"></option>
+	
+	</select>
+	<input type="text" name="questionid" th:value="${question.questionid}" style="display:none;" />
+	</fieldset>
+		<div style="text-align: center;">
+		<input type="submit" data-inline="true" value="选择">
+		</div>
+	
+	</div>
+	</form>
+	
+	<!-- 底部 -->
+	<div data-role="footer">
+		<h1>版权所有</h1>
+	</div>
+	</div>
+</body>
+</html>

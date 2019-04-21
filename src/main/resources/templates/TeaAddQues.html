@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="Content-Type"content="text/html" charset="UTF-8">
+    <title>添加论题页面</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body{margin:0;padding:0}
+        .top{height:50px;background: #7abaff}
+        .up{width:90%;height:25%;background: white;margin:20px auto}
+        .down{width:90%;height:70%;background: white;margin:20px auto}
+        .foot{height:5%;background:antiquewhite;margin:0 auto}
+    </style>
 </head>
 <body>
-    sakdhfsadf
+<div class="top">
+    <h2 class="text-black-50 text-center ">添加论题页面</h2>
+</div>
+<div class="up">
+    <button type="button" class="btn btn-default"><a href="TeaLookThroughQues" >查看论题</a></button>
+    <button type="button" class="btn btn-default"><a href="TeaAddScore" >成绩评定</a></button>
+    <button type="button" class="btn btn-default"><a href="TeaAddQues" >添加论题</a></button>
+</div>
+<div class="up">
+<form role="form" method="post" action="#" th:action="@{/TeaAddQues}">
+    <div class="form-group">
+        <label for="topic">论题题目</label>
+        <input type="text" class="form-control" name="topic" id="topic" placeholder="文本输入">
+    </div>
+    <div class="form-inline">
+        <label for="difficulty">论题难度</label>
+        <select  class="form-control text-center" name="difficulty" id="difficulty">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="majorid">专业</label>
+        <input type="text" class="form-control" name="majorid" id="majorid" placeholder="文本输入">
+    </div>
+    <div class="form-group">
+        <label for="content">论题详情</label>
+        <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+    </div>
+    <div data-role="controlgroup" data-type="horizontal" style="text-align: center;">
+        <input type="submit" data-type="btn" data-inline="true"  value="发布">
+    </div>
+</form>
+</div>
+<div class="foot text-center">
+    <h6>版权所有©张昊斌 </h6>
+</div>
 </body>
 </html>

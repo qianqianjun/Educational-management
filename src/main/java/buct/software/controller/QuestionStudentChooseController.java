@@ -33,8 +33,29 @@ public class QuestionStudentChooseController {
         int sno = user.getAccount();
         boolean isChosen = questionStudentChooseService.chooseQuestion(questionid,sno);
         //不确定能否直接请求转发成功，可能有bug
-        return "redirect:/StuQuesDetails";
+        return "forward:/StuQuesDetails";
     }
+
+    //学生向后端发送选题申请
+    @RequestMapping(value = "/StuChooseQuesMobile")
+    public String StuChooseQuesMobile(HttpServletRequest request,
+                                @RequestParam("questionid")int questionid,
+                                Map<String,Object> map){
+        HttpSession session = request.getSession();
+        Object  userInfo = session.getAttribute("user");
+        User user = (User) userInfo;
+        int sno = user.getAccount();
+        boolean isChosen = questionStudentChooseService.chooseQuestion(questionid,sno);
+        //不确定能否直接请求转发成功，可能有bug
+        return "forward:/StuQuesDetailsMobile";
+    }
+
+
+
+
+
+
+
 
     //学生所有的选题信息
     @RequestMapping(value = "/StuChoice")
@@ -50,6 +71,22 @@ public class QuestionStudentChooseController {
         }
         map.put("quesInfos",questions);
         return "StuChoice";
+    }
+
+    //学生所有的选题信息
+    @RequestMapping(value = "/StuChoiceMobile")
+    public String StuChoiceMobile(HttpServletRequest request,
+                            Map<String,Object> map){
+        HttpSession session =  request.getSession();
+        Object user = session.getAttribute("user");
+        int sno = ((User)user).getAccount();
+        List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceBySno(sno);
+        List<Question> questions = new ArrayList<>();
+        for(int i=0;i<questionStudentChooses.size();i++){
+            questions.add(questionService.getSingleQuestionByQuestionid(questionStudentChooses.get(i).getQuestionid()));
+        }
+        map.put("quesInfos",questions);
+        return "StuChoiceMobile";
     }
 
 

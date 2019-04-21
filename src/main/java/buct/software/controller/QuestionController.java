@@ -35,6 +35,9 @@ public class QuestionController {
 
     @Autowired
     private QuestionStudentChooseService questionStudentChooseService;
+
+
+    //Student
     @RequestMapping("/StuLookThroughQues")
     public String StuLookThroughQues(HttpServletRequest request,
                                      Map<String,Object> map){
@@ -50,6 +53,24 @@ public class QuestionController {
 //        System.out.println(questionStudentInquiry.get(0));//debug
         return "StuLookThroughQues";
     }
+
+    @RequestMapping("/StuLookThroughQuesMobile")
+    public String StuLookThroughQuesMobile(HttpServletRequest request,
+                                     Map<String,Object> map){
+        //需要返回的列表数据有 题目 难度 出题老师姓名 是否选中
+        HttpSession session =  request.getSession();
+        Object userInfo = session.getAttribute("user");
+        User user = (User) userInfo;
+        int sno = user.getAccount();
+        Student student = studentService.getStudentBySno(sno);
+        int studentMajor = student.getMajorId();
+        List<QuestionStudentInquiry> questionStudentInquiry = questionService.getPartQuestionByMajorid(studentMajor);
+        map.put("quesInfos",questionStudentInquiry);
+//        System.out.println(questionStudentInquiry.get(0));//debug
+        return "StuLookThroughQuesMobile";
+    }
+
+
 
     @RequestMapping(value = "/StuQuesDetails")
     public String StuQuesDetails(HttpServletRequest request,
@@ -72,9 +93,33 @@ public class QuestionController {
         map.put("teaInfo",teacher);
         return "StuQuesDetails";
     }
+    @RequestMapping(value = "/StuQuesDetailsMobile")
+    public String StuQuesDetailsMobile(HttpServletRequest request,
+                                 Map<String,Object> map,
+                                 @RequestParam("questionid") int questionid
+    ){
+        HttpSession session =  request.getSession();
+        Object userInfo = session.getAttribute("user");
+        User user = (User) userInfo;
+        int sno = user.getAccount();
+        Question question = questionService.getSingleQuestionByQuestionid(questionid);
+        int tno = question.getTno();
+        Teacher teacher = teacherService.getTeacherByTno(tno);
+        QuestionStudentChoose questionStudentChoose = questionStudentChooseService.getChoiceByQidSno(questionid,sno);
+        boolean isChosen=false;   //检验该学生是否投递选择
+        if(questionStudentChoose!=null)
+            isChosen=true;
+        map.put("isChosen",isChosen);
+        map.put("quesInfo",question);
+        map.put("teaInfo",teacher);
+        return "StuQuesDetailsMobile";
+    }
 
 
 
+
+
+    //Back
     @RequestMapping("/ManageQues")
     public String ManageQues(HttpServletRequest request,
                              Map<String,Object> map){
@@ -92,6 +137,8 @@ public class QuestionController {
     }
 
 
+
+    //Teacher
     @RequestMapping("/TeaLookThroughQues")
     public String TeaLookThroughQues(HttpServletRequest request,
                                      Map<String,Object> map){
@@ -104,6 +151,18 @@ public class QuestionController {
         return "TeaLookThroughQues";
     }
 
+    @RequestMapping("/TeaLookThroughQuesMobile")
+    public String TeaLookThroughQuesMobile(HttpServletRequest request,
+                                     Map<String,Object> map){
+        HttpSession session =  request.getSession();
+        Object userInfo = session.getAttribute("user");
+        User user = (User) userInfo;
+        int tno = user.getAccount();
+        List<Question> questions = questionService.getQuestionByTno(tno);
+        map.put("quesInfos",questions);
+        return "TeaLookThroughQuesMobile";
+    }
+
 
     @RequestMapping(value = "/TeaAddQues")
     public String TeaAddQues(
@@ -111,6 +170,15 @@ public class QuestionController {
     ){
         return "TeaAddQues";
     }
+
+    @RequestMapping(value = "/TeaAddQuesMobile")
+    public String TeaAddQuesMobile(
+            HttpServletRequest request
+    ){
+        return "TeaAddQuesMobile";
+    }
+
+
 
     @RequestMapping(value = "/TeaAddQues",method = RequestMethod.POST)
     public String TeaAddQues(HttpServletRequest request,
@@ -134,6 +202,29 @@ public class QuestionController {
         return "redirect:/TeaAddQues";
     }
 
+    @RequestMapping(value = "/TeaAddQuesMobile",method = RequestMethod.POST)
+    public String TeaAddQuesMobile(HttpServletRequest request,
+                             @RequestParam("topic")String topic,
+                             @RequestParam("content")String content,
+                             @RequestParam("difficulty")int difficulty,
+                             @RequestParam("majorid")int majorid,
+                             Map<String,Object>map){
+        HttpSession session = request.getSession();
+        Object user = session.getAttribute("user");
+        int tno = ((User)user).getAccount();
+        Question question = new Question();
+        question.setTno(tno);
+
+        question.setTopic(topic);
+        question.setContent(content);
+        question.setDifficulty(difficulty);
+        question.setMajorid(majorid);
+        boolean isAdded = questionService.addQuestion(question);
+        map.put("isAdded",isAdded);
+        return "redirect:/TeaAddQuesMobile";
+    }
+
+
 
 
     @RequestMapping(value = "/TeaQuesDetails")
@@ -153,6 +244,24 @@ public class QuestionController {
         return "TeaQuesDetails";
     }
 
+
+    @RequestMapping(value = "/TeaQuesDetailsMobile")
+    public String TeaQuesDetailsMobile(HttpServletRequest request,
+                                 @RequestParam("questionid")int questionid,
+                                 Map<String,Object>map){
+        Question question = questionService.getSingleQuestionByQuestionid(questionid);
+        map.put("question",question);
+        List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceByQid(questionid);
+        List<Student> students = new ArrayList<>();
+        for(int i=0;i<questionStudentChooses.size();i++)
+        {
+            students.add(studentService.getStudentBySno(questionStudentChooses.get(i).getSno()));
+        }//添加学生详细信息
+        map.put("choices",questionStudentChooses);
+        map.put("students",students);
+        return "TeaQuesDetailsMobile";
+    }
+
     @RequestMapping(value = "/sureQuesStu")
     public String sureQuesStu(HttpServletRequest  request,
                               @RequestParam("questionid")int questionid,
@@ -163,59 +272,67 @@ public class QuestionController {
         return "redirect:/TeaQuesDetails";
     }
 
-
-    @GetMapping("getPQBM")
-    public ResponseMessage getPartQuestionByMajorid(){
-        return questionService.messageGetPartQuestionByMajorid(1);
+    @RequestMapping(value = "/sureQuesStuMobile")
+    public String sureQuesStuMobile(HttpServletRequest  request,
+                              @RequestParam("questionid")int questionid,
+                              @RequestParam("sno")int sno,
+                              Map<String,Object>map){
+        boolean isSured = questionService.sureQuestionStudent(questionid,sno);
+        map.put("isSured",isSured);
+        return "redirect:/TeaQuesDetailsMobile";
     }
 
 
-
-
-    @GetMapping("getQBM")
-    public ResponseMessage getQuestionByMajorid(){
-        return questionService.messageGetQuestionByMajorid(1);
-    }
-
-    @GetMapping("getQBT")
-    public ResponseMessage getQuestionByTno(){
-        return questionService.messageGetQuestionByTno(1);
-    }
-
-
-    @GetMapping("getQBQ")
-    public ResponseMessage getQuestionByQuestionid(){
-        List<Question> questions = questionService.getQuestionByMajorid(1);
-        Question question = questions.get(0);
-        return questionService.messageGetQuestionByQuestionid(question.getQuestionid());
-    }
-
-    @GetMapping("getQBS")
-    public ResponseMessage getSingleQuestionBySno(){
-        return questionService.messageGetSingleQuestionBySno(50);
-    }
-
-    @GetMapping("addQ")
-    public ResponseMessage addQuestion(){
-        Question question = new Question("啦啦",
-                "111",1,1,1);
-        return questionService.messageAddQuestion(question);
-    }
-
-
-    @GetMapping("deleteQ")
-    public ResponseMessage deleteQuestion(){
-        List<Question> questions = questionService.getQuestionByMajorid(1);
-        return questionService.messageDeleteQuestion(questions.get(1).getQuestionid());
-    }
-
-
-    @GetMapping("sureQ")
-    public ResponseMessage sureQuestionStudent(){
-        List<Question> questions = questionService.getQuestionByMajorid(1);
-        Question question = questions.get(1);
-        return questionService.messageSureQuestionStudent(question.getQuestionid(),8);
-    }
-
-
+//    @GetMapping("getPQBM")
+//    public ResponseMessage getPartQuestionByMajorid(){
+//        return questionService.messageGetPartQuestionByMajorid(1);
+//    }
+//
+//
+//
+//
+//    @GetMapping("getQBM")
+//    public ResponseMessage getQuestionByMajorid(){
+//        return questionService.messageGetQuestionByMajorid(1);
+//    }
+//
+//    @GetMapping("getQBT")
+//    public ResponseMessage getQuestionByTno(){
+//        return questionService.messageGetQuestionByTno(1);
+//    }
+//
+//
+//    @GetMapping("getQBQ")
+//    public ResponseMessage getQuestionByQuestionid(){
+//        List<Question> questions = questionService.getQuestionByMajorid(1);
+//        Question question = questions.get(0);
+//        return questionService.messageGetQuestionByQuestionid(question.getQuestionid());
+//    }
+//
+//    @GetMapping("getQBS")
+//    public ResponseMessage getSingleQuestionBySno(){
+//        return questionService.messageGetSingleQuestionBySno(50);
+//    }
+//
+//    @GetMapping("addQ")
+//    public ResponseMessage addQuestion(){
+//        Question question = new Question("啦啦",
+//                "111",1,1,1);
+//        return questionService.messageAddQuestion(question);
+//    }
+//
+//
+//    @GetMapping("deleteQ")
+//    public ResponseMessage deleteQuestion(){
+//        List<Question> questions = questionService.getQuestionByMajorid(1);
+//        return questionService.messageDeleteQuestion(questions.get(1).getQuestionid());
+//    }
+//
+//
+//    @GetMapping("sureQ")
+//    public ResponseMessage sureQuestionStudent(){
+//        List<Question> questions = questionService.getQuestionByMajorid(1);
+//        Question question = questions.get(1);
+//        return questionService.messageSureQuestionStudent(question.getQuestionid(),8);
+//    }
 }
