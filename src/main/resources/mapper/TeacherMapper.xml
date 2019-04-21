@@ -68,4 +68,21 @@
         </set>
         where tno = #{tno}
     </update>
+
+    <select id="getTeacherByTnoAndTname" resultType="buct.software.domain.Teacher">
+      <bind name="_tno" value="'%' + tno + '%'"></bind>
+      <bind name="_tname" value="'%' + tname + '%'"></bind>
+        select * from teacher
+        <where>
+
+            <if test="tno != -1">
+                and
+                teacher.tno like #{_tno}
+            </if>
+            <if test="tname != 'null'">
+                and
+                teacher.tname like #{_tname}
+            </if>
+        </where>
+    </select>
 </mapper>

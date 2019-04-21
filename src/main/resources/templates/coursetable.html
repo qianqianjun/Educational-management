@@ -72,110 +72,110 @@
 	<div class="row main">
 		<h3 class="title">{{start}}-{{parseInt(start)+1}}学年第{{semester}}学期</h3>
         <div id="table">
-		<div class="header">
-			<div class="stage">时间段</div>
-			<div class="jie">节次</div>
-			<div class="weekhead">星期一</div>
-			<div class="weekhead">星期二</div>
-			<div class="weekhead">星期三</div>
-			<div class="weekhead">星期四</div>
-			<div class="weekhead">星期五</div>
-			<div class="weekhead">星期六</div>
-			<div class="weekhead">星期日</div>
+			<div class="header">
+				<div class="stage">时间段</div>
+				<div class="jie">节次</div>
+				<div class="weekhead">星期一</div>
+				<div class="weekhead">星期二</div>
+				<div class="weekhead">星期三</div>
+				<div class="weekhead">星期四</div>
+				<div class="weekhead">星期五</div>
+				<div class="weekhead">星期六</div>
+				<div class="weekhead">星期日</div>
+			</div>
+
+			<!--上午的课表-->
+			<div class="day">
+				<div class="day_title">
+					上<br>午
+				</div>
+				<div class="numset">
+					<div class="jie-item">1</div>
+					<div class="jie-item">2</div>
+					<div class="jie-item">3</div>
+					<div class="jie-item">4</div>
+					<div class="jie-item">5</div>
+				</div>
+
+				<!--下面是七列，代表的是星期几下午的课表-->
+				<div class="item-col">
+					<div class="each-col" id="col-1">
+					</div>
+				</div>
+				<div class="item-col">
+					<div class="each-col" id="col-2">
+
+					</div>
+				</div>
+				<div class="item-col">
+					<div class="each-col" id="col-3">
+
+					</div>
+				</div>
+				<div class="item-col">
+					<div class="each-col" id="col-4">
+
+					</div>
+				</div>
+				<div class="item-col">
+					<div class="each-col" id="col-5">
+
+					</div>
+				</div>
+				<div class="item-col">
+					<div class="each-col" id="col-6">
+
+					</div>
+				</div>
+				<div class="item-col">
+					<div class="each-col" id="col-7">
+
+					</div>
+				</div>
+			</div>
+
+			<!--下午的课表-->
+			<div class="day">
+				<div class="day_title">
+					下<br>午
+				</div>
+				<div class="numset">
+					<div class="jie-item">6</div>
+					<div class="jie-item">7</div>
+					<div class="jie-item">8</div>
+					<div class="jie-item">9</div>
+					<div class="jie-item">10</div>
+				</div>
+
+				<!--下面是七列，代表的是星期几下午的课表-->
+				<div class="item-col"></div>
+				<div class="item-col"></div>
+				<div class="item-col"></div>
+				<div class="item-col"></div>
+				<div class="item-col"></div>
+				<div class="item-col"></div>
+				<div class="item-col"></div>
+			</div>
+
+			<!--晚上的课表-->
+			<div class="evening">
+				<div class="evening_title">
+					晚<br>上
+				</div>
+				<div class="even_numset">
+					<div class="jie-item">11</div>
+					<div class="jie-item">12</div>
+					<div class="jie-item">13</div>
+				</div>
+				<div class="item-col-evening"></div>
+				<div class="item-col-evening"></div>
+				<div class="item-col-evening"></div>
+				<div class="item-col-evening"></div>
+				<div class="item-col-evening"></div>
+				<div class="item-col-evening"></div>
+				<div class="item-col-evening"></div>
+			</div>
 		</div>
-
-        <!--上午的课表-->
-		<div class="day">
-			<div class="day_title">
-				上<br>午
-			</div>
-			<div class="numset">
-				<div class="jie-item">1</div>
-				<div class="jie-item">2</div>
-				<div class="jie-item">3</div>
-				<div class="jie-item">4</div>
-				<div class="jie-item">5</div>
-			</div>
-
-            <!--下面是七列，代表的是星期几下午的课表-->
-			<div class="item-col">
-				<div class="each-col" id="col-1">
-				</div>
-			</div>
-			<div class="item-col">
-				<div class="each-col" id="col-2">
-
-				</div>
-			</div>
-			<div class="item-col">
-				<div class="each-col" id="col-3">
-
-				</div>
-			</div>
-			<div class="item-col">
-				<div class="each-col" id="col-4">
-
-				</div>
-			</div>
-			<div class="item-col">
-				<div class="each-col" id="col-5">
-
-				</div>
-			</div>
-			<div class="item-col">
-				<div class="each-col" id="col-6">
-
-				</div>
-			</div>
-			<div class="item-col">
-				<div class="each-col" id="col-7">
-
-				</div>
-			</div>
-		</div>
-
-        <!--下午的课表-->
-		<div class="day">
-			<div class="day_title">
-				下<br>午
-			</div>
-			<div class="numset">
-				<div class="jie-item">6</div>
-				<div class="jie-item">7</div>
-				<div class="jie-item">8</div>
-				<div class="jie-item">9</div>
-				<div class="jie-item">10</div>
-			</div>
-
-            <!--下面是七列，代表的是星期几下午的课表-->
-			<div class="item-col"></div>
-			<div class="item-col"></div>
-			<div class="item-col"></div>
-			<div class="item-col"></div>
-			<div class="item-col"></div>
-			<div class="item-col"></div>
-			<div class="item-col"></div>
-		</div>
-
-        <!--晚上的课表-->
-		<div class="evening">
-			<div class="evening_title">
-				晚<br>上
-			</div>
-			<div class="even_numset">
-				<div class="jie-item">11</div>
-				<div class="jie-item">12</div>
-				<div class="jie-item">13</div>
-			</div>
-			<div class="item-col-evening"></div>
-			<div class="item-col-evening"></div>
-			<div class="item-col-evening"></div>
-			<div class="item-col-evening"></div>
-			<div class="item-col-evening"></div>
-			<div class="item-col-evening"></div>
-			<div class="item-col-evening"></div>
-		</div>
-	</div>
     </div>
 </div>
 </body>

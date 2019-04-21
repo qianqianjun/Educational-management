@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- meta使用viewport以确保页面可自由缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- 引入 jQuery Mobile 样式 -->
+	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+	<!-- 引入 jQuery 库 -->
+	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	<!-- 引入 jQuery Mobile 库 -->
+	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+	<style type="text/css">
+		th {
+		    border-bottom: 1px solid #d6d6d6;
+		}
+
+		tr:nth-child(even) {
+		    background: #e9e9e9;
+		}
+
+		#btn-search{
+			position: fixed;
+			top: 16%;
+			right: 2%;
+			z-index: 2;
+		}
+
+		#btn-add{
+			position: fixed;
+			top: 22%;
+			right: 2%;
+			z-index: 2;
+		}
+
+		#pagebox{
+			text-align: center;
+		}
+
+	</style>
+
+	<title>排课子系统</title>
+</head>
+
+<body>
+<div data-role="page" id="pagetwo">
+	<div data-role="header">
+		<div data-style="text:align:left;">
+			<h1>课程查询</h1>
+		</div>
+	</div>
+	
+	<div role="main" class="ui-content" >
+        
+		<div class="ui-field-contain" id="S1">
+            <label>教师姓名查询</label>
+            <input type="text" v-model="searchStudent.sname">
+			<h>{{searchStudent.sname}}</h>
+			<br>
+			<button v-on:click="change(searchStudent.sname)">查询</button>
+		</div>
+		<br>
+        <div class="ui-field-contain" id="S2">
+            <label>教师工号查询</label>
+            <input type="text" name="text-basic" id="search_no" v-model="searchStudent.sno" value="">
+			<h>{{searchStudent.sno}}</h>
+			<br>
+			<button v-on:click="change(searchStudent.sno)">查询</button>
+        </div>
+		<br>
+        <div class="ui-field-contain" id="S3">
+            <label>教学地点查询</label>
+            <input type="text" name="text-basic" id="search_cla" v-model="searchStudent.klass" value="">
+			<h>{{searchStudent.klass}}</h>
+			<br>
+			<button v-on:click="change(searchStudent.klass)">查询</button>
+        </div>
+		
+        <!--<input type="button" value="查询" id="search_submit"> -->
+		
+    </div>
+	
+	<div data-role="footer" data-position="fixed">
+		<h1>版权所有</h1>
+	</div>
+</div>
+</body>
+
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/jquery.mobile-1.4.3.js"></script>
+
+<script>
+var s1 = new Vue({
+        el: '#S1',
+        methods: {
+            change: function (sno) {
+                //window.location = "/UpdateStudent?sno=" + sno;
+				window.location.href='Scheduling.html';
+            }
+
+        },
+        data: {
+            searchStudent: {
+                sno: null,
+                sname: '',
+                sex: '',
+                major: '',
+                klass: '',
+                comeYear: '',
+                phone: '',
+                college: '',
+                collegeId: 0,
+                grade: '',
+                majorId: 0
+            }
+        }
+
+    })
+var s2 = new Vue({
+        el: '#S2',
+        methods: {
+            change: function (sno) {
+                //window.location = "/UpdateStudent?sno=" + sno;
+				window.location.href='Scheduling.html';
+            }
+
+        },
+        data: {
+            searchStudent: {
+                sno: null,
+                sname: '',
+                sex: '',
+                major: '',
+                klass: '',
+                comeYear: '',
+                phone: '',
+                college: '',
+                collegeId: 0,
+                grade: '',
+                majorId: 0
+            }
+        }
+
+    })
+var s3 = new Vue({
+        el: '#S3',
+        methods: {
+            change: function (sno) {
+                //window.location = "/UpdateStudent?sno=" + sno;
+				window.location.href='Scheduling.html';
+            }
+
+        },
+        data: {
+            searchStudent: {
+                sno: null,
+                sname: '',
+                sex: '',
+                major: '',
+                klass: '',
+                comeYear: '',
+                phone: '',
+                college: '',
+                collegeId: 0,
+                grade: '',
+                majorId: 0
+            }
+        }
+
+    })
+	</script>
+</html>
+
+

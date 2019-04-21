@@ -7,6 +7,7 @@ import buct.software.views.MobileSchedulingView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,19 +43,6 @@ public class SchedulingControllerPage {
         return "classscheduling";
     }
 
-    @GetMapping("/schedulingForm")
-    public String schedulingForm(Map<String,Object> parmMap, HttpServletRequest request){
-        HttpSession session =request.getSession();
-        User user=(User) session.getAttribute("user");
-        Integer sno=user.getAccount();
-        Integer majorId=user.getMajorid();
-        System.out.println("success");
-        /**
-         * 这里需要判断哪些老师有权限排课，属于后期功能
-         * 暂且不表
-         */
-        return "schedulingform";
-    }
 
     @GetMapping("/schedulingmobile")
     public String schedulingmobile(Map<String,Object> parmMap, HttpServletRequest request){
@@ -72,4 +60,11 @@ public class SchedulingControllerPage {
         return "schedulingmobile";
     }
 
+    @GetMapping("/schedulingsearchmobile")
+    public String schedulingsearchmobile(Map<String,Object> parmMap, HttpServletRequest request){
+        HttpSession session =request.getSession();
+        User user=(User) session.getAttribute("user");
+
+        return "schedulingsearchmobile";
+    }
 }
