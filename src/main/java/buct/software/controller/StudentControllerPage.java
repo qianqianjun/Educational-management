@@ -50,7 +50,6 @@ public class StudentControllerPage {
                                 @RequestParam("college") String college,
                                 @RequestParam("collegeId") Integer collegeId,
                                 @RequestParam("majorId") Integer majorId) {
-        System.out.println(sno);
         System.out.println(phone);
         Student student = new Student(sno, sname, sex, major, klass, comeYear, phone, college, collegeId, grade, majorId);
         if (studentService.getStudentBySno(sno) == null) {
@@ -85,24 +84,14 @@ public class StudentControllerPage {
     }
 
     @RequestMapping("/UpdateStudent")
-    public String updateStudent(HttpServletRequest httpServletRequest) {
+    public String updateStudent(Map<String, Object> paramMap,HttpServletRequest httpServletRequest) {
         String sno = httpServletRequest.getParameter("sno");
         int sno_int = Integer.parseInt(sno);
-        System.out.println(sno_int);
         Student student = studentService.getStudentBySno(sno_int);
-        httpServletRequest.getSession().setAttribute("needUpdateStudent", student);
         System.out.println(student);
-        return "forward:/StudentsChange";
-    }
-
-    @RequestMapping("/StudentsChange")
-    public String studentsChange(Map<String, Object> paramMap, HttpServletRequest httpServletRequest) {
-//        System.out.println("22222");
-//        Object needUpdateStudent = httpServletRequest.getSession().getAttribute("needUpdateStudent");
-//        httpServletRequest.setAttribute("");
-        Object student = httpServletRequest.getSession().getAttribute("needUpdateStudent");
+        System.out.println("test");
         paramMap.put("needUpdateStudent", student);
-        return "StudentsAdd";
+        return "StudentsAlter";
     }
 
 }

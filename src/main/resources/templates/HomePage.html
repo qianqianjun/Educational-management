@@ -10,7 +10,7 @@
 <body>
 <div th:replace="common/backstageNavigator.html :: banner"></div>
 
-<div class="container-fluid">
+<div class="container-fluid" id="HomePage">
     <div class="row">
         <div th:replace="common/backstageNavigator.html :: navi"></div>
 
@@ -27,7 +27,10 @@
                                 <a class="text-dark" href="#">学生选课</a>
                             </h3>
                             <h1></h1>
-                            <strong class="d-inline-block mb-2 text-primary">当前状态：开启</strong>
+
+                            <strong  th:if="${power.getSelectCourse()==1}" class="d-inline-block mb-2 text-primary">当前状态：开启</strong>
+                            <strong  th:if="${power.getSelectCourse()==0}" class="d-inline-block mb-2 text-primary">当前状态：关闭</strong>
+
                         </div>
                     </div>
                 </div>
@@ -38,7 +41,8 @@
                                 <a class="text-dark" href="#">成绩录入</a>
                             </h3>
                             <h1></h1>
-                            <strong class="d-inline-block mb-2 text-primary">当前状态：关闭</strong>
+                            <strong th:if="${power.getScore()==1}" class="d-inline-block mb-2 text-primary">当前状态：开启</strong>
+                            <strong th:if="${power.getScore()==0}" class="d-inline-block mb-2 text-primary">当前状态：关闭</strong>
                             <p class="card-text mb-auto">其他说明</p>
                         </div>
                     </div>
@@ -54,7 +58,7 @@
                     <div class="card flex-md-row mb-4 box-shadow h-md-250">
                         <div class="card-body d-flex flex-column align-items-start">
                             <h3 class="mb-0">
-                                <a class="text-dark" href="#">2018-2019学年 第2学期</a>
+                                <a class="text-dark" href="#">{{start}}-{{end}} 第{{CurrentSemester}}学期</a>
                             </h3>
                             <h1></h1>
                             <strong class="d-inline-block mb-2 text-primary">开始时间：2019年2月20日</strong>
@@ -85,6 +89,15 @@
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
     feather.replace()
+    var homePage = new Vue({
+        el :'#HomePage',
+        data:{
+            start: '[[${currentSemesterInfo.start}]]',
+            end: '[[${currentSemesterInfo.end}]]',
+            CurrentSemester: '[[${currentSemesterInfo.semester}]]'
+        }
+
+    })
 </script>
 
 <!-- Graphs -->

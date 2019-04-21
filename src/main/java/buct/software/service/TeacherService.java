@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 /**
  * @author 孟庆强
  */
@@ -41,5 +42,13 @@ public class TeacherService {
     public void updateTeacherById(Integer id, Teacher teacher) {
         teacher.setTno(id);
         teacherDao.updateTeacher(teacher);
+    }
+
+    public List<Teacher> getAllTeacher() {
+        List<Teacher> teachers = teacherDao.queryByExample(new Teacher());
+        return teachers;
+    }
+    public List<Teacher> getTeacherByExample(Teacher teacher){
+        return teacherDao.queryByExample(teacher);
     }
 }

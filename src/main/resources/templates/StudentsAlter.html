@@ -133,17 +133,19 @@
     var sa = new Vue({
         el: '#SA',
         data: {
-            sno: null,
-            sname: '',
-            sex: '',
-            major: '',
-            klass: '',
-            comeYear: '',
-            phone: '',
-            college: '',
-            collegeId: null,
-            grade: '',
-            majorId: null
+            sno: [[${needUpdateStudent.sno}]],
+            sname: '[[${needUpdateStudent.sname}]]',
+            sex: '[[${needUpdateStudent.sex}]]',
+            major: '[[${needUpdateStudent.major}]]',
+            klass: '[[${needUpdateStudent.klass}]]',
+            comeYear: '[[${needUpdateStudent.comeYear}]]',
+            phone: '[[${needUpdateStudent.phone}]]',
+            college: '[[${needUpdateStudent.college}]]',
+            collegeId: [[${needUpdateStudent.collegeId}]],
+            grade: '[[${needUpdateStudent.grade}]]',
+
+
+            majorId: [[${needUpdateStudent.majorId}]]
         }
     })
 </script>

@@ -2,7 +2,9 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="utf-8">
     <div th:replace="common/backstageNavigator.html :: head"></div>
+
 </head>
 
 <body>
@@ -15,13 +17,14 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 class="h2">添加教师</h1>
             </div>
-            <form>
+            <form th:action="@{/DoTeachersAdd}" method="post" th:type="buct.software.domain.Teacher">
                 <div class="form-group col-sm-4">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">工号</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="number" v-model="tno" placeholder="工号">
+
+                        <input class="form-control mr-sm-2" type="number" th:name="tno" v-model="tno" placeholder="工号">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -29,7 +32,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">姓名</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="text" v-model="tname" placeholder="姓名">
+                        <input class="form-control mr-sm-2" type="text" th:name="tname" v-model="tname"
+                               placeholder="姓名">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -37,7 +41,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">性别</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="text" v-model="sex" placeholder="性别">
+                        <input class="form-control mr-sm-2" type="text" th:name="sex" v-model="sex" placeholder="性别">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -45,7 +49,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">手机</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="text" v-model="phone" placeholder="手机">
+                        <input class="form-control mr-sm-2" type="text" th:name="phone" v-model="phone"
+                               placeholder="手机">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -53,7 +58,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">邮箱</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="text" v-model="email" placeholder="邮箱">
+                        <input class="form-control mr-sm-2" type="text" th:name="email" v-model="email"
+                               placeholder="邮箱">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -61,7 +67,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">学院号</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="number" v-model="collegeId" placeholder="学院号">
+                        <input class="form-control mr-sm-2" type="number" th:name="collegeid" v-model="collegeId"
+                               placeholder="学院号">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -69,7 +76,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">办公室地址</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="text" v-model="office" placeholder="办公室地址">
+                        <input class="form-control mr-sm-2" type="text" th:name="office" v-model="office"
+                               placeholder="办公室地址">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -77,9 +85,10 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">职称</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="text" v-model="rank" placeholder="职称">
+                        <input class="form-control mr-sm-2" type="text" th:name="rank" v-model="rank" placeholder="职称">
                     </div>
                 </div>
+
                 <div class="form-group col-sm-4">
                     <button class="btn btn-outline-primary mr-sm-2" type="submit">
                         <span data-feather="user-plus"></span>
@@ -95,13 +104,13 @@
     var ta = new Vue({
         el: '#TA',
         data: {
-            tno: 0,
+            tno: null,
             tname: '',
             sex: '',
             phone: '',
             email: '',
             office: '',
-            collegeId: 0,
+            collegeId: null,
             rank: ''
         }
     })

@@ -1,7 +1,9 @@
 package buct.software.controller;
 
+import buct.software.domain.Power;
 import buct.software.domain.User;
 import buct.software.service.PowerService;
+import buct.software.service.SemesterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,8 @@ import java.util.Map;
 public class PowerControllerPage {
     @Autowired
     PowerService powerService;
+    @Autowired
+    SemesterService semesterService;
 
     public boolean checkPower(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
@@ -21,7 +25,15 @@ public class PowerControllerPage {
         return user.getType() == 2;
     }
 
-//    @CachePut(value = "parMap", key = "#parMap")
+    @RequestMapping("/GoHomePage")
+    public String homePage(Map<String, Object> parMap, HttpServletRequest request) {
+        Power status = powerService.getStatus();
+        parMap.put("power", status);
+        request.setAttribute("currentSemesterInfo",semesterService.getCurrentSemesterInfo());
+        return "HomePage";
+    }
+
+    //    @CachePut(value = "parMap", key = "#parMap")
     @RequestMapping("/PowerManage")
     public String powerControll(Map<String, Object> parMap, HttpServletRequest request) {
         if (checkPower(request) == false) return "error";
@@ -72,4 +84,5 @@ public class PowerControllerPage {
         powerService.closeSelectCourse();
         return "redirect:/PowerManage";
     }
+//    @RequestMapping("/HomePage")
 }

@@ -64,7 +64,7 @@ public class LoginController {
                 return "teacher";
             }
             else{
-                return "HomePage";
+                return "forward:/GoHomePage";
             }
         }
     }
