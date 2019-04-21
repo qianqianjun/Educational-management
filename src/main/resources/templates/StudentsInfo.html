@@ -80,7 +80,12 @@
                 </tr>
                 </tbody>
             </table>
-
+            <!--分页-->
+            <div>
+                <a @click="prePage()" id="btnprepage">下一页</a>
+                <a @click="nextPage()" id="btnnextpage">上一页</a>
+                <label>当前{{ currentpage+1 }}/{{ pagenum }}</label>
+            </div>
         </main>
     </div>
 </div>
@@ -92,7 +97,15 @@
         methods: {
             change: function (sno) {
                 window.location = "/UpdateStudent?sno=" + sno;
-            }
+            },
+            prePage: function() {
+                if(this.currentpage-1 == -1) return;
+                this.pagestudents = this.totalpage[-- this.currentpage];
+            },
+            nextPage: function() {
+                if(this.currentpage == this.pagenum-1) return;
+                this.pagestudents = this.totalpage[++ this.currentpage];
+            },
 
         },
         data: {
@@ -107,7 +120,12 @@
                 college: '',
                 collegeId: 0,
                 grade: '',
-                majorId: 0
+                majorId: 0,
+                pagestudents: [],
+                totalpage: [],
+                pagesize: 5,
+                pagenum: null,
+                currentpage: 0,
             },
             students: [[${allStudent}]]
         }

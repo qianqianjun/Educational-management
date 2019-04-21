@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="mobileBackmanagement/jwgl.css">
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <title></title>
+</head>
+<body>
+<!--学生搜索界面-->
+<div data-role="page" id="stuSearchVue" >
+    <div data-role="header" style="background-color: steelblue" data-position="fixed">
+        <a class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-back" style="background-color: steelblue" data-rel="back"></a>
+        <h1>搜索</h1>
+    </div>
+
+    <div data-role="content" class="stuVue">
+        <div >
+            <label>学号</label>
+            <input type="text"  v-model="sno">
+            </br>
+            <button type="button" @click="getStudentBySno(sno)">查询</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    var stu = new Vue({
+        el: '#stuSearchVue',
+        data: {
+            sno: null,
+        },
+        methods: {
+            getStudentBySno:function (parm) {
+                alert("123312");
+                this.$http.post("/*********",{sno:parm},{emulateJSON: true}).then(function (value) {
+                    this.student = value.body.data;
+                })
+            },
+        }
+    })
+</script>
+</body>

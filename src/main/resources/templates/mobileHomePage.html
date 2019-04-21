@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="jwgl.css">
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <title></title>
+</head>
+<body>
+<!--主页-->
+<div data-role="page" id="indexVue">
+    <!--面板-->
+    <div data-role="panel" id="myPanel">
+        <a href="#powInfo" data-transition="slide" class="ui-btn ui-icon-lock ui-btn-icon-left">权限管理</a>
+        <a href="#stuInfo" data-transition="slide" class="ui-btn ui-icon-info ui-btn-icon-left" @click="getAllStudents()">学生信息</a>
+        <a href="#teaInfo" data-transition="slide" class="ui-btn ui-icon-info ui-btn-icon-left" @click="getAllTeachers()">教师信息</a>
+        <a href="#termInfo" data-transition="slide" class="ui-btn ui-icon-calendar ui-btn-icon-left">学期管理</a>
+        <a href="#couInfo" data-transition="slide" class="ui-btn ui-icon-edit ui-btn-icon-left">排课系统</a>
+    </div>
+    <!--头部-->
+    <div data-role="header" style="background-color: steelblue" data-position="fixed">
+        <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext" style="background-color: steelblue"></a>
+        <h1 class="ui-title">北京化工大学教务网</h1>
+    </div>
+    <!--主部-->
+    <div role="main" class="ui-content">
+        <h1>欢迎</h1>
+    </div>
+</div>
+</body>
+<script>
+    var stu = new Vue ({
+        el: '#indexVue',
+        methods: {
+            getAllStudents:function () {
+                alert("stu");
+                // this.$http.post("/**********",
+                //     {emulateJSON:true}).then(function (value) {
+                //         this.allstudents = value.body.data;
+                // });
+            },
+            getAllTeachers:function () {
+                alert("tea");
+                // this.$http.post("/**********",
+                //     {emulateJSON:true}).then(function (value) {
+                //         this.allstudents = value.body.data;
+                // });
+            },
+        }
+    })
+</script>
