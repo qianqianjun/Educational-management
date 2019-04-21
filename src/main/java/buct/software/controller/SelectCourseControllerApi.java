@@ -158,5 +158,4 @@ public class SelectCourseControllerApi {
         List<Semester> semesters=semesterService.getSemesterDomain();
         return new ResponseMessage(200,"全部的信息",semesters);
     }
-
 }

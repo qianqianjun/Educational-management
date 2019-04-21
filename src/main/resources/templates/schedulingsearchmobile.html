@@ -12,6 +12,8 @@
 
 	<!-- 引入 jQuery Mobile 库 -->
 	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
 
 
 	<style type="text/css">
@@ -53,37 +55,32 @@
 			<h1>课程查询</h1>
 		</div>
 	</div>
-	
-	<div role="main" class="ui-content" >
+	<div id="S0">
+	<div role="main"  class="ui-content" >
         
-		<div class="ui-field-contain" id="S1">
+		<div class="ui-field-contain" >
             <label>教师姓名查询</label>
-            <input type="text" v-model="searchStudent.sname">
-			<h>{{searchStudent.sname}}</h>
+            <input   type="text" v-model="tname">
 			<br>
-			<button v-on:click="change(searchStudent.sname)">查询</button>
 		</div>
 		<br>
-        <div class="ui-field-contain" id="S2">
+        <div class="ui-field-contain" >
             <label>教师工号查询</label>
-            <input type="text" name="text-basic" id="search_no" v-model="searchStudent.sno" value="">
-			<h>{{searchStudent.sno}}</h>
+            <input type="text" name="text-basic" id="search_no" v-model="tno" value="">
 			<br>
-			<button v-on:click="change(searchStudent.sno)">查询</button>
         </div>
 		<br>
-        <div class="ui-field-contain" id="S3">
+        <div class="ui-field-contain" >
             <label>教学地点查询</label>
-            <input type="text" name="text-basic" id="search_cla" v-model="searchStudent.klass" value="">
-			<h>{{searchStudent.klass}}</h>
+            <input type="text" name="text-basic" id="search_cla" v-model="address" value="">
 			<br>
-			<button v-on:click="change(searchStudent.klass)">查询</button>
+			<button v-on:click="change(tno,tname,address)">查询</button>
         </div>
 		
         <!--<input type="button" value="查询" id="search_submit"> -->
-		
+
     </div>
-	
+	</div>
 	<div data-role="footer" data-position="fixed">
 		<h1>版权所有</h1>
 	</div>
@@ -95,84 +92,27 @@
 
 <script>
 var s1 = new Vue({
-        el: '#S1',
+        el: '#S0',
         methods: {
-            change: function (sno) {
-                //window.location = "/UpdateStudent?sno=" + sno;
-				window.location.href='Scheduling.html';
+            change: function (tno,tname,address) {
+            	if(tno==""){tno=-1;}
+            	if(tname==""){tname="null";}
+            	if(address==""){address="null";}
+            	console.log(tno);
+            	console.log(tname);
+            	console.log(address);
+                window.location = "/schedulingmobile?tno="+tno+"&tname="+tname+"&address="+address;
             }
-
         },
         data: {
-            searchStudent: {
-                sno: null,
-                sname: '',
-                sex: '',
-                major: '',
-                klass: '',
-                comeYear: '',
-                phone: '',
-                college: '',
-                collegeId: 0,
-                grade: '',
-                majorId: 0
-            }
+        	tno:"",
+			tname:"",
+			address:""
         }
 
     })
-var s2 = new Vue({
-        el: '#S2',
-        methods: {
-            change: function (sno) {
-                //window.location = "/UpdateStudent?sno=" + sno;
-				window.location.href='Scheduling.html';
-            }
 
-        },
-        data: {
-            searchStudent: {
-                sno: null,
-                sname: '',
-                sex: '',
-                major: '',
-                klass: '',
-                comeYear: '',
-                phone: '',
-                college: '',
-                collegeId: 0,
-                grade: '',
-                majorId: 0
-            }
-        }
-
-    })
-var s3 = new Vue({
-        el: '#S3',
-        methods: {
-            change: function (sno) {
-                //window.location = "/UpdateStudent?sno=" + sno;
-				window.location.href='Scheduling.html';
-            }
-
-        },
-        data: {
-            searchStudent: {
-                sno: null,
-                sname: '',
-                sex: '',
-                major: '',
-                klass: '',
-                comeYear: '',
-                phone: '',
-                college: '',
-                collegeId: 0,
-                grade: '',
-                majorId: 0
-            }
-        }
-
-    })
-	</script>
+</script>
 </html>
 
 

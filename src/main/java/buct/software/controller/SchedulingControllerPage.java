@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,12 +46,18 @@ public class SchedulingControllerPage {
 
 
     @GetMapping("/schedulingmobile")
-    public String schedulingmobile(Map<String,Object> parmMap, HttpServletRequest request){
+    public String schedulingmobile(@RequestParam("tno") Integer tno,
+                                   @RequestParam("tname") String tname,
+                                   @RequestParam("address") String address,
+                                   Map<String,Object> parmMap, HttpServletRequest request){
         HttpSession session =request.getSession();
         User user=(User) session.getAttribute("user");
+        System.out.println(tno);
+        System.out.println(tname);
+        System.out.println(address);
         List<MobileSchedulingView> data =
                 schedulingDao.getCoursesByTnoAndTnameAndAddress(
-                        -1,"null","null");
+                        tno,tname,address);
         parmMap.put("data",data);
         System.out.println("success");
         /**
