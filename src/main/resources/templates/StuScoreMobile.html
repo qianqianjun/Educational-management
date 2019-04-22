@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <!-- 引入 jQuery Mobile 样式 -->
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- 引入 jQuery 库 -->
+    <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <!-- 引入 jQuery Mobile 库 -->
+    <script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+    <title>教务管理系统</title>
+
+</head>
+<body>
+
+<div data-role="page" id="myGrades">
+
+    <!-- 面板 -->
+    <div data-role="panel" id="panel_4">
+        <a href="/StuLookThroughQues" target="_self" class="ui-btn ui-icon-home ui-btn-icon-left">论题列表</a>
+        <a href="/StuChoice" target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的论题</a>
+        <a href="/StuScore"  target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的成绩</a>
+    </div>
+
+    <!-- 头部 -->
+    <div data-role="header">
+        <a href="#panel_4" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">更多</a>
+        <h1>论题详情</h1>
+    </div>
+
+    <!-- 主体 -->
+    <div data-role="main" class="ui-content">
+
+        <p th:if="${quesScore==null}" style="font-size: 20px">尚未取得成绩</p>
+        <p th:if="${quesScore!=null}" th:text="|学生号: ${quesScore.sno} 论题ID: ${quesScore.questionid}"|> </p>
+        <table data-role="table" data-mode="reflow" class="ui-responsive table-stroke" th:if="${quesScore!=null}">
+            <thead>
+            <tr>
+                <th></th>
+                <th>成绩</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr>
+                <td>初期表现10%</td>
+                <td th:text="${quesScore.earlyperformance}"></td>
+            </tr>
+            <tr>
+                <td>中期考核20%</td>
+                <td th:text="${quesScore.midexam}"></td>
+            </tr>
+            <tr>
+                <td>答辩30%</td>
+                <td th:text="${quesScore.thesisanswer}"></td>
+            </tr>
+            <tr>
+                <td>论文30%</td>
+                <td th:text="${quesScore.paper}"></td>
+            </tr>
+            <tr>
+                <td>额外加分10%</td>
+                <td th:text="${quesScore.extracredit}"></td>
+            </tr>
+            <tr>
+                <td>总分</td>
+                <td th:text="${total}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 底部 -->
+    <div data-role="footer">
+        <h1>版权所有</h1>
+    </div>
+</div>
+
+</body>
+</html>

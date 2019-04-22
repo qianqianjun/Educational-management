@@ -59,7 +59,6 @@ public class GradeManagementControllerApi {
     public ResponseMessage getStudentGrade(@RequestParam("semesterId") Integer semesterId,
                                            @RequestParam("cno") Integer cno,
                                            @RequestParam("sno") Integer sno){
-
         ArrayList<SelectCourse> studentGradeTable=(ArrayList<SelectCourse>)
                 gradeManagementService.getStudentGrade(semesterId,cno,sno);
         System.out.println("查询到"+studentGradeTable.size());

@@ -2,6 +2,7 @@
 /* 说明：该样式文件针对教务系统做过优化，其他系统如果使用，建议拷贝一份自行调整 */
 
 
+
 /* 字体图标 */
 /* CSS Document */
 
@@ -1426,9 +1427,11 @@ li {
 	color: #8099af;
 	font: normal 12px/20px microsoft YaHei;
 	margin: 15px;
+
 	position: fixed;
 	bottom: 0px;
 	width: 100%;
+
 }
 
 .index_main {
@@ -1587,8 +1590,10 @@ li {
 
 .index_grxx .media-body {
 	margin-top: 20px;
+
 	padding-top: 20px;
 	padding-left:30px;
+
 }
 
 .index_grxx .media-body .media-heading {
@@ -1598,7 +1603,9 @@ li {
 
 .index_grxx .media-body p {
 	color: #7a7a7a;
+
 	font: normal 18px/22px "microsoft YaHei"
+
 }
 
 .index_grxx .media-body p.fs1 {
@@ -1747,7 +1754,9 @@ li {
 	float: left;
 	margin-left: 10px;
 	color: #6e6e6e;
+
 	font: normal 15px/30px SimSun;
+
 }
 
 .index_rctx .list-group-item .but1 {
@@ -4707,7 +4716,9 @@ input.form-control{
 .control-label {
 	padding-right: 5px;
 	min-height: 30px;
+
 	line-height: 35px;
+
 	display:inline-block;
 }
 

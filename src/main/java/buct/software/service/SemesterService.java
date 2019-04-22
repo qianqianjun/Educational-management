@@ -59,4 +59,5 @@ public class SemesterService {
         Semester res=semesterDao.getSemesterByStartAndSemester(parm);
         return res;
     }
+
 }

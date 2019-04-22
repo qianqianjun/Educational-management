@@ -69,6 +69,7 @@
         where tno = #{tno}
     </update>
 
+
     <select id="getTeacherByTnoAndTname" resultType="buct.software.domain.Teacher">
       <bind name="_tno" value="'%' + tno + '%'"></bind>
       <bind name="_tname" value="'%' + tname + '%'"></bind>
@@ -85,4 +86,5 @@
             </if>
         </where>
     </select>
+
 </mapper>

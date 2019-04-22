@@ -59,6 +59,7 @@
         and
           majorid=#{majorId}
 
+
     </select>
 
     <select id="addCourse" resultType="Boolean">
@@ -125,4 +126,5 @@
         </where>
 
     </select>
+
 </mapper>

@@ -1,9 +1,11 @@
 package buct.software.dao;
 import buct.software.domain.ScheduleMajor;
+
 import buct.software.domain.Scheduling;
 import buct.software.domain.SelectCourse;
 import buct.software.views.SelectCourseView;
 import buct.software.views.StudentGradeIndexView;
+
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -75,4 +77,5 @@ public interface SelectCourseDao {
      * @return
      */
     Scheduling getSchedulingBySemesterIdAndCno(Scheduling scheduling);
+
 }

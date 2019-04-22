@@ -8,6 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
+
+import buct.software.views.SchedulingView;
+import org.springframework.stereotype.Repository;
+
+
+
 /**
  * @author 高谦
  * 排课表 scheduling 数据库操作类
@@ -40,5 +47,6 @@ public interface SchedulingDao {
      */
 
     public List<String> getRoomTaskTime(Scheduling scheduling);
+
 
 }

@@ -1,11 +1,14 @@
 package buct.software.controller;
+
 import buct.software.domain.College;
 import buct.software.domain.SelectCourse;
 import buct.software.domain.Semester;
+
 import buct.software.domain.User;
 import buct.software.service.CollegeService;
 import buct.software.service.SelectCourseService;
 import buct.software.service.SemesterService;
+
 import buct.software.utils.ResponseMessage;
 import buct.software.views.SelectCourseView;
 import org.apache.poi.hssf.record.ObjRecord;
@@ -19,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import javax.xml.soap.SAAJMetaFactory;
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.Map;
 
 /**
@@ -46,7 +50,9 @@ public class SelectCourseControllerPage {
         User user=(User) session.getAttribute("user");
         Integer sno=user.getAccount();
         Integer majorId=user.getMajorid();
+
         List<Semester> semesters=semesterService.getSemesterDomain();
+
         Integer semesterId=semesterService.getCurrentSemesterId();
         ArrayList<SelectCourse> selectedList=
                 (ArrayList<SelectCourse>) selectCourseService.getSelectedCourseList(sno,semesterId);
@@ -114,4 +120,5 @@ public class SelectCourseControllerPage {
         parmMap.put("currentSemester",semester);
         return "coursetablemobile";
     }
+
 }

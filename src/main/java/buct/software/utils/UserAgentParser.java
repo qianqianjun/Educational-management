@@ -7,6 +7,7 @@ import lombok.Data;
  * 简介: 用于解析 浏览器的User-Agent 对象的简单工具类
  */
 
+
 @Data
 public class UserAgentParser {
     private String url;
@@ -20,4 +21,5 @@ public class UserAgentParser {
             this.setPlatform("pc");
         }
     }
+
 }

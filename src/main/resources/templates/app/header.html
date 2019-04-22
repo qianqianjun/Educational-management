@@ -31,8 +31,10 @@
         <ul class="nav navbar-nav navbar-right  hidden-xs">
             <li>
                 <a href="" class="dropdown-toggle grxx" data-toggle="dropdown" style="color: white;font-weight: bolder;font-size: 20px;">
+
                     欢迎您
                     <span th:if="${userinfo.type}==0">[[${userinfo.sname}]] 同学</span>
+
                     <span th:if="${userinfo.type}==1">老师</span>
                     <span th:if="${userinfo.type}==2">管理员</span>
                 </a>
@@ -63,6 +65,7 @@
                         <li><a target="_blank" href="/coursetable">学生课表查询</a></li>
                     </ul>
                 </li>
+
             </ul>
         </nav>
     </div>

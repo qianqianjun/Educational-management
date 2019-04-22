@@ -19,6 +19,7 @@ import java.util.List;
  * @author  刘权达大佬无敌宇宙第一帅
  * 排课子系统api
  */
+
 @RestController
 public class SchedulingControllerApi {
     @Autowired
@@ -45,12 +46,16 @@ public class SchedulingControllerApi {
     public ResponseMessage getWillCourses(@RequestParam("year") String year,
                                           @RequestParam("semester") String semester,
                                           @RequestParam("majorName") String majorName,
+
                                           @RequestParam("grade") Integer grade){
+
         return planningService.getWillCourses(year,semester,majorName,grade);
     }
 
     @PostMapping("/addWillCourse")
+
     public ResponseMessage addWillCourse(@RequestParam("cno") Integer cno,
+
                                          @RequestParam("cname") String cname,
                                          @RequestParam("college") String college,
                                          @RequestParam("description") String description,
@@ -58,10 +63,13 @@ public class SchedulingControllerApi {
                                          @RequestParam("year") String year,
                                          @RequestParam("semester") String semester,
                                          @RequestParam("majorName") String Name,
+
                                          @RequestParam("grade") Integer grade){
+
         return planningService.addWillCourse(cno,cname,college,description,status,year,
                 semester,Name,grade);
     }
+
 
     /**
      *
@@ -119,6 +127,7 @@ public class SchedulingControllerApi {
                                      @RequestParam("semester") String semester,
                                      @RequestParam("majorName") String majorName,
                                      @RequestParam("grade") Integer grade,
+
                                      @RequestParam("status") String status,
                                      @RequestParam("capacity") String capacity,
                                      @RequestParam("address") String address,
@@ -165,4 +174,5 @@ public class SchedulingControllerApi {
         return schedulingService.getAllCourses(year,semester,majorName,grade);
     }
 }
+
 
