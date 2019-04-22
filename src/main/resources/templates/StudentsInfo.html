@@ -74,7 +74,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="(student, index) in students">
+                <tr v-for="(student, index) in pagestudents">
                     <td>{{student.sno}}</td>
                     <td>{{student.sname}}</td>
                     <td>{{student.sex}}</td>
@@ -93,8 +93,10 @@
             </table>
             <!--分页-->
             <div>
-                <a @click="prePage()" id="btnprepage">下一页</a>
-                <a @click="nextPage()" id="btnnextpage">上一页</a>
+                <button @click="prePage()" id="btnprepage">上一页</button>
+                <button @click="nextPage()" id="btnnextpage">下一页</button>
+                <input type="text" v-model="jumppage" style="width: 40px">
+                <button @click="leapPage()">跳转</button>
                 <label>当前{{ currentpage+1 }}/{{ pagenum }}</label>
             </div>
         </main>
@@ -105,9 +107,19 @@
     // var allStudents =[[${allStudents}]]
     var si = new Vue({
         el: '#SI',
+        mounted:function() {
+            this.getpage()
+        },
         methods: {
             change: function (sno) {
                 window.location = "/UpdateStudent?sno=" + sno;
+            },
+            getpage: function() {
+                this.pagenum = Math.ceil(this.students.length / this.pagesize) || 1;
+                for(var i = 0;i < this.pagenum;i ++) {
+                    this.totalpage[i] = this.students.slice(this.pagesize * i, this.pagesize * (1+i));
+                }
+                this.pagestudents = this.totalpage[this.currentpage];
             },
             prePage: function() {
                 if(this.currentpage-1 == -1) return;
@@ -117,7 +129,14 @@
                 if(this.currentpage == this.pagenum-1) return;
                 this.pagestudents = this.totalpage[++ this.currentpage];
             },
-
+            leapPage: function () {
+                if(this.jumppage > this.pagenum || this.jumppage < 1) {
+                    alert('输入有误');
+                } else {
+                    this.currentpage = this.jumppage-1;
+                    this.pagestudents = this.totalpage[this.currentpage];
+                }
+            }
         },
         data: {
             searchStudent: {
@@ -132,12 +151,13 @@
                 collegeId: 0,
                 grade: '',
                 majorId: 0,
-                pagestudents: [],
-                totalpage: [],
-                pagesize: 5,
-                pagenum: null,
-                currentpage: 0,
             },
+            jumppage: null,
+            pagesize: 8,
+            pagestudents: [],
+            totalpage: [],
+            pagenum: '',
+            currentpage: 0,
             students: [[${allStudent}]]
         }
 

@@ -73,7 +73,7 @@
                 </thead>
                 <tbody>
                 <tr>
-                <tr v-for="(teacher, index) in teachers">
+                <tr v-for="(teacher, index) in pageteachers">
                     <td>{{teacher.tno}}</td>
                     <td>{{teacher.tname}}</td>
                     <td>{{teacher.sex}}</td>
@@ -90,7 +90,14 @@
                 </tr>
                 </tbody>
             </table>
-
+            <!--分页-->
+            <div>
+                <button @click="prePage()" id="btnprepage">上一页</button>
+                <button @click="nextPage()" id="btnnextpage">下一页</button>
+                <input type="text" v-model="jumppage" style="width: 40px">
+                <button @click="leapPage()">跳转</button>
+                <label>当前{{ currentpage+1 }}/{{ pagenum }}</label>
+            </div>
         </main>
     </div>
 </div>
@@ -98,13 +105,39 @@
 <script type="text/javascript" th:inline="javascript">
     var ti = new Vue({
         el: '#TI',
+        mounted:function() {
+            this.getpage()
+
+        },
         methods: {
+            getpage: function() {
+                this.pagenum = Math.ceil(this.teachers.length / this.pagesize) || 1;
+                for(var i = 0;i < this.pagenum;i ++) {
+                    this.totalpage[i] = this.teachers.slice(this.pagesize * i, this.pagesize * (1+i));
+                }
+                this.pageteachers = this.totalpage[this.currentpage];
+            },
+            prePage: function() {
+                if(this.currentpage-1 == -1) return;
+                this.pageteachers = this.totalpage[-- this.currentpage];
+            },
+            nextPage: function() {
+                if(this.currentpage == this.pagenum-1) return;
+                this.pageteachers = this.totalpage[++ this.currentpage];
+            },
+            leapPage: function () {
+                if(this.jumppage > this.pagenum || this.jumppage < 1) {
+                    alert('输入有误');
+                } else {
+                    this.currentpage = this.jumppage-1;
+                    this.pageteachers = this.totalpage[this.currentpage];
+                }
+            },
             change: function (tno) {
-                alert(tno);
+                // alert(tno);
                 window.location = "/UpdateTeacher?tno=" + tno;
             }
-        }
-        ,
+        },
         data: {
             searchTeacher: {
                 tno: null,
@@ -112,6 +145,12 @@
                 sex: '',
                 collegeId: null
             },
+            jumppage: null,
+            pagesize: 8,
+            pageteachers: [],
+            totalpage: [],
+            pagenum: '',
+            currentpage: 0,
             teachers: [[${allTeacher}]]
         }
     })

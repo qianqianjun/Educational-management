@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <link rel="stylesheet" href="jwgl.css">
-    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
     <title></title>
 </head>
 <body>
 <!--老师信息-->
 <div data-role="page" id="teaInfoVue">
     <!--头部-->
-    <div data-role="header" style="background-color: steelblue" data-position="fixed">
-        <a href="#index" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext" style="background-color: steelblue"></a>
-        <h1>北京化工大学教务网</h1>
-    </div>
+    <div th:replace="common/mobileBackstageNavigator.html::header"></div>
+
     <!--主部-->
     <div role="main" class="ui-content" id="stuVue">
         <h3>老师信息</h3>
-        <a data-transition="slide" class="ui-btn ui-shadow ui-corner-all ui-icon-search ui-btn-icon-notext" id="btnStuSearch"></a>
+        <a data-transition="slide" href="/teacherSearch"
+           class="ui-btn ui-shadow ui-corner-all ui-icon-search ui-btn-icon-notext"
+           id="btnStuSearch"></a>
         <ul data-role="listview" data-inset="true" v-for="teacher in pageteachers">
             <div data-role="collapsible">
                 <h3>
@@ -49,14 +43,14 @@
                     <td>{{ teacher.rank }}</td>
                     </tbody>
                 </table>
-                <a data-role="button" data-icon="delete" @click="deleteTea(teacher.tno)">删除</a>
-                <a data-role="button" data-icon="gear" @click="editTea(teacher.tno)">修改</a>
             </div>
         </ul>
         <!-- 分页 -->
         <div>
-            <a data-transition="slide" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext" @click="prePage()" id="btnprepage"></a>
-            <a data-transition="slide" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-notext" @click="nextPage()" id="btnnextpage"></a>
+            <a data-transition="slide" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext"
+               @click="prePage()" id="btnprepage"></a>
+            <a data-transition="slide" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-notext"
+               @click="nextPage()" id="btnnextpage"></a>
             <label>当前{{ currentpage+1 }}/{{ pagenum }}</label>
         </div>
     </div>
@@ -70,46 +64,48 @@
     </div>
 </div>
 </body>
-<script>
-    var tea = new Vue ({
+<script type="text/javascript" th:inline="javascript">
+    console.log(2)
+    var tea = new Vue({
         el: '#teaInfoVue',
+        mounted: function () {
+            // alert(2)
+            this.getpage()
+            // this.getpage()
+            // this.getpage()
+            // location.reload()
+        }, activated: function () {
+            this.getpage()
+            // this.getpage()
+            // this.getpage()
+            // location.reload()
+        }
+        ,
         data: {
-            allteachers: [
-                {tname: 'xxx', tno: '123124', sex: '女', phone: '12345', email:'123@qq.com', college: '信息', office: '图书馆', rank:'教授'},
-                {tname: 'xxx', tno: '123124', sex: '女', phone: '12345', email:'123@qq.com', college: '信息', office: '图书馆', rank:'教授'},
-                {tname: 'xxx', tno: '123124', sex: '女', phone: '12345', email:'123@qq.com', college: '信息', office: '图书馆', rank:'教授'},
-                {tname: 'xxx', tno: '123124', sex: '女', phone: '12345', email:'123@qq.com', college: '信息', office: '图书馆', rank:'教授'},
-                {tname: 'xxx', tno: '123124', sex: '女', phone: '12345', email:'123@qq.com', college: '信息', office: '图书馆', rank:'教授'},
-                {tname: 'xxx', tno: '123124', sex: '女', phone: '12345', email:'123@qq.com', college: '信息', office: '图书馆', rank:'教授'},
-                {tname: 'xxx', tno: '123124', sex: '女', phone: '12345', email:'123@qq.com', college: '信息', office: '图书馆', rank:'教授'},
-                {tname: 'asd', tno: '123124', sex: '女', phone: '12345', email:'123@qq.com', college: '信息', office: '图书馆', rank:'教授'},
-                {tname: 'xxx', tno: '123124', sex: '女', phone: '12345', email:'123@qq.com', college: '信息', office: '图书馆', rank:'教授'},
-                {tname: 'xxx', tno: '123124', sex: '女', phone: '12345', email:'123@qq.com', college: '信息', office: '图书馆', rank:'教授'},
-            ],
+            allteachers: [[${allTeacher}]],
             pageteachers: [],
             totalpage: [],
             pagesize: 5,
             pagenum: null,
             currentpage: 0,
         },
-        mounted:function() {
-            this.getpage()
-        },
+
         methods: {
-            getpage: function() {
+            getpage: function () {
                 this.pagenum = Math.ceil(this.allteachers.length / this.pagesize) || 1;
-                for(let i = 0;i < this.pagenum;i ++) {
-                    this.totalpage[i] = this.allteachers.slice(this.pagesize * i, this.pagesize * (1+i));
+                for (let i = 0; i < this.pagenum; i++) {
+                    this.totalpage[i] = this.allteachers.slice(this.pagesize * i, this.pagesize * (1 + i));
                 }
                 this.pageteachers = this.totalpage[this.currentpage];
+                // location.reload()
             },
-            prePage: function() {
-                if(this.currentpage == 0) return;
-                this.pageteachers = this.totalpage[-- this.currentpage];
+            prePage: function () {
+                if (this.currentpage == 0) return;
+                this.pageteachers = this.totalpage[--this.currentpage];
             },
-            nextPage: function() {
-                if(this.currentpage == this.pagenum-1) return;
-                this.pageteachers = this.totalpage[++ this.currentpage];
+            nextPage: function () {
+                if (this.currentpage == this.pagenum - 1) return;
+                this.pageteachers = this.totalpage[++this.currentpage];
             },
             getAllTeachers: function () {
                 alert("1234");
@@ -143,4 +139,5 @@
             }
         }
     })
+    console.log(tea)
 </script>

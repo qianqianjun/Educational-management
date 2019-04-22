@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <link rel="stylesheet" href="jwgl.css">
-    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
     <title></title>
 </head>
 <body>
 <div data-role="page" id="couManageVue">
-    <div data-role="header" style="background-color: steelblue" data-position="fixed">
-        <a class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext" style="background-color: steelblue"></a>
-        <h1>北京化工大学教务网</h1>
-    </div>
+    <div th:replace="common/mobileBackstageNavigator.html::header"></div>
     <!-- 主体 -->
     <div data-role="main" class="ui-content">
         <div data-role="content">
             <div class="ui-field-contain">
-                <form>
+                <form th:action="@{/addSemester}">
                     <label>起始年份</label>
-                    <input type="text" v-model="s_year">
+                    <input type="text" name="start"v-model="s_year">
                     <label>终止年份</label>
-                    <input type="text" v-model="e_year">
+                    <input type="text" name="end"v-model="e_year">
+                    <label>学期ID</label>
+                    <input type="text" name="id"v-model="id">
                     <label>学期数</label>
-                    <select v-model="sem">
+                    <select name="semester"v-model="sem">
                         <option>1</option>
                         <option>2</option>
+                        <option>3</option>
                     </select>
                     </br>
-                    <a data-role="button" data-icon="plus" class="ui-right" @click="couManage()">增加</a>
+                    <button data-role="button" data-icon="plus" class="ui-right">增加</button>
                 </form>
             </div>
         </div>
@@ -50,10 +45,10 @@
         },
         methods: {
             couManage: function () {
-                if(this.e_year - this.s_year == 1) {
-                    this.$http.post("/**********",{s_year:this.s_year,e_year:this.e_year,sem:this.sem},
-                        {emulateJSON:true}).then(function(value) {
-                        if(value.body.code == 1) {
+                if (this.e_year - this.s_year == 1) {
+                    this.$http.post("/addSemester", {s_year: this.s_year, e_year: this.e_year, sem: this.sem},
+                        {emulateJSON: true}).then(function (value) {
+                        if (value.body.code == 1) {
                             alert("增加成功！");
                         } else {
                             alert("增加失败!");

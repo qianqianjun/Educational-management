@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <link rel="stylesheet" href="mobileBackmanagement/jwgl.css">
-    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
     <title></title>
 </head>
 <body>
 <!--老师搜索界面-->
-<div data-role="page" id="teaSearchVue" >
+<div data-role="page" id="teaSearchVue">
     <div data-role="header" style="background-color: steelblue" data-position="fixed">
-        <a class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-back" style="background-color: steelblue" data-rel="back"></a>
+        <a class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-back" style="background-color: steelblue"
+           data-rel="back" href="/GoTeachearInfo"></a>
         <h1>搜索</h1>
     </div>
 
     <div data-role="content" class="stuVue">
-        <div >
+        <div>
             <label>姓名</label>
-            <input type="text"  v-model="tname">
+            <input type="text" v-model="tname">
             </br>
             <button type="button" @click="getTeacherByTname(tname)">查询</button>
         </div>
@@ -37,11 +32,9 @@
             teacher: null
         },
         methods: {
-            getTeacherByTname:function (parm) {
-                alert(this.tname);
-                this.$http.post("/*********",{tname:parm},{emulateJSON: true}).then(function (value) {
-                    this.teacher = value.body.data;
-                })
+            getTeacherByTname: function (parm) {
+                alert(2)
+                window.location = "/mobileSearchTeacher?tname=" + parm
             },
         }
     })

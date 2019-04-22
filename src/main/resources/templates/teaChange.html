@@ -1,23 +1,15 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
     <title></title>
 </head>
 <body>
 <!-- 学生编辑页面 -->
 <div data-role="page" id="teaChangeVue">
     <!--头部-->
-    <div data-role="header" style="background-color: steelblue" data-position="fixed">
-        <a href="#index" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext" style="background-color: steelblue"></a>
-        <h1>北京化工大学教务网</h1>
-    </div>
+    <div th:replace="common/mobileBackstageNavigator.html::header"></div>
     <!--主部-->
     <div data-role="main" class="ui-content">
         <h3>工号:[[${teacher.tno}]]</h3>
@@ -53,22 +45,23 @@
                 <label>职称:</label>
                 <input type="text" v-model="title" placeholder="职称..">
             </fieldset>
-            <a data-role="button" data-icon="edit" class="ui-right" @click="modiTeacher()">修改</a> <!--##############参数################-->
+            <a data-role="button" data-icon="edit" class="ui-right" @click="modiTeacher()">修改</a>
+            <!--##############参数################-->
         </form>
     </div>
 </div>
 </body>
 <script>
-    var tea = new Vue ({
+    var tea = new Vue({
         el: '#teaChangeVue',
         data: {
-            tname:null,
-            sex:null,
-            phone:null,
-            email:null,
-            college:null,
-            office:null,
-            title:null
+            tname: null,
+            sex: null,
+            phone: null,
+            email: null,
+            college: null,
+            office: null,
+            title: null
         },
         methods: {
             modiTeacher: function (parm) {

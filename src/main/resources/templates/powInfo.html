@@ -1,36 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <link rel="stylesheet" href="jwgl.css">
-    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
     <title></title>
 </head>
 <body>
 <div data-role="page" id="powInfo">
     <!-- 头部 -->
-    <div data-role="header" style="background-color: steelblue" data-position="fixed">
-        <a class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext" style="background-color: steelblue"></a>
-        <h1>北京化工大学教务网</h1>
-    </div>
-
+    <div th:replace="common/mobileBackstageNavigator.html::header"></div>
     <!-- 主体 -->
     <h3>权限状态</h3>
     <div data-role="main" class="ui-content">
         <h3>选课开关</h3>
-        <label>当前状态: {{ nselectcousta }}</label>
-        <a data-role="button" @click="selectCourse()">{{ selectcousta }}</a>
+        <div v-if="selectcousta">
+            <label>当前状态: 开启</label>
+            <a data-role="button" @click="closeSelectCourse()"> 关闭</a>
+        </div>
+        <div v-else="selectcousta">
+            <label>当前状态: 关闭</label>
+            <a data-role="button" @click="openSelectCourse()"> 开启</a>
+        </div>
         <h3>初级录入</h3>
-        <label>当前状态: {{ nscoresta }}</label>
-        <a data-role="button" @click="selectScore()">{{ scoresta }}</a>
+        <div v-if="scoresta">
+            <label>当前状态: 开启</label>
+            <a data-role="button" @click="closeScore()"> 关闭</a>
+        </div>
+        <div v-else="scoresta">
+            <label>当前状态: 关闭</label>
+            <a data-role="button" @click="openScore()"> 开启</a>
+        </div>
+
         <h3>学籍异动</h3>
-        <label>当前状态: {{ nabnormalsta }}</label>
-        <a data-role="button" @click="selectAbnormal()">{{ abnormalsta }}</a>
+        <div v-if="abnormalsta">
+            <label>当前状态: 开启</label>
+            <a data-role="button" @click="closeAbnormal()"> 关闭</a>
+        </div>
+        <div v-else="abnormalsta">
+            <label>当前状态: 关闭</label>
+            <a data-role="button" @click="openAbnormal()"> 开启</a>
+        </div>
+
     </div>
 
     <!-- 底部 -->
@@ -39,45 +50,35 @@
     </div>
 </div>
 </body>
-
 <script>
     var pow = new Vue({
         el: '#powInfo',
         data: {
-            selectcousta: '开启',
-            scoresta: '开启',
-            abnormalsta: '开启',
-            nselectcousta: '关闭',
-            nscoresta: '关闭',
-            nabnormalsta: '关闭',
+            selectcousta: [[${selectCourse}]],
+            scoresta: [[${score}]],
+            abnormalsta: [[${abnormal}]],
         },
         methods: {
-            selectCourse: function () {
-                if(this.selectcousta == '开启') {
-                    this.selectcousta = '关闭';
-                    this.nselectcousta = '开启';
-                } else {
-                    this.selectcousta = '开启';
-                    this.nselectcousta = '关闭';
-                }
+
+            openSelectCourse: function () {
+                window.location = "/OpenSelectCourse"
             },
-            selectScore: function () {
-                if(this.scoresta == '开启') {
-                    this.scoresta = '关闭';
-                    this.nscoresta = '开启';
-                } else {
-                    this.scoresta = '开启';
-                    this.nscoresta = '关闭';
-                }
+            closeSelectCourse: function () {
+                window.location = "/CloseSelectCourse"
+            }
+            ,
+            openScore: function () {
+                window.location = "/OpenScore"
             },
-            selectAbnormal: function () {
-                if(this.abnormalsta == '开启') {
-                    this.abnormalsta = '关闭';
-                    this.nabnormalsta = '开启';
-                } else {
-                    this.abnormalsta = '开启';
-                    this.nabnormalsta = '关闭';
-                }
+            closeScore: function () {
+                window.location = "/CloseScore"
+            }
+            ,
+            openAbnormal: function () {
+                window.location = "/OpenAbnormal"
+            },
+            closeAbnormal: function () {
+                window.location = "/CloseAbnormal"
             }
         }
     })

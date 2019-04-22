@@ -1,24 +1,15 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <link rel="stylesheet" href="mobileBackmanagement/jwgl.css">
-    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
     <title></title>
 </head>
 <body>
 <!--老师添加-->
 <div data-role="page" id="teaAddVue">
     <!--头部-->
-    <div data-role="header" style="background-color: steelblue" data-position="fixed">
-        <a class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-back" style="background-color: steelblue" data-rel="back"></a>
-        <h1>北京化工大学教务网</h1>
-    </div>
+    <div th:replace="common/mobileBackstageNavigator.html::header"></div>
     <!--主部-->
     <div data-role="main" class="ui-content">
         <form>
@@ -57,15 +48,17 @@
             email: null,
         },
         methods: {
-            addTeacher:function () {
+            addTeacher: function () {
                 alert(this.tname);
-                if(this.tname==null||this.office==null||this.title==null||this.college==null||this.sex==null||this.phone==null||this.email==null) {
+                if (this.tname == null || this.office == null || this.title == null || this.college == null || this.sex == null || this.phone == null || this.email == null) {
                     alert("输入有误！")
                 } else {
-                    this.$http.post("/**********",{tname:this.tname,office:this.office,title:this.title,sex:this.sex,
-                            college:this.college,email:this.email,phone:this.phone},
-                        {emulateJSON:true}).then(function(value) {
-                        if(value.body.code == 1) {
+                    this.$http.post("/**********", {
+                            tname: this.tname, office: this.office, title: this.title, sex: this.sex,
+                            college: this.college, email: this.email, phone: this.phone
+                        },
+                        {emulateJSON: true}).then(function (value) {
+                        if (value.body.code == 1) {
                             alert("增加成功！");
                         } else {
                             alert("增加失败!");

@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <link rel="stylesheet" href="jwgl.css">
-    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
     <title></title>
 </head>
 <body>
 <!--学生添加-->
 <div data-role="page" id="stuAddVue">
     <!--头部-->
-    <div data-role="header" style="background-color: steelblue" data-position="fixed">
-        <a class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-back" style="background-color: steelblue" data-rel="back"></a>
-        <h1>北京化工大学教务网</h1>
-    </div>
+    <div th:replace="common/mobileBackstageNavigator.html::header"></div>
     <!--主部-->
     <div data-role="main" class="ui-content">
         <form>
@@ -60,7 +52,7 @@
             come_year: null,
         },
         methods: {
-            addStudent:function () {
+            addStudent: function () {
                 // alert(this.sno);
                 // if(this.sname==null||this.sno==null||this.klass==null||this.sex==null||this.major==null||this.grade==null||this.phone===null||this.come_year==null) {
                 //     alert("输入有误！");
