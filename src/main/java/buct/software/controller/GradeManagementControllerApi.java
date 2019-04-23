@@ -6,9 +6,10 @@ import buct.software.service.GradeManagementService;
 import buct.software.service.SelectCourseService;
 import buct.software.service.SemesterService;
 import buct.software.utils.ResponseMessage;
-import buct.software.views.SelectCourseView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -59,7 +60,6 @@ public class GradeManagementControllerApi {
     public ResponseMessage getStudentGrade(@RequestParam("semesterId") Integer semesterId,
                                            @RequestParam("cno") Integer cno,
                                            @RequestParam("sno") Integer sno){
-
         ArrayList<SelectCourse> studentGradeTable=(ArrayList<SelectCourse>)
                 gradeManagementService.getStudentGrade(semesterId,cno,sno);
         System.out.println("查询到"+studentGradeTable.size());

@@ -4,8 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="buct.software.dao.PlanningDao">
+
     <resultMap id="getWillCoursesMap" type="buct.software.views.PlanningView">
         <id  property="cno" javaType="Integer" column="cno" jdbcType="INTEGER"></id>
+
         <id  property="cname" javaType="String" column="cname" jdbcType="VARCHAR"></id>
         <id  property="college" javaType="String" column="college" jdbcType="VARCHAR"></id>
         <id  property="description" javaType="String" column="description" jdbcType="VARCHAR"></id>

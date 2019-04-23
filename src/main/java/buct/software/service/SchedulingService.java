@@ -1,11 +1,13 @@
 package buct.software.service;
 
-import buct.software.dao.MajorDao;
-import buct.software.dao.PlanningDao;
-import buct.software.dao.SchedulingDao;
-import buct.software.dao.SemesterDao;
+
+import buct.software.dao.*;
 import buct.software.domain.Scheduling;
+import buct.software.domain.Teacher;
 import buct.software.utils.ResponseMessage;
+import buct.software.views.MobileSchedulingView;
+import buct.software.views.SchedulingCourseView;
+
 import buct.software.views.SchedulingView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,9 @@ import java.util.List;
 /**
  * @author 刘权达
  * 数据表 scheduling 服务层
+
  * 未完成  高谦修改了一下 tno sno 的数据类型 String -> Integer
+
  */
 @Service
 public class SchedulingService {
@@ -27,9 +31,12 @@ public class SchedulingService {
     SemesterDao semesterDao;
     @Autowired
     MajorDao majorDao;
+    @Autowired
+    TeacherDao teacherDao;
 
     public ResponseMessage getCourse(Integer cno,String year,String semester,
-                                     String majorName,String grade){
+                                     String majorName,Integer grade){
+
         Integer semesterId = semesterDao.getSemesterId(year,semester);
         Integer majorId = majorDao.getMajorIdByMajorName(majorName);
         //判断是否已排
@@ -44,8 +51,10 @@ public class SchedulingService {
         return message;
     }
 
+
     public ResponseMessage addCourse(Integer cno,Integer tno,String year,String semester,
-                                     String majorName,String grade,String status,
+                                     String majorName,Integer grade,String status,
+
                                      String capacity1,String address,String time){
         Integer capacity=Integer.valueOf(capacity1);
         Integer semesterId = semesterDao.getSemesterId(year,semester);
@@ -62,8 +71,10 @@ public class SchedulingService {
         return message;
     }
 
+
     public ResponseMessage deleteCourse(Integer cno,String year,String semester,
-                                        String majorName,String grade){
+                                        String majorName,Integer grade){
+
         Integer semesterId = semesterDao.getSemesterId(year,semester);
         Integer majorId = majorDao.getMajorIdByMajorName(majorName);
         Integer count1 = schedulingDao.getCourseMajorCount(semesterId,cno);
@@ -82,4 +93,31 @@ public class SchedulingService {
         message.setData(flag);
         return message;
     }
+
+    public ResponseMessage getCoursesByTnoAndTnameAndAddress(Integer tno,String tname,String address){
+        System.out.println(tname);
+        List<MobileSchedulingView> mobileSchedulingView = schedulingDao.getCoursesByTnoAndTnameAndAddress(tno,
+                tname,address);
+        ResponseMessage message=ResponseMessage.getMessage(mobileSchedulingView!=null,ResponseMessage.SUCCESS,
+                " 查找成功！", ResponseMessage.WRONG,"查找失败！");
+        message.setData(mobileSchedulingView);
+        return message;
+    }
+
+    public ResponseMessage getTeacherByTnoAndTname(Integer tno,String tname){
+        List<Teacher> data = teacherDao.getTeacherByTnoAndTname(tno,tname);
+        ResponseMessage message=ResponseMessage.getMessage(data!=null,ResponseMessage.SUCCESS,
+                " 查找成功！", ResponseMessage.WRONG,"查找失败！");
+        message.setData(data);
+        return message;
+    }
+
+    public ResponseMessage getAllCourses(String year,String semester,String majorName,Integer grade){
+        List<SchedulingCourseView> data = schedulingDao.getAllCourses(year,semester,majorName,grade);
+        ResponseMessage message=ResponseMessage.getMessage(data!=null,ResponseMessage.SUCCESS,
+                " 查找成功！", ResponseMessage.WRONG,"查找失败！");
+        message.setData(data);
+        return message;
+    }
+
 }

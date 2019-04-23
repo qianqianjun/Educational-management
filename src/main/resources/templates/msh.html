@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- 引入 jQuery Mobile 样式 -->
-    <link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 
     <!-- 引入 jQuery 库 -->
-    <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
 
     <!-- 引入 jQuery Mobile 库 -->
-    <script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
 
     <style type="text/css">
         th {
@@ -44,16 +44,16 @@
 
     <meta charset="UTF-8">
     <meta charset="gbk"/>
-    <title>Login</title>
+    <title>MobileStudentHome</title>
 </head>
 <body>
 <div data-role="page" id="Homepage">
 
     <!-- 面板 -->
     <div data-role="panel" id="myPanel">
-        <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
-        <a href="#" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
-        <a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
+        <a href="/index" data-ajax="false" class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
+        <a href="/coursetablemobile" data-ajax="false" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
+        <a href="/selectcoursemobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
         <a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">成绩查询</a>
         <a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">已选论题</a>
         <a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">查看论题</a>
@@ -61,69 +61,78 @@
 
     <!-- 头部 -->
     <div data-role="header">
-        <form  role="form" action="/logout" method="post">
-            <div>
-                <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">更多</a>
-                <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right">注销</button>
-            </div>
-        </form>
+        <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">更多</a>
         <h1>教务管理系统</h1>
+        <a  href="/logout" class="ui-btn ui-shadow ui-corner-all  ui-btn-icon-right">注销</a>
     </div>
 
     <div data-role="main" class="ui-content">
-        <div id="studentInform" border-top:1px solid #000>
+        <div style="border:1px solid #9e9c9c;background:#9e9c9c">
+            <p1>欢迎您 [[${userinfo.sname}]]</p1>
+        </div>
+
+        <div id="studentInform" style=" border-style: ridge;">
             <table data-role="table" class="ui-responsive">
                 <thead>
                 <tr>
-                    <th v-model="sname">姓名</th>
-                    <th v-model="college">学院</th>
+                    <th v-model="colege">学院</th>
                     <th v-model="major">专业</th>
-                    <th v-model="class">班级</th>
+                    <th v-model="klass">班级</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>[[${sname}]]</td>
-                    <td>[[${major}]]</td>
-                    <td>[[${college}]]</td>
-                    <td>[[${Klass}]]</td>
+                    <td>[[${userinfo.major}]]</td>
+                    <td>[[${userinfo.college}]]</td>
+                    <td>[[${userinfo.klass}]]</td>
                 </tr>
                 </tbody>
             </table>
         </div>
-
-        <div id="newInform" data-role="collapsibleset">
-            <div id="news">
-                <h3>通知</h3>
-                <a href="#">消息</a>
+        <br>
+        <br>
+        <div id="news" style="border-style: ridge">
+            <p1>通知</p1>
+            <br>
+            <a href="#">2019年四六级网上报名通知</a>
+        </div>
+        <br>
+        <div id="newClass" style="border-style: ridge">
+            <p1>课表</p1>
+            <br>
+            <p th:if="${#lists.isEmpty(courseTable)}" style="margin-left: 20px;">当前没有选课信息</p>
+            <a class="list-group-item" th:each="course : ${courseTable}">
+							<span class="title">
+								[[ ${course.startWeek} ]]-[[${course.endWeek}]]周
+								([[ ${course.startStep} ]]-[[${course.endStep}]]节)
+								-星期[[${course.week}]]-[[${course.cname}]]-
+								[[${course.address}]]-
+								[[${course.tname}]]
+							</span>
+                            <br>
+            </a>
+            <!--<a href="#">软件工程 A阶202</a>-->
+        </div>
+        <br>
+        <div id="newGrade" style="border-style: ridge">
+            <p1>成绩</p1>
+            <br>
+            <p th:if="${#lists.isEmpty(gradeList)}" style="margin-left: 20px;">当前学期没有成绩信息</p>
+            <div class="list-group">
+                <a class="list-group-item" th:each="grade : ${gradeList}">
+                    <span class="title"> [[${grade.start}]]-[[${grade.end}]]-[[${grade.semester}]]-[[${grade.cname}]] </span>
+                    <span class="fraction float_r">[[${grade.totalScore}]]</span>
+                </a>
             </div>
-            <div id="newClass">
-                <h3>课表</h3>
-                <a href="#">课程</a>
-            </div>
-            <div id="newGrade">
-                <h3>成绩</h3>
-                <a href="#">成绩</a>
-            </div>
+            <!--<a href="#">Java程序设计</a>-->
         </div>
     </div>
 
     <!-- 底部 -->
     <div data-role="footer" data-position="fixed">
-        <h1>版权所有</h1>
+        <h1>版权所有© 北京化工大学 计科1601班</h1>
     </div>
 
-    <script>
-        new Vue({
-            el: 'userInform',
-            data:{
-                sno:null,
-                sname:null,
-                major:null,
-                userInform:[]
-            }
-        })
-    </script>
 </div>
 
 </body>

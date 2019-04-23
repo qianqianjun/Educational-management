@@ -20,5 +20,9 @@ public interface TeacherDao {
 
     public List<Teacher> queryByExample(Teacher example);
 
+
     public void updateTeacher(Teacher teacher);
+
+    public List<Teacher> getTeacherByTnoAndTname(Integer tno,String tname);
+
 }
