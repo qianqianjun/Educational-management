@@ -134,24 +134,6 @@
                     {
                         return document.getElementById(id);
                     }
-                    function controlDIV0()
-                    {
-
-                        if(flag_0==0)
-                        {
-                            dv0.style.display="block";
-                            btn0.value="取消";
-                            flag_0=1;
-
-                        }
-                        else
-                        {
-
-                            dv0.style.display="none";
-                            btn0.value="查询";
-                            flag_0=0;
-                        }
-                    }
                 </script>
 
             </head>
@@ -367,21 +349,6 @@
                     {
                         return document.getElementById(id);
                     }
-                    function controlDIV3()
-                    {
-                        if(flag_2==0)
-                        {
-                            div01.style.display="block";
-                            btn3.value="取消";
-                            flag_2=1;
-                        }
-                        else
-                        {
-                            div01.style.display="none";
-                            btn3.value="查询";
-                            flag_2=0;
-                        }
-                    }
                 </script>
                 <script language="javascript"  type="text/javascript">
                     var flag_3=0;
@@ -389,21 +356,7 @@
                     {
                         return document.getElementById(id);
                     }
-                    function controlDIV4()
-                    {
-                        if(flag_3==0)
-                        {
-                            div11.style.display="block";
-                            btn4.value="取消";
-                            flag_3=1;
-                        }
-                        else
-                        {
-                            div11.style.display="none";
-                            btn4.value="查询";
-                            flag_3=0;
-                        }
-                    }
+
                 </script>
                 <div id="div0">
                     <li style="height:27px">教师安排</li><hr>
@@ -551,12 +504,12 @@
                 <div id="div5" align="right" style=" padding-left:100px">
                     <input class="md-close" type="button" value="确认" @click="addAll()">
                     <a style="padding-right:100px"></a>
-                    <input class="md-close" type="button" value="取消" onclick="op2()">
+                    <input class="md-close" type="button" value="取消" @click="deleteCourse()">
                 </div>
             </dialog>
             <script>
                 function op2(){
-                    Dialog.close();
+
                 }
             </script>
             </div>
@@ -602,6 +555,31 @@
             allCourses:[]
         },
         methods:{
+            deleteCourse:function(){
+
+                this.$http.post("/deleteCourse", {
+                        cno:this.nowCourseCno,
+                        year:this.nowCourseYear,
+                        semester:this.nowCourseSemester,
+                        majorName:this.nowCourseMajorName,
+                        grade:this.nowCourseGrade
+                    },
+                    {emulateJSON:true}).then(function (value) {
+                        console.log("222")
+                        this.deleteCourse=value.body.data;
+                        console.log(this.deleteCourse);
+                        /*开始操作*/
+                        alert("取消成功")
+                        Dialog.close();
+                        this.search()
+                    },
+                    function (reason) {
+                        alert("请求出错")
+                    }
+                );
+
+            }
+            ,
             parserHtml:function(cInfo){
                 console.log("333333")
                 console.log(cInfo)
@@ -743,6 +721,7 @@
                         console.log(value);
                         if(value) alert("添加成功")
                         Dialog.close();
+                        this.search();
                     },
                     function (reason) {
                         alert("请求出错")
