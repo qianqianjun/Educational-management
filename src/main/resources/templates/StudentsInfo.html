@@ -56,7 +56,7 @@
                 <span data-feather="user-plus"></span>
                 添加学生
             </a>
-
+            <!--<button @click="upload" class="btn btn-xs btn-primary">Upload</button>-->
             <h2></h2>
             <table class="table">
                 <thead class="thead-light">
@@ -107,36 +107,37 @@
     // var allStudents =[[${allStudents}]]
     var si = new Vue({
         el: '#SI',
-        mounted:function() {
+        mounted: function () {
             this.getpage()
         },
         methods: {
             change: function (sno) {
                 window.location = "/UpdateStudent?sno=" + sno;
             },
-            getpage: function() {
+            getpage: function () {
                 this.pagenum = Math.ceil(this.students.length / this.pagesize) || 1;
-                for(var i = 0;i < this.pagenum;i ++) {
-                    this.totalpage[i] = this.students.slice(this.pagesize * i, this.pagesize * (1+i));
+                for (var i = 0; i < this.pagenum; i++) {
+                    this.totalpage[i] = this.students.slice(this.pagesize * i, this.pagesize * (1 + i));
                 }
                 this.pagestudents = this.totalpage[this.currentpage];
             },
-            prePage: function() {
-                if(this.currentpage-1 == -1) return;
-                this.pagestudents = this.totalpage[-- this.currentpage];
+            prePage: function () {
+                if (this.currentpage - 1 == -1) return;
+                this.pagestudents = this.totalpage[--this.currentpage];
             },
-            nextPage: function() {
-                if(this.currentpage == this.pagenum-1) return;
-                this.pagestudents = this.totalpage[++ this.currentpage];
+            nextPage: function () {
+                if (this.currentpage == this.pagenum - 1) return;
+                this.pagestudents = this.totalpage[++this.currentpage];
             },
             leapPage: function () {
-                if(this.jumppage > this.pagenum || this.jumppage < 1) {
+                if (this.jumppage > this.pagenum || this.jumppage < 1) {
                     alert('输入有误');
                 } else {
-                    this.currentpage = this.jumppage-1;
+                    this.currentpage = this.jumppage - 1;
                     this.pagestudents = this.totalpage[this.currentpage];
                 }
             }
+
         },
         data: {
             searchStudent: {
