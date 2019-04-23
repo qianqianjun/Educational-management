@@ -7,6 +7,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import java.io.File;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -14,6 +16,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import static org.apache.poi.ss.usermodel.CellType.*;
 
@@ -29,11 +32,7 @@ public class ExcelUtil {
      * 方法名：setBrowser
      * 功能：使用浏览器下载
      * 描述：
-     * 创建人：typ
-     * 创建时间：2018/10/19 16:20
-     * 修改人：
-     * 修改描述：
-     * 修改时间：
+     * 创建人：wyl
      */
 //    private static void setBrowser(HttpServletResponse response, HSSFWorkbook workbook, String fileName) {
 //        try {
@@ -58,19 +57,14 @@ public class ExcelUtil {
 
     /**
      * 方法名：importExcel
-     * 功能：导入
-     * 描述：
-     * 创建人：typ
-     * 创建时间：2018/10/19 11:45
-     * 修改人：
-     * 修改描述：
-     * 修改时间：
+     * 功能：导入某学期某课程所有学生的成绩到数据库
+     * 创建人：wyl
      */
-    public static List<Object[]> importExcel(String fileName) {
-        log.info("导入解析开始，fileName:{}",fileName);
+    public static List<Object[]> importExcel(File file) {
+        log.info("导入解析开始");
         try {
             //String encoding = "GBK";
-            File excel = new File(fileName);
+            File excel = file;
             List<Object[]> list = new ArrayList<>();
             String[] split = excel.getName().split("\\.");  //.是特殊字符，需要转义！！！！！
             Workbook wb;
@@ -122,32 +116,6 @@ public class ExcelUtil {
                 System.out.println("导入文件解析失败！");
                 e.printStackTrace();
             }
-//
-//                int firstRowIndex = sheet.getFirstRowNum()+1;   //第一行是列名，所以不读
-//                int lastRowIndex = sheet.getLastRowNum();
-//                System.out.println("firstRowIndex: "+firstRowIndex);
-//                System.out.println("lastRowIndex: "+lastRowIndex);
-//
-//                for(int rIndex = firstRowIndex; rIndex <= lastRowIndex; rIndex++) {   //遍历行
-//                    System.out.println("rIndex: " + rIndex);
-//                    Row row = sheet.getRow(rIndex);
-//                    if (row != null) {
-//                        int firstCellIndex = row.getFirstCellNum();
-//                        int lastCellIndex = row.getLastCellNum();
-//                        for (int cIndex = firstCellIndex; cIndex < lastCellIndex; cIndex++) {   //遍历列
-//                            Cell cell = row.getCell(cIndex);
-//                            if (cell != null) {
-//                                System.out.println(cell.toString());
-//                            }
-//                        }
-//                    }
-//                }
-//            } else {
-//                System.out.println("找不到指定的文件");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         return null;
     }
 

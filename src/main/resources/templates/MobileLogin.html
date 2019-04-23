@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script src="js/jquery-1.8.3.js"></script>
+    <script src="js/jquery.mobile-1.4.5.js"></script>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+    <meta charset="utf-8"/>
+    <title>Login</title>
+</head>
+<body>
+<div data-role="page" id="Loginpage">
+    <div data-role="header">
+        <h1>教务管理系统</h1>
+    </div>
+
+    <div data-role="content">
+        <h3 style="text-align:center">用户登录</h3>
+        <br>
+        <form role="form" action="/login" method="post">
+            <p2><span id="nameTitle">用户名</span></p2>
+            <input type="text" name="account" placeholder="学号或工号" required="required">
+            <br>
+            <p2><span id="keyTitle">密码</span></p2>
+            <input type="password" name="password" placeholder="密码" required="required">
+            <br>
+            <button type="submit">登录</button>
+        </form>
+
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <h1>版权所有</h1>
+    </div>
+</div>
+</body>
+</html>

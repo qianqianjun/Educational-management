@@ -6,83 +6,77 @@
 <!-- 菜单  -->
 <div th:replace="app/header::menu"></div>
 <!-- 主体 -->
-<div class="container padding-150">
+<div class="container padding-150" style="padding-bottom: 100px;">
 	<div class="row">
-		<div class="col-md-3 col-sm-4">
+		<div class="col-md-2 col-sm-4">
 			<div class="index_wdyy">
 				<h3><span>我的应用</span><a href="" class="sz" id="wdyy_szbtn"></a></h3>
 				<ul class="list-unstyled mCustomScrollbar _mCS_1 mCS_no_scrollbar" style="height: 350px;">
-					<li class="col-md-4 col-sm-4 col-xs-6">
-						<a href="" target="_blank" title="学生选题">
-							<img src="images/ico_but42.png" alt="学生选题" />
-							<h5>学生选题</h5>
+					<li class="col-md-6 col-sm-6 col-xs-6">
+						<a href="/selectcourse" target="_blank">
+							<img src="images/ico_but42.png"/>
+							<h5>自主选课</h5>
+						</a>
+					</li>
+					<li class="col-md-6 col-sm-6 col-xs-6">
+						<a href="/coursetable" target="_blank">
+							<img src="images/ico_but42.png"/>
+							<h5>课表查询</h5>
 						</a>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div class="col-md-9 col-sm-8">
+		<div class="col-md-10 col-sm-8">
 			<div class="row">
+
 				<div class="col-md-12">
 					<div class="index_grxx">
 						<div class="row">
 							<div class="col-md-5" id="yhxxIndex">
 								<div class="media">
-									<a class="pull-left" href=""> <img class="media-object" alt="110x110" src="images/photo_cxXszp.html" style="width: 110px; height: 110px;" /> </a>
 									<div class="media-body">
-										<h4 class="media-heading">高谦</h4>
-										<p>信息科学与技术学院 计科1601</p>
+										<h4 class="media-heading">[[${userinfo.sname}]]</h4>
+										<p>[[${userinfo.college}]] [[${userinfo.major}]] [[${userinfo.klass}]]</p>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-7 mCustomScrollbar _mCS_3 mCS_no_scrollbar" id="newsnotice" style="height: 150px;">
-								<div id="mCSB_3" class="mCustomScrollBox mCS-dark-3 mCSB_vertical mCSB_inside" tabindex="0">
-									<div id="mCSB_3_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
-										<h5 class="index_title"><span class="title">通知</span></h5>
-										<div class="list-group">
-											<a href="" target="_blank" class="list-group-item">
-														<span class="title"> 
-														<font color="black">【通知】</font> 关于2017年12月大学外语四、六级考试报名及有关... 
-														</span>
-												<i class="index_png new"></i>
-												<span class="time float_r">2017-09-04</span>
-											</a>
-										</div>
-									</div>
+							<div class="col-md-7">
+								<div class="index_rctx" style="height: 200px;">
+									<h5 class="index_title"><span class="title">通知</span></h5>
+									<a target="_blank" class="list-group-item">
+										<span class="title"> 【通知】</font> 关于2017年12月大学外语四、六级考试报名及有关... </span>
+									</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
+
 				<div class="col-md-6">
-					<div class="index_rctx">
+					<div class="index_rctx" style="height: 418px;">
 						<h5 class="index_title"><span class="title">课表</span></h5>
-						<a target="_blank" class="list-group-item">
-							<span class="title"> 5-8周(7-9节)-星期二-大学生就业与创业指导-北区-B阶-203-汪雪琴 </span>
+						<p th:if="${#lists.isEmpty(courseTable)}" style="margin-left: 20px;">当前没有选课信息</p>
+						<a class="list-group-item" th:each="course : ${courseTable}">
+							<span class="title">
+								[[ ${course.startWeek} ]]-[[${course.endWeek}]]周
+								([[ ${course.startStep} ]]-[[${course.endStep}]]节)
+								-星期[[${course.week}]]-[[${course.cname}]]-
+								[[${course.address}]]-
+								[[${course.tname}]]
+							</span>
 						</a>
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div class="index_rctx">
-						<h5 class="index_title"><span class="title">文件</span></h5>
-						<div class="list-group">
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="index_rctx">
-						<h5 class="index_title"><span class="title">消息</span></h5>
-						<div class="list-group">
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="index_rctx">
+					<div class="index_rctx" style="height: 418px;">
 						<h5 class="index_title"><span class="title">成绩</span></h5>
+						<p th:if="${#lists.isEmpty(gradeList)}" style="margin-left: 20px;">当前学期没有成绩信息</p>
 						<div class="list-group">
-							<a class="list-group-item">
-								<span class="title"> 2018-2019-1-专业必修-数据库原理 </span>
-								<span class="fraction float_r">100</span>
+							<a class="list-group-item" th:each="grade : ${gradeList}">
+								<span class="title"> [[${grade.start}]]-[[${grade.end}]]-[[${grade.semester}]]-[[${grade.typeStr}]]-[[${grade.cname}]] </span>
+								<span class="fraction float_r">[[${grade.totalScore}]]</span>
 							</a>
 						</div>
 					</div>

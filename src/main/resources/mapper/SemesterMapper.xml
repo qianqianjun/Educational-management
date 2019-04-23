@@ -19,4 +19,13 @@
     <select id="getSemesterId" resultType="Integer">
         select semesterid from semester where start=#{year} and semester=#{semester}
     </select>
+
+    <select id="getSemesterByStartAndSemester" resultType="buct.software.domain.Semester">
+        select semesterid from semester where start=#{start} and semester=#{semester}
+    </select>
+
+
+    <select id="getSemesterById" resultType="buct.software.domain.Semester">
+        select * from  semester where semester.semesterid=#{semesterId}
+    </select>
 </mapper>

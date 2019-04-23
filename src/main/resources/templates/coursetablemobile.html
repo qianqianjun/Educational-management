@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- meta使用viewport以确保页面可自由缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 引入 jQuery Mobile 样式 -->
+	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<!-- 引入 jQuery 库 -->
+	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!-- 引入 jQuery Mobile 库 -->
+	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<title>查看课表</title>
+	<style type="text/css">
+		.one_table_title{
+			line-height: 30px;
+			width: 12.5%;
+			float: left;
+			border: 0.5px solid black;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<div data-role="page" id="pageone">
+	<!-- 面板 -->
+	<div data-role="panel" id="myPanel"> 
+    	<a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">首页</a>
+    	<a href="#" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
+    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
+    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">成绩查询</a>
+    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">已选论题</a>
+    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">查看论题</a>
+  	</div>	
+  	<!-- 头部 -->
+	<div data-role="header">
+    	<a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext"></a>
+    	<h1>教务管理系统</h1>
+  	</div>
+  	<!-- 主体 -->
+  	<div data-role="main" class="ui-content">
+  		<label>学年:</label>
+  		<select v-model="start">
+  			<option value="2018">2018-2019</option>
+  			<option value="2017">2017-2018</option>
+  			<option value="2016">2016-2017</option>
+  		</select>
+  		<label>学期:</label>
+  		<select v-model="semester">
+  			<option value="1">1</option>
+  			<option value="2">2</option>
+  			<option value="3">3</option>
+  		</select>
+  		<br>
+		<div>
+  		<span v-if="start!=null">{{start}}</span>
+  		<span v-if="semester!=null">{{semester}}</span>
+  		<input type="submit" value="查询" @click="getcoursetable()">
+		</div>
+  		<h3 style="text-align:center">XXX的课表</h3>
+  		<table style="width:100%;">
+  			<tbody>
+				<tr>
+					<td class="one_table_title">
+						<span>节次</span>
+					</td>
+					<td class="one_table_title">
+						<span>周一</span>
+					</td>
+					<td class="one_table_title">
+						<span>周二</span>
+					</td>
+					<td class="one_table_title">
+						<span>周三</span>
+					</td>
+					<td class="one_table_title">
+						<span>周四</span>
+					</td>
+					<td class="one_table_title">
+						<span>周五</span>
+					</td>
+					<td class="one_table_title">
+						<span>周六</span>
+					</td>
+					<td class="one_table_title">
+						<span>周日</span>
+					</td>
+				</tr>
+				<tr v-for="course in courses">
+					<td class="one_table_title">
+						<span>1</span>
+					</td>
+					<td class="one_table_title">
+					</td>
+					<td class="one_table_title">
+					</td>
+					<td class="one_table_title">
+					</td>
+					<td class="one_table_title">
+					</td>
+					<td class="one_table_title">
+					</td>
+					<td class="one_table_title">
+					</td>
+					<td class="one_table_title">
+					</td>
+				</tr>
+  			</tbody>
+  		</table>
+  	</div>
+  	<!-- 底部 -->
+  	<div data-role="footer">
+    	<h1>版权所有</h1>
+  	</div>
+</div>
+  	<script type="text/javascript">
+  		var two = new Vue({
+  			el:"#pageone",
+  			data:{
+  				start:null,
+  				semester:null,
+  				courses:[],
+  			},
+  			methods:{
+  				getcoursetable:function(){
+  					console.log(this.semester);
+  					console.log(this.start);
+  					this.$http.get("/getcoursetable/",{params:{semester:this.semester,start:this.start}}).then(function(value){
+  						console.log(value.body.data);
+  						courses = value.body.data;
+  					},function(reason){
+  						console.log(reason);
+  						alert("请求出错");
+  					});
+  				}
+  			}
+  		})
+  	</script>
+</body>
+</html>
