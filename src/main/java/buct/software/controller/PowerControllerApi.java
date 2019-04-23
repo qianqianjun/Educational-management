@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  * @author 孟庆强
  * 权限控制的controller
  */
+
 @RestController
 public class PowerControllerApi {
     @Autowired

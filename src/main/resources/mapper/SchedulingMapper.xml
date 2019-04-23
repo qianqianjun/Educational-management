@@ -3,6 +3,36 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="buct.software.dao.SchedulingDao">
+    <resultMap id="getAllCoursesMap" type="buct.software.views.SchedulingCourseView">
+        <id property="tname" javaType="String" column="tname"  jdbcType="VARCHAR" ></id>
+        <id property="address" javaType="String" column="address"  jdbcType="VARCHAR" ></id>
+        <id property="course_time" javaType="String" column="course_time"  jdbcType="VARCHAR" ></id>
+        <id property="cname" javaType="String" column="cname"  jdbcType="VARCHAR" ></id>
+    </resultMap>
+    <select id="getAllCourses" resultMap="getAllCoursesMap">
+        select course.cname,scheduling.address,scheduling.course_time,teacher.tname from scheduling,semester,schedule_major,major,course,teacher
+        where scheduling.semesterid = semester.semesterid
+        and
+          teacher.tno = scheduling.tno
+        and
+          course.cno = scheduling.cno
+        and
+          major.majorid = schedule_major.majorid
+        and
+          scheduling.semesterid = schedule_major.semesterid
+        and
+          scheduling.cno = schedule_major.cno
+        and
+          semester.start = #{year}
+        and
+          semester.semester = #{semester}
+        and
+          major.majorname = #{majorName}
+        and
+          schedule_major.grade = #{grade}
+
+    </select>
+
     <resultMap id="getCourseMap" type="buct.software.views.SchedulingView">
         <id property="tno" javaType="Integer" column="tno"  jdbcType="INTEGER" ></id>
         <id property="address" javaType="String" column="address"  jdbcType="VARCHAR" ></id>
@@ -28,8 +58,8 @@
           cno=#{cno}
         and
           majorid=#{majorId}
-        and
-          grade=#{grade}
+
+
     </select>
 
     <select id="addCourse" resultType="Boolean">
@@ -70,4 +100,31 @@
     <select id="getRoomTaskTime" resultType="String">
         select scheduling.course_time from scheduling where scheduling.semesterid=#{semesterId} and scheduling.address=#{room}
     </select>
+
+
+    <select id="getCoursesByTnoAndTnameAndAddress" resultType="buct.software.views.MobileSchedulingView">
+    <bind name="_tname" value="'%'+ tname + '%'"></bind>
+    <bind name="_tno" value="'%' + tno + '%'"></bind>
+    <bind name="_address" value="'%' + address + '%'"></bind>
+        select scheduling.tno,tname,scheduling.cno,cname,address,course_time,capacity from scheduling,teacher,course
+        <where>
+            scheduling.tno = teacher.tno
+            and
+            scheduling.cno = course.cno
+            <if test="tname != 'null'">
+                and
+                teacher.tname like #{_tname}
+            </if>
+            <if test="tno != -1">
+                and
+                scheduling.tno like #{_tno}
+            </if>
+            <if test="address != 'null'">
+                and
+                scheduling.address like #{_address}
+            </if>
+        </where>
+
+    </select>
+
 </mapper>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <!-- 引入 jQuery Mobile 样式 -->
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- 引入 jQuery 库 -->
+    <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <!-- 引入 jQuery Mobile 库 -->
+    <script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+    <title>教务管理系统</title>
+
+</head>
+<body>
+
+<div data-role="page" id="myFinal">
+
+    <!-- 面板 -->
+    <div data-role="panel" id="panel_3">
+        <a href="/StuLookThroughQuesMobile" target="_self" class="ui-btn ui-icon-home ui-btn-icon-left">论题列表</a>
+        <a href="/StuChoiceMobile" target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的论题</a>
+        <a href="/StuScoreMobile"  target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的成绩</a>
+    </div>
+
+    <!-- 头部 -->
+    <div data-role="header">
+        <a href="#panel_3" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">更多</a>
+        <h1>论题详情</h1>
+    </div>
+
+    <!-- 主体 -->
+    <div data-role="main" class="ui-content">
+
+        <ul data-role="listview" data-inset="true" th:each="quesInfo: ${quesInfos}" >
+            <li>
+                <a th:href="@{'/StuQuesDetailsMobile?questionid='+${quesInfo.questionid}}" target="_self">
+                    <h2 th:text="'[' + ${quesInfo.questionid}+']'+ ${quesInfo.topic}"></h2>
+                    <p class="ui-li-aside" th:text="'难度:'+ ${quesInfo.difficulty}"></p>
+                    <p th:if="${quesInfo.ischosen==true && session.user.getAccount()!=quesInfo.sno}" style="color: red">已被选择</p>
+                    <p th:if="${session.user.getAccount()==quesInfo.sno}" style="color: green">我的论题</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 底部 -->
+    <div data-role="footer">
+        <h1>版权所有</h1>
+    </div>
+</div>
+
+
+</body>
+</html>

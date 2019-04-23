@@ -2,23 +2,23 @@
 <html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
 <head>
 	<meta charset="utf-8">
-	<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
-	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+	<script src="js/vue.min.js"></script>
+	<script src="js/vue.js"></script>
+	<script src="js/vue-resource.min.js"></script>
 	<!-- 新 Bootstrap 核心 CSS 文件 -->
-	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<!-- meta使用viewport以确保页面可自由缩放 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 引入 jQuery Mobile 样式 -->
-	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 	<!-- 引入 jQuery 库 -->
-	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 	<!-- 引入 jQuery Mobile 库 -->
-	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
 	<title>自主选课</title>
 </head>
 <body>
@@ -26,9 +26,9 @@
 	
 	<!-- 面板 -->
 	<div data-role="panel" id="myPanel"> 
-    	<a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">首页</a>
-    	<a href="#coursetablemobile.html" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
-    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
+    	<a href="/index" data-ajax="false" class="ui-btn ui-icon-home ui-btn-icon-left">首页</a>
+    	<a href="/coursetablemobile" data-ajax="false" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
+    	<a href="/selectcoursemobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
     	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">成绩查询</a>
     	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">已选论题</a>
     	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">查看论题</a>
@@ -47,9 +47,9 @@
   			<input data-type="search" placeholder="课程名" v-model="cname">
 		<br>
   		<label>开课学院：</label>
-  		<select>
-            <option value="" style="display: none"></option>
-  			<option th:each="college : ${collegelist}" value="${college.collegeName}">[[${college.collegeName} ]]</option>
+  		<select v-model="college">
+            <option value="" >所有</option>
+  			<option th:each="college : ${collegelist}" th:value="${college.collegeName}">[[${college.collegeName} ]]</option>
   		</select>
   		<br>
   		<label>有无余量：</label>
@@ -120,7 +120,7 @@
 	</div>
     <!-- 底部 -->
     <div data-role="footer" data-position="fixed">
-        <h1>版权所有</h1>
+        <h1>版权所有© 北京化工大学 计科1601班</h1>
     </div>
 
 </div>
@@ -132,9 +132,9 @@
 		data:{
 			hide1:null,
 			hide2:null,
-			cname:null,
-			college:null,
-			capacity:null,
+			cname:"",
+			college:"",
+			capacity:"-1",
 			courses:[],
 			cno:null,
 			tname:null,
@@ -156,7 +156,6 @@
 					this.courses=value.body.data[0];
 					this.all_course=value.body.data[0];
 					this.course_selected_cno = value.body.data[1];
-					console.log(value.body.data);
 					this.course_selected=[];
 					this.course_not_selected=[];
 					for(var i=0;i<this.all_course.length;i++){
@@ -192,6 +191,24 @@
 			            console.log(this.course_selected);
 			            console.log(this.course_not_selected);
 			            alert("选课成功");
+			            this.$http.post("/filtercourse/",{college:this.college,cname:this.cname,
+						capacity:this.capacity,cno:this.cno,tname:this.tname},{emulateJSON:true}).then(function(value){
+						this.courses=value.body.data[0];
+						this.all_course=value.body.data[0];
+						this.course_selected_cno = value.body.data[1];
+						this.course_selected=[];
+						this.course_not_selected=[];
+						for(var i=0;i<this.all_course.length;i++){
+							if(this.contains(this.course_selected_cno,this.all_course[i])){
+								this.course_selected.push(this.all_course[i]);
+							}
+							else{
+								this.course_not_selected.push(this.all_course[i]);
+							}
+						}
+				},function(reason){
+					alert("请求出错");
+				});
 			        }
 			        else{
 			            alert("选课失败");
@@ -219,6 +236,24 @@
 			            console.log(this.course_selected);
 			            console.log(this.course_not_selected);
 			            alert("退选成功");
+			            this.$http.post("/filtercourse/",{college:this.college,cname:this.cname,
+						capacity:this.capacity,cno:this.cno,tname:this.tname},{emulateJSON:true}).then(function(value){
+						this.courses=value.body.data[0];
+						this.all_course=value.body.data[0];
+						this.course_selected_cno = value.body.data[1];
+						this.course_selected=[];
+						this.course_not_selected=[];
+						for(var i=0;i<this.all_course.length;i++){
+							if(this.contains(this.course_selected_cno,this.all_course[i])){
+								this.course_selected.push(this.all_course[i]);
+							}
+							else{
+								this.course_not_selected.push(this.all_course[i]);
+							}
+						}
+				},function(reason){
+					alert("请求出错");
+				});
 			        }
 			        else{
 			            alert("退选失败");
@@ -226,16 +261,24 @@
 			    });
 			},
 			getcoursebytype:function(parm){
-			    console.log(parm);
-			    var arr=new Array();
-			    console.log(this.all_course);
-			    for(var i = 0;i<this.all_course.length;i++){
-			    	if(parm == this.all_course[i].courseType){
-			    		arr.push(this.all_course[i]);
-			    	}
-			    }
-			    this.courses = arr ;
-			    console.log(arr);
+				this.$http.post("/filtercourse/",{college:this.college,cname:this.cname,
+				capacity:this.capacity,cno:this.cno,tname:this.tname},{emulateJSON:true}).then(function(value){
+					this.courses=value.body.data[0];
+					this.all_course=value.body.data[0];
+					this.course_selected_cno = value.body.data[1];
+					this.course_selected=[];
+					this.course_not_selected=[];
+					for(var i=0;i<this.all_course.length;i++){
+						if(this.contains(this.course_selected_cno,this.all_course[i]) && this.all_course[i].courseType==parm){
+							this.course_selected.push(this.all_course[i]);
+						}
+						if(!this.contains(this.course_selected_cno,this.all_course[i]) && this.all_course[i].courseType==parm){
+							this.course_not_selected.push(this.all_course[i]);
+						}
+					}
+				},function(reason){
+					alert("请求出错");
+				});
 			}
 		}
 	})

@@ -10,16 +10,19 @@ import org.apache.ibatis.type.Alias;
 @Data
 @Alias(value = "QuestionStudentInquiry")
 public class QuestionStudentInquiry {
+
+    private int questionid;
     private String topic;
     private int difficulty;
-    private int tno;
+    private String tname;
     private boolean ischosen;
 
     public QuestionStudentInquiry(){}
-    public QuestionStudentInquiry(String topic,int difficulty,int tno,boolean ischosen){
+    public QuestionStudentInquiry(int questionid,String topic,int difficulty,String tname,boolean ischosen){
+        this.questionid = questionid;
         this.topic = topic;
         this.difficulty = difficulty;
-        this.tno = tno;
+        this.tname = tname;
         this.ischosen = ischosen;
     }
 }

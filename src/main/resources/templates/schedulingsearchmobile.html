@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- meta使用viewport以确保页面可自由缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- 引入 jQuery Mobile 样式 -->
+	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+	<!-- 引入 jQuery 库 -->
+	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	<!-- 引入 jQuery Mobile 库 -->
+	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+
+
+	<style type="text/css">
+		th {
+		    border-bottom: 1px solid #d6d6d6;
+		}
+
+		tr:nth-child(even) {
+		    background: #e9e9e9;
+		}
+
+		#btn-search{
+			position: fixed;
+			top: 16%;
+			right: 2%;
+			z-index: 2;
+		}
+
+		#btn-add{
+			position: fixed;
+			top: 22%;
+			right: 2%;
+			z-index: 2;
+		}
+
+		#pagebox{
+			text-align: center;
+		}
+
+	</style>
+
+	<title>排课子系统</title>
+</head>
+
+<body>
+<div data-role="page" id="pagetwo">
+	<div data-role="header">
+		<div data-style="text:align:left;">
+			<h1>课程查询</h1>
+		</div>
+	</div>
+	<div id="S0">
+	<div role="main"  class="ui-content" >
+        
+		<div class="ui-field-contain" >
+            <label>教师姓名查询</label>
+            <input   type="text" v-model="tname">
+			<br>
+		</div>
+		<br>
+        <div class="ui-field-contain" >
+            <label>教师工号查询</label>
+            <input type="text" name="text-basic" id="search_no" v-model="tno" value="">
+			<br>
+        </div>
+		<br>
+        <div class="ui-field-contain" >
+            <label>教学地点查询</label>
+            <input type="text" name="text-basic" id="search_cla" v-model="address" value="">
+			<br>
+			<button v-on:click="change(tno,tname,address)">查询</button>
+        </div>
+		
+        <!--<input type="button" value="查询" id="search_submit"> -->
+
+    </div>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h1>版权所有</h1>
+	</div>
+</div>
+</body>
+
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/jquery.mobile-1.4.3.js"></script>
+
+<script>
+var s1 = new Vue({
+        el: '#S0',
+        methods: {
+            change: function (tno,tname,address) {
+            	if(tno==""){tno=-1;}
+            	if(tname==""){tname="null";}
+            	if(address==""){address="null";}
+            	console.log(tno);
+            	console.log(tname);
+            	console.log(address);
+                window.location = "/schedulingmobile?tno="+tno+"&tname="+tname+"&address="+address;
+            }
+        },
+        data: {
+        	tno:"",
+			tname:"",
+			address:""
+        }
+
+    })
+
+</script>
+</html>
+
+
