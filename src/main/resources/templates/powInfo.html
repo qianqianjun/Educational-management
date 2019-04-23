@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
+    <title></title>
+</head>
+<body>
+<div data-role="page" id="powInfo">
+    <!-- 头部 -->
+    <div th:replace="common/mobileBackstageNavigator.html::header"></div>
+    <!-- 主体 -->
+    <h3>权限状态</h3>
+    <div data-role="main" class="ui-content">
+        <h3>选课开关</h3>
+        <div v-if="selectcousta">
+            <label>当前状态: 开启</label>
+            <a data-role="button" @click="closeSelectCourse()"> 关闭</a>
+        </div>
+        <div v-else="selectcousta">
+            <label>当前状态: 关闭</label>
+            <a data-role="button" @click="openSelectCourse()"> 开启</a>
+        </div>
+        <h3>初级录入</h3>
+        <div v-if="scoresta">
+            <label>当前状态: 开启</label>
+            <a data-role="button" @click="closeScore()"> 关闭</a>
+        </div>
+        <div v-else="scoresta">
+            <label>当前状态: 关闭</label>
+            <a data-role="button" @click="openScore()"> 开启</a>
+        </div>
+
+        <h3>学籍异动</h3>
+        <div v-if="abnormalsta">
+            <label>当前状态: 开启</label>
+            <a data-role="button" @click="closeAbnormal()"> 关闭</a>
+        </div>
+        <div v-else="abnormalsta">
+            <label>当前状态: 关闭</label>
+            <a data-role="button" @click="openAbnormal()"> 开启</a>
+        </div>
+
+    </div>
+
+    <!-- 底部 -->
+    <div data-role="footer" data-transition="fixed">
+        <h1>版权所有</h1>
+    </div>
+</div>
+</body>
+<script>
+    var pow = new Vue({
+        el: '#powInfo',
+        data: {
+            selectcousta: [[${selectCourse}]],
+            scoresta: [[${score}]],
+            abnormalsta: [[${abnormal}]],
+        },
+        methods: {
+
+            openSelectCourse: function () {
+                window.location = "/OpenSelectCourse"
+            },
+            closeSelectCourse: function () {
+                window.location = "/CloseSelectCourse"
+            }
+            ,
+            openScore: function () {
+                window.location = "/OpenScore"
+            },
+            closeScore: function () {
+                window.location = "/CloseScore"
+            }
+            ,
+            openAbnormal: function () {
+                window.location = "/OpenAbnormal"
+            },
+            closeAbnormal: function () {
+                window.location = "/CloseAbnormal"
+            }
+        }
+    })
+</script>

@@ -69,4 +69,9 @@ public class SemesterService {
         return  semesterDao.getSemesterById(semesterId);
     }
 
+
+    public void addSemester(Semester semester){
+        semesterDao.insertSemester(semester);
+    }
+
 }

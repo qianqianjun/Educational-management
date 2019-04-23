@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
+    <title></title>
+</head>
+<body>
+<!--老师信息-->
+<div data-role="page" id="teaInfoVue">
+    <!--头部-->
+    <div th:replace="common/mobileBackstageNavigator.html::header"></div>
+
+    <!--主部-->
+    <div role="main" class="ui-content" id="stuVue">
+        <h3>老师信息</h3>
+        <a data-transition="slide" href="/teacherSearch"
+           class="ui-btn ui-shadow ui-corner-all ui-icon-search ui-btn-icon-notext"
+           id="btnStuSearch"></a>
+        <ul data-role="listview" data-inset="true" v-for="teacher in pageteachers">
+            <div data-role="collapsible">
+                <h3>
+                    <p style="float: left;">姓名:{{ teacher.tname }}</p>
+                    <p style="float: right;">工号:{{ teacher.tno }}</p>
+                </h3>
+                <table data-role="table" class="ui-responsive">
+                    <thead>
+                    <tr>
+                        <th>性别</th>
+                        <th>电话号码</th>
+                        <th>岗位</th>
+                        <th>电子邮箱</th>
+                        <th>学院</th>
+                        <th>职称</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <td>{{ teacher.sex }}</td>
+                    <td>{{ teacher.phone }}</td>
+                    <td>{{ teacher.office }}</td>
+                    <td>{{ teacher.email }}</td>
+                    <td>{{ teacher.college }}</td>
+                    <td>{{ teacher.rank }}</td>
+                    </tbody>
+                </table>
+            </div>
+        </ul>
+        <!-- 分页 -->
+        <div>
+            <a data-transition="slide" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext"
+               @click="prePage()" id="btnprepage"></a>
+            <a data-transition="slide" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-notext"
+               @click="nextPage()" id="btnnextpage"></a>
+            <label>当前{{ currentpage+1 }}/{{ pagenum }}</label>
+        </div>
+    </div>
+    <!--底部-->
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a @click="addTea()">增加老师</a></li> <!--*****************************************-->
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" th:inline="javascript">
+    console.log(2)
+    var tea = new Vue({
+        el: '#teaInfoVue',
+        mounted: function () {
+            // alert(2)
+            this.getpage()
+            // this.getpage()
+            // this.getpage()
+            // location.reload()
+        }, activated: function () {
+            this.getpage()
+            // this.getpage()
+            // this.getpage()
+            // location.reload()
+        }
+        ,
+        data: {
+            allteachers: [[${allTeacher}]],
+            pageteachers: [],
+            totalpage: [],
+            pagesize: 5,
+            pagenum: null,
+            currentpage: 0,
+        },
+
+        methods: {
+            getpage: function () {
+                this.pagenum = Math.ceil(this.allteachers.length / this.pagesize) || 1;
+                for (let i = 0; i < this.pagenum; i++) {
+                    this.totalpage[i] = this.allteachers.slice(this.pagesize * i, this.pagesize * (1 + i));
+                }
+                this.pageteachers = this.totalpage[this.currentpage];
+                // location.reload()
+            },
+            prePage: function () {
+                if (this.currentpage == 0) return;
+                this.pageteachers = this.totalpage[--this.currentpage];
+            },
+            nextPage: function () {
+                if (this.currentpage == this.pagenum - 1) return;
+                this.pageteachers = this.totalpage[++this.currentpage];
+            },
+            getAllTeachers: function () {
+                alert("1234");
+                // this.$http.post("/**********",{sname:this.sname,sno:this.sno,klass:this.klass,sex:this.sex,
+                //     major:this.major,grade:this.grade,phone:this.phone,come_year: this.come_year},
+                //     {emulateJSON:true}).then(function (value) {
+                //         this.allstudents = value.body.data;
+                // });
+            },
+            deleteTea: function (parm) {
+                // if (window.confirm("确认删除该老师吗？")) {
+                //     this.$http.post("/**********", {tno: parm},
+                //         {emulateJSON: true}).then(function (value) {
+                //         if (value.body.code == 1) {
+                //             alert("删除成功！");
+                //         } else {
+                //             alert("删除失败!");
+                //         }
+                //     })
+                // }
+            },
+            editTea: function (parm) {
+                // this.$http.post("/*********", {tno: parm},
+                //     {emulateJSON: true}).then(function (value) {
+                //     if(value.body.code == 1) {
+                //         alert("修改成功！")
+                //     } else {
+                //         alert("修改失败！")
+                //     }
+                // })
+            }
+        }
+    })
+    console.log(tea)
+</script>

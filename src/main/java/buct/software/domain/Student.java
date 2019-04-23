@@ -19,13 +19,10 @@ public class Student {
     private String college;
     private Integer collegeId;
 
-    // 年级年级年级，不是分数，不是分数，不是分数！
-    private String grade;
-    private Integer majorId;
-
     public Student(Integer sno, String sname, String sex,
                    String major, String klass, String comeYear,
-                   String phone, String grade, Integer majorId) {
+                   String phone, String college, Integer collegeId,
+                   String grade, Integer majorId) {
         this.sno = sno;
         this.sname = sname;
         this.sex = sex;
@@ -33,13 +30,20 @@ public class Student {
         this.klass = klass;
         this.comeYear = comeYear;
         this.phone = phone;
+        this.college = college;
+        this.collegeId = collegeId;
         this.grade = grade;
         this.majorId = majorId;
     }
 
-    public Student(){}
+    // 年级年级年级，不是分数，不是分数，不是分数！
+    private String grade;
+    private Integer majorId;
 
-    public Integer getMajorId(){
+    public Student() {
+    }
+
+    public Integer getMajorId() {
         return this.majorId;
     }
 

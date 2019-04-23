@@ -11,11 +11,17 @@ import buct.software.service.SemesterService;
 import buct.software.service.PowerService;
 import buct.software.service.CourseService;
 import buct.software.utils.ResponseMessage;
+
 import buct.software.views.GradeManagementView;
 import org.safehaus.uuid.UUIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
