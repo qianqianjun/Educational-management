@@ -175,7 +175,6 @@ public class PowerControllerPage {
         return "HomePage";
     }
 
-    //    @CachePut(value = "parMap", key = "#parMap")
     @RequestMapping("/PowerManage")
     public String powerControll(Map<String, Object> parMap, HttpServletRequest request) {
         if (checkPower(request) == false) {
