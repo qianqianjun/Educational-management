@@ -13,8 +13,6 @@ import java.util.List;
 import buct.software.views.SchedulingView;
 import org.springframework.stereotype.Repository;
 
-
-
 /**
  * @author 高谦
  * 排课表 scheduling 数据库操作类
@@ -32,6 +30,7 @@ public interface SchedulingDao {
     public Integer checkCourseMajor(Integer semesterId,String cno,Integer majorId,Integer grade);
     public List<MobileSchedulingView> getCoursesByTnoAndTnameAndAddress(Integer tno, String tname,String address);
     public List<SchedulingCourseView> getAllCourses(String year, String semester, String majorName, Integer grade);
+
     //几个用于检测冲突的查询方法
 
     /**
@@ -47,6 +46,7 @@ public interface SchedulingDao {
      */
 
     public List<String> getRoomTaskTime(Scheduling scheduling);
+
 
 
 }

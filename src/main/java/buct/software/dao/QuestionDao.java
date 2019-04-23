@@ -13,7 +13,6 @@ import java.util.List;
  */
 @Repository
 public interface QuestionDao {
-
     /**
      * 功能：根据专业 获取论题的部分内容
      * 服务对象：学生

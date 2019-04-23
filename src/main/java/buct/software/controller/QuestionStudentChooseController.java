@@ -52,11 +52,6 @@ public class QuestionStudentChooseController {
 
 
 
-
-
-
-
-
     //学生所有的选题信息
     @RequestMapping(value = "/StuChoice")
     public String StuChoice(HttpServletRequest request,
@@ -117,4 +112,5 @@ public class QuestionStudentChooseController {
 //            System.out.println(questionStudentChooses.get(i));
 //        }
 //    }
+
 }

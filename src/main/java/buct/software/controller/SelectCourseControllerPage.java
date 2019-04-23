@@ -15,7 +15,6 @@ import org.apache.poi.hssf.record.ObjRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -98,11 +97,12 @@ public class SelectCourseControllerPage {
      * @param parmMap  传递到前端的参数集合
      * @return
      */
+
+
     @GetMapping("/selectcoursemobile")
     public String selectcoursemobile(Map<String, Object> parmMap){
         ResponseMessage res=collegeService.getAllCollege();
         List<College> collegeList=(List<College>) res.getData();
-
         parmMap.put("collegelist",collegeList);
         return "selectcoursemobile";
     }
@@ -120,5 +120,6 @@ public class SelectCourseControllerPage {
         parmMap.put("currentSemester",semester);
         return "coursetablemobile";
     }
+
 
 }

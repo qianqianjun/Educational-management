@@ -3,6 +3,7 @@ package buct.software.service;
 import buct.software.dao.SchedulingDao;
 import buct.software.domain.Scheduling;
 import buct.software.domain.SelectCourse;
+
 import buct.software.domain.User;
 import buct.software.utils.CourseDataUtil;
 import com.sun.xml.internal.fastinfoset.algorithm.BooleanEncodingAlgorithm;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.swing.plaf.synth.SynthCheckBoxMenuItemUI;
+
 import java.util.List;
 
 /**
@@ -40,6 +42,7 @@ public class ConflictService {
         scheduling.setSemesterId(semesterId);
         scheduling.setTno(tno);
         List<String> courseTimeStrList=schedulingDao.getTeacherTaskTime(scheduling);
+
         return !CourseDataUtil.isConflict(timeStr,courseTimeStrList);
     }
 
@@ -57,6 +60,7 @@ public class ConflictService {
         selectCourse.setSemesterId(semesterId);
         selectCourse.setSno(sno);
         List<String> courseTimeStrList=schedulingDao.getStudentTaskTime(selectCourse);
+
         return !CourseDataUtil.isConflict(timeStr,courseTimeStrList);
     }
 
@@ -73,6 +77,7 @@ public class ConflictService {
         scheduling.setSemesterId(semesterId);
         scheduling.setAddress(room);
         List<String> courseTimeStrList=schedulingDao.getRoomTaskTime(scheduling);
+
         return !CourseDataUtil.isConflict(timeStr,courseTimeStrList);
     }
 

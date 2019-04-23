@@ -16,7 +16,6 @@ public class Student {
     private String klass;
     private String comeYear;
     private String phone;
-
     private String college;
     private Integer collegeId;
 

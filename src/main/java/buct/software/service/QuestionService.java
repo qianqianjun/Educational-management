@@ -41,7 +41,9 @@ public class QuestionService {
 
 
 
+
     /**
+
      * 功能：根据专业 获取论题的部分内容
      * 服务对象：学生
      * @param majorid 专业id
@@ -51,6 +53,7 @@ public class QuestionService {
     public List<QuestionStudentInquiry> getPartQuestionByMajorid(int majorid){
         return questionDao.getPartQuestionsByMajorid(majorid);
     }
+
     /**
      * 功能：根据论题号查询单个题目的全部信息(为了删除和确认学生等逻辑)
      * 服务对象：学生
@@ -66,6 +69,7 @@ public class QuestionService {
      * 服务对象：老师
      * @param question Question类
      * @return 添加成功则返回true，否则返回false
+
      */
     public Boolean addQuestion(Question question){
         /*
@@ -81,6 +85,7 @@ public class QuestionService {
         question.setIschosen(false);
         //学号设为-1表示没有人选
 
+
         question.setSno(-1);
         questionDao.addQuestion(question);
         return questionDao.getQuestionByQustionId(intTime)!=null;
@@ -91,7 +96,6 @@ public class QuestionService {
      * 服务对象：老师
      * @param questionid 论题id
      * @return 已删除返回true，未删除返回false
-
      */
     public Boolean deleteQuestionByQuestionid(int questionid){
         boolean canDelete=false;

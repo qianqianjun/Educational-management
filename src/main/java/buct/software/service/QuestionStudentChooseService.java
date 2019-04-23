@@ -44,7 +44,6 @@ public class QuestionStudentChooseService {
         if (questionStudentChoose!=null)//如果该论题和学生的连接 已经投递，则显示已经插入成功
             return true;
 
-
         HashMap<String,Object> map = new HashMap<String, Object>();
         map.put("questionid",questionid);
         map.put("sno",sno);
@@ -54,6 +53,7 @@ public class QuestionStudentChooseService {
 
         return isChoosen;
     }
+
 
 
     //根据学生号选择该学生所有的选题信息

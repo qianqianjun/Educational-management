@@ -228,6 +228,5 @@ public class QuesitonScoreController {
 //        System.out.println(questionScoreService.getQuestionScoreByTno(1));
 //    }
 
-
 }
 

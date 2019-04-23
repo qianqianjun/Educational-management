@@ -60,4 +60,13 @@ public class SemesterService {
         return res;
     }
 
+    /**
+     * @author 王艺琳
+     * @param semesterId  学期id
+     * @return
+     */
+    public Semester getSemesterById(Integer semesterId) {
+        return  semesterDao.getSemesterById(semesterId);
+    }
+
 }

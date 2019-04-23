@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title> 学生成绩查询</title>
+
+<!--Bootstrap布局框架-->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/zftal-ui.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--网站引用Vue文件 -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+
+<!-- <link  type="text/css" rel="stylesheet" href="css/test.css"> -->
+</head>
+
+<body>
+	<header class="navbar-inverse top2">
+		<div class="container" id="navbar_container">
+			<a id="topButton" class="navbar-brand"> 学生成绩查询</a>
+		</div>
+	</header>
+
+	<div style="width: 100%; padding: 0px; margin: 0px;" id="bodyContainer">
+		<div class="container container-func sl_all_bg" id="yhgnPage" style="min-height: 454px;">
+		<!-- 放置页面显示内容 -->
+		<!-- 功能操作 -->
+<div class="row sl_add_btn">
+	<div class="col-sm-12">
+		<!-- 加载当前菜单栏目下操作 -->
+	</div>
+</div>
+
+
+ <div id= "search">
+
+<!-- form -start  -->
+<form id="searchForm" name="searchForm" action="" method="post" class="form-horizontal sl_all_form" novalidate="novalidate">
+	<div class="row">
+	  <div class="col-md-3 col-sm-6">
+	    <div class="form-group">
+	      <label for="year" class="col-sm-4 control-label">
+	      	<span style="color:red;">* </span>学 年</label>
+	        <div class="col-sm-8">
+				<select name="year" id="year" style="width:100%;height:30px" v-model="start">
+					<option value="">---请选择---</option>
+                    <option value="all">全部</option>
+   					<option value="2019">2019-2020</option>
+    				<option value="2018">2018-2019</option>
+    				<option value="2017">2017-2018</option>
+					<option value="2016">2016-2017</option>
+   				</select>
+   			</div>
+	    </div>
+	  </div>
+	 <div class="col-md-3 col-sm-6">
+	    <div class="form-group">
+	      <label  for="term" class="col-sm-4 control-label">
+	      	<span style="color:red;">* </span>学 期</label>
+	        <div class="col-sm-8">
+				<select name="term" id="term" style="width:100%;height:30px" v-model="semester">
+					<option value="">---请选择---</option>
+                    <option value="all">全部</option>
+    				<option value="1">1</option>
+    				<option value="2">2</option>
+					<option value="3">3</option>
+   				</select>
+   			</div>
+	    </div>
+	  </div>
+	</div>
+</form>
+<!-- form -end  -->
+<!-- btn-start  -->
+<div class="row sl_aff_btn">
+	<div class="col-md-12" >
+		<button type="button" class="btn btn-primary btn-sm" v-on:click="search_go()"> 查 询</button>
+	</div>
+</div>
+
+
+<!-- modal_start -->
+<div id="detail" class="bootbox modal sl_mod my-modal in box-full-screen" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 771px; left: 8.5px; top: 150px;">
+        <div class="modal-content">
+            <div class="modal-header ui-draggable-handle">
+                <input type="hidden" name="focusInput">
+                <h4 class="modal-title"><p align="left">查看成绩详情</p></h4>
+            </div>
+            <div class="modal-body" style="overflow-y: inherit;" align="left">
+                <div class="bootbox-body">
+                    <!--Table  开始-->
+                    <div class="row" style="height: 30px;">
+                        <div class="col-md-12 col-sm-12">
+                            <h5 class="dark">
+                                <i class="glyphicon glyphicon-hand-right"></i>
+                                <!-- <span class="bigger-120" role="button">课程名称：</span>
+                                <span class="red2" role="button">面向对象程序设计</span> -->
+                                <span class="bigger-120" role="button">
+                                    &nbsp;课程名称：{{current_display.cname}}
+                                </span>
+                            </h5>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-striped table-hover tab-bor-col-1 tab-td-padding-5" id="subtab" style="text-align:center">
+                        <thead>
+                        <tr>
+                            <td class="align-center " style="width: 200px !important;">成绩分项</td>
+                            <td class="align-center ">成绩分项比例</td>
+                            <td class="align-center ">成绩</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td valign="middle">【 平时 】</td>
+                            <td valign="middle">{{current_display.pOrdinary}} %</td>
+                            <td valign="middle">{{current_display.gOrdinary}}&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td valign="middle">【 期末 】</td>
+                            <td valign="middle">{{current_display.pExperiment}} %</td>
+                            <td valign="middle">{{current_display.gExperiment}}&nbsp;</td>
+                        </tr>
+
+                        <tr>
+                            <td valign="middle">【 实验 】</td>
+                            <td valign="middle">{{current_display.pExam}} %</td>
+                            <td valign="middle">{{current_display.gExam}}&nbsp;</td>
+                        </tr>
+
+                        <tr>
+                            <td valign="middle">【 总分 】</td>
+                            <td valign="middle">100%</td>
+                            <td valign="middle">{{current_display.totalscore}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--Table  结束-->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- model_end -->
+
+
+<!-- btn-end  -->
+            <!-- 表格开始 -->
+                <div class="table-responsive" id ="show">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>学年</th>
+                                <th>学期</th>
+                                <th>课程代码</th>
+                                <th>课程名称</th>
+                                <th>开课学院</th>
+                                <th>学分</th>
+                                <th>成绩</th>
+                                <th>查看</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr v-for="grade in gradeList">
+                                <td><p>{{grade.start}}</p></td>
+                                <td><p>{{grade.semester}}</p></td>
+                                <td><p>{{grade.cno}}</p></td>
+                                <td><p>{{grade.cname}}</p></td>
+                                <td><p>{{grade.college}}</p></td>
+                                <td><p>{{grade.credit}}</p></td>
+                                <td><p>{{grade.totalscore}}</p></td>
+                                <td>
+                                    <button class="btn btn-outline-primary btn-sm"
+                                            type="button" data-toggle="modal" data-target="#detail" v-on:click="detail(grade)">
+                                        查看</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+<!-- 表格结束 -->
+            </div>
+            <!--vueid-->
+<script>
+    var vm=new Vue({
+        el: '#search',
+        data: {
+            start: [[${currentSemester.start}]],
+            semester: [[${currentSemester.semester}]],
+            gradeList: [],
+            current_display:{
+                cname:null,
+                totalscore:null,
+                pOrdinary:null,
+                pExperiment:null,
+                pExam:null,
+                gOrdinary:null,
+                gExperiment:null,
+                gExam:null
+            },
+        },
+        methods: {
+            search_go: function(){
+                this.$http.get("/getcoursegrade",
+                    {params:{start:this.start,semester:this.semester}}).then(function(res){
+                    this.gradeList=res.body.data;
+                    console.log(res.body);
+                },function(res){
+                    console.log('失败')
+                })
+
+            },
+            detail:function (parma) {
+                this.current_display.cname=parma.cname;
+                this.current_display.totalscore=parma.totalscore;
+                var sp = parma.percent.split(/,/);
+                this.current_display.pOrdinary=sp[0];
+                this.current_display.pExperiment=sp[1];
+                this.current_display.pExam=sp[2];
+                var gsp = parma.detail.split(/,/);
+                this.current_display.gOrdinary=gsp[0];
+                this.current_display.gExperiment=gsp[1];
+                this.current_display.gExam=gsp[2];
+                console.log(parma.percent);
+            }
+        }
+    })
+            </script>
+
+	</div>
+</div>
+
+<!-- footer -->
+<div id="footerID" class="footer">
+	<p>计科1601</p>
+</div>
+<!-- footer-end -->
+</body>
+</html>

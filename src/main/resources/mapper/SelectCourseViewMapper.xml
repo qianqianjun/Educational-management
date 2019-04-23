@@ -93,7 +93,6 @@
         <result column="tname" javaType="String" jdbcType="VARCHAR" property="tname"></result>
         <!--planning 表-->
         <result column="type" javaType="Integer" jdbcType="INTEGER" property="courseType"></result>
-
     </resultMap>
     <select id="getAllAvaiableCourse"
             parameterType="buct.software.domain.ScheduleMajor"
@@ -105,7 +104,6 @@
         from scheduling left join schedule_major on scheduling.semesterid=schedule_major.semesterid and scheduling.cno=schedule_major.cno
         left join teacher on scheduling.tno=teacher.tno left join course on scheduling.cno=course.cno left join planning on
         scheduling.semesterid=planning.semesterid and scheduling.cno=planning.cno
-
         <where>
             scheduling.status=1 and scheduling.semesterid=#{semesterId} and schedule_major.majorid=#{majorId}
         </where>
@@ -120,8 +118,6 @@
         <result column="detail" javaType="String" jdbcType="VARCHAR" property="detail"></result>
 
         <result column="totalscore" javaType="Integer" jdbcType="INTEGER" property="totalScore"></result>
-
-
     </resultMap>
     <select id="getAllCourseHaveBeenSelected"
             parameterType="buct.software.domain.SelectCourse"
@@ -139,7 +135,6 @@
             <if test="cno != null">cno=#{cno},</if>
 
             <if test="totalScore != null">totalscore=#{totalScore},</if>
-
             <if test="detail != null">detail=#{detail},</if>
         </set>
     </insert>
@@ -175,7 +170,6 @@
         left join select_course on scheduling.semesterid=select_course.semesterid and scheduling.cno=select_course.cno
         left join course on scheduling.cno=course.cno left join teacher on scheduling.tno=teacher.tno left join planning
         on scheduling.semesterid=planning.semesterid and scheduling.cno=planning.cno
-
         <where>
             select_course.semesterid=#{semesterId} and select_course.sno=#{sno}
         </where>
@@ -187,6 +181,7 @@
         <result column="start" javaType="Integer" jdbcType="INTEGER" property="start"></result>
         <result column="end" javaType="Integer" jdbcType="INTEGER" property="end"></result>
         <result column="totalscore" javaType="Integer" jdbcType="INTEGER" property="totalScore"></result>
+
         <result column="cname" javaType="String" jdbcType="VARCHAR" property="cname"></result>
     </resultMap>
     <select id="getGrade" resultMap="getGradMap" parameterType="buct.software.domain.SelectCourse">
@@ -194,7 +189,6 @@
         left join semester on select_course.semesterid=semester.semesterid
         where select_course.totalscore is not null and select_course.semesterid=#{semesterId} and select_course.sno=#{sno};
     </select>
-
 
     <update id="changeCapacity">
         update scheduling set scheduling.capacity=scheduling.capacity+#{addition} where scheduling.semesterid=#{semesterId}
@@ -204,4 +198,5 @@
     <select id="getSchedulingBySemesterIdAndCno" resultType="buct.software.domain.Scheduling">
         select * from scheduling where scheduling.semesterid=#{semesterId} and scheduling.cno=#{cno}
     </select>
+
 </mapper>

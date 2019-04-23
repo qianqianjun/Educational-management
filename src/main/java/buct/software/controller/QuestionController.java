@@ -23,6 +23,7 @@ import java.util.Map;
  */
 
 @Controller
+
 public class QuestionController {
     @Autowired
     private QuestionService questionService;
@@ -336,4 +337,5 @@ public class QuestionController {
 //        Question question = questions.get(1);
 //        return questionService.messageSureQuestionStudent(question.getQuestionid(),8);
 //    }
+
 }

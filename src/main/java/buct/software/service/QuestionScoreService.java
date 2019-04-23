@@ -36,8 +36,6 @@ public class QuestionScoreService {
         return questionScoreDao.getAllQuestionScore();
     }
 
-
-
     //增加成绩
     public void addQuestionScore(QuestionScore questionScore){
 //        questionScore = new QuestionScore();
@@ -54,6 +52,7 @@ public class QuestionScoreService {
     //根据学号获取成绩信息
 
     public QuestionScore getQuestionScoreBySno(int sno){
+
 
         return questionScoreDao.getQuestionScoreBySno(sno);
     }

@@ -13,7 +13,6 @@ public class SchedulingView {
     private String status;
     private Integer capacity;
 
-
     public SchedulingView(Integer tno, String address, String time, String status, Integer capacity) {
 
         this.tno = tno;

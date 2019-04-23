@@ -11,7 +11,6 @@ public class SelectCourse {
     private Integer semesterId;
     private Integer cno;
     private Integer sno;
-
     private Integer totalScore;
     private String detail;
     // 这个参数别管他，没用！但是也别删！
@@ -24,6 +23,7 @@ public class SelectCourse {
         this.sno = sno;
 
         this.totalScore = grade;
+
 
         this.detail = detail;
     }

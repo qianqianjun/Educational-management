@@ -1,8 +1,6 @@
 @CHARSET "UTF-8";
 /* 说明：该样式文件针对教务系统做过优化，其他系统如果使用，建议拷贝一份自行调整 */
 
-
-
 /* 字体图标 */
 /* CSS Document */
 
@@ -1431,7 +1429,6 @@ li {
 	position: fixed;
 	bottom: 0px;
 	width: 100%;
-
 }
 
 .index_main {
@@ -1590,7 +1587,6 @@ li {
 
 .index_grxx .media-body {
 	margin-top: 20px;
-
 	padding-top: 20px;
 	padding-left:30px;
 
@@ -1603,8 +1599,8 @@ li {
 
 .index_grxx .media-body p {
 	color: #7a7a7a;
-
 	font: normal 18px/22px "microsoft YaHei"
+
 
 }
 
@@ -1754,7 +1750,6 @@ li {
 	float: left;
 	margin-left: 10px;
 	color: #6e6e6e;
-
 	font: normal 15px/30px SimSun;
 
 }
@@ -4716,7 +4711,6 @@ input.form-control{
 .control-label {
 	padding-right: 5px;
 	min-height: 30px;
-
 	line-height: 35px;
 
 	display:inline-block;

@@ -5,7 +5,6 @@
 
 <mapper namespace="buct.software.dao.QuestionScoreDao">
 
-
     <update id="changeQuestionScore" parameterType="QuestionScore">
         update question_score set
         earlyperformance = ${earlyperformance},
@@ -20,7 +19,6 @@
     <select id="getAllQuestionScore" resultType="QuestionScore">
         select * from question_score
     </select>
-
 
     <insert id="addQuestionScore" parameterType="QuestionScore">
         insert into question_score(

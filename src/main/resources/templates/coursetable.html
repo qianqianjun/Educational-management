@@ -44,6 +44,7 @@
 				<div class="col-sm-8">
 					<select name="xnm" id="xnm1" class="form-control chosen-select" v-model="start">
 						<option th:value="${currentSemester.start}" selected="selected">当前学年</option>
+
 						<option th:value="${semester.start}"  th:each="semester : ${semesterlist}">[[${semester.start}]] - [[${semester.end}]]</option>
 					</select>
 				</div>
@@ -54,6 +55,7 @@
                 <label for="xqm1" class="col-sm-4 control-label" id="xq"> <span style="color:red;">*</span>学期 </label>
                 <div class="col-sm-8">
                     <select name="xqm" id="xqm1" class="form-control chosen-select" v-model="semester">
+
                         <option value="1" selected="selected">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>

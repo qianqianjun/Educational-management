@@ -7,10 +7,6 @@ import lombok.Data;
  * 这里不是一个数据库的实体
  * 这是在具体的应用接口 api 中，由于多表连接查询所生成的 view
  * 这个包里面的所有类都是这个作用。
-<<<<<<< HEAD
-=======
- *
->>>>>>> GraduationProject
  * 这个类实现的是学生选课的view。
  */
 
@@ -26,8 +22,6 @@ public class SelectCourseView {
     private String college;
     private String description;
     private String courseStatus;
-
-
     // 排课表特有字段
     private Integer tno;
     private String status;
@@ -38,7 +32,6 @@ public class SelectCourseView {
     private String percent;
     private String majorGrade;
 
-
     //拆分时间；
     private Integer startWeek;
     private Integer endWeek;
@@ -46,13 +39,11 @@ public class SelectCourseView {
     private Integer startStep;
     private Integer endStep;
 
-
     // 老师信息
     private String tname;
 
     // 专业信息
     private Integer majorId;
-
 
     // plan 表信息
     private Integer courseType;

@@ -34,6 +34,7 @@ public interface QuestionStudentDao {
 //    public List<Question> getQuestionOfStudent(int sno);
 //    //老师查看自己选题的学生 由于需要其他表，暂时做只能获取学号的
 ////    public List<QuestionStudentChoose> TeacherStudent(int )
+
 //    //后台爱获取所有选题信息
 //    public List<QuestionStudentChoose> getAllChoice();
 

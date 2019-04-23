@@ -11,7 +11,6 @@ import lombok.Data;
 @Data
 public class Scheduling {
     private Integer semesterId;
-
     private Integer cno;
     private Integer tno;
 
@@ -26,7 +25,6 @@ public class Scheduling {
     public void setSemesterId(Integer semesterId) {
         this.semesterId = semesterId;
     }
-
 
     public void setCno(Integer cno) {
         this.cno = cno;

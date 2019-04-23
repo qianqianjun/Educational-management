@@ -1,9 +1,12 @@
 package buct.software.controller;
+
 import buct.software.domain.Scheduling;
+
 import buct.software.domain.SelectCourse;
 import buct.software.domain.Semester;
 import buct.software.domain.User;
 import buct.software.service.CollegeService;
+
 import buct.software.service.ConflictService;
 
 import buct.software.service.SelectCourseService;
@@ -12,6 +15,7 @@ import buct.software.utils.ResponseMessage;
 import buct.software.views.SelectCourseView;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  *  @author  高谦
@@ -51,7 +54,6 @@ public class SelectCourseControllerApi {
                                         @RequestParam("capacity") String capacity,
                                         @RequestParam("cno") String cno,
                                         @RequestParam("cname") String cname,
-
                                         @RequestParam("tname") String tname,
                                         HttpServletRequest request){
         Integer semesterId=semesterService.getCurrentSemesterId();
@@ -99,6 +101,7 @@ public class SelectCourseControllerApi {
      */
     @PostMapping("/setcourseselected")
     public ResponseMessage addCourseSelected(@RequestParam("cno") Integer cno,HttpServletRequest request){
+
         HttpSession session=request.getSession();
         User user=(User) session.getAttribute("user");
         Integer sno=user.getAccount();
@@ -123,9 +126,7 @@ public class SelectCourseControllerApi {
      *  取消一门选课
      * @param cno  取消的课程号
      * @param request 别管他，用于获取学号的，注意，如果不登录直接请求接口，会报错！报错！postman检测不了这个接口。
-=======
-     * @param sno  取消的学生学号
->>>>>>> GraduationProject
+
      * @return
      */
     @PostMapping("/canclecourse")
@@ -180,4 +181,5 @@ public class SelectCourseControllerApi {
         List<Semester> semesters=semesterService.getSemesterDomain();
         return new ResponseMessage(200,"全部的信息",semesters);
     }
+
 }

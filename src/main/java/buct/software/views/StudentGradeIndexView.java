@@ -15,4 +15,5 @@ public class StudentGradeIndexView {
     private String cname;
     private Integer totalScore;
     public StudentGradeIndexView(){}
+
 }
