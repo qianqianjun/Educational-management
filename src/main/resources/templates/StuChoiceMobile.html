@@ -25,9 +25,9 @@
 
     <!-- 面板 -->
     <div data-role="panel" id="panel_3">
-        <a href="/StuLookThroughQues" target="_self" class="ui-btn ui-icon-home ui-btn-icon-left">论题列表</a>
-        <a href="/StuChoice" target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的论题</a>
-        <a href="/StuScore"  target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的成绩</a>
+        <a href="/StuLookThroughQuesMobile" target="_self" class="ui-btn ui-icon-home ui-btn-icon-left">论题列表</a>
+        <a href="/StuChoiceMobile" target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的论题</a>
+        <a href="/StuScoreMobile"  target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的成绩</a>
     </div>
 
     <!-- 头部 -->
@@ -41,7 +41,7 @@
 
         <ul data-role="listview" data-inset="true" th:each="quesInfo: ${quesInfos}" >
             <li>
-                <a th:href="@{'/StuQuesDetails?questionid='+${quesInfo.questionid}}" target="_self">
+                <a th:href="@{'/StuQuesDetailsMobile?questionid='+${quesInfo.questionid}}" target="_self">
                     <h2 th:text="'[' + ${quesInfo.questionid}+']'+ ${quesInfo.topic}"></h2>
                     <p class="ui-li-aside" th:text="'难度:'+ ${quesInfo.difficulty}"></p>
                     <p th:if="${quesInfo.ischosen==true && session.user.getAccount()!=quesInfo.sno}" style="color: red">已被选择</p>

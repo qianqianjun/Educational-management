@@ -23,9 +23,9 @@
 
     <!-- 面板 -->
     <div data-role="panel" id="panel_2">
-        <a href="/StuLookThroughQues" target="_self" class="ui-btn ui-icon-home ui-btn-icon-left">论题列表</a>
-        <a href="/StuChoice" target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的论题</a>
-        <a href="/StuScore"  target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的成绩</a>
+        <a href="/StuLookThroughQuesMobile" target="_self" class="ui-btn ui-icon-home ui-btn-icon-left">论题列表</a>
+        <a href="/StuChoiceMobile" target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的论题</a>
+        <a href="/StuScoreMobile"  target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的成绩</a>
     </div>
 
     <!-- 头部 -->
@@ -56,7 +56,7 @@
                 <div style=" text-align: center;">
                     <a width="40%" class="ui-btn ui-btn-inline ui-corner-all ui-shadow"
                        th:if="${isChosen==false}"
-                       th:href="@{'/StuChooseQues?questionid='+${quesInfo.questionid}}" target="_self">选择</a>
+                       th:href="@{'/StuChooseQuesMobile?questionid='+${quesInfo.questionid}}" target="_self">选择</a>
                 </div>
             </li>
         </ul>

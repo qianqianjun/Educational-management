@@ -158,7 +158,7 @@ public class QuesitonScoreController {
         questionScore.setPaper(paper);
         questionScore.setExtracredit(extracredit);
         questionScoreService.addQuestionScore(questionScore);
-        return "redirect:/TeaAddScore";
+        return "redirect:/TeaAddScoreMobile";
     }
 
 
