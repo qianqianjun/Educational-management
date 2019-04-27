@@ -20,11 +20,11 @@
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>3.17</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.poi</groupId>-->
+            <!--<artifactId>poi</artifactId>-->
+            <!--<version>3.17</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -70,11 +70,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-mvc</artifactId>-->
-        <!--<version>unknown</version>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>io.projectreactor</groupId>
@@ -113,19 +108,23 @@
             <version>5.2.0</version>
             <scope>compile</scope>
         </dependency>
-    <!--test-->
 
         <dependency>
             <groupId>org.safehaus.jug</groupId>
             <artifactId>jug</artifactId>
             <version>2.0.0</version>
             <classifier>asl</classifier>
+        </dependency>
         <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
             <version>2.4</version>
-
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.mybatis</groupId>-->
+            <!--<artifactId>mybatis</artifactId>-->
+            <!--<version>3.2.3</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 
