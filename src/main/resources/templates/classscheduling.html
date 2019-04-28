@@ -369,7 +369,7 @@
             insert_one_lesson:function(course){
                 var string = "";
                 string = string + course.name+'\n';
-                string = "("+course.start+'-'+course.end+'节)/'+course.long+'周/'+course.address+'/'+course.teacher;
+                string = string + "("+course.start+'-'+course.end+'节)/'+course.long+'周/'+course.address+'/'+course.teacher;
                 for(var i=course.start;i<=course.end;i++){
                     this.array[i][Number(course.day) + 2] = [course.start,course.end,string];
                 }
@@ -512,6 +512,7 @@
                 console.log(array)
                 this.nowCourseTime = array;
                 /*这里需要发送请求*/
+                console.log(this.input_grade);
                 this.$http.post("/addCourse", {
                         cno:this.nowCourseCno,
                         tno:this.nowCourseTno,
@@ -519,7 +520,7 @@
                         semester:this.nowCourseSemester,
                         majorName:this.nowCourseMajorName,
                         grade:this.nowCourseGrade,
-                        status:this.nowCourseStatus,
+                        status:1,
                         capacity:150,
                         address:this.nowCourseAddress,
                         time:this.nowCourseTime

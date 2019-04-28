@@ -57,7 +57,7 @@ public class SchedulingService {
         Integer semesterId = semesterDao.getSemesterId(year,semester);
         Integer majorId = majorDao.getMajorIdByMajorName(majorName);
         schedulingDao.deleteCourse(semesterId,cno);
-        schedulingDao.addCourse(semesterId,cno,tno,status,capacity,address,time);
+        schedulingDao.addCourse(semesterId,cno,tno,status,capacity,address,grade,time);
         schedulingDao.deleteCourseMajor(semesterId,cno,majorId,grade);
         schedulingDao.addCourseMajor(semesterId,cno,majorId,grade);
         planningDao.changeIfOpen(semesterId,majorId,grade,cno,true);

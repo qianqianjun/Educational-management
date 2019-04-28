@@ -24,7 +24,7 @@ public interface SchedulingDao {
     public Boolean deleteCourse(Integer semesterId,Integer cno);
     public Boolean deleteCourseMajor(Integer semesterId,Integer cno,Integer majorId,Integer grade);
     public Boolean addCourse(Integer semesterId,Integer cno,Integer tno,
-                             String status,Integer capacity,String address,String time);
+                             String status,Integer capacity,String address,Integer grade,String time);
     public Boolean addCourseMajor(Integer semesterId,Integer cno,Integer majorId,Integer grade);
     public Integer getCourseMajorCount(Integer semesterId,Integer cno);
     public Integer checkCourseMajor(Integer semesterId,String cno,Integer majorId,Integer grade);
