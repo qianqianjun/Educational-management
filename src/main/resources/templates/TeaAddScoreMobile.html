@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- meta使用viewport以确保页面可自由缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- 引入 jQuery Mobile 样式 -->
+	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+	<!-- 引入 jQuery 库 -->
+	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	<!-- 引入 jQuery Mobile 库 -->
+	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<style type="text/css">
+		th {
+		    border-bottom: 1px solid #d6d6d6;
+		}
+
+		tr:nth-child(even) {
+		    background: #e9e9e9;
+		}
+
+		#btn-search{
+			position: fixed;
+			top: 16%;
+			right: 2%;
+			z-index: 2;
+		}
+
+		#btn-add{
+			position: fixed;
+			top: 22%;
+			right: 2%;
+			z-index: 2;
+		}
+
+		#pagebox{
+			text-align: center;
+		}
+
+	</style>
+	<title>成绩评定</title>
+</head>
+<body>
+<div data-role="page" id="pageone">
+	
+	<!-- 面板 -->
+	<div data-role="panel" id="mypanel" data-display="push"> 
+    	<a href="/TeaLookThroughQuesMobile" data-transition=flip target="_self" class="ui-btn ui-icon-home ui-btn-icon-left">查看论题</a>
+    	<a href="/TeaAddQuesMobile" data-transition=flip target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">发布论题</a>
+    	<a href="/TeaAddScoreMobile" data-transition=flip target="_self" class="ui-btn ui-icon-info ui-btn-icon-left">成绩评定</a>
+    	
+		<!--
+    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">教师信息</a>
+    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">学期管理</a>
+    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">排课系统</a>
+		-->
+  	</div>
+  	
+  	<!-- 头部 -->
+	<div data-role="header">
+	<!-- 侧边栏按钮 -->
+    	<a href="#mypanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">侧边栏</a>
+    	<h1>成绩评定</h1>
+  	</div>
+  	
+  	<!-- 主体 -->
+  	<div data-role="main" class="ui-content">
+  		<a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-search ui-btn-icon-notext" id="btn-search">搜索</a>
+  		<a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-info ui-btn-icon-notext" id="btn-add">添加</a>
+  		
+  		<table data-role="table"   class="ui-responsive " data-mode="columntoggle" data-column-btn-text="选择" id="myTable">
+		
+      		<thead>
+        		<tr>
+        			
+			        <th data-priority="1">论题题目</th>
+			        <th data-priority="1">学生学号</th>
+					<th data-priority="2">评分</th>
+					
+        		</tr>
+      		</thead>
+      		<tbody>
+				<tr  th:each="choice: ${choices}">   
+		    
+				
+				
+					<td th:text="${choice.questionid}"> 
+					<a th:href="@{'/TeaQuesDetailsMobile?questionid='+${choice.questionid}}" target="_self">
+						
+					</a>
+					</td> 
+				
+					<td th:text="${choice.sno == -1}?'未选学生': ${choice.sno}"></td>
+					<td>
+			        	<div data-role="collapsible">
+						<h1>评分</h1>
+					<p>
+						<form method="post" action="#" >
+						<label for="s1">初期表现10%</label>
+						<textarea name="earlyperformance" id="s1" ></textarea>
+						
+						<label for="s2">中期考核20%</label>
+						<textarea name="midexam" id="s2" ></textarea>
+						
+						<label for="s3">答辩30%</label>
+						<textarea name="thesisanswer" id="s3" ></textarea>
+						
+						<label for="s4">论文30%</label>
+						<textarea name="paper" id="s4" ></textarea>
+						
+						<label for="s5">额外加分10%</label>
+						<textarea name="extracredit" id="s5" ></textarea>
+						<div style="text-align: center;">	
+						<input type="submit" data-inline="true" value="提交">
+						<input type="text" name="questionid" th:value="${choice.questionid}" style="display:none;" />	
+						<input type="text" name="sno" th:value="${choice.sno}" style="display:none;" />			
+						
+						
+						</div>
+						</form>
+					</p>
+						</div>
+			        </td>
+				</tr>
+				
+      		</tbody>
+			
+    	</table>
+		
+    	<div id="pagebox">
+        	<a href="#">首页</a>
+        	<a href="#">上一页</a>
+        	<a href="#">下一页</a>
+        	<a href="#">末页</a>
+    	</div>
+  	</div>
+
+  	<!-- 底部 -->
+  	<div data-role="footer">
+    	<h1>版权所有</h1>
+  	</div>
+
+</div>
+
+</body>
+</html>
+	
+	
+	
+	
+	
+	
+	

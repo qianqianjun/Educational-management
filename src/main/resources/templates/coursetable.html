@@ -2,10 +2,11 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <!--Bootstrap布局框架-->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/zftal-ui.css" />
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
-    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/zftal-ui.css" />
+    <!--<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>-->
+	<script src="js/selectcourse/vue.min.js"></script>
+    <script src="js/selectcourse/vue-resource.min.js"></script>
     <style>
 		.temp{display: inline-block;width: 22%;margin-right: 32px;}
 		.main{background-color: #00d9ff0d;position:relative;margin-top: 20px;}
@@ -43,6 +44,8 @@
 				<label for="xnm1" class="col-sm-4 control-label" id="xn"><span style="color:red;">*</span>学年 </label>
 				<div class="col-sm-8">
 					<select name="xnm" id="xnm1" class="form-control chosen-select" v-model="start">
+						<option th:value="${currentSemester.start}" selected="selected">当前学年</option>
+
 						<option th:value="${semester.start}"  th:each="semester : ${semesterlist}">[[${semester.start}]] - [[${semester.end}]]</option>
 					</select>
 				</div>
@@ -53,7 +56,8 @@
                 <label for="xqm1" class="col-sm-4 control-label" id="xq"> <span style="color:red;">*</span>学期 </label>
                 <div class="col-sm-8">
                     <select name="xqm" id="xqm1" class="form-control chosen-select" v-model="semester">
-                        <option value="1" >1</option>
+
+                        <option value="1" selected="selected">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select>
@@ -179,13 +183,13 @@
     </div>
 </div>
 </body>
-<script>
+<script th:inline="javascript">
     var app = new Vue({
         el:'#coursetablearea',
         data:{
             all_course:[],
-            semester:null,
-            start:null
+            semester:[[${currentSemester.semester}]],
+            start:[[${currentSemester.start}]]
         },
         methods:{
             parserHtml:function(cInfo){

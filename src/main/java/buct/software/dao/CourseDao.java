@@ -14,6 +14,13 @@ import java.util.List;
 public interface CourseDao {
     public List<Course> getAll();
     public Course getByCno(String cno);
+
+    public Course getByName(String cno);
+
     public Boolean addCourse(Integer cno,String cname,String college,String description,String status);
+
     public Boolean checkCourse(Integer cno);
+
+    public Integer getCnoByCname(String cname);
+
 }

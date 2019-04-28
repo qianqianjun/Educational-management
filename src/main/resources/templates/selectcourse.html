@@ -5,14 +5,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>学生选课系统</title>
         <!--网站引用Vue文件 -->
-	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
-	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+	<script src="js/selectcourse/vue.min.js"></script>
+	<script src="js/selectcourse/vue-resource.min.js"></script>
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/zftal-ui.css" />
-	<link href="css/selectcourse.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/selectcourse/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/bootstrap.min.css" />
+    <script type="text/javascript" src="js/selectcourse/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/zftal-ui.css" />
+	<link href="css/selectcourse/selectcourse.css" rel="stylesheet" type="text/css">
 </head>
 <BODY id="selectcourse_content">
 <header class="navbar-inverse top2">
@@ -33,7 +33,6 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">&nbsp;</div>
 			<!--在下面开始写布局部分-->
-			
             <!--第一部分：查询-->
 			<form role="form" name="form1">
 				<div class="form-group">
@@ -105,6 +104,7 @@
 										</div>
 										<div class="panel panel-default" v-for= "msg in msgs[0]" v-if="msg.courseType == 0" v-cloak>
 											<div class="panel-heading" v-bind:style="getstyle(msg.cno,msg.capacity,1)">
+
 												 <a class="panel-title" data-toggle="collapse" data-parent="#panel-1" v-bind:href="'#panel-element-'+msg.cno">{{msg.cno}}-{{msg.cname}}(教课老师:{{msg.tname}})-{{msg.college}} </a>
 											</div>
 											<div v-bind:id="'panel-element-'+msg.cno" class="panel-collapse collapse">
@@ -116,6 +116,7 @@
 													<div style="text-align: right;">
 													<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)" @click="select_course(msg.cno,msg.capacity,1)">选课</button>
 														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.cno,msg.capacity,2)" @click="cancel_course(msg.cno,msg.capacity,2)">退选</button></div>
+
 												</div>
 											</div>
 										</div>
@@ -126,11 +127,13 @@
 									<div class="tab-pane active" id="panel-second">
 										<!-- 如果存在记录 -->
 										<div class="panel-group"  id="panel-2">
+
 											<div v-if="course_selected_place.length + course_not_selected_place.length == 0" style="width: 200px;margin: auto;">
 												没有可用的选课记录
 											</div>
 											<div class="panel panel-default" v-for= "msg in msgs[0]" v-if="msg.courseType == 1" v-cloak>
 												<div class="panel-heading" v-bind:style="getstyle(msg.cno,msg.capacity,1)">
+
 													 <a class="panel-title" data-toggle="collapse" data-parent="#panel-2" v-bind:href="'#panel-element-'+msg.cno">{{msg.cno}}-{{msg.cname}}(教课老师:{{msg.tname}})-{{msg.college}} </a>
 												</div>
 												<div v-bind:id="'panel-element-'+msg.cno" class="panel-collapse collapse">
@@ -142,6 +145,7 @@
 														<div style="text-align: right;">
 														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)" @click="select_course(msg.cno,msg.capacity,1)">选课</button>
 														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.cno,msg.capacity,2)" @click="cancel_course(msg.cno,msg.capacity,2)">退选</button></div>
+
 													</div>
 												</div>
 											</div>
@@ -158,6 +162,7 @@
 											</div>
 											<div class="panel panel-default" v-for= "msg in msgs[0]" v-if="msg.courseType == 2" v-cloak>
 												<div class="panel-heading" v-bind:style="getstyle(msg.cno,msg.capacity,1)">
+
 													 <a class="panel-title" data-toggle="collapse" data-parent="#panel-3" v-bind:href="'#panel-element-'+msg.cno">{{msg.cno}}-{{msg.cname}}(教课老师:{{msg.tname}})-{{msg.college}} </a>
 												</div>
 												<div v-bind:id="'panel-element-'+msg.cno" class="panel-collapse collapse">
@@ -167,6 +172,7 @@
 														<div style="font-weight: bold;">上课地点:{{msg.address}}</div>
 														<div style="font-weight: bold;">剩余容量:{{msg.capacity}}</div>
 														<div style="text-align: right;">
+
 														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)" @click="select_course(msg.cno,msg.capacity,1)">选课</button>
 														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.cno,msg.capacity,2)" @click="cancel_course(msg.cno,msg.capacity,2)">退选</button></div>
 														</div>
@@ -379,10 +385,16 @@
 						//console.log(this.course_not_selected_place);
 						//this.$forceUpdate(); //强制刷新，解决页面不会重新渲染的问题
 					}
-					else
-						alert("选课失败,可能原因:容量不足或已选上")
+					else{
+					    if(value.body.code==507){
+					        alert("选课时间冲突！")
+						}
+						else{
+						    alert("选课失败！");
+						}
+					}
 				},function(reason){
-					alert("选课失败,可能原因:容量不足或已选上");
+					alert("选课失败!请联系管理员！");
 				})
 				
 			},
@@ -403,9 +415,9 @@
 						//this.$forceUpdate(); //强制刷新，解决页面不会重新渲染的问题
 					}
 					else
-						alert("退课失败,可能原因:未选择此课")
+						alert("退课失败!")
 				},function(reason){
-					alert("退课失败,可能原因:未选择此课");
+					alert("退课失败!");
 				})
 				
 			}
@@ -415,10 +427,6 @@
 		}
 	});
 </script>
-
-<div class="footer" id="footerID">
-	<P>版权所有? Copyright 计科1601</P>
-</div>
 </BODY>
 
 </HTML>

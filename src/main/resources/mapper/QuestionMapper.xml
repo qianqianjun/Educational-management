@@ -5,18 +5,35 @@
 
 <mapper namespace="buct.software.dao.QuestionDao">
     <!--id对应的是dao中方法-->
-    <select id="getSingleQuestionBySno" parameterType="int" resultType="Question">
-        select * from  question where sno = #{sno}
+
+    <update id="deleteStudentQuestion" parameterType="int">
+        update question set sno = '-1' , ischosen = '0'
+        where questionid = #{questionid}
+    </update>
+
+    <select id="getAllQuestions" resultType="Question">
+        select * from question
+
     </select>
 
 
     <select id="getPartQuestionsByMajorid" parameterType="int"
             resultType="QuestionStudentInquiry">
-        select question.topic,question.difficulty,question.tno,question.ischosen from question
+        select question.questionid,question.topic,question.difficulty,teacher.tname,question.ischosen from
+        question join teacher on question.tno = teacher.tno
         where
             question.majorid = #{majorid}
-
+        order by
+            question.difficulty
     </select>
+
+
+
+    <select id="getSingleQuestionBySno" parameterType="int" resultType="Question">
+        select * from  question where sno = #{sno}
+    </select>
+
+
 
     <select id="getQuestionsByMajorid" parameterType="int"
             resultType="Question">

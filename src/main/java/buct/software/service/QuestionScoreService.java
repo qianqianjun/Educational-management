@@ -15,6 +15,27 @@ public class QuestionScoreService {
     @Autowired
     QuestionScoreDao questionScoreDao;
 
+
+    //修改某个学生的成绩
+    //该学生必须有成绩
+    //已修该返回true，否则false
+    public boolean changeQuestionScore(QuestionScore questionScore){
+        int sno = questionScore.getSno();
+        if(questionScoreDao.getQuestionScoreBySno(sno)!=null){
+            questionScoreDao.changeQuestionScore(questionScore);
+            return true;
+        }
+        else
+            return false;
+    }
+
+
+
+    //返回所有的成绩
+    public List<QuestionScore> getAllQuestionScore(){
+        return questionScoreDao.getAllQuestionScore();
+    }
+
     //增加成绩
     public void addQuestionScore(QuestionScore questionScore){
 //        questionScore = new QuestionScore();
@@ -29,7 +50,10 @@ public class QuestionScoreService {
     }
 
     //根据学号获取成绩信息
-    public List<QuestionScore> getQuestionScoreBySno(int sno){
+
+    public QuestionScore getQuestionScoreBySno(int sno){
+
+
         return questionScoreDao.getQuestionScoreBySno(sno);
     }
 

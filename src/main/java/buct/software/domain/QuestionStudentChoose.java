@@ -12,4 +12,10 @@ public class QuestionStudentChoose {
     private int questionid;
     private int sno;
     public QuestionStudentChoose(){}
+
+    public QuestionStudentChoose(int questionid,int sno){
+        this.questionid = questionid;
+        this.sno = sno;
+    }
+
 }

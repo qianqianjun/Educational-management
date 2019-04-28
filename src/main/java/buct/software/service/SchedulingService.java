@@ -6,6 +6,7 @@ import buct.software.domain.Teacher;
 import buct.software.utils.ResponseMessage;
 import buct.software.views.MobileSchedulingView;
 import buct.software.views.SchedulingCourseView;
+
 import buct.software.views.SchedulingView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,8 +47,11 @@ public class SchedulingService {
         return message;
     }
 
+
     public ResponseMessage addCourse(Integer cno,Integer tno,String year,String semester,
                                      String majorName,Integer grade,String status,
+
+
                                      String capacity1,String address,String time){
         Integer capacity=Integer.valueOf(capacity1);
         Integer semesterId = semesterDao.getSemesterId(year,semester);
@@ -66,6 +70,7 @@ public class SchedulingService {
 
     public ResponseMessage deleteCourse(Integer cno,String year,String semester,
                                         String majorName,Integer grade){
+
         Integer semesterId = semesterDao.getSemesterId(year,semester);
         Integer majorId = majorDao.getMajorIdByMajorName(majorName);
         Integer count1 = schedulingDao.getCourseMajorCount(semesterId,cno);
@@ -110,4 +115,6 @@ public class SchedulingService {
         message.setData(data);
         return message;
     }
+
+
 }

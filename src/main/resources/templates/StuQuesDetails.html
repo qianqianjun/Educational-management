@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type"content="text/html" charset="UTF-8">
+    <title>学生选课页面</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body{margin:0;padding:0}
+        .top{height:50px;background: #7abaff}
+        .up{width:90%;height:25%;background: white;margin:20px auto}
+        .down{width:90%;height:70%;background: white;margin:20px auto }
+        .foot{height:5%;background: wheat;margin:0 auto}
+    </style>
+</head>
+<body>
+<div class="top">
+    <h2 class="text-black-50 text-center">题目详情页面</h2>
+</div>
+<div class="up">
+    <div class="panel panel-default">
+        <div class="alert alert-info" role="alert">出题老师信息</div>
+        <div class="panel-body">
+            <div class="pre-scrollable " style="overflow:scroll;">
+                <table class="table table-striped table-bordered table-hover" style="min-width: 1500px;" >
+                    <thead>
+                    <tr>
+                        <th>工号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>电话</th>
+                        <th>邮箱</th>
+                        <th>办公地址</th>
+                        <th>职称</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${teaInfo.tno}"></td>
+                        <td th:text="${teaInfo.tname}"></td>
+                        <td th:text="${teaInfo.sex}"></td>
+                        <td th:text="${teaInfo.phone}"></td>
+                        <td th:text="${teaInfo.email}"></td>
+                        <td th:text="${teaInfo.office}"></td>
+                        <td th:text="${teaInfo.rank}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">指导教师：大漠</div>
+    </div>
+</div>
+<div class="down">
+    <div class="panel panel-default">
+        <div class="alert alert-info panel-heading" role="alert">
+            <form class="" method="post">
+                <!--<button class="btn btn-primary" data-toggle="modal" data-target="#mymodal-data" type="button" value="选择">选择</button>-->
+                <div th:switch="${quesInfo.ischosen}">
+                    <a th:case="true">
+                        <button class="btn btn-primary btn-sm btn-block" type="button"  disabled="disabled" >选择此论题</button>
+                    </a>
+                    <a th:case="false" th:href="@{'/StuChooseQues?questionid='+${quesInfo.questionid}}">
+                        <button class="btn btn-primary btn-sm btn-block" type="button">选择此论题</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" th:text="'论题ID:'+${quesInfo.questionid}"></li>
+                <li class="list-group-item" th:text="'难度:'+ ${quesInfo.difficulty}"></li>
+                <!--<li class="list-group-item" th:if="${isChosen==true}">是否已选择</li>-->
+                <div th:switch="${quesInfo.ischosen}">
+                    <li class="list-group-item" th:case="false">论题未被选中</li>
+                    <li class="list-group-item" th:case="true">论题已被选中，你无法选择</li>
+                </div>
+                <li class="list-group-item" th:text="${quesInfo.topic}"></li>
+            </ul>
+            <!--<p class="text-center" th:text="${quesInfo.topic}"></p>-->
+            <p></p>
+            <p th:text="${quesInfo.content}"></p>
+            <p></p>
+            <p></p>
+            <a class="text-right" href="/StuLookThroughQues" ><h2>Come back »</h2></a>
+        </div>
+    </div>
+</div>
+<div class="foot text-center">
+    <h6>版权所有© Copyright 1999-2019 正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301 </h6>
+</div>
+</body>
+<body>
+<div class="modal" id="mymodal-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title text-center">提示信息!!</h4>
+            </div>
+            <div class="modal-body">
+                <p>您确定选择此论题？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">NO</button>
+                <a >
+                    <button type="button" class="btn btn-default" data-dismiss="modal">YES</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
+    <title></title>
+</head>
+<body>
+<!--主页-->
+<div data-role="page" id="indexVue">
+    <!--面板-->
+    <div data-role="panel" id="myPanel">
+        <a href="/GoPowerInfo" data-transition="slide" class="ui-btn ui-icon-lock ui-btn-icon-left">权限管理</a>
+        <a href="/GoStudentInfo" data-transition="slide" class="ui-btn ui-icon-info ui-btn-icon-left" @click="getAllStudents()">学生信息</a>
+        <a href="/GoTeachearInfo" data-transition="slide" class="ui-btn ui-icon-info ui-btn-icon-left" @click="getAllTeachers()">教师信息</a>
+        <a href="/GoSemesterInfo" data-transition="slide" class="ui-btn ui-icon-calendar ui-btn-icon-left">学期管理</a>
+        <a href="#couInfo" data-transition="slide" class="ui-btn ui-icon-edit ui-btn-icon-left">排课系统</a>
+    </div>
+    <!--头部-->
+    <div data-role="header" style="background-color: steelblue" data-position="fixed">
+        <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext" style="background-color: steelblue"></a>
+        <a href="/logout" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext"
+           style="background-color: steelblue"></a>
+        <h1 class="ui-title">北京化工大学教务网</h1>
+    </div>
+    <!--主部-->
+    <div role="main" class="ui-content">
+        <h1>欢迎</h1>
+    </div>
+</div>
+</body>
+<script>
+    var stu = new Vue ({
+        el: '#indexVue',
+        methods: {
+            getAllStudents:function () {
+                // alert("stu");
+                // this.$http.post("/**********",
+                //     {emulateJSON:true}).then(function (value) {
+                //         this.allstudents = value.body.data;
+                // });
+            },
+            getAllTeachers:function () {
+                // alert("tea");
+                // this.$http.post("/**********",
+                //     {emulateJSON:true}).then(function (value) {
+                //         this.allstudents = value.body.data;
+                // });
+            },
+        }
+    })
+</script>

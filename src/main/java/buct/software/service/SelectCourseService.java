@@ -1,6 +1,7 @@
 package buct.software.service;
 import buct.software.dao.SelectCourseDao;
 import buct.software.domain.ScheduleMajor;
+import buct.software.domain.Scheduling;
 import buct.software.domain.SelectCourse;
 import buct.software.domain.Student;
 import buct.software.views.SelectCourseView;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 /**
@@ -36,6 +38,7 @@ public class SelectCourseService {
     }
 
     /**
+
      *
      *
      * @return
@@ -52,20 +55,25 @@ public class SelectCourseService {
      * @return
      */
     public List<SelectCourseView> getCourseList(Integer semesterId,Integer majorId,String college,String capacity,
+
                                                 String cno,String cname,String tname){
         SelectCourseView view=new SelectCourseView();
         if(!capacity.equals(""))
             view.setCapacity(Integer.parseInt(capacity));
         if (!cname.equals(""))
             view.setCname("%"+cname+"%");
+
+
         if(!cno.equals(""))
             view.setCno(Integer.parseInt(cno));
         if(!college.equals(""))
             view.setCollege(college);
         if(!tname.equals(""))
+
             view.setTname("%"+tname+"%");
         view.setMajorId(majorId);
         view.setSemesterId(semesterId);
+
         return selectCourseDao.getAllAvaiableCourseWithCondition(view);
     }
 
@@ -98,6 +106,7 @@ public class SelectCourseService {
         selectCourse.setAddition(-1);
         Integer ok=selectCourseDao.changeCapacity(selectCourse);
         if(accectRows>0 && ok>0){
+
             return selectCourse;
         }
         else{
@@ -121,6 +130,7 @@ public class SelectCourseService {
         Integer affectRows=selectCourseDao.deleteCourseFromTable(selectCourse);
         Integer ok=selectCourseDao.changeCapacity(selectCourse);
         if(affectRows>0 && ok>0){
+
             return selectCourse;
         }
         else{
@@ -155,4 +165,18 @@ public class SelectCourseService {
         List<StudentGradeIndexView> lists=selectCourseDao.getGrade(selectCourse);
         return lists;
     }
+
+    /**
+     * 使用 semesterid 和cno获取排课表信息
+     * @param semesterId  学期的id
+     * @param cno  课程号
+     * @return
+     */
+    public Scheduling getCourseInfoWithCondition(Integer semesterId, Integer cno) {
+        Scheduling scheduling=new Scheduling();
+        scheduling.setSemesterId(semesterId);
+        scheduling.setCno(cno);
+        return selectCourseDao.getSchedulingBySemesterIdAndCno(scheduling);
+    }
+
 }

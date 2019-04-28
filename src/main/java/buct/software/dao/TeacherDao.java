@@ -23,4 +23,5 @@ public interface TeacherDao {
     public void updateTeacher(Teacher teacher);
 
     public List<Teacher> getTeacherByTnoAndTname(Integer tno,String tname);
+
 }

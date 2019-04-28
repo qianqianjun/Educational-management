@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
+    <title></title>
+</head>
+<body>
+<!--学生添加-->
+<div data-role="page" id="stuAddVue">
+    <!--头部-->
+    <div th:replace="common/mobileBackstageNavigator.html::header"></div>
+    <!--主部-->
+    <div data-role="main" class="ui-content">
+        <form>
+            <label>姓名:</label>
+            <input type="text" name="sname" id="stuName" v-model="sname" placeholder="姓名..">
+            <label>学号:</label>
+            <input type="text" name="sno" id="stuId" v-model="sno" placeholder="学号..">
+            <label>班级:</label>
+            <input type="text" name="klass" id="stuKlass" v-model="klass" placeholder="班级..">
+            <label>性别:</label>
+            <select v-model="sex">
+                <option>男</option>
+                <option>女</option>
+            </select>
+            <label>专业:</label>
+            <input type="text" name="major" id="stuMajor" v-model="major" placeholder="专业..">
+            <label>年级:</label>
+            <input type="text" name="stuGrade" id="stuGrade" v-model="grade" placeholder="年级..">
+            <label>电话号码:</label>
+            <input type="text" name="phone" id="stuPhone" v-model="phone" placeholder="电话号码..">
+            <label>入学年份:</label>
+            <input type="text" name="come_year" id="stuComeYear" v-model="come_year" placeholder="入学年份..">
+            <a data-role="button" data-icon="plus" class="ui-right" @click="addStudent()">增加</a>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    var stu = new Vue({
+        el: '#stuAddVue',
+        data: {
+            sname: null,
+            sno: null,
+            klass: null,
+            sex: null,
+            major: null,
+            grade: null,
+            phone: null,
+            come_year: null,
+        },
+        methods: {
+            addStudent: function () {
+                // alert(this.sno);
+                // if(this.sname==null||this.sno==null||this.klass==null||this.sex==null||this.major==null||this.grade==null||this.phone===null||this.come_year==null) {
+                //     alert("输入有误！");
+                // } else {
+                //     this.$http.post("/**********",{sname:this.sname,sno:this.sno,klass:this.klass,sex:this.sex,
+                //             major:this.major,grade:this.grade,phone:this.phone,come_year: this.come_year},
+                //         {emulateJSON:true}).then(function(value) {
+                //         if(value.body.code == 1) {
+                //             alert("增加成功！");
+                //         } else {
+                //             alert("增加失败!");
+                //         }
+                //     })
+                // }
+            },
+        }
+    })
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
+    <title></title>
+</head>
+<body>
+<!--老师搜索界面-->
+<div data-role="page" id="teaSearchVue">
+    <div data-role="header" style="background-color: steelblue" data-position="fixed">
+        <a class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-back" style="background-color: steelblue"
+           data-rel="back" href="/GoTeachearInfo"></a>
+        <h1>搜索</h1>
+    </div>
+
+    <div data-role="content" class="stuVue">
+        <div>
+            <label>姓名</label>
+            <input type="text" v-model="tname">
+            </br>
+            <button type="button" @click="getTeacherByTname(tname)">查询</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    var tae = new Vue({
+        el: '#teaSearchVue',
+        data: {
+            tname: null,
+            teacher: null
+        },
+        methods: {
+            getTeacherByTname: function (parm) {
+                alert(2)
+                window.location = "/mobileSearchTeacher?tname=" + parm
+            },
+        }
+    })
+</script>
+</body>

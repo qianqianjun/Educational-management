@@ -33,6 +33,7 @@
 
     </select>
 
+
     <resultMap id="getCourseMap" type="buct.software.views.SchedulingView">
         <id property="tno" javaType="Integer" column="tno"  jdbcType="INTEGER" ></id>
         <id property="address" javaType="String" column="address"  jdbcType="VARCHAR" ></id>
@@ -58,7 +59,6 @@
           cno=#{cno}
         and
           majorid=#{majorId}
-
     </select>
 
     <select id="addCourse" resultType="Boolean">
@@ -100,7 +100,6 @@
         select scheduling.course_time from scheduling where scheduling.semesterid=#{semesterId} and scheduling.address=#{room}
     </select>
 
-
     <select id="getCoursesByTnoAndTnameAndAddress" resultType="buct.software.views.MobileSchedulingView">
     <bind name="_tname" value="'%'+ tname + '%'"></bind>
     <bind name="_tno" value="'%' + tno + '%'"></bind>
@@ -125,4 +124,5 @@
         </where>
 
     </select>
+
 </mapper>

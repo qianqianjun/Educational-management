@@ -1,10 +1,17 @@
 package buct.software.dao;
+import buct.software.domain.Scheduling;
+import buct.software.domain.SelectCourse;
 import buct.software.views.MobileSchedulingView;
 import buct.software.views.SchedulingView;
 import buct.software.views.SchedulingCourseView;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
+
+
+import buct.software.views.SchedulingView;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author 高谦
@@ -23,23 +30,23 @@ public interface SchedulingDao {
     public Integer checkCourseMajor(Integer semesterId,String cno,Integer majorId,Integer grade);
     public List<MobileSchedulingView> getCoursesByTnoAndTnameAndAddress(Integer tno, String tname,String address);
     public List<SchedulingCourseView> getAllCourses(String year, String semester, String majorName, Integer grade);
+
     //几个用于检测冲突的查询方法
 
     /**
      * 获取教师(学生)在这个学期已经安排好的任务的时间字符串列表
-     * @param semesterId  当前学期id
-     * @param tno  老师的工号
      * @return  返回老师的任务时间列表
      */
-    public List<String> getTeacherTaskTime(Integer semesterId,Integer tno);
-    public List<String> getStudentTaskTime(Integer semesterId,Integer sno);
+    public List<String> getTeacherTaskTime(Scheduling scheduling);
+    public List<String> getStudentTaskTime(SelectCourse selectCourse);
 
     /**
      * 查询某一个教室的所有使用时间。
-     * @param semesterId  学期id
-     * @param room  教室的名称 （也就是排课表中的位置）
      * @return
      */
-    public List<String> getRoomTaskTime(Integer semesterId,String room);
+
+    public List<String> getRoomTaskTime(Scheduling scheduling);
+
+
 
 }

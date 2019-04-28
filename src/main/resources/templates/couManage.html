@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
+    <title></title>
+</head>
+<body>
+<div data-role="page" id="couManageVue">
+    <div th:replace="common/mobileBackstageNavigator.html::header"></div>
+    <!-- 主体 -->
+    <div data-role="main" class="ui-content">
+        <div data-role="content">
+            <div class="ui-field-contain">
+                <form th:action="@{/addSemester}">
+                    <label>起始年份</label>
+                    <input type="text" name="start"v-model="s_year">
+                    <label>终止年份</label>
+                    <input type="text" name="end"v-model="e_year">
+                    <label>学期ID</label>
+                    <input type="text" name="id"v-model="id">
+                    <label>学期数</label>
+                    <select name="semester"v-model="sem">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                    </br>
+                    <button data-role="button" data-icon="plus" class="ui-right">增加</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    var cou = new Vue({
+        el: '#couManageVue',
+        data: {
+            s_year: null,
+            e_year: null,
+            sem: null
+        },
+        methods: {
+            couManage: function () {
+                if (this.e_year - this.s_year == 1) {
+                    this.$http.post("/addSemester", {s_year: this.s_year, e_year: this.e_year, sem: this.sem},
+                        {emulateJSON: true}).then(function (value) {
+                        if (value.body.code == 1) {
+                            alert("增加成功！");
+                        } else {
+                            alert("增加失败!");
+                        }
+                    })
+                } else {
+                    alert("输入有误！");
+                }
+
+            }
+        }
+    })
+</script>
