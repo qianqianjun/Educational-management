@@ -30,7 +30,7 @@
 </header>
 <div id="fix">
 	<div style="width: 100%; padding: 0px; margin: 0px;" id="bodyContainer">
-		<div class="container container-func sl_all_bg" style="min-height: 454px;">
+		<div class="container container-func sl_all_bg" style="min-height: 454px;min-width: 96%;">
 		<!-- 放置页面显示内容 -->
         <!-- 功能操作 -->
 			<div class="row sl_add_btn">
@@ -40,8 +40,8 @@
 						<div class="btn-group" id="but_ancd">
                             <div class="col-md-10">
 
-                                <button v-if="permission" type="button" class="btn btn-default btn_dc" data-toggle="modal" data-target="#insert"> 导 入</button>
-                                <button v-else type="button" class="btn btn-default btn_dc" data-toggle="modal" v-on:click="check()"> 导 入</button>
+                                <button v-if="permission" type="button"  class="btn btn-outline-primary btn-sm" style="border-color:#BEBEBE;color: black;" data-toggle="modal" data-target="#insert"> 导 入</button>
+                                <button v-else type="button"  class="btn btn-outline-primary btn-sm" style="border-color:#BEBEBE;color: black;" data-toggle="modal" v-on:click="check()"> 导 入</button>
 
                             </div>
 						</div>
