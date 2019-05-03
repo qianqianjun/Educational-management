@@ -74,7 +74,7 @@ public class GradeManagementControllerPage {
         parMap.put("permission",permission);
 
 
-        return "try";
+        return "GradeManagementTeacher";
     }
 
     //    教师端移动
