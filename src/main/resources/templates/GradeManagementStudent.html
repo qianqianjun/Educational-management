@@ -52,7 +52,7 @@
 	      <label for="year" class="col-sm-4 control-label">
 	      	<span style="color:red;">* </span>学 年</label>
 	        <div class="col-sm-8">
-				<select name="year" id="year" style="width:100%;height:30px" v-model="start">
+				<select name="year" id="year" style="width:100%;height:30px; top:9px;position: relative" v-model="start">
 					<option value="">---请选择---</option>
                     <option value="all">全部</option>
    					<option value="2019">2019-2020</option>
@@ -68,7 +68,7 @@
 	      <label  for="term" class="col-sm-4 control-label">
 	      	<span style="color:red;">* </span>学 期</label>
 	        <div class="col-sm-8">
-				<select name="term" id="term" style="width:100%;height:30px" v-model="semester">
+				<select name="term" id="term" style="width:100%;height:30px; top:9px;position: relative" v-model="semester">
 					<option value="">---请选择---</option>
                     <option value="all">全部</option>
     				<option value="1">1</option>
@@ -190,6 +190,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div style=" margin:0 auto;text-align: center" v-show="showresult">没有符合条件的结果</div>
                 </div>
 <!-- 表格结束 -->
             </div>
@@ -201,6 +202,7 @@
             start: [[${currentSemester.start}]],
             semester: [[${currentSemester.semester}]],
             gradeList: [],
+            showresult:false,
             current_display:{
                 cname:null,
                 totalscore:null,
@@ -217,6 +219,11 @@
                 this.$http.get("/getcoursegrade",
                     {params:{start:this.start,semester:this.semester}}).then(function(res){
                     this.gradeList=res.body.data;
+                    if (res.body.data.length==0){
+                        this.showresult=true;
+                    }else{
+                        this.showresult=false;
+                    }
                     console.log(res.body);
                 },function(res){
                     console.log('失败')

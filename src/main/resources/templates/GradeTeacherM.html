@@ -15,20 +15,7 @@
 	<script src="./js/grade/vue.js"></script>
 	<script src="./js/grade/vue.min.js"></script>
 	<script src="./js/grade/vue-resource.min.js"></script>
-    <!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
-    <!--<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
-    <!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
-    <!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-	<!--<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">-->
-	<!--<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>-->
-	<!--<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
 
-	<!--<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>-->
-	<!--<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>-->
-
-    <!--<link type="text/css" rel="stylesheet" th:href="@{/css/userHome.css}">-->
-	<!-- href="css/test.css" -->
 	<style type="text/css">
 		th {
 		    border-bottom: 1px solid #d6d6d6;
@@ -66,7 +53,6 @@
       			<fieldset data-role="fieldcontain">
 	        		<label>学年</label>
 	        		<select v-model="start" @change="get_course(semester,start)">
-	        			<option value="all">全部</option>
                         <option value="2019">2019-2020</option>
 		         		<option value="2018">2018-2019</option>
 		         		<option value="2017">2017-2018</option>
@@ -77,7 +63,7 @@
 	        		<label>学期</label>
 	        		<select v-model="semester" @change="get_course(semester,start)">
 						<option value="0">--请选择--</option>
-						<option value="all">全部</option>
+						<option value="-1">全部</option>
 		         		<option value="1">1</option>
 		         		<option value="2">2</option>
 		         		<option value="3">3</option>
@@ -114,9 +100,6 @@
       		<thead>
         		<tr>
 			        <th>查看</th>
-			        <th>学年</th>
-			        <th>学期</th>
-			        <th data-priority="1">课程代码</th>
 			        <th>课程名称</th>
 			        <th data-priority="1">开课学院</th>
 			        <th>学分</th>
@@ -131,9 +114,6 @@
 			        <td>
 			        	<a href="#myPopupDialog" data-rel="popup" data-position-to="window" v-on:click="detail(grade)">查看</a>
 			        </td>
-			        <td><p>{{grade.start}}</p></td>
-			        <td><p>{{grade.semester}}</p></td>
-			        <td><p>{{grade.cno}}</p></td>
 			        <td><p>{{grade.cname}}</p></td>
 			        <td><p>{{grade.college}}</p></td>
 			        <td><p>{{grade.credit}}</p></td>
