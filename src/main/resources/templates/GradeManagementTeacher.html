@@ -95,7 +95,7 @@
 	      <label for="" class="col-sm-4 control-label">
 	      	<span style="color:red;">* </span>学 年</label>
 	        <div class="col-sm-8">
-				<select id="year" style="width:100%;height:30px" v-model="start" @change="get_course(semester,start)">
+				<select id="year" style="width:100%;height:30px;top:9px;position: relative" v-model="start" @change="get_course(semester,start)">
 					<option value="">---请选择---</option>
    					<option value="2019">2019-2020</option>
     				<option value="2018" selected="selected">2018-2019</option>
@@ -110,7 +110,7 @@
 	      <label class="col-sm-4 control-label" style="width: 100px">
 	      	<span style="color:red;">* </span>学 期</label>
 	        <div class="col-sm-8">
-				<select id="term" style="width:100%;height:30px" v-model="semester" @change="get_course(semester,start)">
+				<select id="term" style="width:100%;height:30px;top:9px;position: relative" v-model="semester" @change="get_course(semester,start)">
 					<option value="0">---请选择---</option>
                     <option value="-1">全部</option>
                     <option value="1">1</option>
@@ -124,7 +124,7 @@
         <div class="form-group">
           <label for="" class="col-sm-4 control-label">课程名称</label>
             <div class="col-sm-8">
-                <select id="test" style="width:100%;height:30px" v-model="cno">
+                <select id="test" style="width:100%;height:30px;top:9px;position: relative" v-model="cno">
                     <option value="-1" >全部</option>
                     <option v-bind:value="cs.cno" v-for="cs in courses">{{cs.cname}}</option>
                 </select>
@@ -135,7 +135,7 @@
         <div class="form-group">
           <label class="col-sm-4 control-label">学 号</label>
             <div class="col-sm-8">
-                <div class="input-group" style="width:200px">
+                <div class="input-group" style="width:200px;top:9px;position: relative">
                     <input id="stuno" type="text" class="form-control" v-model="sno">
                 </div>
             </div>
@@ -187,7 +187,7 @@
                 </tr>
             </tbody>
         </table>
-        <div style="align-content: center" v-show="showresult">没有符合条件的结果</div>
+        <div style=" margin:0 auto;text-align: center" v-show="showresult">没有符合条件的结果</div>
 
     </div>
     <!-- 表格结束 -->
