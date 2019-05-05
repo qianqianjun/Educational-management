@@ -39,11 +39,20 @@ public class MobileBackstageControllerPage {
         return "powInfo";
     }
 
+    /**
+     * @author 高谦修改
+     * @param request
+     * @param map
+     * @return
+     */
     @RequestMapping("/GoStudentInfo")
-    public String goStudentInfo(HttpServletRequest request) {
+    public String goStudentInfo(HttpServletRequest request,Map<String,Object> map) {
         List<Student> allStudent = studentService.getAllStudent();
-        request.getSession().setAttribute("allStudent", allStudent);
-        return "forward:/mStudentPage";
+//        request.getSession().setAttribute("allStudent", allStudent);
+        map.put("allStudent",allStudent);
+        System.out.println(allStudent.size());
+        return "stuInfo";
+//        return "forward:/mStudentPage";
     }
 
     @RequestMapping("/mStudentPage")
