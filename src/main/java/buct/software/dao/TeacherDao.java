@@ -15,7 +15,6 @@ import java.util.List;
 public interface TeacherDao {
     public Teacher getByTno(Integer tno);
 
-    //    public List<Teacher> getAll();
     public void insertTeacher(Teacher teacher);
 
     public List<Teacher> queryByExample(Teacher example);
