@@ -6,6 +6,7 @@ import buct.software.domain.Semester;
 
 import buct.software.domain.User;
 import buct.software.service.CollegeService;
+import buct.software.service.PowerService;
 import buct.software.service.SelectCourseService;
 import buct.software.service.SemesterService;
 
@@ -36,6 +37,8 @@ public class SelectCourseControllerPage {
     SelectCourseService selectCourseService;
     @Autowired
     SemesterService semesterService;
+    @Autowired
+    PowerService powerService;
 
     /**
      * 展示选课界面，这里默认的查询所有 本专业，本学年 的课程信息。
@@ -45,28 +48,29 @@ public class SelectCourseControllerPage {
      */
     @GetMapping("/selectcourse")
     public String selectCourse(Map<String,Object> parmMap, HttpServletRequest request){
+
+        Boolean canSelect=powerService.getSelectCourse();
+        if(!canSelect){
+            parmMap.put("reason","当前不是选课时间，如有需要请联系管理员！");
+            parmMap.put("url","/index");
+            return "toindex";
+        }
+        Integer semesterId=semesterService.getCurrentSemesterId();
         HttpSession session =request.getSession();
         User user=(User) session.getAttribute("user");
         Integer sno=user.getAccount();
         Integer majorId=user.getMajorid();
-
         List<Semester> semesters=semesterService.getSemesterDomain();
-
-        Integer semesterId=semesterService.getCurrentSemesterId();
         ArrayList<SelectCourse> selectedList=
                 (ArrayList<SelectCourse>) selectCourseService.getSelectedCourseList(sno,semesterId);
-
         ArrayList<SelectCourseView> courseViews=
                 (ArrayList<SelectCourseView>)
                         selectCourseService.getAllCourseList(semesterId,majorId);
-
-
         ArrayList<College> colleges=(ArrayList<College>) collegeService.getAllCollege().getData();
         parmMap.put("courseselectedlist",selectedList);
         parmMap.put("allcourses",courseViews);
         parmMap.put("semesterlist",semesters);
         parmMap.put("colleges",colleges);
-
         return "selectcourse";
     }
 
@@ -101,6 +105,12 @@ public class SelectCourseControllerPage {
 
     @GetMapping("/selectcoursemobile")
     public String selectcoursemobile(Map<String, Object> parmMap){
+        Boolean canSelect=powerService.getSelectCourse();
+        if(!canSelect){
+            parmMap.put("reason","当前不是选课时间，如有需要请联系管理员！");
+            parmMap.put("url","/index");
+            return "toindex";
+        }
         ResponseMessage res=collegeService.getAllCollege();
         List<College> collegeList=(List<College>) res.getData();
         parmMap.put("collegelist",collegeList);
@@ -120,6 +130,4 @@ public class SelectCourseControllerPage {
         parmMap.put("currentSemester",semester);
         return "coursetablemobile";
     }
-
-
 }
