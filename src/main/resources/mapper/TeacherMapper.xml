@@ -21,7 +21,7 @@
                 and tname = #{tname}
             </if>
             <if test="sex != null">
-                and sex = #{sex}
+                and sex like #{sex}
             </if>
             <if test="phone != null">
                 and phone = #{phone}

@@ -33,13 +33,13 @@ public class TeacherDaoTest {
     @Test
     public void queryByExample(){
         Teacher teacher = new Teacher();
-        teacher.setEmail("2");
-        teacher.setOffice("2");
-        teacher.setRank("22");
-        teacher.setCollegeId(1);
-        teacher.setSex("2");
-        teacher.setPhone("2q1");
-        teacher.setTname("222");
+//        teacher.setEmail("2");
+//        teacher.setOffice("2");
+//        teacher.setRank("22");
+//        teacher.setCollegeId(1);
+//        teacher.setSex("2");
+//        teacher.setPhone("2q1");
+            teacher.setTname("tom");
         List<Teacher> teachers = teacherDao.queryByExample(teacher);
         System.out.println(teachers);
     }

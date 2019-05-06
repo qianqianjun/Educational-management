@@ -48,6 +48,7 @@ public class TeacherControllerPage {
                                 @RequestParam("rank") String rank) {
 
         Teacher teacher = new Teacher(tno, tname, sex, phone, email, collegeid, office, rank);
+        System.out.println(teacher);
         if (teacherService.getTeacherByTno(tno) == null) {
             teacherService.addTeacher(teacher);
         } else {
@@ -67,7 +68,7 @@ public class TeacherControllerPage {
             return "error";
         }
         String sex = (httpServletRequest.getParameter("sex").equals("")) ? null : httpServletRequest.getParameter("sex");
-        String tname = (httpServletRequest.getParameter("tname").equals("")) ? null : httpServletRequest.getParameter("matnamejor");
+        String tname = (httpServletRequest.getParameter("tname").equals("")) ? null : httpServletRequest.getParameter("tname");
         teacher.setTno(tno);
         teacher.setCollegeId(collegeid);
         teacher.setSex(sex);
