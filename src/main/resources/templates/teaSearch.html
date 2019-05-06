@@ -2,7 +2,23 @@
 <html lang="en">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/backstage/my_jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/my_jwgl.css">
+    <script src="js/backstage/my_jquery.min.js"></script>
+    <script src="js/backstage/my_jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/backstage/my_vue.min.js"></script>
+    <script src="js/backstage/my_axios.min.js"></script>
+    <script src="js/backstage/my_qs.min.js"></script>
+
+    <div data-role="header" style="background-color: steelblue" data-position="fixed">
+        <a href="/GoMobileHomePage" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext"
+           style="background-color: steelblue"></a>
+        <h1>北京化工大学教务网</h1>
+    </div>
+
     <title></title>
 </head>
 <body>
@@ -17,14 +33,21 @@
     <div data-role="content" class="stuVue">
         <div>
             <label>姓名</label>
-            <input type="text" v-model="tname">
-            </br>
+            <input id="name" v-model="tname"type="text">
+            <!--</br>-->
             <button type="button" @click="getTeacherByTname(tname)">查询</button>
         </div>
     </div>
 </div>
 
 <script>
+    // alert(2)
+
+    // function sea() {
+    //     var name = document.getElementById("name");
+    //     window.location = "/mobileSearchTeacher?tname=" + name
+    // }
+
     var tae = new Vue({
         el: '#teaSearchVue',
         data: {
