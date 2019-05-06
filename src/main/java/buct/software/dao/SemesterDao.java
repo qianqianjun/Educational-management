@@ -1,6 +1,7 @@
 package buct.software.dao;
 
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import buct.software.domain.Semester;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Repository
 public interface SemesterDao {
-    public Integer getSemesterId(String year, String semester);
+    public Integer getSemesterId(@Param("year") String year,@Param("semester") String semester);
 
     public void insertSemester(Semester semester);
 
