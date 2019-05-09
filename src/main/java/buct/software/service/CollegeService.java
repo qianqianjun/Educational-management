@@ -43,6 +43,7 @@ public class CollegeService {
         return message;
     }
 
+
     /**
      * 获取所有学院名字
      * @return
@@ -53,6 +54,17 @@ public class CollegeService {
                 "查询成功！", ResponseMessage.EmptyDate,"查询结果为空！");
         message.setData(data);
         return message;
+    }
+
+
+    /**
+     * 根据学院id，来获取学院的名字
+     * @param id  学院的id
+     * @return
+     */
+    public String getColnameById(String id) {
+        String colname=collegeDao.getColNameById(id);
+        return colname;
     }
 
 }

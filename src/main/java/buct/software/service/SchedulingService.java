@@ -1,14 +1,13 @@
 package buct.software.service;
 
 import buct.software.dao.*;
-import buct.software.domain.Scheduling;
 import buct.software.domain.Teacher;
 import buct.software.utils.ResponseMessage;
 import buct.software.views.MobileSchedulingView;
 import buct.software.views.SchedulingCourseView;
+import buct.software.views.TeaCourseView;
 
 import buct.software.views.SchedulingView;
-import buct.software.views.TeaCourseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

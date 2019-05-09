@@ -24,6 +24,7 @@ public class User {
     private Integer majorid;
     private String grade;
     private String tname;
+    private String office;
 
     private String college;
     private String collegeId;
