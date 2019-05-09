@@ -126,7 +126,7 @@
     </select>
 
     <select id="getCourseInfoByTno" parameterType="int" resultType="buct.software.views.TeaCourseView">
-    select * from
+    select semesterid,teaInfo.cno,capacity,address,course_time,cname from
     (
     (select semesterid,cno,capacity,address,course_time from scheduling
         where tno = #{tno} and status='1') as teaInfo

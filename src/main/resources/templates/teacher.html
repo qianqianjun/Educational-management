@@ -111,10 +111,14 @@
                         <!--<a target="_blank" class="list-group-item">-->
                             <!--<span class="title"> 5-8周(7-9节)-星期二-大学生就业与创业指导-北区-B阶-203-汪雪琴 </span>-->
                         <!--</a>-->
-                        <tr th:each="CourseInfo: ${session.CourseTable}">
-                            <td th:text="${CourseInfo.semesterid}"></td>
-                            <td th:text="${CourseInfo.courseTime}"></td>
-                        </tr>
+                        <ul th:each="CourseInfo: ${session.CourseTable}">
+                            <li th:text="${CourseInfo.semesterid}"></li>
+                            <li th:text="${CourseInfo.courseTime}"></li>
+                            <li th:text="${CourseInfo.courseName}"></li>
+                            <li th:text="${CourseInfo.cno}"></li>
+                            <li th:text="${CourseInfo.capacity}"></li>
+                            <li th:text="${CourseInfo.address}"></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-md-6">
