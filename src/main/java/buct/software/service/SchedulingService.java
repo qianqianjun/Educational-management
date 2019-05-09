@@ -127,8 +127,9 @@ public class SchedulingService {
         List<TeaCourseView> teaCourseViews = schedulingDao.getCourseInfoByTno(tno);
         String courseTime;
         String[] handleCourseTime;
-        String finalCourseTime="";//修正之后的课程时间表示
+
         for(int i=0;i<teaCourseViews.size();i++){
+            String finalCourseTime="";//修正之后的课程时间表示
             courseTime = teaCourseViews.get(i).getCourseTime();
             handleCourseTime =  courseTime.split(";");
             for(int j=0;j<handleCourseTime.length;j++){

@@ -14,6 +14,11 @@
     <script type="text/javascript" src="js/selectcourse/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/selectcourse/zftal-ui.css" />
     <link href="css/selectcourse/selectcourse.css" rel="stylesheet" type="text/css">
+    <script>
+        function f() {
+            alert("修改成绩成功！");
+        }
+    </script>
     <style type="text/css">
         body{margin:0;padding:0}
         .up{width:90%;height:25%;background: white;margin:20px auto}
@@ -73,14 +78,17 @@
 <div class="down">
     <div class="panel panel-default">
         <div class="alert alert-info panel-heading" role="alert">
-            <form class="" method="post">
-                <!--<button class="btn btn-primary" data-toggle="modal" data-target="#mymodal-data" type="button" value="选择">选择</button>-->
+            <form  method="post" >
+            <!--<button class="btn btn-primary" data-toggle="modal" data-target="#mymodal-data" type="button" value="选择">选择</button>-->
                 <div th:switch="${quesInfo.ischosen}">
                     <a th:case="true">
                         <button class="btn btn-primary btn-sm btn-block" type="button"  disabled="disabled" >选择此论题</button>
                     </a>
                     <a th:case="false" th:href="@{'/StuChooseQues?questionid='+${quesInfo.questionid}}">
-                        <button class="btn btn-primary btn-sm btn-block" type="button">选择此论题</button>
+                        <button class="btn btn-primary btn-sm btn-block" th:onclick="'javascript:f();'" type="button" >选择此论题</button>
+                        <!--<div th:if="${isChosen}==true">-->
+
+                        <!--</div>-->
                     </a>
                 </div>
             </form>
@@ -98,7 +106,7 @@
             </ul>
             <!--<p class="text-center" th:text="${quesInfo.topic}"></p>-->
             <p></p>
-            <p style="font-size: 16px;" th:text="${quesInfo.content}"></p>
+            <p style="font-size: 17px;" th:text="${quesInfo.content}"></p>
             <p></p>
             <p></p>
             <a class="text-right" href="/StuLookThroughQues" ><h2>Come back »</h2></a>
