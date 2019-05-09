@@ -99,9 +99,15 @@ public class LoginController {
                 if (platform.equals("mobile"))
                     return "MobileTeacherHome";
                 return "teacher";
-            } else {
-               return "";
             }
+            if(type==2){
+                if (platform.equals("mobile")) {
+                    return "redirect:/GoMobileHomePage";
+                } else {
+                    return "redirect:/GoHomePage";
+                }
+            }
+            return "login";
         }
     }
 
