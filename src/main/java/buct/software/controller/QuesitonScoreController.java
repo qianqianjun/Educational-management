@@ -178,10 +178,29 @@ public class QuesitonScoreController {
         return "ManageLookThroughGrade";
     }
 
+
     @RequestMapping(value = "/ManageScore")
     public String ManageScore(HttpServletRequest request,
                               @RequestParam("sno")int sno,
                               Map<String,Object> map){
+        HttpSession session = request.getSession();
+        Object isChangedObject = session.getAttribute("gradeIsChanged");
+        Object hasChangedObject = session.getAttribute("gradeHasChanged");
+        Boolean hasChanged = (Boolean)hasChangedObject;
+
+        if(isChangedObject == null || hasChangedObject==null){
+            session.setAttribute("gradeIsChanged",false);
+        }
+        else{
+            if(hasChanged==true){
+                session.setAttribute("gradeHasChanged",false);
+            }
+            else {
+                session.setAttribute("gradeIsChanged",false);
+            }
+        }
+
+//        System.out.println(isChangedObject);
         QuestionScore questionScore = questionScoreService.getQuestionScoreBySno(sno);
         map.put("Score",questionScore);
         return "ManageScore";
@@ -206,7 +225,9 @@ public class QuesitonScoreController {
         questionScore.setPaper(paper);
         questionScore.setExtracredit(extracredit);
         boolean isChanged = questionScoreService.changeQuestionScore(questionScore);
-        map.put("isChanged",isChanged);
+        HttpSession session = request.getSession();
+        session.setAttribute("gradeIsChanged",isChanged);
+        session.setAttribute("gradeHasChanged",true);
         return "redirect:/ManageScore"+"?sno="+sno;
     }
 

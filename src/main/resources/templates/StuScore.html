@@ -6,22 +6,37 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/selectcourse/vue.min.js"></script>
+    <script src="js/selectcourse/vue-resource.min.js"></script>
+
+    <script type="text/javascript" src="js/selectcourse/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/bootstrap.min.css" />
+    <script type="text/javascript" src="js/selectcourse/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/zftal-ui.css" />
+    <link href="css/selectcourse/selectcourse.css" rel="stylesheet" type="text/css">
     <style type="text/css">
         body{margin:0;padding:0}
-        .top{height: 5%;background: #7abaff}
         .up1{width:90%;height:5%;background: white;margin:20px auto}
         .chengji{width:90%;height:85%;background: white;margin:20px auto}
-        .foot{height:5%;background: wheat;margin:0 auto}
     </style>
 </head>
 <body>
-<div class="top">
-    <h2 class="text-black-50 text-center">详细成绩</h2>
-</div>
+<header class="navbar-inverse top2">
+    <div class="container" id="navbar_container">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">学生成绩</span>
+                </button>
+                <A class="navbar-brand" id="topbutton" href="">论题成绩</A>
+            </div>
+        </div>
+    </div>
+</header>
 <div class="up1">
     <div class="navbar navbar-default" role="navigation">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="/StuLookThroughQuesMobile">选题首页</a></li>
+            <li class="active"><a href="/StuLookThroughQues">选题首页</a></li>
             <li><a href="/StuChoice">已选课题</a></li>
             <li><a href="/StuScore">关于成绩</a></li>
         </ul>
@@ -61,8 +76,8 @@
         </div>
     </div>
 </div>
-<div class="foot text-center">
-    <h6>版权所有© Copyright 1999-2019 正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301 </h6>
+<div id="footerID" class="footer">
+    版权所有&copy; Copyright 2016-2019 计科1601班
 </div>
 </body>
 </html>
