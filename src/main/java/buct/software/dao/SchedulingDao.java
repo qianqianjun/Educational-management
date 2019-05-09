@@ -1,9 +1,7 @@
 package buct.software.dao;
 import buct.software.domain.Scheduling;
 import buct.software.domain.SelectCourse;
-import buct.software.views.MobileSchedulingView;
-import buct.software.views.SchedulingView;
-import buct.software.views.SchedulingCourseView;
+import buct.software.views.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -50,6 +48,10 @@ public interface SchedulingDao {
 
     public List<String> getRoomTaskTime(Scheduling scheduling);
 
-
+    /**
+     * @author: yuzhongrui
+     *
+     */
+    public List<TeaCourseView> getCourseInfoByTno(int tno);
 
 }
