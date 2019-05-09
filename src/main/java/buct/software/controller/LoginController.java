@@ -86,14 +86,6 @@ public class LoginController {
             if (type == 1) {
                 int tno = user.getAccount();
                 List<TeaCourseView> teaCourseViews = schedulingService.getCourseInfoByTno(tno);
-                for(int i=0;i<teaCourseViews.size();i++){
-                    System.out.println(teaCourseViews.get(i).getSemesterid());
-                    System.out.println(teaCourseViews.get(i).getCourseTime());
-                    System.out.println(teaCourseViews.get(i).getAddress());
-                    System.out.println(teaCourseViews.get(i).getCapacity());
-                    System.out.println(teaCourseViews.get(i).getCno());
-                    System.out.println(teaCourseViews.get(i).getCourseName());
-                }
                 session.setAttribute("CourseTable",teaCourseViews);
                 return "teacher";
             } else {
