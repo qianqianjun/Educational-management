@@ -41,6 +41,8 @@ public class LoginController {
     SemesterService semesterService;
     @Autowired
     SchedulingService schedulingService;
+    @Autowired
+    CollegeService collegeService;
 
     /**
      * 登录页面网址，请求这个地址用于展现登录页面
@@ -95,13 +97,18 @@ public class LoginController {
                     System.out.println(teaCourseViews.get(i).getCourseName());
                 }
                 session.setAttribute("CourseTable",teaCourseViews);
+
+                parmMap.put("courseTable", teaCourseViews);//课表
+                Teacher teacher = teacherService.getTeacherByTno(tno);
+                parmMap.put("teainfo", teacher);
+                String cid = teacher.getCollegeId().toString();
+                String colname = collegeService.getColnameById(cid);
+                parmMap.put("colname", colname);
+                if (platform.equals("mobile"))
+                    return "MobileTeacherHome";
                 return "teacher";
             } else {
-                if (platform.equals("mobile")) {
-                    return "redirect:/GoMobileHomePage";
-                } else {
-                    return "redirect:/GoHomePage";
-                }
+               return "";
             }
         }
     }
