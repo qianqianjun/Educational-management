@@ -164,10 +164,6 @@ public class QuesitonScoreController {
 
 
 
-
-
-
-
     //Back
 
     @RequestMapping(value = "/ManageLookThroughGrade")

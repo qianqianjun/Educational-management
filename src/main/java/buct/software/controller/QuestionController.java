@@ -93,6 +93,7 @@ public class QuestionController {
         map.put("isChosen",isChosen);
         map.put("quesInfo",question);
         map.put("teaInfo",teacher);
+        System.out.println(isChosen);
         return "StuQuesDetails";
     }
     @RequestMapping(value = "/StuQuesDetailsMobile")
@@ -271,7 +272,7 @@ public class QuestionController {
                               Map<String,Object>map){
         boolean isSured = questionService.sureQuestionStudent(questionid,sno);
         map.put("isSured",isSured);
-        return "redirect:/TeaQuesDetails";
+        return "redirect:/TeaQuesDetails?questionid="+questionid;
     }
 
     @RequestMapping(value = "/sureQuesStuMobile")
@@ -281,7 +282,7 @@ public class QuestionController {
                               Map<String,Object>map){
         boolean isSured = questionService.sureQuestionStudent(questionid,sno);
         map.put("isSured",isSured);
-        return "redirect:/TeaQuesDetailsMobile";
+        return "redirect:/TeaQuesDetailsMobile?questionid="+questionid;
     }
 
 

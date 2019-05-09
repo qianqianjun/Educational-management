@@ -15,8 +15,11 @@
     <link rel="stylesheet" type="text/css" href="css/selectcourse/zftal-ui.css" />
     <link href="css/selectcourse/selectcourse.css" rel="stylesheet" type="text/css">
     <script>
-        function f() {
-            alert("选择成功！");
+        function f(isChosen) {
+            if(isChosen)
+                alert("选择成功！");
+            else
+                alert("您无法选择该题！");
         }
     </script>
     <style type="text/css">
@@ -85,7 +88,7 @@
                         <button class="btn btn-primary btn-sm btn-block" type="button"  disabled="disabled" >选择此论题</button>
                     </a>
                     <a th:case="false" th:href="@{'/StuChooseQues?questionid='+${quesInfo.questionid}}">
-                        <button class="btn btn-primary btn-sm btn-block" th:onclick="'javascript:f();'" type="button" >选择此论题</button>
+                        <button class="btn btn-primary btn-sm btn-block" th:onclick="'javascript:f('+${isChosen}+');'" type="button" >选择此论题</button>
                         <!--<div th:if="${isChosen}==true">-->
 
                         <!--</div>-->
