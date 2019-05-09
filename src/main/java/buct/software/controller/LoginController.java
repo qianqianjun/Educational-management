@@ -8,6 +8,7 @@ import buct.software.utils.UserAgentParser;
 import buct.software.views.SelectCourseView;
 import buct.software.views.StudentGradeIndexView;
 
+import buct.software.views.TeaCourseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +39,8 @@ public class LoginController {
     SelectCourseService selectCourseService;
     @Autowired
     SemesterService semesterService;
-
+    @Autowired
+    SchedulingService schedulingService;
 
     /**
      * 登录页面网址，请求这个地址用于展现登录页面
@@ -82,6 +84,9 @@ public class LoginController {
                 return "student";
             }
             if (type == 1) {
+                int tno = user.getAccount();
+                List<TeaCourseView> teaCourseViews = schedulingService.getCourseInfoByTno(tno);
+                session.setAttribute("CourseTable",teaCourseViews);
                 return "teacher";
             } else {
                 if (platform.equals("mobile")) {

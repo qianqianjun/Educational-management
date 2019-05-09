@@ -1,6 +1,7 @@
 package buct.software.domain;
 
 import lombok.Data;
+import org.apache.ibatis.type.Alias;
 
 
 /**
@@ -9,6 +10,7 @@ import lombok.Data;
  * 修改了这里的 cno 和 tno 的类型。
  */
 @Data
+@Alias("Scheduling")
 public class Scheduling {
     private Integer semesterId;
     private Integer cno;

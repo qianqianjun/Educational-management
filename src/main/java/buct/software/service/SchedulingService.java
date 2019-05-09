@@ -8,6 +8,7 @@ import buct.software.views.MobileSchedulingView;
 import buct.software.views.SchedulingCourseView;
 
 import buct.software.views.SchedulingView;
+import buct.software.views.TeaCourseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -116,5 +117,39 @@ public class SchedulingService {
         return message;
     }
 
+    /**
+     * @author: yuzhongrui
+     * @func: 拿到老师正在开的课程的数据
+     * @param tno
+     * @return
+     */
+    public List<TeaCourseView> getCourseInfoByTno(int tno){
+        List<TeaCourseView> teaCourseViews = schedulingDao.getCourseInfoByTno(tno);
+        String courseTime;
+        String[] handleCourseTime;
+        String finalCourseTime="";//修正之后的课程时间表示
+        for(int i=0;i<teaCourseViews.size();i++){
+            courseTime = teaCourseViews.get(i).getCourseTime();
+            handleCourseTime =  courseTime.split(";");
+            for(int j=0;j<handleCourseTime.length;j++){
+                StringBuffer stringBuilder = new StringBuffer(handleCourseTime[j]);
+                for(int k=0;k<stringBuilder.length();k++){
+                    if(stringBuilder.charAt(k)=='('){
+                        stringBuilder.insert(k+1,"周数: ");
+                    }else if (stringBuilder.charAt(k)==',' && stringBuilder.charAt(k+2)==','){
+                        stringBuilder.insert(k+1,"星期: ");
+                    }else if (stringBuilder.charAt(k)==','){//可能有bug
+                        stringBuilder.insert(k+1,"节数: ");
+                    }
+                }
+//                handleCourseTime[j] = stringBuilder.toString();
+                finalCourseTime += stringBuilder.toString();
+//                System.out.println(handleCourseTime[j]);
+            }
+            teaCourseViews.get(i).setCourseTime(finalCourseTime);
+//            System.out.println(teaCourseViews.get(i).getCourseTime());
+        }
+        return teaCourseViews;
+    }
 
 }

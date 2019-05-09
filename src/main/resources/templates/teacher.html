@@ -47,7 +47,7 @@
         </nav>
     </div>
 </div>
-</html>
+<!--</html>-->
 <!-- 主体 -->
 <div class="container padding-150">
     <div class="row">
@@ -108,9 +108,13 @@
                 <div class="col-md-6">
                     <div class="index_rctx">
                         <h5 class="index_title"><span class="title">课表</span></h5>
-                        <a target="_blank" class="list-group-item">
-                            <span class="title"> 5-8周(7-9节)-星期二-大学生就业与创业指导-北区-B阶-203-汪雪琴 </span>
-                        </a>
+                        <!--<a target="_blank" class="list-group-item">-->
+                            <!--<span class="title"> 5-8周(7-9节)-星期二-大学生就业与创业指导-北区-B阶-203-汪雪琴 </span>-->
+                        <!--</a>-->
+                        <tr th:each="CourseInfo: ${session.CourseTable}">
+                            <td th:text="${CourseInfo.semesterid}"></td>
+                            <td th:text="${CourseInfo.courseTime}"></td>
+                        </tr>
                     </div>
                 </div>
                 <div class="col-md-6">
