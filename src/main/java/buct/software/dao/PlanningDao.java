@@ -13,6 +13,5 @@ public interface PlanningDao {
     public Boolean deleteWillCourse(Integer semesterId,Integer majorId,Integer grade,Integer cno);
     public Boolean checkIfOpen(Integer semesterId,Integer majorId,Integer grade,Integer cno);
     public Boolean changeIfOpen(Integer semesterId,Integer majorId,Integer grade,Integer cno,
-
                                 Boolean ifOpen);
 }

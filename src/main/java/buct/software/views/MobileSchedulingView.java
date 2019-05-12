@@ -9,7 +9,7 @@ public class MobileSchedulingView {
     private Integer cno;
     private String cname;
     private String address;
-    private String time;
+    private String course_time;
     private Integer capacity;
 
 }
