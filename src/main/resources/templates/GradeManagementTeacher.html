@@ -4,28 +4,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title> 教师成绩管理</title>
 <!--Bootstrap布局框架-->
-<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/grade/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/zftal-ui.css">
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script src="js/vue.min.js"></script>
-
-    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-
+<script src="./js/grade/jquery.min.js"></script>
+<script src="./js/grade/bootstrap.min.js"></script>
+<script src="./js/grade/vue.min.js"></script>
+<script src="./js/grade/vue-resource.min.js"></script>
+<script src="./js/jquery-3.3.1.js"></script>
 
 </head>
 
 <body>
-	<header class="navbar-inverse top2">
-		<div class="container" id="navbar_container">
-			<a id="topButton" class="navbar-brand"> 教师成绩管理</a>
-		</div>
-	</header>
+<header class="navbar-inverse top2">
+    <div class="container" id="navbar_container">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">学生成绩查询</span>
+                </button>
+                <A class="navbar-brand" id="topbutton" href="">学生成绩查询</A>
+            </div>
+        </div>
+    </div>
+</header>
 <div id="fix">
 	<div style="width: 100%; padding: 0px; margin: 0px;" id="bodyContainer">
-		<div class="container container-func sl_all_bg" style="min-height: 454px;">
+		<div class="container container-func sl_all_bg" style="min-height: 454px;min-width: 96%;">
 		<!-- 放置页面显示内容 -->
         <!-- 功能操作 -->
 			<div class="row sl_add_btn">
@@ -35,8 +40,8 @@
 						<div class="btn-group" id="but_ancd">
                             <div class="col-md-10">
 
-                                <button v-if="permission" type="button" class="btn btn-default btn_dc" data-toggle="modal" data-target="#insert"> 导 入</button>
-                                <button v-else type="button" class="btn btn-default btn_dc" data-toggle="modal" v-on:click="check()"> 导 入</button>
+                                <button v-if="permission" type="button"  class="btn btn-outline-primary btn-sm" style="border-color:#BEBEBE;color: black;" data-toggle="modal" data-target="#insert"> 导 入</button>
+                                <button v-else type="button"  class="btn btn-outline-primary btn-sm" style="border-color:#BEBEBE;color: black;" data-toggle="modal" v-on:click="check()"> 导 入</button>
 
                             </div>
 						</div>
@@ -90,7 +95,7 @@
 	      <label for="" class="col-sm-4 control-label">
 	      	<span style="color:red;">* </span>学 年</label>
 	        <div class="col-sm-8">
-				<select id="year" style="width:100%;height:30px" v-model="start" @change="get_course(semester,start)">
+				<select id="year" style="width:100%;height:30px;top:9px;position: relative" v-model="start" @change="get_course(semester,start)">
 					<option value="">---请选择---</option>
    					<option value="2019">2019-2020</option>
     				<option value="2018" selected="selected">2018-2019</option>
@@ -102,10 +107,10 @@
 	  </div>
 	 <div class="col-md-2 col-sm-6">
 	    <div class="form-group">
-	      <label class="col-sm-4 control-label">
+	      <label class="col-sm-4 control-label" style="width: 100px">
 	      	<span style="color:red;">* </span>学 期</label>
 	        <div class="col-sm-8">
-				<select id="term" style="width:100%;height:30px" v-model="semester" @change="get_course(semester,start)">
+				<select id="term" style="width:100%;height:30px;top:9px;position: relative" v-model="semester" @change="get_course(semester,start)">
 					<option value="0">---请选择---</option>
                     <option value="-1">全部</option>
                     <option value="1">1</option>
@@ -117,9 +122,9 @@
 	  </div>
       <div class="col-md-3 col-sm-6">
         <div class="form-group">
-          <label for="" class="col-sm-4 control-label"> 课程名称</label>
+          <label for="" class="col-sm-4 control-label">课程名称</label>
             <div class="col-sm-8">
-                <select id="test" style="width:100%;height:30px" v-model="cno">
+                <select id="test" style="width:100%;height:30px;top:9px;position: relative" v-model="cno">
                     <option value="-1" >全部</option>
                     <option v-bind:value="cs.cno" v-for="cs in courses">{{cs.cname}}</option>
                 </select>
@@ -130,7 +135,7 @@
         <div class="form-group">
           <label class="col-sm-4 control-label">学 号</label>
             <div class="col-sm-8">
-                <div class="input-group" style="width:200px">
+                <div class="input-group" style="width:200px;top:9px;position: relative">
                     <input id="stuno" type="text" class="form-control" v-model="sno">
                 </div>
             </div>
@@ -182,7 +187,7 @@
                 </tr>
             </tbody>
         </table>
-        <div style="align-content: center" v-show="showresult">没有符合条件的结果</div>
+        <div style=" margin:0 auto;text-align: center" v-show="showresult">没有符合条件的结果</div>
 
     </div>
     <!-- 表格结束 -->

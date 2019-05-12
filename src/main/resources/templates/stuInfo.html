@@ -1,21 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="./css/jwgl.css">
-    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.bootcss.com/qs/6.5.2/qs.min.js"></script>
-    <title></title>
+    <link rel="stylesheet" href="css/backstage/jquery.mobile-1.4.5.min.css">
+    <script src="js/backstage/jquery.min.js"></script>
+    <script src="js/backstage/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/backstage/vue.min.js"></script>
+    <script src="js/backstage/axios.min.js"></script>
+    <script src="js/backstage/qs.min.js"></script>
 </head>
 <body>
-
 <!--学生信息-->
 <div data-role="page" id="stuInfoVue">
     <!--头部-->
@@ -24,9 +21,9 @@
     <div role="main" class="ui-content" id="stuVue">
         <h3>学生信息</h3>
         <a data-transition="slide" class="ui-btn ui-shadow ui-corner-all ui-icon-search ui-btn-icon-notext"
-           id="btnStuSearch" href="/studentSearch"></a>
+           id="btnStuSearch" href="/studentSearch" data-ajax="false"></a>
         <ul data-role="listview" data-inset="true" v-for="student in pagestudents">
-            <div data-role="collapsible">
+            <div data-role="collapsible" data-ajax="true">
                 <h3>
                     <p style="float: left;">姓名:{{ student.sname }}</p>
                     <p style="float: right;">学号:{{ student.sno }}</p>
@@ -61,82 +58,79 @@
         </div>
     </div>
     <!--底部-->
-    <div data-role="footer" data-position="fixed">
-        <div data-role="navbar">
-            <ul>
-                <li><a href="#addStu">增加学生</a></li> <!--*****************************************-->
-            </ul>
-        </div>
-    </div>
+    <!--<div data-role="footer" data-position="fixed">-->
+    <!--<div data-role="navbar">-->
+    <!--<ul>-->
+    <!--&lt;!&ndash;<li><a href="#addStu">增加学生</a></li>&ndash;&gt;-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--</div>-->
 </div>
 <script type="text/javascript" th:inline="javascript">
-    console.log(2);
-    var stu = new Vue(
-        {
-            el: '#stuInfoVue',
-            data: {
-                allstudents: [[${allStudent}]],
-                pagestudents: [],
-                totalpage: [],
-                pagesize: 5,
-                pagenum: null,
-                currentpage: 0,
+    var stu = new Vue({
+        el: '#stuInfoVue',
+        data: {
+            allstudents: [[${allStudent}]],
+            pagestudents: [],
+            totalpage: [],
+            pagesize: 5,
+            pagenum: null,
+            currentpage: 0,
+        },
+        mounted: function () {
+            console.log(this.allstudents)
+            this.getpage()
+            // this.getpage()
+            // this.getpage()
+            // location.reload()
+        },
+        methods: {
+            getpage: function () {
+                this.pagenum = Math.ceil(this.allstudents.length / this.pagesize) || 1;
+                for (var i = 0; i < this.pagenum; i++) {
+                    this.totalpage[i] = this.allstudents.slice(this.pagesize * i, this.pagesize * (1 + i));
+                }
+                this.pagestudents = this.totalpage[this.currentpage];
             },
-            mounted: function () {
-                console.log(this.allstudents)
-                this.getpage()
-                // this.getpage()
-                // this.getpage()
-                // location.reload()
+            getAllStudents: function () {
+                // this.$http.post("/**********",{sname:this.sname,sno:this.sno,klass:this.klass,sex:this.sex,
+                //     major:this.major,grade:this.grade,phone:this.phone,come_year: this.come_year},
+                //     {emulateJSON:true}).then(function (value) {
+                //         this.allstudents = value.body.data;
+                // });
             },
-            methods: {
-                getpage: function () {
-                    this.pagenum = Math.ceil(this.allstudents.length / this.pagesize) || 1;
-                    for (var i = 0; i < this.pagenum; i++) {
-                        this.totalpage[i] = this.allstudents.slice(this.pagesize * i, this.pagesize * (1 + i));
-                    }
-                    this.pagestudents = this.totalpage[this.currentpage];
-                },
-                getAllStudents: function () {
-                    // this.$http.post("/**********",{sname:this.sname,sno:this.sno,klass:this.klass,sex:this.sex,
-                    //     major:this.major,grade:this.grade,phone:this.phone,come_year: this.come_year},
-                    //     {emulateJSON:true}).then(function (value) {
-                    //         this.allstudents = value.body.data;
-                    // });
-                },
-                prePage: function () {
-                    if (this.currentpage - 1 == -1) return;
-                    this.pagestudents = this.totalpage[--this.currentpage];
-                },
-                nextPage: function () {
-                    if (this.currentpage == this.pagenum - 1) return;
-                    this.pagestudents = this.totalpage[++this.currentpage];
-                },
-                deleteStu: function (parm) {
-                    // if (window.confirm("确认删除该学生吗？")) {
-                    //     this.$http.post("/**********", {sno: parm},
-                    //         {emulateJSON: true}).then(function (value) {
-                    //         if (value.body.code == 1) {
-                    //             alert("删除成功！");
-                    //         } else {
-                    //             alert("删除失败!");
-                    //         }
-                    //     })
-                    // }
-                },
-                editStu: function (parm) {
-                    // this.$http.post("/*********", {sno: parm},
-                    //     {emulateJSON: true}).then(function (value) {
-                    //     if(value.body.code == 1) {
-                    //         alert("修改成功！")
-                    //     } else {
-                    //         alert("修改失败！")
-                    //     }
-                    // })
-                },
-            }
+            prePage: function () {
+                if (this.currentpage - 1 == -1) return;
+                this.pagestudents = this.totalpage[--this.currentpage];
+            },
+            nextPage: function () {
+                if (this.currentpage == this.pagenum - 1) return;
+                this.pagestudents = this.totalpage[++this.currentpage];
+            },
+            deleteStu: function (parm) {
+                // if (window.confirm("确认删除该学生吗？")) {
+                //     this.$http.post("/**********", {sno: parm},
+                //         {emulateJSON: true}).then(function (value) {
+                //         if (value.body.code == 1) {
+                //             alert("删除成功！");
+                //         } else {
+                //             alert("删除失败!");
+                //         }
+                //     })
+                // }
+            },
+            editStu: function (parm) {
+                // this.$http.post("/*********", {sno: parm},
+                //     {emulateJSON: true}).then(function (value) {
+                //     if(value.body.code == 1) {
+                //         alert("修改成功！")
+                //     } else {
+                //         alert("修改失败！")
+                //     }
+                // })
+            },
         }
-    );
-    console.log(stu)
+    });
 </script>
 </body>
+</html>

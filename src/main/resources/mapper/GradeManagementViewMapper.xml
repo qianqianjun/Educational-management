@@ -34,7 +34,7 @@
         <where>
             select_course.semesterid=semester.semesterid and course.cno = planning.cno
             and course.cno = select_course.cno and select_course.semesterid=semester.semesterid
-            and scheduling.cno = select_course.cno and  sno=#{sno}
+            and scheduling.cno = select_course.cno and  sno=#{sno} and totalscore is not null
             <if test="start == 'all' ">
                 and semester.start in ('2016','2017','2018')
             </if>
@@ -82,7 +82,7 @@
         <where>
             select_course.semesterid=semester.semesterid and course.cno = planning.cno
             and course.cno = select_course.cno and scheduling.cno = select_course.cno
-            and scheduling.tno = #{tno}
+            and scheduling.tno = #{tno} and totalscore is not null
             <if test="start == null">
                 and start in ('2016','2017','2018')
             </if>

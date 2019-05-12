@@ -1,9 +1,8 @@
 package buct.software.dao;
 import buct.software.domain.Scheduling;
 import buct.software.domain.SelectCourse;
-import buct.software.views.MobileSchedulingView;
-import buct.software.views.SchedulingView;
-import buct.software.views.SchedulingCourseView;
+import buct.software.views.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,16 +19,18 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SchedulingDao {
-    public SchedulingView getCourse(Integer semesterId,Integer cno);
-    public Boolean deleteCourse(Integer semesterId,Integer cno);
-    public Boolean deleteCourseMajor(Integer semesterId,Integer cno,Integer majorId,Integer grade);
-    public Boolean addCourse(Integer semesterId,Integer cno,Integer tno,
-                             String status,Integer capacity,String address,String time);
-    public Boolean addCourseMajor(Integer semesterId,Integer cno,Integer majorId,Integer grade);
-    public Integer getCourseMajorCount(Integer semesterId,Integer cno);
-    public Integer checkCourseMajor(Integer semesterId,String cno,Integer majorId,Integer grade);
-    public List<MobileSchedulingView> getCoursesByTnoAndTnameAndAddress(Integer tno, String tname,String address);
-    public List<SchedulingCourseView> getAllCourses(String year, String semester, String majorName, Integer grade);
+    public SchedulingView getCourse(@Param("semesterId") Integer semesterId,@Param("cno") Integer cno);
+    public Boolean deleteCourse(@Param("semesterId") Integer semesterId,@Param("cno") Integer cno);
+    public Boolean deleteCourseMajor(@Param("semesterId") Integer semesterId,@Param("cno") Integer cno,@Param("majorId") Integer majorId,@Param("grade") Integer grade);
+    public Boolean addCourse(@Param("semesterId") Integer semesterId,@Param("cno") Integer cno,@Param("tno") Integer tno,
+                             @Param("status") String status,@Param("capacity") Integer capacity,@Param("address") String address,@Param("grade") Integer grade,
+                             @Param("time") String time);
+    public Boolean addCourseMajor(@Param("semesterId") Integer semesterId,@Param("cno") Integer cno,@Param("majorId") Integer majorId,@Param("grade") Integer grade);
+    public Integer getCourseMajorCount(@Param("semesterId") Integer semesterId,@Param("cno") Integer cno);
+    public Integer checkCourseMajor(@Param("semesterId") Integer semesterId,@Param("cno") String cno,@Param("majorId") Integer majorId,@Param("grade") Integer grade);
+    public List<MobileSchedulingView> getCoursesByTnoAndTnameAndAddress(@Param("tno") Integer tno,@Param("tname") String tname,@Param("address") String address);
+    public List<SchedulingCourseView> getAllCourses(@Param("year") String year,@Param("semester") String semester,
+                                                    @Param("majorName") String majorName,@Param("grade") Integer grade);
 
     //几个用于检测冲突的查询方法
 
@@ -47,6 +48,10 @@ public interface SchedulingDao {
 
     public List<String> getRoomTaskTime(Scheduling scheduling);
 
-
+    /**
+     * @author: yuzhongrui
+     *
+     */
+    public List<TeaCourseView> getCourseInfoByTno(int tno);
 
 }
