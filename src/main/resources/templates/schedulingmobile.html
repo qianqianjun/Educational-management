@@ -98,7 +98,7 @@
 				<td th:text="${willCourse.capacity}"></td>
 				<td th:text="${#strings.substringBefore(willCourse.course_time,',')+'周,周'+
 							#strings.substringBefore(#strings.substringAfter(willCourse.course_time,','),',') + ',' +
-							#strings.substringAfter(#strings.substringAfter(willCourse.course_time,','),',') + '节' }"></td>
+							#strings.substringBefore(#strings.substringAfter(willCourse.course_time,','),')') + '节)' }"></td>
 			</tr>
 			</tbody>
 		</table>
