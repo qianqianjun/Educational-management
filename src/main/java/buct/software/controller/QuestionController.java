@@ -93,6 +93,7 @@ public class QuestionController {
         map.put("isChosen",isChosen);
         map.put("quesInfo",question);
         map.put("teaInfo",teacher);
+        System.out.println(isChosen);
         return "StuQuesDetails";
     }
     @RequestMapping(value = "/StuQuesDetailsMobile")
@@ -243,6 +244,25 @@ public class QuestionController {
         }//添加学生详细信息
         map.put("choices",questionStudentChooses);
         map.put("students",students);
+
+        //判断有无选择成功
+        HttpSession session = request.getSession();
+
+        session.setAttribute("snoSured",question.getSno());
+
+        Object snoSured = session.getAttribute("snoSured");
+        int snoSuredInt;
+        if(snoSured!=null){
+            snoSuredInt = (int)snoSured;
+        }else{
+            snoSuredInt = -1;
+        }
+        boolean isSured = false;
+        if(snoSuredInt!=-1 && snoSuredInt==question.getSno()){
+            isSured = true;
+        }
+        map.put("isSured",isSured);
+
         return "TeaQuesDetails";
     }
 
@@ -261,6 +281,7 @@ public class QuestionController {
         }//添加学生详细信息
         map.put("choices",questionStudentChooses);
         map.put("students",students);
+
         return "TeaQuesDetailsMobile";
     }
 
@@ -271,7 +292,9 @@ public class QuestionController {
                               Map<String,Object>map){
         boolean isSured = questionService.sureQuestionStudent(questionid,sno);
         map.put("isSured",isSured);
-        return "redirect:/TeaQuesDetails";
+        HttpSession session = request.getSession();
+        session.setAttribute("snoSured",sno);
+        return "redirect:/TeaQuesDetails?questionid="+questionid;
     }
 
     @RequestMapping(value = "/sureQuesStuMobile")
@@ -281,7 +304,7 @@ public class QuestionController {
                               Map<String,Object>map){
         boolean isSured = questionService.sureQuestionStudent(questionid,sno);
         map.put("isSured",isSured);
-        return "redirect:/TeaQuesDetailsMobile";
+        return "redirect:/TeaQuesDetailsMobile?questionid="+questionid;
     }
 
 

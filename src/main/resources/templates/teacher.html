@@ -2,139 +2,154 @@
 <html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <header th:replace="app/header::static"></header>
 <body class="body-container">
-<div class="navbar navbar-default navbar-static-top top1" th:fragment="header">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand logo_2" href="">
-                <img src="images/logo_jw_w.png" style="margin-top:-3px" />
-                <span id="xtmc">盗版教务管理系统&nbsp;&nbsp;
-                    <span th:if="${userinfo.type}==0"> 学生端</span>
-                    <span th:if="${userinfo.type}==1"> 教师端</span>
-                    <span th:if="${userinfo.type}==2"> 后台系统</span>
-                </span>
-            </a>
-        </div>
-        <ul class="nav navbar-nav navbar-right  hidden-xs">
-            <li>
-                <a href="" class="dropdown-toggle grxx" data-toggle="dropdown" style="color: white;font-weight: bolder;font-size: 20px;">
-                    欢迎您 XX
-                    <span th:if="${userinfo.type}==0">同学</span>
-                    <span th:if="${userinfo.type}==1">老师</span>
-                    <span th:if="${userinfo.type}==2">管理员</span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="divider"></li>
-                    <li><a href="/logout"><i class="top_png tc"></i>退出</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</div>
+<div th:replace="app/header::header"></div>
 <!-- 菜单  -->
-<div class="navbar_index" th:fragment="menu">
+<div class="navbar_index" >
     <div class="container" id="myDiv1">
         <nav id="cdNav" class="navbar-collapse bs-navbar-collapse collapse" role="navigation" aria-expanded="false">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a role="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">毕业课设<b class="caret"></b></a>
+                    <a role="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">关于成绩<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                        <li><a target="_blank" href="TeaLookThroughQues">查看论题</a></li>
-                        <li><a target="_blank" href="TeaAddQues">发布论题</a></li>
-                        <li><a target="_blank" href="TeaAddScore">登录成绩</a></li>
+                        <li><a target="_blank" href="/gradeinfoteacher">成绩管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a role="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">关于论题<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a target="_blank" href="/TeaLookThroughQues">查看论题</a></li>
+                        <li><a target="_blank" href="/TeaAddQues">添加论题</a></li>
+                        <li><a target="_blank" href="/TeaAddScore">成绩评定</a></li>
                     </ul>
                 </li>
             </ul>
         </nav>
     </div>
 </div>
-</html>
 <!-- 主体 -->
-<div class="container padding-150">
+<div class="container padding-150" style="padding-bottom: 100px;">
     <div class="row">
-        <div class="col-md-3 col-sm-4">
+        <div class="col-md-2 col-sm-4">
             <div class="index_wdyy">
                 <h3><span>我的应用</span><a href="" class="sz" id="wdyy_szbtn"></a></h3>
                 <ul class="list-unstyled mCustomScrollbar _mCS_1 mCS_no_scrollbar" style="height: 350px;">
-                    <li class="col-md-4 col-sm-4 col-xs-6">
-                        <a href="TeaLookThroughQues" target="_blank" title="查看论题">
-                            <img src="images/ico_but42.png" alt="查看论题" />
+                    <li class="col-md-6 col-sm-6 col-xs-6">
+                        <a href="/TeaLookThroughQues" target="_blank">
+                            <img src="images/ico_but30.png"/>
                             <h5>查看论题</h5>
                         </a>
-                        <a href="TeaAddQues" target="_blank" title="发布论题">
-                            <img src="images/ico_but42.png" alt="发布论题" />
-                            <h5>发布论题</h5>
+                    </li>
+                    <li class="col-md-6 col-sm-6 col-xs-6">
+                        <a href="/TeaAddQues" target="_blank">
+                            <img src="images/ico_but42.png"/>
+                            <h5>添加论题</h5>
                         </a>
-                        <a href="TeaAddScore" target="_blank" title="登录成绩">
-                            <img src="images/ico_but42.png" alt="登录成绩" />
-                            <h5>登录成绩</h5>
+                    </li>
+                    <li class="col-md-6 col-sm-6 col-xs-6">
+                        <a href="/TeaAddScore" target="_blank">
+                            <img src="images/ico_but46.png"/>
+                            <h5>成绩评定</h5>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="col-md-9 col-sm-8">
+        <div class="col-md-10 col-sm-8">
             <div class="row">
                 <div class="col-md-12">
                     <div class="index_grxx">
                         <div class="row">
                             <div class="col-md-5" id="yhxxIndex">
                                 <div class="media">
-                                    <a class="pull-left" href=""> <img class="media-object" alt="110x110" src="images/photo_cxXszp.html" style="width: 110px; height: 110px;" /> </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading">高谦</h4>
-                                        <p>信息科学与技术学院 计科1601</p>
+                                        <h4 class="media-heading">[[${teainfo.tname}]] [[${teainfo.rank}]] </h4>
+                                        <p>性别： [[${teainfo.sex}]]</p>
+                                        <p>所在学院：[[${teainfo.collegeId}]] </p>
+                                        <p>办公地点: [[${teainfo.office}]]</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-7 mCustomScrollbar _mCS_3 mCS_no_scrollbar" id="newsnotice" style="height: 150px;">
-                                <div id="mCSB_3" class="mCustomScrollBox mCS-dark-3 mCSB_vertical mCSB_inside" tabindex="0">
-                                    <div id="mCSB_3_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
-                                        <h5 class="index_title"><span class="title">通知</span></h5>
-                                        <div class="list-group">
-                                            <a href="" target="_blank" class="list-group-item">
-														<span class="title">
-														<font color="black">【通知】</font> 关于2017年12月大学外语四、六级考试报名及有关...
-														</span>
-                                                <i class="index_png new"></i>
-                                                <span class="time float_r">2017-09-04</span>
-                                            </a>
+                            <div class="col-md-7 column">
+                                <div class="carousel slide" id="carousel-942744">
+                                    <div class="carousel-inner">
+                                        <div class="item">
+                                            <img alt="" src="images/lunbo1.jpg" />
+                                            <div class="carousel-caption"></div>
+                                        </div>
+                                        <div class="item">
+                                            <img alt="" src="images/lunbo2.jpg" />
+                                            <div class="carousel-caption"></div>
+                                        </div>
+                                        <div class="item active">
+                                            <img alt="" src="images/lunbo3.jpg" />
+                                            <div class="carousel-caption"></div>
                                         </div>
                                     </div>
+                                    <a class="left carousel-control" href="#carousel-942744" data-slide="prev">
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-942744" data-slide="next">
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="index_rctx">
+                    <div class="index_rctx" style="height: 418px;">
                         <h5 class="index_title"><span class="title">课表</span></h5>
-                        <a target="_blank" class="list-group-item">
-                            <span class="title"> 5-8周(7-9节)-星期二-大学生就业与创业指导-北区-B阶-203-汪雪琴 </span>
-                        </a>
+                        <p th:if="${#lists.isEmpty(session.CourseTable)}" style="margin-left: 20px;">当前没有选课信息</p>
+                        <table class="table table-striped table-bordered table-hover table-responsive">
+                            <thead>
+                            <tr>
+                                <th data-priority="6">课程号</th>
+                                <th data-priority="5">课程名称</th>
+                                <th data-priority="4">上课地点</th>
+                                <th data-priority="3">上课时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="CourseInfo: ${session.CourseTable}">
+                                <td th:text="${CourseInfo.semesterid}"></td>
+                                <td th:text="${CourseInfo.courseName}"></td>
+                                <td th:text="${CourseInfo.address}"></td>
+                                <td th:text="${CourseInfo.courseTime}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="index_rctx">
-                        <h5 class="index_title"><span class="title">文件</span></h5>
-                        <div class="list-group">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="index_rctx">
-                        <h5 class="index_title"><span class="title">消息</span></h5>
-                        <div class="list-group">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="index_rctx">
-                        <h5 class="index_title"><span class="title">成绩</span></h5>
-                        <div class="list-group">
-                            <a class="list-group-item">
-                                <span class="title"> 2018-2019-1-专业必修-数据库原理 </span>
-                                <span class="fraction float_r">100</span>
-                            </a>
+                    <div class="index_rctx" style="height: 418px;">
+                        <div class="index_wdyy">
+                            <h5 class="index_title"><span class="title">常去的网站</span></h5>
+                            <div class="list-group">
+                                <ul class="list-unstyled mCustomScrollbar _mCS_1 mCS_no_scrollbar" style="height: 350px;">
+                                    <li class="col-md-6 col-sm-6 col-xs-6">
+                                        <a href="http://www.cwc.buct.edu.cn/" target="_blank">
+                                            <img src="images/ico_but18.png"/>
+                                            <h5>财务处</h5>
+                                        </a>
+                                    </li>
+                                    <li class="col-md-6 col-sm-6 col-xs-6">
+                                        <a href="http://graduate.buct.edu.cn/" target="_blank">
+                                            <img src="images/ico_but30.png"/>
+                                            <h5>研究生院</h5>
+                                        </a>
+                                    </li>
+                                    <li class="col-md-6 col-sm-6 col-xs-6">
+                                        <a href="http://news.buct.edu.cn/" target="_blank">
+                                            <img src="images/ico_but36.png"/>
+                                            <h5>新闻网</h5>
+                                        </a>
+                                    </li>
+                                    <li class="col-md-6 col-sm-6 col-xs-6">
+                                        <a href="http://jiaowuchu.buct.edu.cn/" target="_blank">
+                                            <img src="images/ico_but42.png"/>
+                                            <h5>教务处</h5>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

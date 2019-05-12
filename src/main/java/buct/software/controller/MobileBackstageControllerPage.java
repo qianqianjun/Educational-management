@@ -3,6 +3,7 @@ package buct.software.controller;
 import buct.software.domain.Semester;
 import buct.software.domain.Student;
 import buct.software.domain.Teacher;
+import buct.software.domain.User;
 import buct.software.service.PowerService;
 import buct.software.service.SemesterService;
 import buct.software.service.StudentService;
@@ -27,7 +28,15 @@ public class MobileBackstageControllerPage {
     SemesterService semesterService;
 
     @RequestMapping("/GoMobileHomePage")
-    public String goMobileHomePage() {
+    public String goMobileHomePage(HttpServletRequest httpServletRequest,Map map) {
+        User user =(User) httpServletRequest.getSession().getAttribute("user");
+        map.put("name",user.getTname());
+        System.out.println(user);
+        Semester currentSemesterInfo = semesterService.getCurrentSemesterInfo();
+//        currentSemesterInfo.get
+        map.put("start",currentSemesterInfo.getStart());
+        map.put("end",currentSemesterInfo.getEnd());
+        map.put("semester",currentSemesterInfo.getSemester());
         return "mobileHomePage";
     }
 
@@ -39,11 +48,20 @@ public class MobileBackstageControllerPage {
         return "powInfo";
     }
 
+    /**
+     * @author 高谦修改
+     * @param request
+     * @param map
+     * @return
+     */
     @RequestMapping("/GoStudentInfo")
-    public String goStudentInfo(HttpServletRequest request) {
+    public String goStudentInfo(HttpServletRequest request,Map<String,Object> map) {
         List<Student> allStudent = studentService.getAllStudent();
-        request.getSession().setAttribute("allStudent", allStudent);
-        return "forward:/mStudentPage";
+//        request.getSession().setAttribute("allStudent", allStudent);
+        map.put("allStudent",allStudent);
+        System.out.println(allStudent.size());
+        return "stuInfo";
+//        return "forward:/mStudentPage";
     }
 
     @RequestMapping("/mStudentPage")

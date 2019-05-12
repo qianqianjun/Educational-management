@@ -1,180 +1,139 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="navi">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/GoHomePage">
+                        <span data-feather="home"></span>
+                        首页
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <span data-feather="activity"></span>
+                        论题浏览
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ManageLookThroughGrade">
+                        <span data-feather="airplay"></span>
+                        成绩浏览
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div th:fragment="head">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>毕业设计管理</title>
+    <title>教务后台管理系统</title>
+
+    <script src="./js/vue.js"></script>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-
+    <!--<link href="static/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
+    <!--integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
     <!-- Custom styles for this template -->
-    <link href="../static/css/dashboard.css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery-1.js"></script>
-    <!--Bootstrap布局框架-->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <!--<link rel="stylesheet" type="text/css" href="css/zftal-ui.css" />-->
-    <!--jQuery常用工具扩展库：基础工具,资源加载工具,元素尺寸相关工具 -->
-    <script type="text/javascript" src="js/jquery_008.js" charset="utf-8"></script>
-    <!--jQuery.chosen美化插件-->
-    <link rel="stylesheet" type="text/css" href="css/chosen-min.css" />
-    <script type="text/javascript" src="js/jquery_016.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/zh_CN-min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/jquery_017.js" charset="utf-8"></script>
-    <!--Vue 外部引用-->
-    <!--<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>-->
-    <!--<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>-->
-    <script>
-        function judge(ischosen){
-            if(ischosen==false){
-                alert('该学生未被绑定!');
-            }
-            if(ischosen==true){
-              alert('解除绑定成功!');
-            }
-        }
-    </script>
-</head>
-
-<body>
+    <link href="css/backstage/bootstrap4.min.css" rel="stylesheet">
+    <link href="css/backstage/my_dashboard.css" rel="stylesheet">
+    <script src="js/backstage/my_axios.min.js"></script>
+</div>
+<div th:fragment="banner">
     <nav class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">毕业设计管理</a>
-    <!--input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"-->
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-        <a class="nav-link" href="GraduationProject.html">登出</a>
-        </li>
-    </ul>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">教务后台管理系统</a>
+        <!--input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"-->
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="/logout">登出</a>
+            </li>
+        </ul>
     </nav>
+</div>
+<div class="container-fluid" id="TI">
+    <div class="row">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" method="post" th:action="@{/ManageQues}">
 
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active">
-                            <span data-feather="activity"></span>
-                            论题浏览
-                            <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/ManageLookThroughGrade">
-                            <span data-feather="airplay"></span>
-                            成绩浏览
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/ManageScore">
-                            <span data-feather="edit"></span>
-                            成绩修改
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                <form class="form-inline mt-2 mt-md-0">
-                    <!-- <div class="form-group">
-                    <label for="email" class="col-sm-5 control-label" style="font-size: 15px">论题主管学院</label>
-                    <div class="col-sm-6">
-                    Single button
-                    <select class="form-control">
-                    <option>材料科学与技术学院</option>
-                    <option>化学工程学院</option>
-                    <option>理学院</option>
-                    <option>信息科学与技术学院</option>
-                    <option>生命科学与技术学院</option>
-                    </select>
+            <form class="form-inline mt-2 mt-md-0" method="post" th:action="@{/ManageQues}">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">导师工号</span>
                     </div>
-                    <div class="col-sm-2 tips"></div>
-                    </div> -->
-                    <div class="form-group">
-                        <label for="email" class="col-sm-5 control-label" style="font-size: 15px">论题主管专业</label>
-                        <div class="col-sm-6">
-                            <select class="form-control">
-                                <option>计算机科学与技术</option>
-                                <option>自动化</option>
-                                <option>数字媒体技术</option>
-                                <option>生物工程</option>
-                                <option>通信工程</option>
-                                </select>
-                        </div>
-                        <div class="col-sm-2 tips"></div>
-                    </div>
-                    <input class="form-control mr-sm-2" type="text" placeholder="导师工号" aria-label="Search">
-                    <input class="form-control mr-sm-2" type="text" placeholder="学生学号" aria-label="Search">
-                    <!-- <input class="form-control mr-sm-2" type="text" placeholder="专业" aria-label="Search">
-                    <input class="form-control mr-sm-2" type="text" placeholder="年级" aria-label="Search">
- -->                <button class="btn btn-outline-primary mr-sm-2" type="submit">
-                        <span data-feather="search"></span>
-                        搜索
-                    </button>
-                    <!-- <button class="btn btn-outline-primary mr-sm-2" type="submit">
-                        <span data-feather="user-plus"></span>
-                        新生录入
-                    </button> -->
-                </form>
-
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm" >
-                        <thead>
-                            <tr>
-                                <th>论题ID</th>
-                                <th>论题名称</th>
-                                <th>论题内容</th>
-                                <th>难易程度</th>
-                                <th>导师工号</th>
-                                <th>专业ID</th>
-                                <th>学生学号</th>
-                                <th>是否选中</th>
-                                <th>操作</th>
-
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="quesInfo: ${quesInfos}">
-                                <td th:text="${quesInfo.questionid}"></td>
-                                <td th:text="${quesInfo.topic}"></td>
-                                <td th:text="${quesInfo.content}"></td>
-                                <td th:text="${quesInfo.difficulty}"></td>
-                                <td th:text="${quesInfo.tno}"></td>
-                                <td th:text="${quesInfo.majorid}"></td>
-                                <td th:text="${quesInfo.sno}"></td>
-                                <td th:text="${quesInfo.ischosen}"></td>
-                                <td>
-                                    <form method="post" action="#" th:action="@{/ManageQues}">
-                                        <input type="text" name="questionid" th:value="${quesInfo.questionid}" style="display:none;">
-                                        <input type="submit" class="btn btn-outline-primary btn-sm" value="解除绑定">
-                                    </form>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <input class="form-control mr-sm-2" type="text" th:name="tno" v-model="quesInfos.tno"
+                           placeholder="导师工号"
+                           aria-label="Search">
                 </div>
-            </main>
-        </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">学生学号</span>
+                    </div>
+                    <input class="form-control mr-sm-2" type="text" th:name="sno" v-model="quesInfos.sno"
+                           placeholder="学生学号"
+                           aria-label="Search">
+                </div>
+
+                <button class="btn btn-outline-primary mr-sm-2" type="submit">
+                    <span data-feather="search"></span>
+                    搜索
+                </button>
+            </form>
+            <h1></h1>
+            <!--<a href="/TeachersAddAction" class="btn btn-outline-primary mr-sm-2" role="button">
+                <span data-feather="user-plus"></span>
+                添加教师
+            </a>-->
+
+            <h1></h1>
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">论题ID</th>
+                    <th scope="col">论题名称</th>
+                    <th scope="col">论题内容</th>
+                    <th scope="col">难易程度</th>
+                    <th scope="col">导师工号</th>
+                    <th scope="col">专业ID</th>
+                    <th scope="col">学生学号</th>
+                    <th scope="col">是否选中</th>
+                    <th scope="col">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="quesInfo:${quesInfos}">
+                    <td th:text="${quesInfo.questionid}"></td>
+                    <td th:text="${quesInfo.topic}"></td>
+                    <td th:text="${quesInfo.content}"></td>
+                    <td th:text="${quesInfo.difficulty}"></td>
+                    <td th:text="${quesInfo.tno}"></td>
+                    <td th:text="${quesInfo.majorid}"></td>
+                    <td th:text="${quesInfo.sno}"></td>
+                    <td th:text="${quesInfo.ischosen}"></td>
+                    <td>
+                        <form method="post" action="#" th:action="@{/ManageQues}">
+                            <input type="text" name="questionid" th:value="${quesInfo.questionid}" style="display:none;">
+                            <input type="submit" class="btn btn-outline-primary btn-sm" value="解除绑定">
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div>
+                <button @click="prePage()" id="btnprepage">上一页</button>
+                <button @click="nextPage()" id="btnnextpage">下一页</button>
+                <input type="text" v-model="jumppage" style="width: 40px">
+                <button @click="leapPage()">跳转</button>
+                <!--<label>当前{{ currentpage+1 }}/{{ pagenum }}</label>-->
+            </div>
+        </main>
     </div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-        feather.replace()
-    </script>
-
-    <!-- Graphs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+</div>
 </body>
 </html>

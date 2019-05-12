@@ -5,30 +5,18 @@
 <head>
     <title>成绩管理</title>
     <meta charset="utf-8">
-	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
-	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./css/grade/jquery.mobile-1.4.5.min.css">
+	<script src="./js/grade/jquery.min.js"></script>
+	<script src="./js/grade/jquery.mobile-1.4.5.min.js"></script>
+	<script src="./js/grade/jquery.min.js(1)"></script>
+	<script src="./js/grade/bootstrap.min.js"></script>
 
 
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
-	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
-	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
-    <!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
-    <!--<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
-    <!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
-    <!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-	<!--<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">-->
-	<!--<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>-->
-	<!--<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+	<script src="./js/grade/vue.js"></script>
+	<script src="./js/grade/vue.min.js"></script>
+	<script src="./js/grade/vue-resource.min.js"></script>
 
-	<!--<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>-->
-	<!--<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>-->
-
-    <!--<link type="text/css" rel="stylesheet" th:href="@{/css/userHome.css}">-->
-	<!-- href="css/test.css" -->
 	<style type="text/css">
 		th {
 		    border-bottom: 1px solid #d6d6d6;
@@ -48,11 +36,12 @@
 <body>
 	<div data-role="page" id="pageone">	
 	<!-- 面板 -->
-	<div data-role="panel" id="myPanel"> 
-    	<a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
-    	<a href="#" class="ui-btn ui-icon-calendar ui-btn-icon-left">查看课表</a>
-    	<a href="GradeManagement.html" class="ui-btn ui-icon-search ui-btn-icon-left" data-ajax=false>成绩管理</a>
-    	<a href="#" class="ui-btn ui-icon-gear ui-btn-icon-left">毕业系统</a>
+	<div data-role="panel" id="myPanel">
+		<a href="/index" data-ajax="false"  class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
+		<a href="/TeaAddQues " data-ajax="false"  class="ui-btn ui-icon-info ui-btn-icon-left">发布论题</a>
+		<a href="/TeaLookThroughQuesMobile" data-ajax="false"  class="ui-btn ui-icon-info ui-btn-icon-left">查看论题</a>
+		<a href="/TeaAddScore" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">毕设成绩评定</a>
+		<a href="/gradeteachermobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">学生成绩导入</a>
   	</div>  	
   	<!-- 头部 -->
 	<div data-role="header">
@@ -66,7 +55,6 @@
       			<fieldset data-role="fieldcontain">
 	        		<label>学年</label>
 	        		<select v-model="start" @change="get_course(semester,start)">
-	        			<option value="all">全部</option>
                         <option value="2019">2019-2020</option>
 		         		<option value="2018">2018-2019</option>
 		         		<option value="2017">2017-2018</option>
@@ -77,7 +65,7 @@
 	        		<label>学期</label>
 	        		<select v-model="semester" @change="get_course(semester,start)">
 						<option value="0">--请选择--</option>
-						<option value="all">全部</option>
+						<option value="-1">全部</option>
 		         		<option value="1">1</option>
 		         		<option value="2">2</option>
 		         		<option value="3">3</option>
@@ -114,14 +102,9 @@
       		<thead>
         		<tr>
 			        <th>查看</th>
-			        <th>学年</th>
-			        <th>学期</th>
-			        <th data-priority="1">课程代码</th>
 			        <th>课程名称</th>
-			        <th data-priority="1">开课学院</th>
 			        <th>学分</th>
 			        <th data-priority="1">学号</th>
-			        <th data-priority="1">姓名</th>
 			        <th data-priority="1">成绩</th>
 			        <th>修改</th>
         		</tr>
@@ -131,14 +114,9 @@
 			        <td>
 			        	<a href="#myPopupDialog" data-rel="popup" data-position-to="window" v-on:click="detail(grade)">查看</a>
 			        </td>
-			        <td><p>{{grade.start}}</p></td>
-			        <td><p>{{grade.semester}}</p></td>
-			        <td><p>{{grade.cno}}</p></td>
 			        <td><p>{{grade.cname}}</p></td>
-			        <td><p>{{grade.college}}</p></td>
 			        <td><p>{{grade.credit}}</p></td>
 			        <td><p>{{grade.sno}}</p></td>
-			        <td><p>{{grade.sname}}</p></td>
 			        <td><p>{{grade.totalscore}}</p></td>
 			        <td>
 			        	<a v-if="permission" href="#myPopup" data-rel="popup" data-position-to="window" v-on:click="detail(grade)" >修改</a>
@@ -156,8 +134,8 @@
                 <h4>查看学生成绩</h4>
             </div>
             <div data-role="main" class="ui-content">
-                <p>学号：{{current_display.sno}}  姓名：</p>
-                <table id="table1" style="text-align:center">
+                <p style="text-align: center">学 号：{{current_display.sno}} </p>
+                <table id="table1" style="width: 250px; text-align: center">
                     <thead>
                         <tr>
                             <td class="align-center">分项</td>
@@ -201,8 +179,8 @@
 				<h4>修改学生成绩</h4>
 			</div>
 			<div data-role="main" class="ui-content" >
-				<p>学号：{{current_display.sno}}  姓名：</p>
-				<table id="table2" style="text-align:center">
+				<p style="text-align: center">学号：{{current_display.sno}} </p>
+				<table id="table2" style="width: 250px; text-align: center">
 					<thead>
 					<tr>
 						<td class="align-center">分项</th>
@@ -214,17 +192,17 @@
 					<tr>
 						<td valign="middle">平时</td>
 						<td valign="middle">{{current_display.pOrdinary}}%</td>
-						<td><input type="txet" placeholder="平时" v-model="gradeone"></td>
+						<td><input type="txet" placeholder="平时" v-model="gradeone" style="width: 40px"></td>
 					</tr>
 					<tr>
 						<td valign="middle">实验</td>
 						<td valign="middle">{{current_display.pExperiment}}%</td>
-						<td><input type="txet" placeholder="实验" v-model="gradetwo"></td>
+						<td><input type="txet" placeholder="实验" v-model="gradetwo" style="width: 40px"></td>
 					</tr>
 					<tr>
 						<td valign="middle">期末</td>
 						<td valign="middle">{{current_display.pExam}}%</td>
-						<td><input type="txet" placeholder="期末" v-model="gradethree"></td>
+						<td><input type="txet" placeholder="期末" v-model="gradethree"style="width: 40px"></td>
 					</tr>
 					<tr>
 						<td valign="middle">总评</td>

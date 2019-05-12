@@ -4,16 +4,16 @@
 	<!-- meta使用viewport以确保页面可自由缩放 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
-	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./css/grade/jquery.mobile-1.4.5.min.css">
+	<script src="./js/grade/jquery.min.js"></script>
+	<script src="./js/grade/jquery.mobile-1.4.5.min.js"></script>
+	<script src="./js/grade/jquery.min.js(1)"></script>
+	<script src="./js/grade/bootstrap.min.js"></script>
 
 
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
-	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
-	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+	<script src="./js/grade/vue.js"></script>
+	<script src="./js/grade/vue.min.js"></script>
+	<script src="./js/grade/vue-resource.min.js"></script>
 
 	<style type="text/css">
 		th {
@@ -34,13 +34,13 @@
 	<div data-role="page" id="pageone">
 	
 	<!-- 面板 -->
-	<div data-role="panel" id="myPanel"> 
-    	<a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
-    	<a href="#" class="ui-btn ui-icon-lock ui-btn-icon-left">权限管理</a>
-    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">学生信息</a>
-    	<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">教师信息</a>
-    	<a href="#" class="ui-btn ui-icon-calendar ui-btn-icon-left">学期管理</a>
-    	<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-left">排课系统</a>
+	<div data-role="panel" id="myPanel">
+		<a href="/index" data-ajax="false" class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
+		<a href="/coursetablemobile" data-ajax="false" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
+		<a href="/selectcoursemobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
+		<a href="/gradeinfomobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">成绩查询</a>
+		<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">已选论题</a>
+		<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">查看论题</a>
   	</div>
   	
   	<!-- 头部 -->
@@ -89,12 +89,9 @@
 		<div id="tablebox">
 
   		<table data-role="table" data-mode="columntoggle:none" class="ui-shadow" >
-      		<thead>
+      		<thead style="text-align:center">
         		<tr>
 					<th>查看</th>
-					<th>学年</th>
-					<th>学期</th>
-					<th>课程代码</th>
 					<th>课程名称</th>
 					<th>开课学院</th>
 					<th>学分</th>
@@ -107,9 +104,6 @@
 					<td>
 						<a href="#myPopupDialog" data-rel="popup" data-position-to="window" v-on:click="detail(grade)">查看</a>
 					</td>
-					<td><p>{{grade.start}}</p></td>
-					<td><p>{{grade.semester}}</p></td>
-					<td><p>{{grade.cno}}</p></td>
 					<td><p>{{grade.cname}}</p></td>
 					<td><p>{{grade.college}}</p></td>
 					<td><p>{{grade.credit}}</p></td>
@@ -130,37 +124,38 @@
 <!--弹窗-->
 		<div data-role="popup" id="myPopupDialog">
 			<div data-role="header">
-				<h4>查看学生成绩</h4>
+				<h4>查看课程成绩</h4>
 			</div>
 			<div data-role="main" class="ui-content">
-				<p>课程号:{{current_display.cno}} 课程名:{{current_display.cname}}</p>
-				<table id="table">
+				<p>课程号:{{current_display.cno}} </p>
+				 <p>课程名:{{current_display.cname}}</p>
+				<table id="table" style="width: 250px; text-align: center">
 					<thead>
 					<tr>
-						<th>分项</th>
-						<th>比例</th>
-						<th>成绩</th>
+						<th>分 项 </th>
+						<th>比 例 </th>
+						<th>成 绩 </th>
 					</tr>
 					</thead>
 					<tbody>
 					<tr>
-						<td><p>平时</p></td>
+						<td><p>平 时 </p></td>
 						<td><p>{{current_display.pOrdinary}}</p></td>
 						<td><p>{{current_display.gOrdinary}}</p></td>
 					</tr>
 					<tr>
-						<td><p>实验</p></td>
+						<td><p>实 验 </p></td>
 						<td><p>{{current_display.pExperiment}}</p></td>
 						<td><p>{{current_display.gExperiment}}</p></td>
 					</tr>
 					<tr>
-						<td><p>平时</p></td>
+						<td><p>期 末 </p></td>
 						<td><p>{{current_display.pExam}}</p></td>
 						<td><p>{{current_display.gExam}}</p></td>
 					</tr>
 					<tr>
-						<td><p>总评</p></td>
-						<td><p>100%</p></td>
+						<td><p>总 评   </p></td>
+						<td><p> 100%   </p></td>
 						<td><p>{{current_display.totalscore}}</p></td>
 					</tr>
 				</table>

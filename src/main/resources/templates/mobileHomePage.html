@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-
     <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
     <title></title>
 </head>
@@ -11,9 +10,9 @@
 <div data-role="page" id="indexVue">
     <!--面板-->
     <div data-role="panel" id="myPanel">
-        <a href="/GoPowerInfo" data-transition="slide" class="ui-btn ui-icon-lock ui-btn-icon-left">权限管理</a>
-        <a href="/GoStudentInfo" data-transition="slide" class="ui-btn ui-icon-info ui-btn-icon-left" @click="getAllStudents()">学生信息</a>
-        <a href="/GoTeachearInfo" data-transition="slide" class="ui-btn ui-icon-info ui-btn-icon-left" @click="getAllTeachers()">教师信息</a>
+        <a href="/GoPowerInfo" data-transition="slide" class="ui-btn ui-icon-lock ui-btn-icon-left" data-ajax="false">权限管理</a>
+        <a href="/GoStudentInfo" data-transition="slide" class="ui-btn ui-icon-info ui-btn-icon-left" data-ajax="false">学生信息</a>
+        <a href="/GoTeachearInfo" data-transition="slide" class="ui-btn ui-icon-info ui-btn-icon-left" data-ajax="false">教师信息</a>
         <a href="/GoSemesterInfo" data-transition="slide" class="ui-btn ui-icon-calendar ui-btn-icon-left">学期管理</a>
         <a href="/schedulingmobile?tno=-1&tname=null&address=null" data-transition="slide" class="ui-btn ui-icon-edit ui-btn-icon-left">排课系统</a>
     </div>
@@ -26,28 +25,9 @@
     </div>
     <!--主部-->
     <div role="main" class="ui-content">
-        <h1>欢迎</h1>
-    </div>
+        <h1>[[${start}]] 至 [[${end}]]第[[${semester}]]学期</h1>
+        <h2>欢迎</h2>
+        <h3>[[${name}]] 管理员</h3>
+        </div>
 </div>
 </body>
-<script>
-    var stu = new Vue ({
-        el: '#indexVue',
-        methods: {
-            getAllStudents:function () {
-                // alert("stu");
-                // this.$http.post("/**********",
-                //     {emulateJSON:true}).then(function (value) {
-                //         this.allstudents = value.body.data;
-                // });
-            },
-            getAllTeachers:function () {
-                // alert("tea");
-                // this.$http.post("/**********",
-                //     {emulateJSON:true}).then(function (value) {
-                //         this.allstudents = value.body.data;
-                // });
-            },
-        }
-    })
-</script>

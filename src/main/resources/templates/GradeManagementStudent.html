@@ -1,31 +1,38 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title> 学生成绩查询</title>
 
 <!--Bootstrap布局框架-->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/zftal-ui.css">
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="./css/grade/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./css/grade/zftal-ui.css">
+<script src="./js/grade/jquery.min.js"></script>
+<script src="./js/grade/bootstrap.min.js"></script>
 
     <!--网站引用Vue文件 -->
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
-    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script src="./js/grade/vue.min.js"></script>
+    <script src="./js/grade/vue-resource.min.js"></script>
 
 <!-- <link  type="text/css" rel="stylesheet" href="css/test.css"> -->
 </head>
 
 <body>
 	<header class="navbar-inverse top2">
-		<div class="container" id="navbar_container">
-			<a id="topButton" class="navbar-brand"> 学生成绩查询</a>
-		</div>
+        <div class="container" id="navbar_container">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="sr-only">学生成绩查询</span>
+                    </button>
+                    <A class="navbar-brand" id="topbutton" href="">学生成绩查询</A>
+                </div>
+            </div>
+        </div>
 	</header>
 
 	<div style="width: 100%; padding: 0px; margin: 0px;" id="bodyContainer">
-		<div class="container container-func sl_all_bg" id="yhgnPage" style="min-height: 454px;">
+		<div class="container container-func sl_all_bg" id="yhgnPage" style="min-height: 454px;min-width: 96%;">
 		<!-- 放置页面显示内容 -->
 		<!-- 功能操作 -->
 <div class="row sl_add_btn">
@@ -45,7 +52,7 @@
 	      <label for="year" class="col-sm-4 control-label">
 	      	<span style="color:red;">* </span>学 年</label>
 	        <div class="col-sm-8">
-				<select name="year" id="year" style="width:100%;height:30px" v-model="start">
+				<select name="year" id="year" style="width:100%;height:30px; top:9px;position: relative" v-model="start">
 					<option value="">---请选择---</option>
                     <option value="all">全部</option>
    					<option value="2019">2019-2020</option>
@@ -61,7 +68,7 @@
 	      <label  for="term" class="col-sm-4 control-label">
 	      	<span style="color:red;">* </span>学 期</label>
 	        <div class="col-sm-8">
-				<select name="term" id="term" style="width:100%;height:30px" v-model="semester">
+				<select name="term" id="term" style="width:100%;height:30px; top:9px;position: relative" v-model="semester">
 					<option value="">---请选择---</option>
                     <option value="all">全部</option>
     				<option value="1">1</option>
@@ -77,7 +84,7 @@
 <!-- btn-start  -->
 <div class="row sl_aff_btn">
 	<div class="col-md-12" >
-		<button type="button" class="btn btn-primary btn-sm" v-on:click="search_go()"> 查 询</button>
+		<button type="button" class="btn btn-outline-primary btn-sm" v-on:click="search_go()"> 查 询</button>
 	</div>
 </div>
 
@@ -142,7 +149,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>
@@ -183,6 +190,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div style=" margin:0 auto;text-align: center" v-show="showresult">没有符合条件的结果</div>
                 </div>
 <!-- 表格结束 -->
             </div>
@@ -194,6 +202,7 @@
             start: [[${currentSemester.start}]],
             semester: [[${currentSemester.semester}]],
             gradeList: [],
+            showresult:false,
             current_display:{
                 cname:null,
                 totalscore:null,
@@ -210,6 +219,11 @@
                 this.$http.get("/getcoursegrade",
                     {params:{start:this.start,semester:this.semester}}).then(function(res){
                     this.gradeList=res.body.data;
+                    if (res.body.data.length==0){
+                        this.showresult=true;
+                    }else{
+                        this.showresult=false;
+                    }
                     console.log(res.body);
                 },function(res){
                     console.log('失败')
