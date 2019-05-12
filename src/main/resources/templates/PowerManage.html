@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="common/backstageNavigator.html :: head"></div>
+</head>
+
+<body>
+<div th:replace="common/backstageNavigator.html :: banner"></div>
+
+<div class="container-fluid" id="PM">
+    <div class="row">
+        <<div th:replace="common/backstageNavigator.html :: navi"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2">权限状态</h1>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <h3 class="mb-0">
+                                <a class="text-dark" href="#">学生选课</a>
+                            </h3>
+                            <h1></h1>
+                            <strong class="d-inline-block mb-2 text-dark">当前状态：
+                                <strong v-if="PowerSelectCourse" class="d-inline-block mb-2 text-success">开放</strong>
+                                <strong v-else class="d-inline-block mb-2 text-secondary">关闭</strong>
+                            </strong>
+                            <button v-if="PowerSelectCourse" class="btn btn-outline-danger mr-sm-2" type="button"
+                                    data-toggle="modal" data-target="#SelectCourseConfirmClose">
+                                关闭
+                            </button>
+                            <button v-else class="btn btn-outline-primary mr-sm-2" type="button" data-toggle="modal"
+                                    data-target="#SelectCourseConfirmOpen">
+                                开启
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <h3 class="mb-0">
+                                <a class="text-dark" href="#">成绩录入</a>
+                            </h3>
+                            <h1></h1>
+                            <strong class="d-inline-block mb-2 text-dark">当前状态：
+                                <strong v-if="PowerScore" class="d-inline-block mb-2 text-success">开放</strong>
+                                <strong v-else class="d-inline-block mb-2 text-secondary">关闭</strong>
+                            </strong>
+                            <button v-if="PowerScore" class="btn btn-outline-danger mr-sm-2" type="button"
+                                    data-toggle="modal" data-target="#ScoreConfirmClose">
+                                关闭
+                            </button>
+                            <button v-else class="btn btn-outline-primary mr-sm-2" type="button" data-toggle="modal"
+                                    data-target="#ScoreConfirmOpen">
+                                开启
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <h3 class="mb-0">
+                                <a class="text-dark" href="#">学籍异动选课</a>
+                            </h3>
+                            <h1></h1>
+                            <strong class="d-inline-block mb-2 text-dark">当前状态：
+                                <strong v-if="PowerAbnormal" class="d-inline-block mb-2 text-success">开放</strong>
+                                <strong v-else class="d-inline-block mb-2 text-secondary">关闭</strong>
+                            </strong>
+                            <button v-if="PowerAbnormal" class="btn btn-outline-danger mr-sm-2" type="button"
+                                    data-toggle="modal" data-target="#AbnormalConfirmClose">
+                                关闭
+                            </button>
+                            <button v-else class="btn btn-outline-primary mr-sm-2" type="button" data-toggle="modal"
+                                    data-target="#AbnormalConfirmOpen">
+                                开启
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="SelectCourseConfirmOpen" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirm">是否确定开放学生选课权限？</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                    @click="OpenPowerSelectCourse">确定
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="ScoreConfirmOpen" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirm">是否确定开放成绩录入权限？</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="OpenPowerScore">
+                                确定
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="AbnormalConfirmOpen" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirm">是否确定开放学籍异动选课权限？</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                    @click="OpenPowerAbnormal">确定
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="SelectCourseConfirmClose" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirm">是否确定关闭学生选课权限？</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                    @click="ClosePowerSelectCourse">确定
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="ScoreConfirmClose" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirm">是否确定关闭成绩录入权限？</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="ClosePowerScore">
+                                确定
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="AbnormalConfirmClose" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirm">是否确定关闭学籍异动选课权限？</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                    @click="ClosePowerAbnormal">确定
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<script>
+
+    var pm = new Vue({
+        el: '#PM',
+        data: {
+            PowerScore: [[${score}]],
+            PowerSelectCourse: [[${selectCourse}]],
+            PowerAbnormal: [[${abnormal}]]
+        },
+        methods: {
+            OpenPowerSelectCourse: function () {
+                // alert("2")
+                this.PowerSelectCourse = true;
+                axios.post('/OpenSelectCourse')
+            },
+            OpenPowerScore: function () {
+                // alert(2)
+                axios.post('/OpenScore')
+                this.PowerScore = true;
+            },
+            OpenPowerAbnormal: function () {
+                axios.post('/OpenAbnormal')
+                this.PowerAbnormal = true;
+            },
+            ClosePowerSelectCourse: function () {
+                axios.post('/CloseSelectCourse')
+                this.PowerSelectCourse = false;
+            },
+            ClosePowerScore: function () {
+                this.PowerScore = false;
+                axios.post('/CloseScore')
+            },
+            ClosePowerAbnormal: function () {
+                this.PowerAbnormal = false;
+                axios.post('/CloseAbnormal')
+            }
+        }
+    })
+</script>
+
+<!-- Bootstrap core JavaScript
+  ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+</body>
+
+</html>

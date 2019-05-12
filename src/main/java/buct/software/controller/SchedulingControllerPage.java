@@ -1,8 +1,6 @@
 package buct.software.controller;
 import buct.software.dao.SchedulingDao;
 import buct.software.domain.User;
-import buct.software.service.SchedulingService;
-import buct.software.service.SemesterService;
 import buct.software.views.MobileSchedulingView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,27 +40,20 @@ public class SchedulingControllerPage {
         return "classscheduling";
     }
 
-    @GetMapping("/schedulingForm")
-    public String schedulingForm(Map<String,Object> parmMap, HttpServletRequest request){
-        HttpSession session =request.getSession();
-        User user=(User) session.getAttribute("user");
-        Integer sno=user.getAccount();
-        Integer majorId=user.getMajorid();
-        System.out.println("success");
-        /**
-         * 这里需要判断哪些老师有权限排课，属于后期功能
-         * 暂且不表
-         */
-        return "schedulingform";
-    }
 
     @GetMapping("/schedulingmobile")
-    public String schedulingmobile(Map<String,Object> parmMap, HttpServletRequest request){
+    public String schedulingmobile(@RequestParam("tno") Integer tno,
+                                   @RequestParam("tname") String tname,
+                                   @RequestParam("address") String address,
+                                   Map<String,Object> parmMap, HttpServletRequest request){
         HttpSession session =request.getSession();
         User user=(User) session.getAttribute("user");
+        System.out.println(tno);
+        System.out.println(tname);
+        System.out.println(address);
         List<MobileSchedulingView> data =
                 schedulingDao.getCoursesByTnoAndTnameAndAddress(
-                        -1,"null","null");
+                        tno,tname,address);
         parmMap.put("data",data);
         System.out.println("success");
         /**
@@ -72,4 +63,11 @@ public class SchedulingControllerPage {
         return "schedulingmobile";
     }
 
+    @GetMapping("/schedulingsearchmobile")
+    public String schedulingsearchmobile(Map<String,Object> parmMap, HttpServletRequest request){
+        HttpSession session =request.getSession();
+        User user=(User) session.getAttribute("user");
+
+        return "schedulingsearchmobile";
+    }
 }

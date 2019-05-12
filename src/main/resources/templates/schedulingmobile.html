@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
-
 <head>
 	<!-- meta使用viewport以确保页面可自由缩放 -->
-	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- 引入 jQuery Mobile 样式 -->
@@ -14,6 +12,9 @@
 
 	<!-- 引入 jQuery Mobile 库 -->
 	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+
 
 
 	<style type="text/css">
@@ -46,7 +47,7 @@
 	</style>
 
 	<title>排课子系统</title>
-	</head>
+</head>
 
 <body>
 <div data-role="page" id="pageone">
@@ -61,7 +62,7 @@
 
 	<!-- 主体 -->
 	<div data-role="main" class="ui-content">
-		<a href="schedulingmobile_search.html" target="_self" class="ui-btn ui-shadow ui-corner-all ui-icon-search ui-btn-icon-notext" id="btn-search">搜索</a>
+		<a href="/schedulingsearchmobile" target="_self" class="ui-btn ui-shadow ui-corner-all ui-icon-search ui-btn-icon-notext" id="btn-search">搜索</a>
 
 		<table data-role="table" data-mode="columntoggle" class="ui-responsive" id="SI">
 			<thead>
@@ -85,6 +86,7 @@
                 <td>{{student.claSite}}</td>
                 <td>{{student.claSize}}</td>
                 <td>{{student.ctime}}</td>
+                <td>{{student.grade}}</td>
             </tr>-->
 
 			<tr th:each="willCourse:${data}">
@@ -94,7 +96,9 @@
 				<td th:text="${willCourse.tno}"></td>
 				<td th:text="${willCourse.address}"></td>
 				<td th:text="${willCourse.capacity}"></td>
-				<td th:text="${willCourse.time}"></td>
+				<td th:text="${#strings.substringBefore(willCourse.course_time,',')+'周,周'+
+							#strings.substringBefore(#strings.substringAfter(willCourse.course_time,','),',') + ',' +
+							#strings.substringAfter(#strings.substringAfter(willCourse.course_time,','),',') + '节' }"></td>
 			</tr>
 			</tbody>
 		</table>
@@ -223,8 +227,4 @@ var si = new Vue({
 </script>-->
 
 </html>
-
-
-
-
 

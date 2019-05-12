@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
+    <title></title>
+</head>
+<body>
+<!-- 学生编辑页面 -->
+<div data-role="page" id="teaChangeVue">
+    <!--头部-->
+    <div th:replace="common/mobileBackstageNavigator.html::header"></div>
+    <!--主部-->
+    <div data-role="main" class="ui-content">
+        <h3>工号:[[${teacher.tno}]]</h3>
+        <form>
+            <fieldset data-role="fieldcontain">
+                <label>姓名:</label>
+                <input type="text" v-model="tname" placeholder="姓名..">
+                </br>
+
+                <label>性别:</label>
+                <select name="sex" id="teaSex" v-model="sex" placeholder="">
+                    <option>男</option>
+                    <option>女</option>
+                </select>
+                </br>
+
+                <label>电话号码:</label>
+                <input type="text" v-model="phone" placeholder="电话号码..">
+                </br>
+
+                <label>电邮:</label>
+                <input type="text" v-model="email" placeholder="电邮..">
+                </br>
+
+                <label>学院:</label>
+                <input type="text" v-model="college" placeholder="学院..">
+                </br>
+
+                <label>岗位:</label>
+                <input type="text" v-model="office" placeholder="岗位..">
+                </br>
+
+                <label>职称:</label>
+                <input type="text" v-model="title" placeholder="职称..">
+            </fieldset>
+            <a data-role="button" data-icon="edit" class="ui-right" @click="modiTeacher()">修改</a>
+            <!--##############参数################-->
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    var tea = new Vue({
+        el: '#teaChangeVue',
+        data: {
+            tname: null,
+            sex: null,
+            phone: null,
+            email: null,
+            college: null,
+            office: null,
+            title: null
+        },
+        methods: {
+            modiTeacher: function (parm) {
+                alert("12312")
+                // this.$http.post("/**********",{tno:parm,tname:this.tname,college:this.college,sex:this.sex,
+                //         office:this.office,title:this.title,phone:this.phone,email: this.email},
+                //     {emulateJSON:true}).then(function(value) {
+                //     if(value.body.code == 1) {
+                //         alert("修改成功！");
+                //     } else {
+                //         alert("修改失败!");
+                //     }
+                // })
+            }
+        }
+    })
+</script>
+
+</html>

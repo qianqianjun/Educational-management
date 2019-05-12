@@ -1,9 +1,10 @@
 package buct.software.domain;
-
+import lombok.Data;
 /**
  * @author 高谦
  * 课程实体类
  */
+@Data
 public class Course {
     private Integer cno;
     private String cname;

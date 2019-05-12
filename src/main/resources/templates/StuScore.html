@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type"content="text/html" charset="UTF-8">
+    <title>学生成绩页面</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body{margin:0;padding:0}
+        .top{height: 5%;background: #7abaff}
+        .up1{width:90%;height:5%;background: white;margin:20px auto}
+        .chengji{width:90%;height:85%;background: white;margin:20px auto}
+        .foot{height:5%;background: wheat;margin:0 auto}
+    </style>
+</head>
+<body>
+<div class="top">
+    <h2 class="text-black-50 text-center">详细成绩</h2>
+</div>
+<div class="up1">
+    <div class="navbar navbar-default" role="navigation">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/StuLookThroughQuesMobile">选题首页</a></li>
+            <li><a href="/StuChoice">已选课题</a></li>
+            <li><a href="/StuScore">关于成绩</a></li>
+        </ul>
+    </div>
+</div>
+<div class="chengji" id="result">
+    <div class="panel panel-default ">
+        <div class="alert alert-warning" role="alert">成绩详情</div>
+        <div class="panel-body ">
+            <div style="overflow:scroll;">
+                    <table class="table table-striped table-bordered table-hover"  style="min-width: 1300px" th:if="${quesScore!=null}" >
+                        <thead>
+                        <tr>
+
+                            <th>初期表现10%</th>
+                            <th>中期考核20%</th>
+                            <th>答辩30%</th>
+                            <th>论文30%</th>
+                            <th>额外加分10%</th>
+                            <th>总成绩</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${quesScore.earlyperformance}">表格单元格</td>
+                            <td th:text="${quesScore.midexam}">表格单元格</td>
+                            <td th:text="${quesScore.thesisanswer}">表格单元格</td>
+                            <td th:text="${quesScore.paper}">表格单元格</td>
+                            <td th:text="${quesScore.extracredit}">表格单元格</td>
+                            <td th:text="${quesScore.earlyperformance+quesScore.midexam+quesScore.thesisanswer+quesScore.paper+quesScore.extracredit}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--<p th:case="null">尚未取得成绩</p>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="foot text-center">
+    <h6>版权所有© Copyright 1999-2019 正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301 </h6>
+</div>
+</body>
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title> 教师成绩管理</title>
+<!--Bootstrap布局框架-->
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/zftal-ui.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="js/vue.min.js"></script>
+
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
+
+</head>
+
+<body>
+	<header class="navbar-inverse top2">
+		<div class="container" id="navbar_container">
+			<a id="topButton" class="navbar-brand"> 教师成绩管理</a>
+		</div>
+	</header>
+<div id="fix">
+	<div style="width: 100%; padding: 0px; margin: 0px;" id="bodyContainer">
+		<div class="container container-func sl_all_bg" style="min-height: 454px;">
+		<!-- 放置页面显示内容 -->
+        <!-- 功能操作 -->
+			<div class="row sl_add_btn">
+				<div class="col-sm-12">
+				<!-- 加载当前菜单栏目下操作N305005 -->
+					<div class="btn-toolbar" role="toolbar" style="float:right;">
+						<div class="btn-group" id="but_ancd">
+                            <div class="col-md-10">
+
+                                <button v-if="permission" type="button" class="btn btn-default btn_dc" data-toggle="modal" data-target="#insert"> 导 入</button>
+                                <button v-else type="button" class="btn btn-default btn_dc" data-toggle="modal" v-on:click="check()"> 导 入</button>
+
+                            </div>
+						</div>
+					</div>
+				<!-- 导入弹窗 -->
+                <div id="insert" class="bootbox modal sl_mod my-modal in box-full-screen" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document" style="width: 771px; left: 8.5px; top: 150px;">
+                        <div class="modal-content">
+                            <div class="modal-header ui-draggable-handle">
+                                <input type="hidden" name="focusInput">
+                                <h4 class="modal-title"><p align="left">批量导入</p></h4>
+                            </div>
+
+                <div class="modal-body" style="overflow-y: inherit;" align="left">
+                    <div class="bootbox-body">
+                    <!--Table  开始-->
+                        <div class="row" style="height: 40px;">
+                            <div class="col-md-12">
+                                <br>
+                                <h5 class="dark">
+                                  &nbsp;&nbsp;
+                                  <span style="color:red;">* </span><label> 学 年</label>
+                                    <select style="width:20%;height:20px" v-model="start">
+                                        <option value="">---请选择---</option>
+                                        <option value="2019">2019-2020</option>
+                                        <option value="2018">2018-2019</option>
+                                        <option value="2017">2017-2018</option>
+                                        <option value="2016">2016-2017</option>
+                                    </select>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                
+                                <span style="color:red;">* </span><label> 学 期</label>
+                                <select style="width:20%;height:20px" v-model="semester">
+                                    <option value="">---请选择---</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+
+                                <label> 课程名称</label>
+                                <select id="cname" style="width:20%;height:20px" v-model="cno">
+                                    <option value="0">---请选择---</option>
+                                    <!--<template v-for="cs in courses">-->
+                                        <!--<option value={{cs.csno}}>{{cs.csname}}</option>-->
+                                    <!--</template>-->
+                                    <option value="1" >高等数学</option>
+                                    <option value="2" >线性代数</option>
+                                    <option value="3" >大学英语</option>
+                                    <option value="4" >数据结构</option>
+                                </select>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-sm btn-default" v-on:click="insert_go">确认</button>
+                                </h5>
+                                <br><br><br>
+                                <thead>
+                                <tr>
+                                    <div class="col-md-2"></div>
+                                    <!--onchange="getFilePath()"-->
+                                    <input type="file" id="file"  style="filter:alpha(opacity=0);opacity:0;width: 0;height: 0;"/>
+
+                                    <td class="align-center ">
+                                        <div>
+                                            <input type="file" @change="getFile($event)" /><button @click="upload">上传</button>
+                                            <div>{{ result }}</div>
+                                            <div v-show="uping==1">正在上传中</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </thead>
+                            </div>
+                        </div>
+                    <!--Table  结束-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+          </div>
+        </div>
+                <!-- 导入弹窗结束 -->
+    </div>
+	</div> 
+	<!-- form -start  -->
+	<form id="searchForm" name="searchForm" method="post" class="form-horizontal sl_all_form" novalidate="novalidate">
+	<div class="row">		
+	  <div class="col-md-3 col-sm-6">
+	    <div class="form-group">
+	      <label for="" class="col-sm-4 control-label">
+	      	<span style="color:red;">* </span>学 年</label>
+	        <div class="col-sm-8">
+				<select id="year" style="width:100%;height:30px" v-model="start">
+					<option value="">---请选择---</option>
+   					<option value="2019">2019-2020</option>
+    				<option value="2018" selected="selected">2018-2019</option>
+    				<option value="2017">2017-2018</option>
+					<option value="2016">2016-2017</option>
+   				</select>
+   			</div>
+	    </div>
+	  </div>
+	 <div class="col-md-2 col-sm-6">
+	    <div class="form-group">
+	      <label class="col-sm-4 control-label">
+	      	<span style="color:red;">* </span>学 期</label>
+	        <div class="col-sm-8">
+				<select id="term" style="width:100%;height:30px" v-model="semester">
+					<option value="">---请选择---</option>
+    				<option value="1">1</option>
+    				<option value="2" selected="selected">2</option>
+				    <option value="3">3</option>
+   				</select>
+   			</div>
+	    </div>
+	  </div>
+        <div>
+            <button type="button" class="btn btn-primary btn-sm" v-on:click="get_course()"> 查询课程 </button>
+        </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="form-group">
+          <label for="" class="col-sm-4 control-label"> 课程名称</label>
+            <div class="col-sm-8">
+                <select id="test" style="width:100%;height:30px" v-model="cno">
+                    <option value="-1" >全部</option>
+                    <option v-bind:value="cs.cno" v-for="cs in courses">{{cs.cname}}</option>
+                </select>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">学 号</label>
+            <div class="col-sm-8">
+                <div class="input-group" style="width:200px">
+                    <input id="stuno" type="text" class="form-control" v-model="sno">
+                </div>
+            </div>
+        </div>
+      </div>	  
+	</div> 
+	</form>
+	<!-- form -end  -->
+	<!-- btn-start  -->
+	<div class="row sl_aff_btn">
+		<div class="col-md-12">
+			<button type="button" class="btn btn-primary btn-sm" v-on:click="search_go()"> 查 询</button>
+		</div> 
+	</div>
+	<!-- btn-end  -->
+	<!-- 表格开始 -->
+	<div class="table-responsive" >
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>学年</th>
+                    <th>学期</th>
+                    <th>课程代码</th>
+                    <th>课程名称</th>
+                    <th>学分</th>
+                    <th>学号</th>
+                    <th>成绩</th>
+                    <th>查看</th>
+                    <th>修改</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr v-for="grade in gradeList">
+                <td><p>{{grade.start}}</p></td>
+                <td><p>{{grade.semester}}</p></td>
+                <td><p>{{grade.cno}}</p></td>
+                <td><p>{{grade.cname}}</p></td>
+                <td><p>{{grade.credit}}</p></td>
+                <td><p>{{grade.sno}}</p></td>
+                <td><p>{{grade.totalscore}}</p></td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" type="submit" data-toggle="modal" data-target="#detail" v-on:click="detail(grade)">查看</button>
+                    </td>
+                    <td>
+                        <button v-if="permission" class="btn btn-outline-primary btn-sm" type="submit"
+                                data-toggle="modal" data-target="#modify"v-on:click="detail(grade)">修改</button>
+                        <button v-else class="btn btn-outline-primary btn-sm" type="submit" v-on:click="check()">修改</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="align-content: center" v-show="showresult">没有符合条件的结果</div>
+
+    </div>
+    <!-- 表格结束 -->
+<!--修改弹窗-->
+<div id="modify" class="bootbox modal sl_mod my-modal in box-full-screen" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog" role="document" style="width: 771px; left: 8.5px; top: 150px;">
+            <div class="modal-content">
+                <div class="modal-header ui-draggable-handle">
+                    <input type="hidden" name="focusInput">
+                    <h4 class="modal-title"><p align="left">成绩修改</p></h4>
+                </div>
+
+                <div class="modal-body" style="overflow-y: inherit;" align="left">
+                    <div class="bootbox-body">
+            <!--Table  开始-->
+                        <div class="row" style="height: 40px;">
+                            <div class="col-md-12">
+                                <br>
+                                <h5 class="dark">
+                                    <i class="glyphicon glyphicon-hand-right"></i>
+                                    <span class="bigger-120" role="button">
+                                        &nbsp;课程名称：{{current_display.cname}}
+                                    </span>
+                                    <span class="black2" role="button">
+                                        学号：{{current_display.sno}} 姓名：
+                                    </span>
+                                </h5>
+                            </div>
+                        </div>
+        <table class="table table-bordered table-striped table-hover tab-bor-col-1 tab-td-padding-5" id="subtab" style="text-align:center">
+            <thead>
+                <tr>
+                    <td class="align-center " style="width: 200px !important;">成绩分项</td>
+                    <td class="align-center ">成绩分项比例</td>
+                    <td class="align-center ">成绩</td>
+                </tr>
+            </thead>
+            <tbody>
+            <tr align="middle">
+                <td valign="middle">【 平时 】</td>
+                <td valign="middle">{{current_display.pOrdinary}} %</td>
+                <td valign="middle">
+                    <div class="input-group" style="width:200px">
+                        <input  type="text" class="form-control" v-model="gradeone">
+                    </div>
+                </td>
+
+            </tr>
+            <tr align="middle">
+                <td valign="middle">【 实验 】</td>
+                <td valign="middle">{{current_display.pExperiment}} %</td>
+                <td valign="middle">
+                    <div class="input-group" style="width:200px">
+                        <input  type="text" class="form-control" v-model="gradetwo" >
+                    </div>
+                </td>
+            </tr>
+            <tr align="middle">
+                <td valign="middle">【 期末 】</td>
+                <td valign="middle">{{current_display.pExam}} %</td>
+                <td valign="middle">
+                    <div class="input-group" style="width:200px">
+                        <input  type="text" class="form-control" v-model="gradethree">
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <!--Table  结束-->
+
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-sm btn_default" data-dismiss="modal" v-on:click="modify_go()">确认</button>
+                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭</button>
+
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+<!--修改弹窗结束-->
+
+<!--查询弹窗-->
+<div id="detail" class="bootbox modal sl_mod my-modal in box-full-screen" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 771px; left: 8.5px; top: 150px;">
+        <div class="modal-content">
+            <div class="modal-header ui-draggable-handle">
+                <input type="hidden" name="focusInput">
+                <h4 class="modal-title"><p align="left">查看成绩详情</p></h4>
+            </div>
+            <div class="modal-body" style="overflow-y: inherit;" align="left">
+                <div class="bootbox-body">
+                    <!--Table  开始-->
+                    <div class="row" style="height: 30px;">
+                        <div class="col-md-12 col-sm-12">
+                            <h5 class="dark">
+                                <i class="glyphicon glyphicon-hand-right"></i>
+                                <span class="bigger-120" role="button">
+                        &nbsp;课程名称：{{current_display.cname}}
+                    </span>
+                                <span class="black2" role="button">
+                        学号：{{current_display.sno}} 姓名：
+                    </span>
+                            </h5>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-striped table-hover tab-bor-col-1 tab-td-padding-5"  style="text-align:center">
+                        <thead>
+                        <tr>
+                            <td class="align-center " style="width: 200px !important;">成绩分项</td>
+                            <td class="align-center ">成绩分项比例</td>
+                            <td class="align-center ">成绩</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td valign="middle">【 平时 】</td>
+                            <td valign="middle">{{current_display.pOrdinary}} %</td>
+                            <td valign="middle">{{current_display.gOrdinary}} </td>
+                        </tr>
+                        <tr>
+                            <td valign="middle">【 期末 】</td>
+                            <td valign="middle"> {{current_display.pExperiment}} %</td>
+                            <td valign="middle"> {{current_display.gExperiment}} </td>
+                        </tr>
+
+                        <tr>
+                            <td valign="middle">【 实验 】</td>
+                            <td valign="middle"> {{current_display.pExam}} %</td>
+                            <td valign="middle"> {{current_display.gExam}} </td>
+                        </tr>
+
+                        <tr>
+                            <td valign="middle">【 总分 】</td>
+                            <td valign="middle">100%</td>
+                            <td valign="middle"> {{current_display.totalscore}} </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--Table  结束-->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+ <!--查询弹窗结束-->
+
+</div>
+</div>
+</div>
+
+	<script>
+        var vm = new Vue({
+            el: '#fix',
+            data:{
+                permission: [[${permission}]],
+                showresult:false,
+                start: [[${currentSemester.start}]],
+                semester: [[${currentSemester.semester}]],
+                cname:null,
+                cno:null,
+                sno:null,
+                gradeList:[],
+
+                current_display:{
+                    cname:null,
+                    sno:null,
+                    totalscore:null,
+                    pOrdinary:null,
+                    pExperiment:null,
+                    pExam:null,
+                    gOrdinary:null,
+                    gExperiment:null,
+                    gExam:null
+                },
+                //修改单个学生成绩
+                gradeone:null,
+                gradetwo:null,
+                gradethree:null,
+                newdetail:null,
+                //传文件
+                fileName:null,
+                upath: '',
+                result: '',
+                uping:0,
+                //老师教的所有课
+                courses:[]
+            },
+            methods: {
+                check: function () {
+                    alert("您目前没有修改权限！")
+                },
+                search_go: function(){
+                    if (this.sno == null){
+                        this.sno =-1;
+                    } else{
+                        this.sno=parseInt($("#stuno").val());
+                    }
+                    this.$http.get("/getstudentgrade",
+                        {params:{start:this.start,semester:this.semester,
+                                cno:this.cno,sno:this.sno}}).then(function(res){
+                        this.gradeList=res.body.data;
+                        if (res.body.data.length==0){
+                            this.showresult=true;
+                        }else{
+                            this.showresult=false;
+                        }
+                        console.log(this.cname);
+                        console.log(res.body);
+
+                    },function(res){
+                        console.log('失败')
+                    })
+                },
+                detail: function (parma) { //详情弹窗
+                    this.current_display.cname=parma.cname;
+                    this.current_display.totalscore=parma.totalscore;
+                    this.current_display.sno=parma.sno;
+
+                    var sp = parma.percent.split(/,/);
+                    this.current_display.pOrdinary=sp[0];
+                    this.current_display.pExperiment=sp[1];
+                    this.current_display.pExam=sp[2];
+                    var gsp = parma.detail.split(/,/);
+                    this.current_display.gOrdinary=gsp[0];
+                    this.current_display.gExperiment=gsp[1];
+                    this.current_display.gExam=gsp[2];
+
+                    this.gradeone=this.current_display.gOrdinary;
+                    this.gradetwo=this.current_display.gExperiment;
+                    this.gradethree=this.current_display.gExam;
+                    console.log(parma.percent);
+                },
+
+                modify_go: function(){ //单个成绩修改确认
+                    console.log("gradeone:"+this.gradeone);
+                    this.sno=this.current_display.sno;
+                    this.newdetail = this.gradeone+","+this.gradetwo+","+this.gradethree;
+                    console.log("new:"+this.newdetail);
+                    this.$http.get("/setstudentgradeById",
+                        {params:{start:this.start,semester:this.semester,
+                                cno:this.cno,sno:this.sno,detail:this.newdetail}}).then(function(res){
+                        console.log(res);
+                    },function(res){
+                        console.log('失败')
+                    })
+                },
+
+                insert_go: function (){ //批量导入的确认
+                    this.$http.get("/getparams",
+                        {params:{start:this.start,semester:this.semester, cno:this.cno}}).then(function(res){
+                        console.log(res);
+                    },function(res){
+                        console.log('失败')
+                    })
+
+                },
+                upload: function () { //传文件
+                    //console.log(this.upath);
+                    var zipFormData = new FormData();
+                    zipFormData.append('file', this.upath);//file要和@RequestParam("file")MultipartFile file对应好
+                    let config = { headers: { 'Content-Type': 'multipart/form-data' } };
+                    var s = this.start;
+                    this.uping = 1;
+                    this.$http.post('/import', zipFormData,config,s).then(function (response) {
+                        console.log(response);
+                        console.log(response.data);
+                        console.log(response.bodyText);
+
+                        var resultobj = response.data;
+                        this.uping = 0;
+                        this.result = resultobj.msg;
+                    });
+                },
+
+                getFile: function (even) {
+                    this.upath = event.target.files[0];
+                },
+                //获取老师某学期教的所有课 如果不是这学期的则不可以修改
+                get_course:function () {
+                    this.$http.get("/getteachercourse",
+                        {params:{start:this.start,semester:this.semester}}).then(function(res){
+                            this.courses = res.body.data;
+                        console.log(res);
+                    },function(res){
+                        console.log('失败')
+                    })
+                    if(this.start!= [[${currentSemester.start}]] || this.semester!= [[${currentSemester.semester}]]){
+                        this.permission = false;
+                        console.log("没有权限！")
+                    }
+                }
+
+
+            }
+        })
+	</script>
+	<!-- footer --> 
+	<div class="footer">
+		<p>计科1601</p>
+	</div>
+	<!-- footer-end -->
+</body>
+</html>

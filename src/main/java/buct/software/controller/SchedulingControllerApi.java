@@ -19,6 +19,7 @@ import java.util.List;
  * @author  刘权达大佬无敌宇宙第一帅
  * 排课子系统api
  */
+
 @RestController
 public class SchedulingControllerApi {
     @Autowired
@@ -45,12 +46,14 @@ public class SchedulingControllerApi {
     public ResponseMessage getWillCourses(@RequestParam("year") String year,
                                           @RequestParam("semester") String semester,
                                           @RequestParam("majorName") String majorName,
-                                          @RequestParam("grade") String grade){
+                                          @RequestParam("grade") Integer grade){
+
         return planningService.getWillCourses(year,semester,majorName,grade);
     }
 
     @PostMapping("/addWillCourse")
     public ResponseMessage addWillCourse(@RequestParam("cno") Integer cno,
+
                                          @RequestParam("cname") String cname,
                                          @RequestParam("college") String college,
                                          @RequestParam("description") String description,
@@ -58,7 +61,8 @@ public class SchedulingControllerApi {
                                          @RequestParam("year") String year,
                                          @RequestParam("semester") String semester,
                                          @RequestParam("majorName") String Name,
-                                         @RequestParam("grade") String grade){
+                                         @RequestParam("grade") Integer grade){
+
         return planningService.addWillCourse(cno,cname,college,description,status,year,
                 semester,Name,grade);
     }
@@ -77,7 +81,8 @@ public class SchedulingControllerApi {
                                              @RequestParam("year") String year,
                                              @RequestParam("semester") String semester,
                                              @RequestParam("majorName") String majorName,
-                                             @RequestParam("grade") String grade){
+                                             @RequestParam("grade") Integer grade){
+
         return planningService.deleteWillCourse(cno,year,semester,majorName,grade);
     }
 
@@ -94,7 +99,9 @@ public class SchedulingControllerApi {
                                      @RequestParam("year") String year,
                                      @RequestParam("semester") String semester,
                                      @RequestParam("majorName") String majorName,
-                                     @RequestParam("grade") String grade){
+                                     @RequestParam("grade") Integer grade){
+
+
         return schedulingService.getCourse(cno,year,semester,majorName,grade);
     }
 
@@ -118,7 +125,7 @@ public class SchedulingControllerApi {
                                      @RequestParam("year") String year,
                                      @RequestParam("semester") String semester,
                                      @RequestParam("majorName") String majorName,
-                                     @RequestParam("grade") String grade,
+                                     @RequestParam("grade") Integer grade,
                                      @RequestParam("status") String status,
                                      @RequestParam("capacity") String capacity,
                                      @RequestParam("address") String address,
@@ -140,7 +147,7 @@ public class SchedulingControllerApi {
                                         @RequestParam("year") String year,
                                         @RequestParam("semester") String semester,
                                         @RequestParam("majorName") String majorName,
-                                        @RequestParam("grade") String grade){
+                                        @RequestParam("grade") Integer grade){
         return schedulingService.deleteCourse(cno,year,semester,majorName,grade);
     }
 
@@ -150,4 +157,21 @@ public class SchedulingControllerApi {
                                                              @RequestParam("address") String address){
         return  schedulingService.getCoursesByTnoAndTnameAndAddress(tno,tname,address);
     }
+
+    @PostMapping("/getTeacherByTnoAndTname")
+    public ResponseMessage getTeacherByTnoAndTname(@RequestParam("tno") Integer tno,
+                                                   @RequestParam("tname") String tname){
+        return  schedulingService.getTeacherByTnoAndTname(tno,tname);
+    }
+
+    @PostMapping("/getAllCourses")
+    public ResponseMessage getAllCourses(@RequestParam("year") String year,
+                                      @RequestParam("semester") String semester,
+                                      @RequestParam("major") String majorName,
+                                      @RequestParam("grade") Integer grade){
+        return schedulingService.getAllCourses(year,semester,majorName,grade);
+    }
 }
+
+
+

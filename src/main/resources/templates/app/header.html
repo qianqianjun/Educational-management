@@ -1,17 +1,13 @@
-<!--作者： 高谦-->
-<!--这里是网页的公共模板块，减少页面html 代码使用。-->
-<!--使用方法不熟悉的请见 https://blog.csdn.net/wangmx1993328/article/details/84747497-->
-
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <!--用于引入css js 等静态资源的模板块-->
 <head th:fragment="static">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>盗版教务管理系统</title>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/zftal-ui.css" />
-    <script type="text/javascript" src="js/bootstrap.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/selectcourse/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/zftal-ui.css" />
+    <script type="text/javascript" src="js/selectcourse/bootstrap.min.js" charset="utf-8"></script>
 </head>
 
 
@@ -61,6 +57,7 @@
                     <a role="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">信息查询<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                         <li><a target="_blank" href="/coursetable">学生课表查询</a></li>
+                        <li><a target="_blank" href="/gradeinfo">学生成绩查询</a></li>
                     </ul>
                 </li>
             </ul>

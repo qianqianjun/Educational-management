@@ -24,9 +24,11 @@ public class User {
     private Integer majorid;
     private String grade;
     private String tname;
+
     private String college;
     private String collegeId;
     private String klass;
+
     public User(Integer account, String password, Integer type, Integer status) {
         this.account = account;
         this.password = password;

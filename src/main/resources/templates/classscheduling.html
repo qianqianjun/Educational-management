@@ -1,358 +1,592 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>教务后台管理系统</title>
-  <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
-   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <div th:replace="common/backstageNavigator.html :: head"></div>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <title>教务后台管理系统</title>
+
+    <script src="./js/vue.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <!--<link href="static/css/bootstrap.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href="./css/dashboard.css" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
-  <nav class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">教务后台管理系统</a>
-    <!--input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"-->
-    <ul class="navbar-nav px-3">
-      <li class="nav-item text-nowrap">
-        <a class="nav-link" href="#">登出</a>
-      </li>
-    </ul>
-  </nav>
+<div th:replace="common/backstageNavigator.html :: banner"></div>
 
-  <div class="container-fluid">
+<div class="container-fluid" id="classscheduling">
     <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-        <div class="sidebar-sticky">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="home"></span>
-                首页
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="check-square"></span>
-                权限管理
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="users"></span>
-                学生信息维护
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="users"></span>
-                教师信息维护
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="calendar"></span>
-                学期管理
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#">
-                <span data-feather="bar-chart-2"></span>
-                排课管理
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="book-open"></span>
-                毕业设计管理
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="help-circle"></span>
-                帮助
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+        <div th:replace="common/backstageNavigator.html :: navi"></div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <!--下面是课程表-->
+            <div class="course_form">
+                <fieldset><legend><h5>课程表查询</h5></legend>
+                        <a>学年：</a><select v-model="table_year" style="height:25px;width:164px">
+                            <option value="2019-2020学年">2019-2020学年</option>
+                            <option value="2018-2019学年">2018-2019学年</option>
+                            <option value="2017-2018学年">2017-2018学年</option>
+                            <option value="2016-2017学年">2016-2017学年</option>
+                            <option value="2015-2016学年">2015-2016学年</option>
+                            <option value="2014-2015学年">2014-2015学年</option>
+                        </select>
+                        <a>学期：</a><select v-model="table_semester" style="height:25px;width:164px">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <a>专业：</a><input v-model="table_major" name="专业" type="text" />
+                        <a>年级：</a><select id = 'table_grade' v-model="table_grade" style="height:25px;width:164px">
+                            <option value="1">大一</option>
+                            <option value="2">大二</option>
+                            <option value="3">大三</option>
+                            <option value="4">大四</option>
+                        </select>
+                        <input type="button" id="btn0" value="查询" v-on:click="getTable()"/>
+                        <div id="dv0" style="display:none">
+                            <HR>
+                            <table id="cao">
+                                <tr align="center">
+                                    <th>时间段</th><th>节次</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th>
+                                </tr>
+                            </table>
+                        </div>
 
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                </fieldset>
+            </div>
+            <!--下面是课程安排-->
+            <div  class="course_mag" style="">
+                    <fieldset><legend><h5>课程安排</h5></legend>
+                        <a>学年：</a><select id = 'change_year' v-model="input_year" style="height:25px;width:164px">
+                            <option value="2019-2020学年">2019-2020学年</option>
+                            <option value="2018-2019学年">2018-2019学年</option>
+                            <option value="2017-2018学年">2017-2018学年</option>
+                            <option value="2016-2017学年">2016-2017学年</option>
+                            <option value="2015-2016学年">2015-2016学年</option>
+                            <option value="2014-2015学年">2014-2015学年</option>
+                        </select>
+                        <a>学期：</a><select id = 'change_semester' v-model="input_semester" style="height:25px;width:164px">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <a>专业：</a><input id="change_majorName" v-model="input_majorName" name="专业" type="text" />
+                        <a>年级：</a><select id = 'change_grade' v-model="input_grade" style="height:25px;width:164px">
+                            <option value="1">大一</option>
+                            <option value="2">大二</option>
+                            <option value="3">大三</option>
+                            <option value="4">大四</option>
+                        </select>
+                        <button type="button" id="btn1"   v-on:click="search()">查询</button>
+                        <div id="dv1" style="display:none">
+                            <HR>
+                            <table width="70%" border="2" cellspacing="1.5" cellpadding="5">
+                                <thead>
+                                <tr align="center">
+                                    <th>课程号</th>
+                                    <th>课程名</th>
+                                    <th>开课学院</th>
+                                    <th>课程描述</th>
+                                    <th>是否已开</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="course in allWillCourses">
+                                    <td>{{course.cno}}</td>
+                                    <td>{{course.cname}}</td>
+                                    <td>{{course.college}}</td>
+                                    <td>{{course.description}}</td>
+                                    <td>{{course.ifOpen}}</td>
+                                    <td>
+                                        <input type="button" value="课程安排" v-on:click="eachCourse(course)">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+            <dialog class="Dialog" id="Dialog">
+                    <h3 style="text-align:center">课程安排</h3>
+                    <div id="div0">
+                        <li style="height:27px">教师安排</li><hr>
+                        <a>教师：</a>
+                        <input type="search"  class="header_search" id="oneTeacher" placeholder="输入教师工号或名字"/>
+                        <input type="button" id="btn3"  value="查询"  v-on:click="searchTeacher()">
+                        <div id ="div01" style="display:block">
+                            <br>
+                            <table width="75%" border="2" cellspacing="1.5" cellpadding="5" >
+                                <thead>
+                                <tr>
+                                    <td align="center" valign="middle">工号</td>
+                                    <td align="center" valign="middle">名字</td>
+                                    <td align="center" valign="middle">性别</td>
+                                    <td align="center" valign="middle">操作</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!--放后台查询数据返回的结果-->
+                                <tr v-for="teacher in allTeachers">
+                                    <td>{{teacher.tno}}</td>
+                                    <td>{{teacher.tname}}</td>
+                                    <td>{{teacher.sex}}</td>
+                                    <td>
+                                        <input type="button" id="oneTeacherButton" value="课程安排" v-on:click="eachTeacher(teacher)">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                        </div>
+                    </div><hr>
+                    <div id="div1">
+                        <li style="height:27px">教室安排</li><hr>
+                        <a>教室：</a>
+                        <input type="search" class="header_search" id="classRoom" placeholder="输入教室编号"/>
+                        <input type="button" id="btn4"  value="确定" v-on:click="classRoom()">
+                    </div><hr>
+                    <div id="div2">
+                        <li style="height:27px">时间安排</li><hr>
+                        <div id="div4" align="right">
+                            <input type="button" id="btn5" value="添加其它时间段" v-on:click="addTime()" >
+                        </div>
+                        <div id="allTime0">
+                            <br>
+                            <form  action="" method="get">
+                                <label>周数：
+                                    <select name="time_start" style="width:70px;height:25px" onchange="sel()">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </label>
+                                <label>至
+                                    <select  name="time_end" style="width:70px;height:25px">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </label>
+                                <label>星期：
+                                    <select name="week" style="width:70px;height:25px">
+                                        <option value="1">星期一</option>
+                                        <option value="2">星期二</option>
+                                        <option value="3">星期三</option>
+                                        <option value="4">星期四</option>
+                                        <option value="5">星期五</option>
+                                        <option value="6">星期六</option>
+                                        <option value="7">星期日</option>
+                                    </select>
+                                </label>
+                                <label>节数：
+                                    <select name="section1" style="width:70px;height:25px">
+                                        <option value="1">第一节</option>
+                                        <option value="2">第二节</option>
+                                        <option value="3">第三节</option>
+                                        <option value="4">第四节</option>
+                                        <option value="5">第五节</option>
+                                        <option value="6">第六节</option>
+                                        <option value="7">第七节</option>
+                                        <option value="8">第八节</option>
+                                        <option value="9">第九节</option>
+                                        <option value="10">第十节</option>
+                                        <option value="11">第十一节</option>
+                                        <option value="12">第十二节</option>
+                                        <option value="13">第十三节</option>
+                                    </select>
+                                </label>
+                                <label>至
+                                    <select  name="section2" style="width:70px;height:25px">
+                                        <option value="1">第一节</option>
+                                        <option value="2">第二节</option>
+                                        <option value="3">第三节</option>
+                                        <option value="4">第四节</option>
+                                        <option value="5">第五节</option>
+                                        <option value="6">第六节</option>
+                                        <option value="7">第七节</option>
+                                        <option value="8">第八节</option>
+                                        <option value="9">第九节</option>
+                                        <option value="10">第十节</option>
+                                        <option value="11">第十一节</option>
+                                        <option value="12">第十二节</option>
+                                        <option value="13">第十三节</option>
+                                    </select>
+                                </label>
+                                <!--<input type="button" id="btn6" value="删除" onclick="delete()">-->
+                            </form>
+                        </div>
+                    </div>
+                    <hr><br>
+                    <div id="div5" align="right" style=" padding-left:100px">
+                        <input class="md-close" type="button" value="确认" v-on:click="addAll()">
+                        <a style="padding-right:100px"></a>
+                        <input class="md-close" type="button" value="取消" v-on:click="deleteCourse()">
+                    </div>
+                </dialog>
 
-          <!DOCTYPE html >
-          <html>
-          <head>
-              <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-              <title>排课管理</title>
-              <script language="javascript"  type="text/javascript">
-                    <!--课程安排-->
-                    var flag_1=0;
-                    function $(id)
-                    {
-                        return document.getElementById(id);
-                        }
-                    function controlDIV1()
-                    {
-                        if(flag_1==0)
-                        {
-                            dv1.style.display="block";
-                            btn1.value="取消";
-                            flag_1=1;
-                        }
-                        else
-                        {
-                            dv1.style.display="none";
-                            btn1.value="查询";
-                            flag_1=0;
-                        }
-                        }
-                </script>
-              <script language="javascript"  type="text/javascript">
-              <!--课表查询-->
-                    var flag_0=0;
-                    function $(id)
-                    {
-                        return document.getElementById(id);
-                        }
-                    function controlDIV0()
-                    {
-                        if(flag_0==0)
-                        {
-                            dv0.style.display="block";
-                            btn0.value="取消";
-                            flag_0=1;
-                        }
-                        else
-                        {
-                            dv0.style.display="none";
-                            btn0.value="查询";
-                            flag_0=0;
-                        }
-                        }
-                </script>
-          </head>
-          <body>
-          <style>
-                body
-                    {
-                        background-color:#d0e4fe;
-                    }
-           </style>
-          <!--下面是课程表-->
-          <fieldset><h5>课程表查询</h5>
+        </main>
 
-              <a>学年</a><input name="学年" type="text" />
-              <a>学期</a><input name="学期" type="text" />
-              <a>学院</a><input name="学院" type="text" />
-              <a>专业</a><input name="专业" type="text" />
-              <input type="button" id="btn0" value="查询" onclick="controlDIV0()"/>
-              <div id="dv0" style="display:none">
-                  <HR>
-                  <h6 align="center">课程表</h6>
-                  <table width="100%" border="5;" cellspacing="1.5;" cellpadding="5;">
-                      <tr class="success">
-                          <td align="center" valign="middle">时间</td>
-                          <td align="center" valign="middle">星期一</td>
-                          <td align="center" valign="middle">星期二</td>
-                          <td align="center" valign="middle">星期三</td>
-                          <td align="center" valign="middle">星期四</td>
-                          <td align="center" valign="middle">星期五</td>
-                          <td align="center" valign="middle">星期六</td>
-                          <td align="center" valign="middle">星期天</td>
-                      </tr>
-                      <tr class="success">
-                          <td rowspan="5" align="center" valign="middle">上午</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                      <tr class="success">
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                      <tr class="success">
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                      <tr class="success">
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                      <tr class="success">
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                      <tr class="success">
-                          <td class="success" rowspan="5" align="center" valign="middle">下午</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                      <tr class="success">
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                      <tr class="success">
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                      <tr class="success">
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                      <tr class="success">
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                      <tr class="success">
-                          <td class="success" rowspan="3" align="center" valign="middle">晚上</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                      <tr class="success">
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                      <tr class="success">
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                          <td align="center" valign="middle">&nbsp;</td>
-                      </tr>
-                  </table>
-              </div>
-          </fieldset>
-          <HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="100%" color=black SIZE=5>
-        <!--下面是课程安排-->
-          <fieldset><legend><h5>课程安排</h5></legend>
-              <a>学年</a><input name="学年" type="text" />
-              <a>学期</a><input name="学期" type="text" />
-              <a>学院</a><input name="学院" type="text" />
-              <a>专业</a><input name="专业" type="text" />
-              <input type="button" id="btn1" value="查询" onclick="controlDIV1()"/>
-
-              <div id="dv1" style="display:none">
-                <HR>
-                  <table width="75%" border="2" cellspacing="1.5" cellpadding="5">
-                      <li style="width:100%;height:20px;font-size:15px;line-height:20px;background:#39F;color:#ffffff;text-align:left">XXXX年-XXXX年第X学期XXXX专业课程需求表单</li>
-                      <thead>
-                        <tr align="center">
-                            <th>cno</th>
-                            <th>cname</th>
-                            <th>college</th>
-                            <th>description</th>
-                            <th>ifopen</th>
-                            <th>OP</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>高等数学</td>
-                            <td>信息科学技术学院</td>
-                            <td>高等数学是由微积分学，较深入的代数学、几何学以及它们之间的交叉内容所形成的一门基础学科。主要内容包括：数列、极限、微积分、空间解析几何与线性代数、级数、常微分方程。工科、理科、财经类研究生考试的基础科目。</td>
-                            <td>1</td>
-                            <td>
-                                <a href="/schedulingForm">课程安排</a>
-                            </td>
-                        </tr>
-                      </tbody>
-                  </table>
-
-              </div>
-
-
-
-
-          </fieldset>
-          </body>
-          </html>
-
-      </main>
     </div>
-  </div>
+</div>
 
-  <!-- Bootstrap core JavaScript
-    ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
+<script type="text/javascript" th:inline="javascript" >
+    var app = new Vue({
+        el:'#classscheduling',
 
+        data:{
+            array:[],
+            i:1,
+            sum:1,
+            allWillCourses:[],
+            allTeachers:[],
+            getWillCourses:"",
+            input_year:"",
+            input_semester:"",
+            input_majorName:"",
+            input_grade:"",
+            input_tno:"",
+            input_tname:"",
+            nowCourseCno:"",
+            nowCourseTno:"",
+            nowCourseYear:"",
+            nowCourseSemester:"",
+            nowCourseMajorName:"",
+            nowCourseGrade:"",
+            nowCourseStatus:"",
+            nowCourseCapacity:"",
+            nowCourseAddress:"",
+            nowCourseTime:"",
+            table_year:"",
+            table_semester:"",
+            table_major:"",
+            table_grade:"",
+            allCourses:[]
+        },
+        methods:{
+            deleteCourse:function(){
+                this.$http.post("/deleteCourse", {
+                        cno:this.nowCourseCno,
+                        year:this.nowCourseYear,
+                        semester:this.nowCourseSemester,
+                        majorName:this.nowCourseMajorName,
+                        grade:this.nowCourseGrade
+                    },
+                    {emulateJSON:true}).then(function (value) {
+                        console.log("222")
+                        this.deleteCourse=value.body.data;
+                        console.log(this.deleteCourse);
+                        /*开始操作*/
+                        alert("取消成功")
+                        Dialog.close();
+                        this.search()
+                    },
+                    function (reason) {
+                        alert("请求出错")
+                    }
+                );
+            }
+            ,
+            init_array:function(){
+                var table = document.getElementById('cao');
+                table.border = 1;
+                table.style.tableLayout = 'fixed';
+                table.style.wordBreak = 'break-all';
+                table.style.wordWrap = 'break-word';
+                table.style.textAlign = 'center';
+                if(table.rows.length>1){
+                    for(var x=table.rows.length-1;x>=1;x--){
+                        table.deleteRow(x);
+                    }
+                }
+                this.array = [];
+                for(var i=0;i<13+1;i++){
+                    var temp = [];
+                    for(var j = 0;j<9+1;j++){
+                        temp.push([-1,-1,-1]);
+                    }
+                    this.array.push(temp);
+                }
+                for(var i=1;i<=5;i++){
+                    this.array[i][1] = [1,5,"上午"];
+                }
+                for(var i=6;i<=10;i++){
+                    this.array[i][1] = [6,10,"下午"];
+                }
+                for(var i=11;i<=13;i++){
+                    this.array[i][1] = [11,13,"晚上"];
+                }
+                for(var i=1;i<=13;i++){
+                    this.array[i][2] = [i,i,i];
+                }
+            },
+            insert_one_lesson:function(course){
+                var string = "";
+                string = string + course.name+'\n';
+                string = "("+course.start+'-'+course.end+'节)/'+course.long+'周/'+course.address+'/'+course.teacher;
+                for(var i=course.start;i<=course.end;i++){
+                    this.array[i][Number(course.day) + 2] = [course.start,course.end,string];
+                }
+            },
+            insert_course:function(all_course){
+                console.log(all_course)
+                var temp_array = all_course.course_time.split(';');
+                var course = {address:all_course.address,
+                    name:all_course.cname,
+                    teacher:all_course.tname,
+                    start:null, end:null, day:null, long:null};
+                for(var x in temp_array) {
+                    console.log(x);
+                    var temp = temp_array[x].split(',');
+                    temp[0] = temp[0].substring(1, temp[0].length);
+                    temp[2] = temp[2].substring(0, temp[2].length - 1);
+                    course.long = temp[0];
+                    course.day = temp[1];
+                    var temp1 = temp[2].split('-');
+                    course.start = temp1[0];
+                    course.end = temp1[1];
+                    this.insert_one_lesson(course);
+                }
+            },
+            create_table:function(){
+                var table = document.getElementById('cao');
+                for(var i=1;i<=13;i++){
+                    var row = table.insertRow(i);
+                    var len = 0;
+                    for(var j=1;j<=9;j++){
+                        if(this.array[i][j][0]==-1){
+                            var cell=row.insertCell(len);
+                            cell.width = 90;
+                            cell.height = 40;
+                            len = len + 1;
+                        }else{
+                            if(this.array[i][j][0] == i){
+                                var cell=row.insertCell(len);
+                                cell.width = 90;
+                                cell.height = 40;
+                                cell.rowSpan = this.array[i][j][1] - this.array[i][j][0] + 1;
+                                len = len + 1;
+                                cell.innerHTML = this.array[i][j][2];
+                            }
+                        }
 
-  <!-- Icons -->
-  <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-  <script>
+                    }
+                }
+            },
+            getTable:function () {
+                console.log("hello")
+                this.$http.post("/getAllCourses", {
+                        year:this.table_year.substring(0,4),
+                        semester:this.table_semester,
+                        major:this.table_major,
+                        grade:this.table_grade
+                    },
+                    {emulateJSON:true}).then(function (value) {
+                        console.log("222")
+                        this.allCourses=value.body.data;
+                        console.log(this.allCourses);
+                        /*开始操作*/
+                        this.init_array();
+                        for(var i=0;i<this.allCourses.length;i++){
+                            this.insert_course(this.allCourses[i]);
+                        }
+                        this.create_table();
+                        console.log(this.array);
+                        dv0.style.display="block";
+                    },
+                    function (reason) {
+                        alert("请求出错")
+                    }
+                );
+            },
+            search:function() {
+                year = this.input_year.substring(0,4);
+                console.log(this.input_year)
+                console.log(this.input_semester)
+                console.log(this.input_majorName)
+                console.log(this.input_grade)
+                dv1.style.display="block";
+                this.$http.post("/getWillCourses", {
+                        year:this.input_year.substring(0,4),
+                        semester:this.input_semester,
+                        majorName:this.input_majorName,
+                        grade:this.input_grade
+                    },
+                    {emulateJSON:true}).then(function (value) {
+                        console.log("222");
+                        this.allWillCourses=value.body.data;
+                    },
+                    function (reason) {
+                        alert("请求出错")
+                    }
+                );
+            },
+            eachCourse:function (course) {
+                this.allTeachers = [];
+                this.nowCourseYear = this.input_year.substring(0, 4);
+                this.nowCourseSemester = this.input_semester;
+                this.nowCourseMajorName = this.input_majorName;
+                this.nowCourseGrade = this.input_grade;
+                this.nowCourseCno = course.cno;
+                console.log("1111");
+                Dialog.showModal();
+            },
+            eachTeacher:function(teacher) {
+                oneTeacherButton.disable=false;
+                this.nowCourseTno = teacher.tno;
+                alert("已添加");
+            },
+            classRoom:function(){
+                this.nowCourseAddress = document.getElementById("classRoom").valueOf().value;
+                alert("已添加")
+            },
+            addTime:function(){
+                var sourceNode = document.getElementById("allTime0");
+                var clonedNode = sourceNode.cloneNode(true);
+                clonedNode.setAttribute("id", "allTime" + this.i);
+                sourceNode.parentNode.appendChild(clonedNode);
+                this.i=this.i+1;
+                this.sum = this.sum + 1;
+            },
+            addAll:function(){
+                /*这里需要生成时间字符串*/
+                console.log(this.sum)
+                var array = "";
+                for (var id = 0;id<this.sum;id++){
+                    if(id != 0){array = array + ";"}
+                    var string = "(";
+                    console.log(document.getElementsByName("time_start")[id].value);
+                    string = string + document.getElementsByName("time_start")[id].value;
+                    string = string + "-" + document.getElementsByName("time_end")[id].value+",";
+                    string = string + document.getElementsByName("week")[id].value + ",";
+                    string = string + document.getElementsByName("section1")[id].value;
+                    string = string + "-" + document.getElementsByName("section2")[id].value + ")";
+                    array = array + string;
+                }
+                console.log(array)
+                this.nowCourseTime = array;
+                /*这里需要发送请求*/
+                this.$http.post("/addCourse", {
+                        cno:this.nowCourseCno,
+                        tno:this.nowCourseTno,
+                        year:this.nowCourseYear,
+                        semester:this.nowCourseSemester,
+                        majorName:this.nowCourseMajorName,
+                        grade:this.nowCourseGrade,
+                        status:this.nowCourseStatus,
+                        capacity:150,
+                        address:this.nowCourseAddress,
+                        time:this.nowCourseTime
+                    },
+                    {emulateJSON:true}).then(function (value) {
+                        console.log("222");
+                        console.log(value);
+                        if(value) alert("添加成功")
+                        Dialog.close();
+                        this.search();
+                    },
+                    function (reason) {
+                        alert("请求出错")
+                    }
+                );
+            },
+            searchTeacher:function(){
+                this.allTeachers = [];
+                var temp = document.getElementById("oneTeacher").valueOf().value
+                var flag = 1;
+                for(var x in temp){
+                    if(temp[x]<"0" || temp[x] >"9"){
+                        flag = 2;
+                    }
+                }
+                if(flag==1){this.input_tname="";this.input_tno=temp;}
+                else{this.input_tno="";this.input_tname=temp;}
+                if(this.input_tno == ""){this.input_tno=-1;}
+                if(this.input_tname == ""){this.input_tname="null";}
+                this.$http.post("/getTeacherByTnoAndTname", {
+                        tno:this.input_tno,
+                        tname:this.input_tname
+                    },
+                    {emulateJSON:true}).then(function (value) {
+                        console.log("222");
+                        this.allTeachers=value.body.data;
+                    },
+                    function (reason) {
+                        alert("请求出错")
+                    }
+                );
+            }
+        }
+    });
+</script>
+
+<!-- Bootstrap core JavaScript
+=============================xQ===================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
     feather.replace()
-  </script>
+</script>
 
-  <!-- Graphs -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<!-- Graphs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 
 </body>
-
 </html>

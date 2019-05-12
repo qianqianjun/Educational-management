@@ -4,6 +4,7 @@ package buct.software.dao;
 import org.springframework.stereotype.Repository;
 
 import buct.software.domain.Semester;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -32,4 +33,11 @@ public interface SemesterDao {
      * @return
      */
     Semester getSemesterByStartAndSemester(Semester parm);
+
+    /**
+     * @author 王艺琳
+     * @param semesterId  学期的id
+     * @return
+     */
+    Semester getSemesterById(Integer semesterId);
 }

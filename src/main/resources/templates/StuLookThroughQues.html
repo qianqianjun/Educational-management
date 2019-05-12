@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type"content="text/html" charset="UTF-8">
+    <title>学生选课页面</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body{margin:0;padding:0}
+        .top{height:50px;background: #7abaff}
+        .up1{width:90%;height:5%;background: white;margin:20px auto}
+        .down{width:90%;height:95%;background: white;margin:20px auto}
+        .foot{height:5%;background:antiquewhite;margin:0 auto}
+    </style>
+</head>
+<body>
+<div class="top">
+    <h2 class="text-black-50 text-center">浏览选题页面</h2>
+</div>
+<div class="up1">
+    <div class="navbar navbar-default" role="navigation">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/StuLookThroughQues">选题首页</a></li>
+            <li><a href="/StuChoice">已选课题</a></li>
+            <li><a href="/StuScore">关于成绩</a></li>
+        </ul>
+    </div>
+</div>
+<div class="down">
+    <div class="panel panel-default" >      <!--row   pre-scrollable-->
+        <div class="panel-heading">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    显示所有
+                </label>
+            </div>
+        </div>
+        <div class="panel-body ">
+            <div class="pre-scrollable " style="overflow:scroll;">
+                <table class="table table-striped table-bordered table-hover table-responsive" style="min-width: 1400px;">
+                    <thead>
+                    <tr>
+                        <th>题目ID</th>
+                        <th>标题</th>
+                        <th>难度</th>
+                        <th>老师姓名</th>
+                        <th>是否选中</th>
+                        <th>详情</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="queslnfo: ${quesInfos}">
+                        <td th:text="${queslnfo.questionid}"></td>
+                        <td th:text="${queslnfo.topic}"></td>
+                        <td th:text="${queslnfo.difficulty}"></td>
+                        <td th:text="${queslnfo.tname}"></td>
+                        <div th:switch="${queslnfo.ischosen}">
+                            <td th:case="false">未被选中</td>
+                            <td th:case="true">已被选中</td>
+                        </div>
+                        <td >
+                            <a th:href="@{'/StuQuesDetails?questionid='+${queslnfo.questionid}}">详情</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="text-right panel-footer">
+            <p class="text-right">关于题目和老师具体信息，点击详情查看</p>
+        </div>
+    </div>
+</div>
+<div class="foot text-center">
+    <h6>版权所有© Copyright 1999-2019 正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301 </h6>
+</div>
+</body>
+</html>

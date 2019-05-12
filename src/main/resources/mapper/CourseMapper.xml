@@ -4,10 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="buct.software.dao.CourseDao">
+
     <select id="addCourse">
         insert into course values (#{cno},#{cname},#{college},#{description},#{status})
     </select>
+
     <select id="checkCourse" resultType="Boolean">
         select count(*) from course where cno=#{cno}
+    </select>
+
+    <select id="getCnoByCname" parameterType="String" resultType="Integer">
+        select course.cno from course where course.cname=#{cname}
     </select>
 </mapper>

@@ -1,24 +1,27 @@
 package buct.software.controller;
+
 import buct.software.domain.College;
 import buct.software.domain.SelectCourse;
 import buct.software.domain.Semester;
+
 import buct.software.domain.User;
 import buct.software.service.CollegeService;
 import buct.software.service.SelectCourseService;
 import buct.software.service.SemesterService;
+
 import buct.software.utils.ResponseMessage;
 import buct.software.views.SelectCourseView;
 import org.apache.poi.hssf.record.ObjRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.soap.SAAJMetaFactory;
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.Map;
 
 /**
@@ -46,7 +49,9 @@ public class SelectCourseControllerPage {
         User user=(User) session.getAttribute("user");
         Integer sno=user.getAccount();
         Integer majorId=user.getMajorid();
+
         List<Semester> semesters=semesterService.getSemesterDomain();
+
         Integer semesterId=semesterService.getCurrentSemesterId();
         ArrayList<SelectCourse> selectedList=
                 (ArrayList<SelectCourse>) selectCourseService.getSelectedCourseList(sno,semesterId);
@@ -55,11 +60,13 @@ public class SelectCourseControllerPage {
                 (ArrayList<SelectCourseView>)
                         selectCourseService.getAllCourseList(semesterId,majorId);
 
+
         ArrayList<College> colleges=(ArrayList<College>) collegeService.getAllCollege().getData();
         parmMap.put("courseselectedlist",selectedList);
         parmMap.put("allcourses",courseViews);
         parmMap.put("semesterlist",semesters);
         parmMap.put("colleges",colleges);
+
         return "selectcourse";
     }
 
@@ -78,10 +85,19 @@ public class SelectCourseControllerPage {
         ArrayList<SelectCourseView> courseTable=(ArrayList<SelectCourseView>)
                 selectCourseService.getCourseTable(semesterId,sno);
         List<Semester> semesters=semesterService.getSemesterDomain();
+        Semester semester=semesterService.getCurrentSemesterInfo();
         parMap.put("coursetable",courseTable);
         parMap.put("semesterlist",semesters);
+        parMap.put("currentSemester",semester);
         return "coursetable";
     }
+
+    /**
+     * 学生手机端选课界面的接口controller
+     * @param parmMap  传递到前端的参数集合
+     * @return
+     */
+
 
     @GetMapping("/selectcoursemobile")
     public String selectcoursemobile(Map<String, Object> parmMap){
@@ -90,10 +106,20 @@ public class SelectCourseControllerPage {
         parmMap.put("collegelist",collegeList);
         return "selectcoursemobile";
     }
+
+    /**
+     * 学生手机端课程表的展示界面。
+     * @param parmMap  传递到前端的参数。
+     * @return
+     */
     @GetMapping("/coursetablemobile")
     public String coursetablemobile(Map<String, Object> parmMap){
         List<Semester> semesters=semesterService.getSemesterDomain();
+        Semester semester=semesterService.getCurrentSemesterInfo();
         parmMap.put("semesterlist",semesters);
+        parmMap.put("currentSemester",semester);
         return "coursetablemobile";
     }
+
+
 }

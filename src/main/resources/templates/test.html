@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html style="height: 100%;">
+<head>
+    <meta charset="utf-8">
+    <title>POI</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+</head>
+<div id="app">
+    <input type="file" @change="getFile($event)" /><button @click="upload">上传</button>
+    <div>{{ result }}</div>
+    <div v-show="uping==1">正在上传中</div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            upath: '',
+            result: '',
+            uping:0,
+            start:null,
+        },
+        methods: {
+            upload: function () {
+                //console.log(this.upath);
+                var zipFormData = new FormData();
+                zipFormData.append('file', this.upath);//file要和@RequestParam("file")MultipartFile file对应好
+                let config = { headers: { 'Content-Type': 'multipart/form-data' } };
+                var s = this.start;
+                this.uping = 1;
+                this.$http.post('/import', zipFormData,config,s).then(function (response) {
+                    console.log(response);
+                    console.log(response.data);
+                    console.log(response.bodyText);
+
+                    var resultobj = response.data;
+                    this.uping = 0;
+                    this.result = resultobj.msg;
+                });
+            },
+
+            getFile: function (even) {
+                this.upath = event.target.files[0];
+            },
+        }
+    });
+</script>
+</body>
+</html>
