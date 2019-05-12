@@ -96,8 +96,7 @@
 				<td th:text="${willCourse.tno}"></td>
 				<td th:text="${willCourse.address}"></td>
 				<td th:text="${willCourse.capacity}"></td>
-				<td th:text="${#strings.substringBefore(willCourse.course_time,',')+'周,周'+
-							#strings.substringBefore(#strings.substringAfter(willCourse.course_time,','),',') + ',' +
+				<td th:text="${#strings.substringBefore(willCourse.course_time,',')+'周,星期'+
 							#strings.substringBefore(#strings.substringAfter(willCourse.course_time,','),')') + '节)' }"></td>
 			</tr>
 			</tbody>
