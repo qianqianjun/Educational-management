@@ -6,7 +6,6 @@ import buct.software.domain.SelectCourse;
 
 import buct.software.domain.User;
 import buct.software.utils.CourseDataUtil;
-import com.sun.xml.internal.fastinfoset.algorithm.BooleanEncodingAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
