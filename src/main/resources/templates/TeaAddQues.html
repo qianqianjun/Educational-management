@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<HTML lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type"content="text/html" charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>添加论题页面</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/selectcourse/vue.min.js"></script>
+    <script src="js/selectcourse/vue-resource.min.js"></script>
+    <script type="text/javascript" src="js/selectcourse/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/bootstrap.min.css" />
+    <script type="text/javascript" src="js/selectcourse/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/zftal-ui.css" />
+    <link href="css/selectcourse/selectcourse.css" rel="stylesheet" type="text/css">
     <style type="text/css">
         body{margin:0;padding:0}
         .top{height:50px;background: #7abaff}
@@ -15,45 +19,54 @@
     </style>
 </head>
 <body>
-<div class="top">
-    <h2 class="text-black-50 text-center ">添加论题页面</h2>
+<header class="navbar-inverse top2">
+    <div class="container" id="navbar_container">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only" style="gray">发布论题</span>
+                </button>
+                <A class="navbar-brand" id="topbutton" href="">发布论题</A>
+            </div>
+        </div>
+    </div>
+</header>
+<div id="bodyContainer" style="margin: 0px; padding: 0px; width: 100%;">
+    <div class="container container-func sl_all_bg" id="yhgnPage" style=" height: 500px;">
+            <div class="panel panel-info"  >
+                <div class="panel-heading">&nbsp;</div>
+                <form role="form" method="post" action="#" th:action="@{/TeaAddQues}">
+                    <div class="form-group">
+                        <label for="topic">论题题目</label>
+                        <input type="text" class="form-control" name="topic" id="topic" placeholder="文本输入">
+                    </div>
+                    <div class="form-inline">
+                        <label for="difficulty">论题难度</label>
+                        <select  class="form-control text-center" name="difficulty" id="difficulty">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="majorid">专业</label>
+                        <input type="text" class="form-control" name="majorid" id="majorid" placeholder="文本输入">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">论题详情</label>
+                        <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+                    </div>
+                    <div data-role="controlgroup" data-type="horizontal" style="text-align: center;">
+                        <input type="submit" data-type="btn" data-inline="true"  value="发布">
+                    </div>
+                </form>
+            </div>
+    </div>
 </div>
-<div class="up">
-    <button type="button" class="btn btn-default"><a href="TeaLookThroughQues" >查看论题</a></button>
-    <button type="button" class="btn btn-default"><a href="TeaAddScore" >成绩评定</a></button>
-    <button type="button" class="btn btn-default"><a href="TeaAddQues" >添加论题</a></button>
-</div>
-<div class="up">
-<form role="form" method="post" action="#" th:action="@{/TeaAddQues}">
-    <div class="form-group">
-        <label for="topic">论题题目</label>
-        <input type="text" class="form-control" name="topic" id="topic" placeholder="文本输入">
-    </div>
-    <div class="form-inline">
-        <label for="difficulty">论题难度</label>
-        <select  class="form-control text-center" name="difficulty" id="difficulty">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="majorid">专业</label>
-        <input type="text" class="form-control" name="majorid" id="majorid" placeholder="文本输入">
-    </div>
-    <div class="form-group">
-        <label for="content">论题详情</label>
-        <textarea class="form-control" name="content" id="content" rows="3"></textarea>
-    </div>
-    <div data-role="controlgroup" data-type="horizontal" style="text-align: center;">
-        <input type="submit" data-type="btn" data-inline="true"  value="发布">
-    </div>
-</form>
-</div>
-<div class="foot text-center">
-    <h6>版权所有©张昊斌 </h6>
+<div id="footerID" class="footer">
+    版权所有&copy; Copyright 2016-2019 计科1601班
 </div>
 </body>
 </html>
