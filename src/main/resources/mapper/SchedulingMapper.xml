@@ -63,7 +63,7 @@
 
     <select id="addCourse" resultType="Boolean">
         insert into scheduling values (#{semesterId},#{cno},#{tno},#{status},#{capacity},
-        #{address},null,#{grade},#{time});
+        #{address},"2,3,5",#{grade},#{time});
     </select>
     <select id="addCourseMajor" resultType="Boolean">
         insert into schedule_major values(#{semesterId},#{cno},#{majorId},#{grade})

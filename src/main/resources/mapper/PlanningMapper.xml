@@ -32,7 +32,7 @@
     </select>
 
     <select id="addWillCourse" resultType="Boolean">
-        insert into planning values (#{semesterId},#{majorId},#{grade},#{cno},null,false,null)
+        insert into planning values (#{semesterId},#{majorId},#{grade},#{cno},null,false,1)
     </select>
 
     <select id="checkWillCourse" resultType="Boolean">

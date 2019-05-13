@@ -433,6 +433,7 @@
                 },
 
                 insert_go: function (){ //批量导入的确认
+                    console.log(this.cno);
                     this.$http.get("/getparams",
                         {params:{start:this.start,semester:this.semester, cno:this.cno}}).then(function(res){
                         console.log(res);

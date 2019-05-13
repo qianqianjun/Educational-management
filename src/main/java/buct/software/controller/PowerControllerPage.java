@@ -39,7 +39,7 @@ public class PowerControllerPage {
         if (user == null) {
             return false;
         }
-        return user.getType() == 0;
+        return user.getType() == 2;
     }
 
     @RequestMapping("/ExcelInsert")
