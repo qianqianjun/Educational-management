@@ -1,0 +1,115 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="navi">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/GoHomePage">
+                        <span data-feather="home"></span>
+                        首页
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <span data-feather="activity"></span>
+                        论题浏览
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ManageLookThroughGrade">
+                        <span data-feather="airplay"></span>
+                        成绩浏览
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>教务后台管理系统</title>
+
+    <script src="./js/vue.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <!--<link href="static/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
+    <!--integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+    <!-- Custom styles for this template -->
+    <link href="css/backstage/bootstrap4.min.css" rel="stylesheet">
+    <link href="css/backstage/my_dashboard.css" rel="stylesheet">
+    <script src="js/backstage/my_axios.min.js"></script>
+</div>
+<div th:fragment="banner">
+    <nav class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">教务后台管理系统</a>
+        <!--input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"-->
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="/logout">登出</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="container-fluid" id="TI">
+    <div class="row">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" method="post" th:action="@{/ManageQues}">
+            <h1></h1>
+            <!--<a href="/TeachersAddAction" class="btn btn-outline-primary mr-sm-2" role="button">
+                <span data-feather="user-plus"></span>
+                添加教师
+            </a>-->
+
+            <h1></h1>
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">论题ID</th>
+                    <th scope="col">论题名称</th>
+                    <th scope="col">论题内容</th>
+                    <th scope="col">难易程度</th>
+                    <th scope="col">导师工号</th>
+                    <th scope="col">专业ID</th>
+                    <th scope="col">学生学号</th>
+                    <th scope="col">是否选中</th>
+                    <th scope="col">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="quesInfo:${quesInfos}">
+                    <td th:text="${quesInfo.questionid}"></td>
+                    <td th:text="${quesInfo.topic}"></td>
+                    <td th:text="${quesInfo.content}"></td>
+                    <td th:text="${quesInfo.difficulty}"></td>
+                    <td th:text="${quesInfo.tno}"></td>
+                    <td th:text="${quesInfo.majorid}"></td>
+                    <td th:text="${quesInfo.sno}"></td>
+                    <td th:text="${quesInfo.ischosen}"></td>
+                    <td>
+                        <form method="post" action="#" th:action="@{/ManageQues}">
+                            <input type="text" name="questionid" th:value="${quesInfo.questionid}" style="display:none;">
+                            <input type="submit" class="btn btn-outline-primary btn-sm" value="解除绑定">
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div>
+                <button @click="prePage()" id="btnprepage">上一页</button>
+                <button @click="nextPage()" id="btnnextpage">下一页</button>
+                <input type="text" v-model="jumppage" style="width: 40px">
+                <button @click="leapPage()">跳转</button>
+                <!--<label>当前{{ currentpage+1 }}/{{ pagenum }}</label>-->
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

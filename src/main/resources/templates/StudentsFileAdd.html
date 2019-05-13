@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="common/backstageNavigator.html :: head"></div>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>教务后台管理系统</title>
+
+    <script src="./js/vue.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <!--<link href="static/css/bootstrap.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href="./css/dashboard.css" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
+</head>
+
+<body>
+
+<div th:replace="common/backstageNavigator.html :: banner"></div>
+
+<div class="container-fluid" id="app">
+    <div class="row">
+        <div th:replace="common/backstageNavigator.html :: navi"></div>
+        <div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h2>学生导入</h2>
+            <div id="app1">
+                <input type="file" @change="getFile($event)"/>
+                <button @click="upload">上传</button>
+                <div>{{ result }}</div>
+                <div v-show="uping==1">正在上传中</div>
+            </div>
+        </div>
+        <div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h2>教师导入</h2>
+            <div id="app2">
+                <input type="file" @change="getFile2($event)"/>
+                <button @click="uploadt">上传</button>
+            </div>
+            <div>{{ result2 }}</div>
+            <div v-show="uping2==1">正在上传中</div>
+        </div>
+        <!--<button type="button" id="uploadFile" @Click="upload">upload</button>-->
+        <!--<button @click="upload" class="btn btn-xs btn-primary">Upload</button>-->
+
+    </div>
+</div>
+</div>
+</body>
+<script>
+    var b = new Vue({
+        el: '#app',
+        data: {
+            upath: '',
+            result: '',
+            uping: 0,
+            start: null,
+            upath2: '',
+            result2: '',
+            uping2: 0,
+            start2: null,
+        },
+        methods: {
+            upload: function () {
+                //console.log(this.upath);
+                var zipFormData = new FormData();
+                zipFormData.append('file', this.upath);//file要和@RequestParam("file")MultipartFile file对应好
+                var config = {headers: {'Content-Type': 'multipart/form-data'}};
+                var s = this.start;
+                this.uping = 1;
+                this.$http.post('/ExcelAfterInsert', zipFormData, config, s).then(function (response) {
+                    // console.log(response);
+                    // console.log(response.data);
+                    console.log(response.bodyText);
+                    alert(response.bodyText)
+                    // var resultobj = response.data;
+                    this.result = response.data
+                    this.uping = 0;
+                    // this.result = resultobj.msg;
+                });
+            },
+
+            getFile: function (even) {
+                this.upath = event.target.files[0];
+            },
+            uploadt: function () {
+                // alert(2)
+                //console.log(this.upath);
+                var zipFormData = new FormData();
+                zipFormData.append('file', this.upath2);//file要和@RequestParam("file")MultipartFile file对应好
+                var config = {headers: {'Content-Type': 'multipart/form-data'}};
+                var s = this.start2;
+                this.uping2 = 1;
+                this.$http.post('/ExcelAfterInsertForT', zipFormData, config, s).then(function (response) {
+                    // console.log(response);
+                    // console.log(response.data);
+                    console.log(response.bodyText);
+                    alert(response.bodyText)
+                    // var resultobj = response.data;
+                    this.result2 = response.data
+                    this.uping2 = 0;
+                    // this.result = resultobj.msg;
+                });
+            },
+
+            getFile2: function (even) {
+                // alert(2)
+                this.upath2 = event.target.files[0];
+            },
+        }
+    });
+</script>
+<!-- Bootstrap core JavaScript
+=============================xQ===================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type"content="text/html" charset="UTF-8">
+    <title>学生选课页面</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="js/selectcourse/vue.min.js"></script>
+    <script src="js/selectcourse/vue-resource.min.js"></script>
+
+    <script type="text/javascript" src="js/selectcourse/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/bootstrap.min.css" />
+    <script type="text/javascript" src="js/selectcourse/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/zftal-ui.css" />
+    <link href="css/selectcourse/selectcourse.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        body{margin:0;padding:0}
+        .up1{width:90%;height:5%;background: white;margin:20px auto}
+        .down{width:90%;height:95%;background: white;margin:20px auto}
+    </style>
+</head>
+<body>
+<!--<div class="top">-->
+    <!--<h2 class="text-black-50 text-center">浏览选题页面</h2>-->
+<!--</div>-->
+<header class="navbar-inverse top2">
+    <div class="container" id="navbar_container">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">学生选题</span>
+                </button>
+                <A class="navbar-brand" id="topbutton" href="">学生选题</A>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="up1">
+    <div class="navbar navbar-default" role="navigation">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/StuLookThroughQues">选题首页</a></li>
+            <li><a href="/StuChoice">已选课题</a></li>
+            <li><a href="/StuScore">关于成绩</a></li>
+        </ul>
+    </div>
+</div>
+<div class="down">
+    <div class="panel panel-default" >      <!--row   pre-scrollable-->
+        <!--<div class="panel-heading alert alert-info text-center" role="alert">-->
+            <!--<div >您已经选择但未被老师确认的选题</div>-->
+        <!--</div>-->
+        <div class="alert alert-info text-center" role="alert">
+        </div>
+        <div class="panel-body ">
+            <div class="pre-scrollable " style="overflow:scroll;">
+                <table class="table table-striped table-bordered table-hover table-responsive" style="min-width: 1400px;">
+                    <thead>
+                    <tr>
+                        <th>题目ID</th>
+                        <th>标题</th>
+                        <th>难度</th>
+                        <th>老师姓名</th>
+                        <th>是否选中</th>
+                        <th>详情</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="queslnfo: ${quesInfos}">
+                        <td th:text="${queslnfo.questionid}"></td>
+                        <td th:text="${queslnfo.topic}"></td>
+                        <td th:text="${queslnfo.difficulty}"></td>
+                        <td th:text="${queslnfo.tname}"></td>
+                        <div th:switch="${queslnfo.ischosen}">
+                            <td th:case="false">未被选中</td>
+                            <td th:case="true">已被选中</td>
+                        </div>
+                        <td >
+                            <a th:href="@{'/StuQuesDetails?questionid='+${queslnfo.questionid}}">详情</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="text-right panel-footer">
+            <p class="text-right">关于题目和老师具体信息，点击详情查看</p>
+        </div>
+    </div>
+</div>
+<div id="footerID" class="footer">
+    版权所有&copy; Copyright 2016-2019 计科1601班
+</div>
+</body>
+</html>

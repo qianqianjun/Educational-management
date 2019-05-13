@@ -1,0 +1,59 @@
+.panel {
+    width: 100%;
+    margin: auto;
+    background-size: cover;
+}
+.user-nav {
+    padding: 20px 30px 0 0;
+    width: 90%;
+}
+.user-nav ul {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+.user-nav ul li {
+    width: 100%;
+    list-style: none;
+    padding: 0 10px 0 5px;
+    margin: 5% 0 0 0;
+    display: inline-block;
+    text-align: center;
+    border-bottom: 1px #8c7cd5 solid;
+}
+.user-nav ul li img {
+    display: inline-block;
+    padding: 0 5% 0 0;
+    max-width: 22%;
+    float: left;
+}
+.user-nav ul li span {
+    color: white;
+    display: block;
+    float: left;
+    text-align: left;
+    padding: 5px 5px 0 20px;
+}
+.user-nav ul li a {
+    font-size: 14px;
+    font-weight: 300;
+    color: #fff;
+}
+#btnStuSearch {
+    position: fixed;
+    top: 12%;
+    right: 2%;
+    z-index: 2;
+}
+#btnprepage {
+    position: fixed;
+    bottom: 5%;
+    left: 40%;
+}
+#btnnextpage {
+    position: fixed;
+    bottom: 5%;
+    right: 40%;
+}

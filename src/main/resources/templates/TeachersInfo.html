@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="common/backstageNavigator.html :: head"></div>
+</head>
+
+<body>
+<div th:replace="common/backstageNavigator.html :: banner"></div>
+<div class="container-fluid" id="TI">
+    <div class="row">
+        <div th:replace="common/backstageNavigator.html :: navi"></div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" method="post" th:action="@{/SeacherTeachers}">
+
+            <form class="form-inline mt-2 mt-md-0" method="post" th:action="@{/SearchTeachers}">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">工号</span>
+                    </div>
+                    <input class="form-control mr-sm-2" type="text" th:name="tno" v-model="searchTeacher.tno"
+                           placeholder="工号"
+                           aria-label="Search">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">姓名</span>
+                    </div>
+                    <input class="form-control mr-sm-2" type="text" th:name="tname" v-model="searchTeacher.tname"
+                           placeholder="姓名"
+                           aria-label="Search">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">性别</span>
+                    </div>
+                    <input class="form-control mr-sm-2" type="text" th:name="sex" v-model="searchTeacher.sex"
+                           placeholder="性别"
+                           aria-label="Search">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">学院号</span>
+                    </div>
+                    <input class="form-control mr-sm-2" type="text" th:name="collegeid"
+                           v-model="searchTeacher.collegeId" placeholder="学院号"
+                           aria-label="Search">
+                </div>
+                <button class="btn btn-outline-primary mr-sm-2" type="submit">
+                    <span data-feather="search"></span>
+                    搜索
+                </button>
+            </form>
+            <h1></h1>
+            <a href="/TeachersAddAction" class="btn btn-outline-primary mr-sm-2" role="button">
+                <span data-feather="user-plus"></span>
+                添加教师
+            </a>
+
+            <h1></h1>
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">工号</th>
+                    <th scope="col">姓名</th>
+                    <th scope="col">性别</th>
+                    <th scope="col">学院号</th>
+                    <th scope="col">手机号</th>
+                    <th scope="col">电子邮箱</th>
+                    <th scope="col">职称</th>
+                    <th scope="col">办公室地址</th>
+                    <th scope="col">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <tr v-for="(teacher, index) in pageteachers">
+                    <td>{{teacher.tno}}</td>
+                    <td>{{teacher.tname}}</td>
+                    <td>{{teacher.sex}}</td>
+                    <td>{{teacher.collegeId}}</td>
+                    <td>{{teacher.phone}}</td>
+                    <td>{{teacher.email}}</td>
+                    <td>{{teacher.rank}}</td>
+                    <td>{{teacher.office}}</td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" v-on:click="change(teacher.tno)" type="button">
+                            修改
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div>
+                <button @click="prePage()" id="btnprepage">上一页</button>
+                <button @click="nextPage()" id="btnnextpage">下一页</button>
+                <input type="text" v-model="jumppage" style="width: 40px">
+                <button @click="leapPage()">跳转</button>
+                <label>当前{{ currentpage+1 }}/{{ pagenum }}</label>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script type="text/javascript" th:inline="javascript">
+    var ti = new Vue({
+        el: '#TI',
+        mounted:function() {
+            this.getpage()
+
+        },
+        methods: {
+            getpage: function() {
+                this.pagenum = Math.ceil(this.teachers.length / this.pagesize) || 1;
+                for(var i = 0;i < this.pagenum;i ++) {
+                    this.totalpage[i] = this.teachers.slice(this.pagesize * i, this.pagesize * (1+i));
+                }
+                this.pageteachers = this.totalpage[this.currentpage];
+            },
+            prePage: function() {
+                if(this.currentpage-1 == -1) return;
+                this.pageteachers = this.totalpage[-- this.currentpage];
+            },
+            nextPage: function() {
+                if(this.currentpage == this.pagenum-1) return;
+                this.pageteachers = this.totalpage[++ this.currentpage];
+            },
+            leapPage: function () {
+                if(this.jumppage > this.pagenum || this.jumppage < 1) {
+                    alert('输入有误');
+                } else {
+                    this.currentpage = this.jumppage-1;
+                    this.pageteachers = this.totalpage[this.currentpage];
+                }
+            },
+            change: function (tno) {
+                // alert(tno);
+                window.location = "/UpdateTeacher?tno=" + tno;
+            }
+        },
+        data: {
+            searchTeacher: {
+                tno: null,
+                tname: '',
+                sex: '',
+                collegeId: null
+            },
+            jumppage: null,
+            pagesize: 8,
+            pageteachers: [],
+            totalpage: [],
+            pagenum: '',
+            currentpage: 0,
+            teachers: [[${allTeacher}]]
+        }
+    })
+</script>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+</body>
+
+</html>

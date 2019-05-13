@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<!DOCTYPE html PUBLIC "">
+<HTML lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>出错提示！</title>
+</head>
+<body>
+<script type="text/javascript" th:inline="javascript">
+    window.onload=function(){
+        alert([[${reason}]]);
+        window.location.href=[[ ${url} ]];
+    }
+</script>
+</body>
+</HTML>

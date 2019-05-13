@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<script>
+    function f(temp) {
+        alert("修改成绩成功！");
+    }
+</script>
+
+<body>
+<div th:fragment="navi">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/GoHomePage">
+                        <span data-feather="home"></span>
+                        首页
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ManageQues">
+                        <span data-feather="activity"></span>
+                        论题浏览
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <span data-feather="airplay"></span>
+                        成绩浏览
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>教务后台管理系统</title>
+
+    <script src="./js/vue.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="css/backstage/bootstrap4.min.css" rel="stylesheet">
+    <link href="css/backstage/my_dashboard.css" rel="stylesheet">
+    <script src="js/backstage/my_axios.min.js"></script>
+</div>
+<div th:fragment="banner">
+    <nav class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">教务后台管理系统</a>
+        <!--input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"-->
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="/logout">登出</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="container-fluid" id="TI">
+    <div class="row">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" method="post" th:action="@{/ManageScore}">
+
+            <form id="form1" th:onsubmit="'javascript:f('+${session.gradeIsChanged}+');'" th:action="@{/ManageScore}" th:type="buct.software.domain.Student" method="post">
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">初期表现(10%)</span>
+                        </div>
+                        <!--<h1 th:text="${needUpdateStudent}"></h1>-->
+                        <input class="form-control mr-sm-2" th:name="earlyperformance" type="text"
+                               th:value="${Score.earlyperformance}"
+                        >
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">中期考核(20%)</span>
+                        </div>
+                        <input class="form-control mr-sm-2" th:name="midexam" type="text"
+                               th:value="${Score.midexam}">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">答辩(30%)</span>
+                        </div>
+                        <input class="form-control mr-sm-2" th:name="thesisanswer" type="text"
+                               th:value="${Score.thesisanswer}">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">论文(30%)</span>
+                        </div>
+                        <input class="form-control mr-sm-2" th:name="paper" type="text"
+                               th:value="${Score.paper}">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">额外加分(10%)</span>
+                        </div>
+                        <input class="form-control mr-sm-2" th:name="extracredit" type="text"
+                               th:value="${Score.extracredit}">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <input type="text" name="questionid" th:value="${Score.questionid}" style="display:none;">
+                    <input type="text" name="sno" th:value="${Score.sno}" style="display:none;">
+                    <button type="submit" class="btn btn-outline-primary mr-sm-2">保存</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</div>
+</body>
+</html>

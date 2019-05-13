@@ -28,6 +28,7 @@
 
         <!--planning 表-->
         <result column="type" javaType="Integer" jdbcType="INTEGER" property="courseType"></result>
+
     </resultMap>
 
     <select id="getAllAvaiableCourseWithCondition"
@@ -58,11 +59,13 @@
                 <if test="capacity==2">
                     and scheduling.capacity =0
                 </if>
+
             </if>
             <if test="cno != null">
                 and  scheduling.cno= #{cno}
             </if>
             and scheduling.semesterid=#{semesterId} and schedule_major.majorid=#{majorId}
+
         </where>
     </select>
 
@@ -113,8 +116,8 @@
         <result column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></result>
         <result column="sno" javaType="Integer" jdbcType="INTEGER" property="sno"></result>
         <result column="detail" javaType="String" jdbcType="VARCHAR" property="detail"></result>
-        <result column="totalscore" javaType="Integer" jdbcType="INTEGER" property="totalScore"></result>
 
+        <result column="totalscore" javaType="Integer" jdbcType="INTEGER" property="totalScore"></result>
     </resultMap>
     <select id="getAllCourseHaveBeenSelected"
             parameterType="buct.software.domain.SelectCourse"
@@ -130,6 +133,7 @@
             <if test="semesterId != null">semesterid=#{semesterId},</if>
             <if test="sno != null">sno=#{sno},</if>
             <if test="cno != null">cno=#{cno},</if>
+
             <if test="totalScore != null">totalscore=#{totalScore},</if>
             <if test="detail != null">detail=#{detail},</if>
         </set>
@@ -171,13 +175,13 @@
         </where>
     </select>
 
-
     <resultMap id="getGradMap" type="buct.software.views.StudentGradeIndexView">
         <id column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></id>
         <result column="semester" javaType="Integer" jdbcType="INTEGER" property="semester"></result>
         <result column="start" javaType="Integer" jdbcType="INTEGER" property="start"></result>
         <result column="end" javaType="Integer" jdbcType="INTEGER" property="end"></result>
         <result column="totalscore" javaType="Integer" jdbcType="INTEGER" property="totalScore"></result>
+
         <result column="cname" javaType="String" jdbcType="VARCHAR" property="cname"></result>
     </resultMap>
     <select id="getGrade" resultMap="getGradMap" parameterType="buct.software.domain.SelectCourse">
@@ -186,9 +190,13 @@
         where select_course.totalscore is not null and select_course.semesterid=#{semesterId} and select_course.sno=#{sno};
     </select>
 
-
     <update id="changeCapacity">
         update scheduling set scheduling.capacity=scheduling.capacity+#{addition} where scheduling.semesterid=#{semesterId}
         and scheduling.cno=#{cno}
     </update>
+
+    <select id="getSchedulingBySemesterIdAndCno" resultType="buct.software.domain.Scheduling">
+        select * from scheduling where scheduling.semesterid=#{semesterId} and scheduling.cno=#{cno}
+    </select>
+
 </mapper>

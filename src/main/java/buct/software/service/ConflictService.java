@@ -1,11 +1,15 @@
 package buct.software.service;
 
 import buct.software.dao.SchedulingDao;
+import buct.software.domain.Scheduling;
+import buct.software.domain.SelectCourse;
+
 import buct.software.domain.User;
 import buct.software.utils.CourseDataUtil;
-import com.sun.xml.internal.fastinfoset.algorithm.BooleanEncodingAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.swing.plaf.synth.SynthCheckBoxMenuItemUI;
 
 import java.util.List;
 
@@ -30,9 +34,14 @@ public class ConflictService {
      * 如果没有任务，就返回true 表示可以安排任务。
      */
     public Boolean teacher(Integer semesterId,Integer tno,String timeStr){
-        if(semesterId!=null || tno!=null || timeStr!=null)
+        if(semesterId==null || tno==null || timeStr==null)
             return false;
-        List<String> courseTimeStrList=schedulingDao.getTeacherTaskTime(semesterId,tno);
+
+        Scheduling scheduling=new Scheduling();
+        scheduling.setSemesterId(semesterId);
+        scheduling.setTno(tno);
+        List<String> courseTimeStrList=schedulingDao.getTeacherTaskTime(scheduling);
+
         return !CourseDataUtil.isConflict(timeStr,courseTimeStrList);
     }
 
@@ -44,9 +53,13 @@ public class ConflictService {
      * @return  详细见 teacher 的注释
      */
     public Boolean student(Integer semesterId,Integer sno,String timeStr){
-        if(semesterId!=null || sno!=null || timeStr!=null)
+        if(semesterId ==null || sno==null || timeStr==null)
             return false;
-        List<String> courseTimeStrList=schedulingDao.getStudentTaskTime(semesterId,sno);
+        SelectCourse selectCourse=new SelectCourse();
+        selectCourse.setSemesterId(semesterId);
+        selectCourse.setSno(sno);
+        List<String> courseTimeStrList=schedulingDao.getStudentTaskTime(selectCourse);
+
         return !CourseDataUtil.isConflict(timeStr,courseTimeStrList);
     }
 
@@ -59,7 +72,11 @@ public class ConflictService {
     public Boolean classRoom(Integer semesterId,String room,String timeStr){
         if(semesterId!=null || room!=null || timeStr!=null)
             return false;
-        List<String> courseTimeStrList=schedulingDao.getRoomTaskTime(semesterId,room);
+        Scheduling scheduling=new Scheduling();
+        scheduling.setSemesterId(semesterId);
+        scheduling.setAddress(room);
+        List<String> courseTimeStrList=schedulingDao.getRoomTaskTime(scheduling);
+
         return !CourseDataUtil.isConflict(timeStr,courseTimeStrList);
     }
 

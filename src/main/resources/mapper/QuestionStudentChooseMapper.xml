@@ -15,6 +15,11 @@
         )
     </insert>
 
+
+    <select id="getChoiceByQid" parameterType="int" resultType="QuestionStudentChoose">
+        select * from question_student where questionid = #{questionid}
+    </select>
+
     <select id="getChoiceByQidSno" parameterType="Map" resultType="QuestionStudentChoose">
         select * from question_student where questionid = #{questionid} and sno = #{sno}
     </select>

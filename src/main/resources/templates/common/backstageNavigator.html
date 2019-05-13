@@ -1,0 +1,97 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="navi">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/GoHomePage">
+                        <span data-feather="home"></span>
+                        首页
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/PowerManage">
+                        <span data-feather="check-square"></span>
+                        权限管理
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/StudentsInfo">
+                        <span data-feather="users"></span>
+                        学生信息
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ExcelInsert">
+                        <span data-feather="users"></span>
+                        批量倒入
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/TeachersInfo">
+                        <span data-feather="users"></span>
+                        教师信息
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/GoSemesterManage">
+                        <span data-feather="calendar"></span>
+                        学期管理
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/classScheduling">
+                        <span data-feather="bar-chart-2"></span>
+                        课程安排
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ManageQues">
+                        <span data-feather="book-open"></span>
+                        毕业设计
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span data-feather="help-circle"></span>
+                        帮助
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>教务后台管理系统</title>
+
+    <script src="./js/vue.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <!--<link href="static/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
+    <!--integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+    <!-- Custom styles for this template -->
+    <link href="css/backstage/bootstrap4.min.css" rel="stylesheet">
+    <link href="css/backstage/my_dashboard.css" rel="stylesheet">
+    <script src="js/backstage/my_axios.min.js"></script>
+</div>
+<div th:fragment="banner">
+    <nav class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">教务后台管理系统</a>
+        <!--input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"-->
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="/logout">登出</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>

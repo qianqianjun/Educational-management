@@ -59,4 +59,19 @@ public class SemesterService {
         Semester res=semesterDao.getSemesterByStartAndSemester(parm);
         return res;
     }
+
+    /**
+     * @author 王艺琳
+     * @param semesterId  学期id
+     * @return
+     */
+    public Semester getSemesterById(Integer semesterId) {
+        return  semesterDao.getSemesterById(semesterId);
+    }
+
+
+    public void addSemester(Semester semester){
+        semesterDao.insertSemester(semester);
+    }
+
 }

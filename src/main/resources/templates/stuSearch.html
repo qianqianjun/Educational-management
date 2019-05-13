@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="common/mobileBackstageNavigator.html :: cssAndJS"></div>
+    <title></title>
+</head>
+<body>
+<!--学生搜索界面-->
+<div data-role="page" id="stuSearchVue">
+    <div data-role="header" style="background-color: steelblue" data-position="fixed">
+        <a class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-back" style="background-color: steelblue"
+           data-rel="back" href="/GoStudentInfo" ></a>
+        <h1>搜索</h1>
+    </div>
+
+    <div data-role="content" class="stuVue">
+        <div>
+            <label>学号</label>
+            <input type="text" v-model="sno">
+            </br>
+            <button type="button" @click="getStudentBySno(sno)">查询</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    var stu = new Vue({
+        el: '#stuSearchVue',
+        data: {
+            sno: null,
+        },
+        methods: {
+            getStudentBySno: function (parm) {
+                // alert(parm)
+                window.location = "/mobileSearchStudent?sno=" + parm
+            },
+        }
+    })
+</script>
+</body>

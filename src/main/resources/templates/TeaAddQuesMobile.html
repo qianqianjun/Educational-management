@@ -1,0 +1,117 @@
+<!-- 发布论题页 -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- meta使用viewport以确保页面可自由缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- 引入 jQuery Mobile 样式 -->
+	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+	<!-- 引入 jQuery 库 -->
+	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	<!-- 引入 jQuery Mobile 库 -->
+	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+	<style type="text/css">
+		th {
+		    border-bottom: 1px solid #d6d6d6;
+		}
+
+		tr:nth-child(even) {
+		    background: #e9e9e9;
+		}
+
+		#btn-search{
+			position: fixed;
+			top: 16%;
+			right: 2%;
+			z-index: 2;
+		}
+
+		#btn-add{
+			position: fixed;
+			top: 22%;
+			right: 2%;
+			z-index: 2;
+		}
+
+		#pagebox{
+			text-align: center;
+		}
+
+	</style>
+
+	<title>发布论题</title>
+</head>
+<body>
+<div data-role="page" id="pageone">
+	
+	<body>
+	<div data-roal = "page" id = "detail">
+	<!-- 面板 -->
+		<div data-role="panel" id="myPanel">
+			<a href="/index" data-ajax="false"  class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
+			<a href="/TeaAddQuesMobile " data-ajax="false"  class="ui-btn ui-icon-info ui-btn-icon-left">发布论题</a>
+			<a href="/TeaLookThroughQuesMobile" data-ajax="false"  class="ui-btn ui-icon-info ui-btn-icon-left">查看论题</a>
+			<a href="/TeaAddScoreMobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">毕设成绩评定</a>
+			<a href="/gradeteachermobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">课程成绩导入</a>
+		</div>
+	<!-- 头部 -->
+	<div data-role="header" >
+	<!-- 侧边栏按钮 -->
+		<a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">侧边栏</a>
+		<h1>发布论题</h1>
+	</div>
+	
+	<body>
+	<form method="post" action="#" th:action="@{/TeaAddQues}" >
+		<div class="ui-field-contain">
+			<label for="topic">论题题目</label>
+			<textarea name="topic" id="topic" ></textarea>
+			
+			<label for="content">论题内容</label>
+			<textarea name="content" id="content" ></textarea>
+			
+			<label for="difficulty">论题难度</label>
+			<textarea name="difficulty" id="difficulty" ></textarea>
+			
+			<label for="majorid">专业</label>
+			<textarea name="majorid" id="majorid" ></textarea>
+			
+		</div>
+		<div data-role="controlgroup" data-type="horizontal" style="text-align: center;">
+				<input type="submit" data-type="btn" data-inline="true"  value="发布">
+				<a href="/TeaLookThroughQuesMobile" target="_self" class="ui-btn ui-btn-inline">返回</a>
+			</div>
+		
+		
+		
+	</form>
+	</body>
+	<!--
+	<form method="post" action="#">
+	<div class="ui-field-contain">
+	<label for="info">论题内容</label>
+	<textarea name="addinfo" id="info" ></textarea>
+	
+	<div data-role="controlgroup" data-type="horizontal" style="text-align: center;">
+	
+	<input type="submit" data-inline="true" value="发布">
+	<a href="admin.html"  target="_self" class="ui-btn ui-btn-inline">返回</a>
+	</div>
+	</div>
+	</form>
+	-->
+	
+	
+	<!-- 底部 -->
+	<div data-role="footer">
+		<h1>版权所有</h1>
+	</div>
+	
+</body>
+
+</html>

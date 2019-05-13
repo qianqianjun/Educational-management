@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<header th:replace="app/header::static"></header>
+<body class="body-container">
+<div th:replace="app/header::header"></div>
+<!-- 菜单  -->
+<div class="navbar_index" >
+    <div class="container" id="myDiv1">
+        <nav id="cdNav" class="navbar-collapse bs-navbar-collapse collapse" role="navigation" aria-expanded="false">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a role="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">成绩管理<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a target="_blank" href="/gradeinfoteacher">成绩管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a role="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">毕业设计<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a target="_blank" href="/TeaLookThroughQues">查看论题</a></li>
+                        <li><a target="_blank" href="/TeaAddQues">添加论题</a></li>
+                        <li><a target="_blank" href="/TeaAddScore">成绩评定</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!-- 主体 -->
+<div class="container padding-150" style="padding-bottom: 100px;">
+    <div class="row">
+        <div class="col-md-2 col-sm-4">
+            <div class="index_wdyy">
+                <h3><span>我的应用</span><a href="" class="sz" id="wdyy_szbtn"></a></h3>
+                <ul class="list-unstyled mCustomScrollbar _mCS_1 mCS_no_scrollbar" style="height: 350px;">
+                    <li class="col-md-6 col-sm-6 col-xs-6">
+                        <a href="/TeaLookThroughQues" target="_blank">
+                            <img src="images/ico_but30.png"/>
+                            <h5>查看论题</h5>
+                        </a>
+                    </li>
+                    <li class="col-md-6 col-sm-6 col-xs-6">
+                        <a href="/TeaAddQues" target="_blank">
+                            <img src="images/ico_but42.png"/>
+                            <h5>添加论题</h5>
+                        </a>
+                    </li>
+                    <li class="col-md-6 col-sm-6 col-xs-6">
+                        <a href="/TeaAddScore" target="_blank">
+                            <img src="images/ico_but46.png"/>
+                            <h5>成绩评定</h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10 col-sm-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="index_grxx">
+                        <div class="row">
+                            <div class="col-md-5" id="yhxxIndex">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h4 class="media-heading">[[${teainfo.tname}]] [[${teainfo.rank}]] </h4>
+                                        <p>性别： [[${teainfo.sex}]]</p>
+                                        <p>所在学院：[[${colname}]] </p>
+                                        <p>办公地点: [[${teainfo.office}]]</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 column">
+                                <div class="carousel slide" id="carousel-942744">
+                                    <div class="carousel-inner">
+                                        <div class="item">
+                                            <img alt="" src="images/lunbo1.jpg" />
+                                            <div class="carousel-caption"></div>
+                                        </div>
+                                        <div class="item">
+                                            <img alt="" src="images/lunbo2.jpg" />
+                                            <div class="carousel-caption"></div>
+                                        </div>
+                                        <div class="item active">
+                                            <img alt="" src="images/lunbo3.jpg" />
+                                            <div class="carousel-caption"></div>
+                                        </div>
+                                    </div>
+                                    <a class="left carousel-control" href="#carousel-942744" data-slide="prev">
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-942744" data-slide="next">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="index_rctx" style="height: 418px;">
+                        <h5 class="index_title"><span class="title">课表</span></h5>
+                        <table class="table table-striped table-bordered table-hover table-responsive">
+                            <thead>
+                            <tr>
+                                <th data-priority="6">课程号</th>
+                                <th data-priority="5">课程名称</th>
+                                <th data-priority="4">上课地点</th>
+                                <th data-priority="3">上课时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="CourseInfo: ${session.CourseTable}">
+                                <td th:text="${CourseInfo.semesterid}"></td>
+                                <td th:text="${CourseInfo.courseName}"></td>
+                                <td th:text="${CourseInfo.address}"></td>
+                                <td th:text="${CourseInfo.courseTime}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="index_rctx" style="height: 418px;">
+                        <div class="index_wdyy">
+                            <h5 class="index_title"><span class="title">友情链接</span></h5>
+                            <div class="list-group">
+                                <ul class="list-unstyled mCustomScrollbar _mCS_1 mCS_no_scrollbar" style="height: 350px;">
+                                    <li class="col-md-4 col-sm-4 col-xs-4">
+                                        <a href="http://rsc.buct.edu.cn/" target="_blank">
+                                            <img src="images/ico_but28.png"/>
+                                            <h5>人事处</h5>
+                                        </a>
+                                    </li>
+                                    <li class="col-md-4 col-sm-4 col-xs-4">
+                                        <a href="http://www.lib.buct.edu.cn/" target="_blank">
+                                            <img src="images/ico_but31.png"/>
+                                            <h5>图书馆</h5>
+                                        </a>
+                                    </li>
+                                    <li class="col-md-4 col-sm-4 col-xs-4">
+                                        <a href="http://www.cwc.buct.edu.cn/" target="_blank">
+                                            <img src="images/ico_but18.png"/>
+                                            <h5>财务处</h5>
+                                        </a>
+                                    </li>
+                                    <li class="col-md-4 col-sm-4 col-xs-4">
+                                        <a href="http://graduate.buct.edu.cn/" target="_blank">
+                                            <img src="images/ico_but30.png"/>
+                                            <h5>研究生院</h5>
+                                        </a>
+                                    </li>
+                                    <li class="col-md-4 col-sm-4 col-xs-4">
+                                        <a href="http://news.buct.edu.cn/" target="_blank">
+                                            <img src="images/ico_but36.png"/>
+                                            <h5>新闻网</h5>
+                                        </a>
+                                    </li>
+                                    <li class="col-md-4 col-sm-4 col-xs-4">
+                                        <a href="http://jiaowuchu.buct.edu.cn/" target="_blank">
+                                            <img src="images/ico_but83.png"/>
+                                            <h5>教务处</h5>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footerID" class="footer">
+    版权所有&copy; Copyright 2016-2019 计科1601班
+</div>
+</body>
+</html>

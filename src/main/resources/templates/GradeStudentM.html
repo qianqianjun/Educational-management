@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+	<!-- meta使用viewport以确保页面可自由缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="./css/grade/jquery.mobile-1.4.5.min.css">
+	<script src="./js/grade/jquery.min.js"></script>
+	<script src="./js/grade/jquery.mobile-1.4.5.min.js"></script>
+	<script src="./js/grade/jquery.min.js(1)"></script>
+	<script src="./js/grade/bootstrap.min.js"></script>
+
+
+	<script src="./js/grade/vue.js"></script>
+	<script src="./js/grade/vue.min.js"></script>
+	<script src="./js/grade/vue-resource.min.js"></script>
+
+	<style type="text/css">
+		th {
+			border-bottom: 1px solid #d6d6d6;
+		}
+		tr {
+			border-bottom: 1px solid #d6d6d6;
+		}
+
+		#pagebox{
+			text-align: center;
+		}
+	</style>
+
+	<title>成绩查询</title>
+</head>
+<body>
+	<div data-role="page" id="pageone">
+	
+	<!-- 面板 -->
+	<div data-role="panel" id="myPanel">
+		<a href="/index" data-ajax="false" class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
+		<a href="/coursetablemobile" data-ajax="false" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
+		<a href="/selectcoursemobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
+		<a href="/gradeinfomobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">成绩查询</a>
+		<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">已选论题</a>
+		<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left">查看论题</a>
+  	</div>
+  	
+  	<!-- 头部 -->
+	<div data-role="header">
+    	<a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">更多</a>
+    	<h1>教务管理系统</h1>
+  	</div>
+  	
+  	<!-- 主体 -->
+  	<div data-role="main" class="ui-content" id="search">
+  		
+  		<div data-role="content">
+  			<form method="post" action="#">
+      			<fieldset data-role="fieldcontain">
+	        		<label for="day">学年</label>
+	        		<select name="day" id="day" v-model="start">
+	        			<option value="all">全部</option>
+						<option value="2019">2019-2020</option>
+		         		<option value="2018">2018-2019</option>
+		         		<option value="2017">2017-2018</option>
+		         		<option value="2016">2016-2017</option>
+	        		</select>
+      			</fieldset>
+      			<fieldset data-role="fieldcontain">
+	        		<label for="day">学期</label>
+	        		<select name="" v-model="semester">
+		         		<option value="all">全部</option>
+		         		<option value="1">1</option>
+		         		<option value="2">2</option>
+		         		<option value="3">3</option>
+	        		</select>
+      			</fieldset>
+    		</form>
+  		</div>
+		<div style="text-align:right">
+		<input type="submit" data-inline="true" v-on:click="search_go()" value="查询">
+		</div>
+
+		<style>
+			*{margin: 0;padding: 0;}
+			#tablebox{width: 100%;overflow-y: hidden;overflow-x: auto;}
+			#table td {border-width: 0 1px 1px 0;padding: 4px 5px;vertical-align: middle;text-align: right;white-space: nowrap;text-align: left;}
+			#table{width: 100%;border-collapse: 0;border-spacing: 0;}
+		</style>
+
+		<div id="tablebox">
+
+  		<table data-role="table" data-mode="columntoggle:none" class="ui-shadow" >
+      		<thead style="text-align:center">
+        		<tr>
+					<th>查看</th>
+					<th>课程名称</th>
+					<th>开课学院</th>
+					<th>学分</th>
+					<th>成绩</th>
+        		</tr>
+      		</thead>
+      		<tbody>
+
+		        <tr v-for="grade in gradeList">
+					<td>
+						<a href="#myPopupDialog" data-rel="popup" data-position-to="window" v-on:click="detail(grade)">查看</a>
+					</td>
+					<td><p>{{grade.cname}}</p></td>
+					<td><p>{{grade.college}}</p></td>
+					<td><p>{{grade.credit}}</p></td>
+					<td><p>{{grade.totalscore}}</p></td>
+
+		        </tr>
+
+
+      		</tbody>
+    	</table>
+		</div>
+    	<div id="pagebox">
+        	<a href="#">首页</a>
+        	<a href="#">上一页</a>
+        	<a href="#">下一页</a>
+        	<a href="#">末页</a>
+    	</div>
+<!--弹窗-->
+		<div data-role="popup" id="myPopupDialog">
+			<div data-role="header">
+				<h4>查看课程成绩</h4>
+			</div>
+			<div data-role="main" class="ui-content">
+				<p>课程号:{{current_display.cno}} </p>
+				 <p>课程名:{{current_display.cname}}</p>
+				<table id="table" style="width: 250px; text-align: center">
+					<thead>
+					<tr>
+						<th>分 项 </th>
+						<th>比 例 </th>
+						<th>成 绩 </th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td><p>平 时 </p></td>
+						<td><p>{{current_display.pOrdinary}}</p></td>
+						<td><p>{{current_display.gOrdinary}}</p></td>
+					</tr>
+					<tr>
+						<td><p>实 验 </p></td>
+						<td><p>{{current_display.pExperiment}}</p></td>
+						<td><p>{{current_display.gExperiment}}</p></td>
+					</tr>
+					<tr>
+						<td><p>期 末 </p></td>
+						<td><p>{{current_display.pExam}}</p></td>
+						<td><p>{{current_display.gExam}}</p></td>
+					</tr>
+					<tr>
+						<td><p>总 评   </p></td>
+						<td><p> 100%   </p></td>
+						<td><p>{{current_display.totalscore}}</p></td>
+					</tr>
+				</table>
+				<div style="text-align:right">
+					<a href="#pageone" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini" type="back">返回</a>
+				</div>
+			</div>
+		</div>
+  	</div>
+<!--vue end-->
+
+
+
+
+<script>
+	var one = new Vue({
+		el:"#search",
+		data:{
+			start: [[${currentSemester.start}]],
+			semester: [[${currentSemester.semester}]],
+			gradeList: [],
+			current_display:{
+				cname:null,
+				cno:null,
+				percent:null,
+				pOrdinary:null,
+				pExperiment:null,
+				pExam:null,
+				gOrdinary:null,
+				gExperiment:null,
+				gExam:null,
+				totalscore:null
+			}
+		},
+		methods:{
+			search_go:function(){
+				this.$http.get("/getcoursegrade",
+						{params:{start:this.start,semester:this.semester}}).then(function(res){
+					this.gradeList=res.body.data;
+					console.log(res.body);
+				},function(res){
+					console.log('失败');
+				})
+			},
+			detail:function(parma){
+				this.current_display.cname=parma.cname;
+				this.current_display.cno=parma.cno;
+				this.current_display.percent=parma.percent;
+				this.current_display.totalscore=parma.totalscore;
+
+				var sp = parma.percent.split(/,/);
+				this.current_display.pOrdinary=sp[0];
+				this.current_display.pExperiment=sp[1];
+				this.current_display.pExam=sp[2];
+				var gsp = parma.detail.split(/,/);
+				this.current_display.gOrdinary=gsp[0];
+				this.current_display.gExperiment=gsp[1];
+				this.current_display.gExam=gsp[2];
+			}
+		}
+	});
+</script>
+	<!-- 底部 -->
+  	<div data-role="footer">
+    	<h1>版权所有</h1>
+  	</div>
+
+</div>
+
+</body>
+</html>
+

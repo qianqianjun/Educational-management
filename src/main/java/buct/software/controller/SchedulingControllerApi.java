@@ -6,7 +6,6 @@ import buct.software.service.MajorService;
 import buct.software.service.PlanningService;
 import buct.software.service.SchedulingService;
 import buct.software.utils.ResponseMessage;
-import com.sun.org.apache.xalan.internal.xsltc.runtime.StringValueHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +18,7 @@ import java.util.List;
  * @author  刘权达大佬无敌宇宙第一帅
  * 排课子系统api
  */
+
 @RestController
 public class SchedulingControllerApi {
     @Autowired
@@ -46,11 +46,13 @@ public class SchedulingControllerApi {
                                           @RequestParam("semester") String semester,
                                           @RequestParam("majorName") String majorName,
                                           @RequestParam("grade") Integer grade){
+
         return planningService.getWillCourses(year,semester,majorName,grade);
     }
 
     @PostMapping("/addWillCourse")
     public ResponseMessage addWillCourse(@RequestParam("cno") Integer cno,
+
                                          @RequestParam("cname") String cname,
                                          @RequestParam("college") String college,
                                          @RequestParam("description") String description,
@@ -59,6 +61,7 @@ public class SchedulingControllerApi {
                                          @RequestParam("semester") String semester,
                                          @RequestParam("majorName") String Name,
                                          @RequestParam("grade") Integer grade){
+
         return planningService.addWillCourse(cno,cname,college,description,status,year,
                 semester,Name,grade);
     }
@@ -78,6 +81,7 @@ public class SchedulingControllerApi {
                                              @RequestParam("semester") String semester,
                                              @RequestParam("majorName") String majorName,
                                              @RequestParam("grade") Integer grade){
+
         return planningService.deleteWillCourse(cno,year,semester,majorName,grade);
     }
 
@@ -95,6 +99,8 @@ public class SchedulingControllerApi {
                                      @RequestParam("semester") String semester,
                                      @RequestParam("majorName") String majorName,
                                      @RequestParam("grade") Integer grade){
+
+
         return schedulingService.getCourse(cno,year,semester,majorName,grade);
     }
 
@@ -165,4 +171,6 @@ public class SchedulingControllerApi {
         return schedulingService.getAllCourses(year,semester,majorName,grade);
     }
 }
+
+
 

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<HTML lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>查看论题页面</title>
+    <script src="js/selectcourse/vue.min.js"></script>
+    <script src="js/selectcourse/vue-resource.min.js"></script>
+    <script type="text/javascript" src="js/selectcourse/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/bootstrap.min.css" />
+    <script type="text/javascript" src="js/selectcourse/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/zftal-ui.css" />
+    <link href="css/selectcourse/selectcourse.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        body{margin:0;padding:0}
+        .top{height:50px;background: #7abaff}
+        .up{width:90%;height:25%;background: white;margin:20px auto}
+        .down{width:90%;height:70%;background: white;margin:20px auto}
+        .foot{height:5%;background:antiquewhite;margin:0 auto}
+    </style>
+</head>
+<body>
+<header class="navbar-inverse top2">
+    <div class="container" id="navbar_container">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only" style="gray">查看论题</span>
+                </button>
+                <A class="navbar-brand" id="topbutton" href="">查看论题</A>
+            </div>
+        </div>
+    </div>
+</header>
+<div id="bodyContainer" style="margin: 0px; padding: 0px; width: 100%;">
+    <div class="container container-func sl_all_bg" id="yhgnPage" style=" height: 500px;">
+        <div class="pre-scrollable " style="overflow:scroll;">
+            <div class="panel panel-info"  >
+                <div class="panel-heading">&nbsp;</div>
+                <table class="table table-striped table-bordered table-hover table-responsive">
+                    <thead>
+                    <tr>
+                        <th data-priority="6">论题ID</th>
+                        <th>论题题目</th>
+                        <th data-priority="5">难度</th>
+                        <th data-priority="4">已选择学生</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="quesInfo: ${quesInfos}">
+                        <td th:text="${quesInfo.questionid}"></td>
+                        <td >
+                            <a th:href="@{'/TeaQuesDetails?questionid='+${quesInfo.questionid}}" target="_self">
+                                <p th:text="${quesInfo.topic}"></p>
+                            </a>
+                        </td>
+                        <td th:text="${quesInfo.difficulty}"></td>
+                        <td th:text="${quesInfo.sno == -1}?'未选学生': ${quesInfo.sno}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footerID" class="footer">
+    版权所有&copy; Copyright 2016-2019 计科1601班
+</div>
+</body>
+</html>
