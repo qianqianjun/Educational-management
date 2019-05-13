@@ -185,9 +185,6 @@ public class GradeManagementControllerApi {
         // MultipartFile to File
         multfile.transferTo(file);
 
-        /* 测试数据*/
-        tmpSemesterId = 1;
-        tmpcno = 1;
 
         if (fileName == null && "".equals(fileName)) {
             return "文件名不能为空！";
