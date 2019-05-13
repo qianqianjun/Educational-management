@@ -10,6 +10,14 @@
     <script type="text/javascript" src="js/selectcourse/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/selectcourse/zftal-ui.css" />
     <link href="css/selectcourse/selectcourse.css" rel="stylesheet" type="text/css">
+    <script>
+        function f(judge) {
+            if(judge==1)
+                alert("提交成功！");
+            else if(judge==0)
+                alert("成绩已提交");
+        }
+    </script>
     <style type="text/css">
         body{margin:0;padding:0}
         .top{height:50px;background: #7abaff}
@@ -18,7 +26,7 @@
         .foot{height:5%;background:antiquewhite;margin:0 auto}
     </style>
 </head>
-<body>
+<body th:onload="'javascript:f('+${judge}+');'">
 <header class="navbar-inverse top2">
     <div class="container" id="navbar_container">
         <div class="container">
@@ -40,7 +48,7 @@
                     <thead>
                     <tr>
                         <th>论题题目</th>
-                        <th>学生姓名</th>
+                        <th>学生学号</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -57,23 +65,23 @@
                                 <div class="row">
                                 <div class="col-lg-2">
                                     <label for="s1">初期表现10%</label>
-                                    <input type="text" class="form-control" name="earlyperformance" id="s1" placeholder="文本输入">
+                                    <input type="text" class="form-control" name="earlyperformance" id="s1" placeholder="文本输入" required="required">
                                 </div>
                                 <div class="col-lg-2">
                                     <label for="s2">中期考核20%</label>
-                                    <input type="text" class="form-control" name="midexam" id="s2" placeholder="文本输入">
+                                    <input type="text" class="form-control" name="midexam" id="s2" placeholder="文本输入" required="required">
                                 </div>
                                 <div class="col-lg-2">
                                     <label for="s3">答辩30%</label>
-                                    <input type="text" class="form-control" name="thesisanswer" id="s3" placeholder="文本输入">
+                                    <input type="text" class="form-control" name="thesisanswer" id="s3" placeholder="文本输入" required="required">
                                 </div>
                                 <div class="col-lg-2">
                                     <label for="s4">论文30%</label>
-                                    <input type="text" class="form-control" name="paper" id="s4" placeholder="文本输入">
+                                    <input type="text" class="form-control" name="paper" id="s4" placeholder="文本输入" required="required">
                                 </div>
                                 <div class="col-lg-2">
                                     <label for="s5">额外加分10%</label>
-                                    <input type="text" class="form-control" name="extracredit" id="s5" placeholder="文本输入">
+                                    <input type="text" class="form-control" name="extracredit" id="s5" placeholder="文本输入" required="required">
                                 </div>
                                 <div style="text-align: center;">
                                     <input type="submit" data-inline="true" value="提交">

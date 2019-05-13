@@ -16,10 +16,12 @@
     <link href="css/selectcourse/selectcourse.css" rel="stylesheet" type="text/css">
     <script>
         function f(isChosen) {
-            if(isChosen)
+            if(isChosen==1)
                 alert("选择成功！");
-            else
+            else if(isChosen==0)
                 alert("您无法选择该题！");
+            else//isChosen==-1
+                ;
         }
     </script>
     <style type="text/css">
@@ -28,7 +30,12 @@
         .down{width:90%;height:70%;background: white;margin:20px auto }
     </style>
 </head>
-<body>
+<body th:onload="'javascript:f('+${isChosen}+');'">
+
+
+
+
+
 <!--<div class="top">-->
     <!--<h2 class="text-black-50 text-center">题目详情页面</h2>-->
 <!--</div>-->
@@ -88,7 +95,7 @@
                         <button class="btn btn-primary btn-sm btn-block" type="button"  disabled="disabled" >选择此论题</button>
                     </a>
                     <a th:case="false" th:href="@{'/StuChooseQues?questionid='+${quesInfo.questionid}}">
-                        <button class="btn btn-primary btn-sm btn-block" th:onclick="'javascript:f('+${isChosen}+');'" type="button" >选择此论题</button>
+                        <button class="btn btn-primary btn-sm btn-block"  type="button" >选择此论题</button>
                         <!--<div th:if="${isChosen}==true">-->
 
                         <!--</div>-->

@@ -62,7 +62,7 @@ public class CollegeService {
      * @param id  学院的id
      * @return
      */
-    public String getColnameById(String id) {
+    public String getColnameById(int id) {
         String colname=collegeDao.getColNameById(id);
         return colname;
     }
