@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="common/backstageNavigator.html :: head"></div>
@@ -21,7 +21,7 @@
                     <div class="card flex-md-row mb-4 box-shadow h-md-250">
                         <div class="card-body d-flex flex-column align-items-start">
                             <h3 class="mb-0">
-                                <a class="text-dark" href="#">{{CurrentSemester}}</a>
+                                <a class="text-dark" href="#">{{start}}-{{end}}学年, 第{{CurrentSemester}}学期</a>
                             </h3>
                             <h1></h1>
                             <strong class="d-inline-block mb-2 text-primary">开始时间：{{CurrentStart}} </strong>
@@ -34,26 +34,30 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 class="h2">开启新学期</h1>
             </div>
-            <form>
+            <form id="SemesterTable" @submit.prevent="submit" th:action="@{/CreateNewSemester}" method="post">
                 <div class="row">
                     <div class="col-3">
-                        <select class="custom-select" v-model='NewSemesterFirst'>
-                            <option selected>学年</option>
-                            <option value="2017-2018学年">2017-2018学年</option>
-                            <option value="2018-2019学年">2018-2019学年</option>
-                            <option value="2019-2020学年">2019-2020学年</option>
-                            <option value="2020-2021学年">2020-2021学年</option>
-                            <option value="2021-2022学年">2021-2022学年</option>
-                            <option value="2022-2023学年">2022-2023学年</option>
-                        </select>
+                        <!--<select class="custom-select" v-model='NewSemesterFirst'>-->
+                        <!--<option selected>学年</option>-->
+                        <!--<option value="2017-2018学年">2017-2018学年</option>-->
+                        <!--<option value="2018-2019学年">2018-2019学年</option>-->
+                        <!--<option value="2019-2020学年">2019-2020学年</option>-->
+                        <!--<option value="2020-2021学年">2020-2021学年</option>-->
+                        <!--<option value="2021-2022学年">2021-2022学年</option>-->
+                        <!--<option value="2022-2023学年">2022-2023学年</option>-->
+                        <!--</select>-->
+                        <input type="text" th:name="semester" v-model="semester" placeholder="学期名"
+                               class="form-control mr-sm-2">
                     </div>
                     <div class="col-3">
-                        <select class="custom-select" v-model='NewSemesterLast'>
-                            <option selected>学期</option>
-                            <option value="第1学期">第1学期</option>
-                            <option value="第2学期">第2学期</option>
-                            <option value="第3学期">第3学期</option>
-                        </select>
+                        <!--<select class="custom-select" v-model='NewSemesterLast'>-->
+                        <!--<option selected>学期</option>-->
+                        <!--<option value="第1学期">第1学期</option>-->
+                        <!--<option value="第2学期">第2学期</option>-->
+                        <!--<option value="第3学期">第3学期</option>-->
+                        <!--</select>-->
+                        <input type="text" th:name="semesterid" c-model="semesterid" placeholder="学期id"
+                               class="form-control mr-sm-2">
                     </div>
                 </div>
                 <h1></h1>
@@ -63,7 +67,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">开始时间</span>
                             </div>
-                            <input type="date" class="form-control" v-model='NewStart'>
+                            <input type="date" th:name="start" class="form-control" v-model='NewStart'>
                         </div>
                     </div>
                 </div>
@@ -74,7 +78,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">结束时间</span>
                             </div>
-                            <input type="date" class="form-control" v-model='NewEnd'>
+                            <input type="date" th:name="end" class="form-control" v-model='NewEnd'>
                         </div>
                     </div>
                 </div>
@@ -104,8 +108,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                    @click="CreateNewSemester">确定
+                            <button type="submit" class="btn btn-primary" data-dismiss="modal"
+                                    v-on:click="CreateNewSemester()">确定
                             </button>
                         </div>
                     </div>
@@ -117,22 +121,33 @@
 </div>
 
 <script>
+
     var sm = new Vue({
         el: '#SM',
         data: {
-            CurrentSemester: '2018-2019学年 第2学期',
-            CurrentStart: '2019-2-20',
-            CurrentEnd: '2019-6-20',
+            start: '[[${currentSemesterInfo.start}]]',
+            end: '[[${currentSemesterInfo.end}]]',
+            CurrentSemester: '[[${currentSemesterInfo.semester}]]',
+            CurrentStart: '[[${currentSemesterInfo.start}]]',
+            CurrentEnd: '[[${currentSemesterInfo.end}]]',
             NewSemesterFirst: '',
             NewSemesterLast: '',
             NewStart: '',
-            NewEnd: ''
+            NewEnd: '',
+            semester: '',
+            semesterid: ''
         },
         methods: {
             CreateNewSemester: function () {
-                this.CurrentSemester = this.NewSemesterFirst + ' ' + this.NewSemesterLast;
-                this.CurrentStart = this.NewStart;
-                this.CurrentEnd = this.NewEnd;
+                // this.CurrentSemester = this.NewSemesterFirst + ' ' + this.NewSemesterLast;
+                // this.CurrentStart = this.NewStart;
+                // this.CurrentEnd = this.NewEnd;
+                // alert("2");
+
+                // window.location
+                var form2 = document.getElementById("SemesterTable");
+                form2.submit();
+                // window.location = "/CreateNewSemester?semesterid=" + tno;
             }
         }
     })
