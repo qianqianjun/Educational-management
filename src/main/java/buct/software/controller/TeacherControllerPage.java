@@ -1,6 +1,7 @@
 package buct.software.controller;
 
 import buct.software.domain.Teacher;
+import buct.software.domain.User;
 import buct.software.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +17,18 @@ public class TeacherControllerPage {
     @Autowired
     TeacherService teacherService;
 
+    public boolean checkPower(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
+            return false;
+        }
+        return user.getType() == 2;
+    }
     @RequestMapping("/TeachersInfo")
     public String teacherIofo(HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         List<Teacher> teachers = teacherService.getAllTeacher();
         request.getSession().setAttribute("allTeacher", teachers);
         return "redirect:/TeacherPage";
@@ -25,6 +36,9 @@ public class TeacherControllerPage {
 
     @RequestMapping("/TeacherPage")
     public String teacherPage(HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         List<Teacher> allTeacher = (List<Teacher>) request.getSession().getAttribute("allTeacher");
         request.setAttribute("allTeacher", allTeacher);
         System.out.println(allTeacher);
@@ -45,8 +59,10 @@ public class TeacherControllerPage {
                                 @RequestParam("email") String email,
                                 @RequestParam("collegeid") Integer collegeid,
                                 @RequestParam("office") String office,
-                                @RequestParam("rank") String rank) {
-
+                                @RequestParam("rank") String rank,HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         Teacher teacher = new Teacher(tno, tname, sex, phone, email, collegeid, office, rank);
         System.out.println(teacher);
         if (teacherService.getTeacherByTno(tno) == null) {
@@ -58,6 +74,9 @@ public class TeacherControllerPage {
     }
     @RequestMapping("/SearchTeachers")
     public String searchTeachers(HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         Teacher teacher = new Teacher();
         Integer tno = null;
         Integer collegeid = null;
@@ -81,6 +100,9 @@ public class TeacherControllerPage {
     }
     @RequestMapping("/UpdateTeacher")
     public String updateTeacher(Map<String, Object> paramMap, HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         String tno = httpServletRequest.getParameter("tno");
         int tno_int = Integer.parseInt(tno);
         System.out.println(tno);

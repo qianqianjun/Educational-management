@@ -50,6 +50,9 @@ public class PowerControllerPage {
     @ResponseBody
     @RequestMapping("/ExcelAfterInsert")
     public String excelAfterInsert(HttpServletRequest request, @RequestParam("file") MultipartFile multfile) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         // 获取文件名
         String fileName = multfile.getOriginalFilename();
         // 获取文件后缀
@@ -99,6 +102,9 @@ public class PowerControllerPage {
     @ResponseBody
     @RequestMapping("/ExcelAfterInsertForT")
     public String excelAfterInsertForT(HttpServletRequest request, @RequestParam("file") MultipartFile multfile) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         // 获取文件名
         String fileName = multfile.getOriginalFilename();
         // 获取文件后缀
@@ -169,6 +175,9 @@ public class PowerControllerPage {
 
     @RequestMapping("/GoHomePage")
     public String homePage(Map<String, Object> parMap, HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         Power status = powerService.getStatus();
         parMap.put("power", status);
         request.setAttribute("currentSemesterInfo", semesterService.getCurrentSemesterInfo());

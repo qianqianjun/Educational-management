@@ -93,7 +93,7 @@ public class LoginController {
                 parmMap.put("courseTable", teaCourseViews);//课表
                 Teacher teacher = teacherService.getTeacherByTno(tno);
                 parmMap.put("teainfo", teacher);
-                String cid = teacher.getCollegeId().toString();
+                int cid = teacher.getCollegeId();
                 String colname = collegeService.getColnameById(cid);
                 parmMap.put("colname", colname);
                 if (platform.equals("mobile"))

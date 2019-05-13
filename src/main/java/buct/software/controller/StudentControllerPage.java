@@ -1,6 +1,7 @@
 package buct.software.controller;
 
 import buct.software.domain.Student;
+import buct.software.domain.User;
 import buct.software.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,18 @@ import java.util.Map;
 public class StudentControllerPage {
     @Autowired
     StudentService studentService;
-
+    public boolean checkPower(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
+            return false;
+        }
+        return user.getType() == 2;
+    }
     @RequestMapping("/StudentsInfo")
     public String studentsIofo(HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         List<Student> allStudent = studentService.getAllStudent();
         request.getSession().setAttribute("allStudent", allStudent);
         return "redirect:/StudensPage";
@@ -26,6 +36,9 @@ public class StudentControllerPage {
 
     @RequestMapping("/StudensPage")
     public String studensPage(HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         Object allStudent = httpServletRequest.getSession().getAttribute("allStudent");
         System.out.println(allStudent);
         httpServletRequest.setAttribute("allStudent", allStudent);
@@ -34,6 +47,9 @@ public class StudentControllerPage {
 
     @RequestMapping("/StudentsAddAction")
     public String studentsAdd(HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         httpServletRequest.setAttribute("needUpdateStudent", null);
         return "StudentsAdd";
     }
@@ -49,7 +65,10 @@ public class StudentControllerPage {
                                 @RequestParam("grade") String grade,
                                 @RequestParam("college") String college,
                                 @RequestParam("collegeId") Integer collegeId,
-                                @RequestParam("majorId") Integer majorId) {
+                                @RequestParam("majorId") Integer majorId,HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         System.out.println(phone);
         Student student = new Student(sno, sname, sex, major, klass, comeYear, phone, college, collegeId, grade, majorId);
         if (studentService.getStudentBySno(sno) == null) {
@@ -63,6 +82,9 @@ public class StudentControllerPage {
 
     @PostMapping("/SearchStudents")
     public String searchStudents(HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         Student student = new Student();
         Integer sno = null;
         try {
@@ -85,6 +107,9 @@ public class StudentControllerPage {
 
     @RequestMapping("/UpdateStudent")
     public String updateStudent(Map<String, Object> paramMap,HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         String sno = httpServletRequest.getParameter("sno");
         int sno_int = Integer.parseInt(sno);
         Student student = studentService.getStudentBySno(sno_int);
