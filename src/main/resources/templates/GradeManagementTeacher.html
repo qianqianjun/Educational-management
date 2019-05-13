@@ -6,7 +6,7 @@
 <!--Bootstrap布局框架-->
 <link rel="stylesheet" href="./css/grade/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/zftal-ui.css">
-
+<link rel="stylesheet" type="text/css" href="./css/grade/button.css">
 <script src="./js/grade/jquery.min.js"></script>
 <script src="./js/grade/bootstrap.min.js"></script>
 <script src="./js/grade/vue.min.js"></script>
@@ -17,15 +17,8 @@
 
 <body>
 <header class="navbar-inverse top2">
-    <div class="container" id="navbar_container">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                    <span class="sr-only">学生成绩查询</span>
-                </button>
-                <A class="navbar-brand" id="topbutton" href="">学生成绩查询</A>
-            </div>
-        </div>
+    <div class="container" id="navbar_container" style="margin:0px 15px;padding:0px 15px;">
+        <A class="navbar-brand" id="topbutton" href="" style="height: 55px; padding-top: 15px;padding-bottom: 15px;">学生成绩查询</A>
     </div>
 </header>
 <div id="fix">
@@ -95,7 +88,7 @@
 	      <label for="" class="col-sm-4 control-label">
 	      	<span style="color:red;">* </span>学 年</label>
 	        <div class="col-sm-8">
-				<select id="year" style="width:100%;height:30px;top:9px;position: relative" v-model="start" @change="get_course(semester,start)">
+				<select id="year" style="width:100%;height:30px;top:9px;position: relative" v-model="start" @change="get_course(semester,start,cno)">
 					<option value="">---请选择---</option>
    					<option value="2019">2019-2020</option>
     				<option value="2018" selected="selected">2018-2019</option>
@@ -110,7 +103,7 @@
 	      <label class="col-sm-4 control-label" style="width: 100px">
 	      	<span style="color:red;">* </span>学 期</label>
 	        <div class="col-sm-8">
-				<select id="term" style="width:100%;height:30px;top:9px;position: relative" v-model="semester" @change="get_course(semester,start)">
+				<select id="term" style="width:100%;height:30px;top:9px;position: relative" v-model="semester" @change="get_course(semester,start,cno)">
 					<option value="0">---请选择---</option>
                     <option value="-1">全部</option>
                     <option value="1">1</option>
@@ -124,7 +117,7 @@
         <div class="form-group">
           <label for="" class="col-sm-4 control-label">课程名称</label>
             <div class="col-sm-8">
-                <select id="test" style="width:100%;height:30px;top:9px;position: relative" v-model="cno">
+                <select id="test" style="width:100%;height:30px;top:9px;position: relative" v-model="cno" @change="get_course(semester,start,cno)">
                     <option value="-1" >全部</option>
                     <option v-bind:value="cs.cno" v-for="cs in courses">{{cs.cname}}</option>
                 </select>
@@ -147,7 +140,7 @@
 	<!-- btn-start  -->
 	<div class="row sl_aff_btn">
 		<div class="col-md-12">
-			<button type="button" class="btn btn-primary btn-sm" v-on:click="search_go()"> 查 询</button>
+			<button type="button" class="button button-primary button-rounded button-small" v-on:click="search_go()"> 查 询</button>
 		</div> 
 	</div>
 	<!-- btn-end  -->
@@ -207,12 +200,11 @@
                             <div class="col-md-12">
                                 <br>
                                 <h5 class="dark">
-                                    <i class="glyphicon glyphicon-hand-right"></i>
                                     <span class="bigger-120" role="button">
-                                        &nbsp;课程名称：{{current_display.cname}}
+                                        课程名称：{{current_display.cname}}
                                     </span>
-                                    <span class="black2" role="button">
-                                        学号：{{current_display.sno}} 姓名：
+                                    <span class="bigger-120" role="button">
+                                        学号：{{current_display.sno}}
                                     </span>
                                 </h5>
                             </div>
@@ -221,7 +213,7 @@
             <thead>
                 <tr>
                     <td class="align-center " style="width: 200px !important;">成绩分项</td>
-                    <td class="align-center ">成绩分项比例</td>
+                    <td class="align-center ">比例</td>
                     <td class="align-center ">成绩</td>
                 </tr>
             </thead>
@@ -285,13 +277,12 @@
                     <div class="row" style="height: 30px;">
                         <div class="col-md-12 col-sm-12">
                             <h5 class="dark">
-                                <i class="glyphicon glyphicon-hand-right"></i>
                                 <span class="bigger-120" role="button">
-                        &nbsp;课程名称：{{current_display.cname}}
-                    </span>
-                                <span class="black2" role="button">
-                        学号：{{current_display.sno}} 姓名：
-                    </span>
+                                    课程名称：{{current_display.cname}}
+                                </span>
+                                <span class="bigger-120" role="button">
+                                    学号：{{current_display.sno}}
+                                </span>
                             </h5>
                         </div>
                     </div>
@@ -471,10 +462,9 @@
                 getFile: function (even) {
                     this.upath = event.target.files[0];
                 },
-                //获取老师某学期教的所有课 如果不是这学期的则不可以修改
-                get_course:function (semester,start) {
-                    console.log(semester);
-                    console.log("change!!"+this.start+this.semester);
+                //获取老师某学期教的所有课 如果不是这学期的且没有单独选中一门课则不可以修改
+                get_course:function (semester,start,cno) {
+                    console.log("change!!"+this.start+this.semester+this.cno);
                     this.$http.get("/getteachercourse",
                         {params:{start:this.start,semester:this.semester}}).then(function(res){
                             this.courses = res.body.data;
@@ -482,11 +472,12 @@
                     },function(res){
                         console.log('失败')
                     })
-                    if(this.start!= [[${currentSemester.start}]] || this.semester!= [[${currentSemester.semester}]]){
+                    if(this.start== [[${currentSemester.start}]] && this.semester== [[${currentSemester.semester}]] && this.cno != -1){
+                        this.permission = true;
+
+                    }else{
                         this.permission = false;
                         console.log("没有权限！")
-                    }else{
-                        this.permission = true;
                     }
                 }
 

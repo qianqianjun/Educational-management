@@ -3,7 +3,7 @@
 <head>
 	<!-- meta使用viewport以确保页面可自由缩放 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<meta charset="utf-8">
 	<!-- 引入 jQuery Mobile 样式 -->
 	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
 
@@ -74,7 +74,6 @@
 			        <th data-priority="1">教学地点</th>
 			        <th data-priority="1">课程容量</th>
 			        <th data-priority="1">上课时间</th>
-					<th data-priority="1">专业年级</th>
         		</tr>
       		</thead>
       		<tbody>
@@ -91,13 +90,15 @@
 				</tr>-->
 				
 		        <tr th:each="willCourse:${data}">
-					<td th:text="${willCourse.tno}"></td>
-					<td th:text="${willCourse.tname}"></td>
 					<td th:text="${willCourse.cno}"></td>
 					<td th:text="${willCourse.cname}"></td>
+					<td th:text="${willCourse.tname}"></td>
+					<td th:text="${willCourse.tno}"></td>
 					<td th:text="${willCourse.address}"></td>
-					<td th:text="${willCourse.course_time}"></td>
 					<td th:text="${willCourse.capacity}"></td>
+					<td th:text="${#strings.substringBefore(willCourse.course_time,',')+'周,周'+
+							#strings.substringBefore(#strings.substringAfter(willCourse.course_time,','),',') + ',' +
+							#strings.substringAfter(#strings.substringAfter(willCourse.course_time,','),',') + '节' }"></td>
 				</tr> 
       		</tbody>
     	</table>
@@ -106,7 +107,7 @@
 
   	<!-- 底部 -->
   	<div data-role="footer" data-position="fixed">
-    	<h1>版权所有</h1>
+    	<h1>北京化工大学</h1>
   	</div>
 
 </div>

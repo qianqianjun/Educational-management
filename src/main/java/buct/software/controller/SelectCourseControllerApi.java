@@ -14,7 +14,6 @@ import buct.software.service.SemesterService;
 import buct.software.utils.ResponseMessage;
 import buct.software.views.SelectCourseView;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
