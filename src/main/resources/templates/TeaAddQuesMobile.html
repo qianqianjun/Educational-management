@@ -52,16 +52,17 @@
 	<body>
 	<div data-roal = "page" id = "detail">
 	<!-- 面板 -->
-	<div data-role="panel" id="mypanel" data-display="push"> 
-		<a href="/TeaLookThroughQuesMobile" data-transition=flip target="_self" class="ui-btn ui-icon-home ui-btn-icon-left">查看论题</a>
-    	<a href="/TeaAddQuesMobile" data-transition=flip target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">发布论题</a>
-    	<a href="/TeaAddScoreMobile" data-transition=flip target="_self" class="ui-btn ui-icon-info ui-btn-icon-left">成绩评定</a>
-    	
-	</div>
+		<div data-role="panel" id="myPanel">
+			<a href="/index" data-ajax="false"  class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
+			<a href="/TeaAddQuesMobile " data-ajax="false"  class="ui-btn ui-icon-info ui-btn-icon-left">发布论题</a>
+			<a href="/TeaLookThroughQuesMobile" data-ajax="false"  class="ui-btn ui-icon-info ui-btn-icon-left">查看论题</a>
+			<a href="/TeaAddScoreMobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">毕设成绩评定</a>
+			<a href="/gradeteachermobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">课程成绩导入</a>
+		</div>
 	<!-- 头部 -->
 	<div data-role="header" >
 	<!-- 侧边栏按钮 -->
-		<a href="#mypanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">侧边栏</a>
+		<a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">侧边栏</a>
 		<h1>发布论题</h1>
 	</div>
 	

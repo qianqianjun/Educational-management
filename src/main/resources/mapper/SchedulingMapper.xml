@@ -100,7 +100,17 @@
         select scheduling.course_time from scheduling where scheduling.semesterid=#{semesterId} and scheduling.address=#{room}
     </select>
 
-    <select id="getCoursesByTnoAndTnameAndAddress" resultType="buct.software.views.MobileSchedulingView">
+    <resultMap id="cao" type="buct.software.views.MobileSchedulingView">
+        <id property="tno" javaType="Integer" column="tno"  jdbcType="INTEGER" ></id>
+        <id property="tname" javaType="String" column="tname"  jdbcType="VARCHAR" ></id>
+        <id property="cno" javaType="Integer" column="cno"  jdbcType="INTEGER" ></id>
+        <id property="address" javaType="String" column="address"  jdbcType="VARCHAR" ></id>
+        <id property="course_time" javaType="String" column="course_time"  jdbcType="VARCHAR" ></id>
+        <id property="cname" javaType="String" column="cname"  jdbcType="VARCHAR" ></id>
+        <id property="capacity" javaType="Integer" column="capacity"  jdbcType="INTEGER" ></id>
+    </resultMap>
+
+    <select id="getCoursesByTnoAndTnameAndAddress" resultMap="cao">
     <bind name="_tname" value="'%'+ tname + '%'"></bind>
     <bind name="_tno" value="'%' + tno + '%'"></bind>
     <bind name="_address" value="'%' + address + '%'"></bind>
@@ -122,6 +132,18 @@
                 scheduling.address like #{_address}
             </if>
         </where>
+
+    </select>
+
+    <select id="getCourseInfoByTno" parameterType="int" resultType="buct.software.views.TeaCourseView">
+    select semesterid,teaInfo.cno,capacity,address,course_time,cname from
+    (
+    (select semesterid,cno,capacity,address,course_time from scheduling
+        where tno = #{tno} and status='1') as teaInfo
+    inner join
+    (select cno,cname from course) as courseInfo
+    on teaInfo.cno=courseInfo.cno
+    )
 
     </select>
 

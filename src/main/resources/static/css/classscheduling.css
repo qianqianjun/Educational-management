@@ -5,27 +5,20 @@
     border-style: outset;
     background-color:#eef3f7;
 }
+
 .course_mag{
     margin:30px 10px 10px 10px;
     padding:10px 5px 5px 5px;
     border-style:outset;
     background-color:#eef3f7;
 }
+
 .Table{
     text-align: center;
     border: 2px solid #171a1d;
 
 }
 
-th{
-    text-align: center;
-    border: 2px solid #171a1d;
-}
-td{
-    font-size: 16px;
-    text-align: center;
-    border: 2px solid #171a1d;
-}
 .li_style{
     width: 19%;
     background-color: #09F;
@@ -48,6 +41,23 @@ td{
     border: 2px solid grey;
     font-size:20px;
 }
+.Dialog0{
+
+    background-color:white;
+    color:#000000;
+    width: 150px;
+    height: auto;
+    border: 2px solid grey;
+    font-size:20px;
+}
+.Dialog1{
+    background-color:white;
+    color:#000000;
+    width:150px;
+    height: auto;
+    border: 2px solid grey;
+    font-size:20px;
+}
 .button{
     font-size:14px;
     width: 50px;
@@ -55,19 +65,23 @@ td{
     border-radius:4px;
     border: 1px solid #008CBA;
 }
+
 .button:active {
     color:#09F;
     transform: translateY(4px);
 }
+
 .button:hover {
     background-color:#09F;
     color:white;
 }
+
 .select_style{
     width:70px;
     height:25px;
     font-size:13px;
 }
+
 .button0{
     height: 24px;
     width: 60px;
@@ -76,26 +90,31 @@ td{
     background-color:#369ae0;
     float: left;
 }
+
 .button1{
     font-size:14px;
     background: none;
     border-radius:4px;
     border: 1px solid #008CBA;
 }
+
 .button1:active {
     color:#09F;
     transform: translateY(4px);
 }
+
 .button1:hover {
     background-color:#09F;
     color:white;
 }
+
 .BBT{
     font-size:16px;
     width: 70px;
     height: 24px;
     border: none;
 }
+
 .header_search{
     width: 230px;
     height: 24px;
@@ -103,13 +122,79 @@ td{
     border:1px solid #2a99f7;
     float: left;
 }
+
 .div2{
     float: left;
 }
+
+.addcourse_dialog{
+    float: left;
+}
+
+.Dialog0{
+    width: 555px;
+    padding: 5px 5px 5px 5px;
+
+}
+.Dialog1{
+    width: 200px;
+}
+.li_style0{
+    background-color: #09F;
+    width: 164px;
+    height: 25px;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 0 0 1px #5F5A4B, 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+    color: #FFFFFF;
+    font-family: "微软雅黑" , "宋体" , "黑体" ,Arial;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 25px;
+    margin: 5px 0;
+    padding: 2px 0 2px 2px;
+    text-shadow: 2px 2px 3px #222222;
+}
+.insert{
+    
+}
+.insertdiv{
+    width: 180px;
+    height: 90px;
+    float: left;
+}
+.select{
+    width: 164px;
+    height: 25px;
+}
+
+.input_style{
+    width: 164px;
+    height: 25px;
+}
+
+.h{
+    text-align: center;
+    color:#80bdff;
+    letter-spacing: 0;
+    text-shadow: 0px 1px 0px #999999, 0px 2px 0px #888888,0px 3px 0px #888888,0px 4px 0px #777777;
+}
+
+th{
+    text-align: center;
+    border: 2px solid #171a1d;
+}
+
+td{
+    font-size: 16px;
+    text-align: center;
+    border: 2px solid #171a1d;
+}
+
 h2{
     border-radius: 3px 3px 3px 3px;
     font-family: "微软雅黑" , "宋体" , "黑体" ,Arial;
 }
+
 h3{
     color:black;
     text-align:left;
@@ -117,19 +202,18 @@ h3{
     font-weight: bold;
     font-family: "Adobe 黑体 Std R";
 }
+
 h5{
     display:inline-block;
     font-size: 18px;
 }
-.h{
 
-    text-align: center;
-    color:#80bdff;
-    letter-spacing: 0;
-    text-shadow: 0px 1px 0px #999999, 0px 2px 0px #888888,0px 3px 0px #888888,0px 4px 0px #777777;
+br{
+    height: 3px;
 }
+
 hr{
-    height:3px;
+    height:2px;
     border:none;
     border-top:2px double #3E81E4;
 }

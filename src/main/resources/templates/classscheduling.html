@@ -69,7 +69,88 @@
                 <br>
             </div>
             <!--下面是课程安排-->
-            <div  class="course_mag" style="">
+            <div>
+                <input type="button" class="button" style="float: right;width: 70px;margin-right: 15px;margin-top: 15px" value="删除课程" v-on:click="op()">
+                <input type="button" class="button" style="float: right;width: 70px;margin-top: 15px" value="添加课程" v-on:click="open()">
+                <dialog class="Dialog0" id="dialog0" >
+                    <div style="border: 2px seashell">
+                        <h3 class="h">添加课程</h3><hr>
+                        <div class="insertdiv"><li class="li_style0">学 年 : </li><select class="insert" style="height:25px;width:164px" id = "insert_year" v-model="insert_year">
+                            <option value="2019-2020学年">2019-2020学年</option>
+                            <option value="2018-2019学年">2018-2019学年</option>
+                            <option value="2017-2018学年">2017-2018学年</option>
+                            <option value="2016-2017学年">2016-2017学年</option>
+                            <option value="2015-2016学年">2015-2016学年</option>
+                            <option value="2014-2015学年">2014-2015学年</option>
+                        </select></div>
+                        <div class="insertdiv"><li class="li_style0">学 期 : </li><select class="insert"style="height:25px;width:164px" id = "insert_semester" v-model="insert_semester">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select></div>
+                        <div class="insertdiv"><li class="li_style0">年 级 ：</li><select class="insert"style="height:25px;width:164px" id = "insert_grade" v-model="insert_grade">
+                            <option value="1">大一</option>
+                            <option value="2">大二</option>
+                            <option value="3">大三</option>
+                            <option value="4">大四</option>
+                        </select></div>
+                        <div class="insertdiv"><li class="li_style0">专 业 : </li><input class="insert"style="height:25px;width:164px" id="insert_majorName"name="专业" type="text" v-model="insert_majorName" />
+                        </div>
+                        <div class="insertdiv"><li class="li_style0">课程号 : </li><input class="insert"style="height:25px;width:164px" id="insert_cno"name="课程号" type="text" v-model="insert_cno"/>
+                        </div>
+                        <div class="insertdiv"><li class="li_style0">课程名 : </li><input class="insert"style="height:25px;width:164px" id="insert_cName"name="课程名" type="text" v-model="insert_cName"/>
+                        </div>
+                        <div class="insertdiv"><li class="li_style0">开课学院: </li><input class="insert"style="height:25px;width:164px" id="insert_college"name="开课学院" type="text" v-model="insert_college"/>
+                        </div>
+                        <div class="insertdiv"><li class="li_style0">课程描述: </li><input class="insert"style="height:25px;width:164px" id="insert_description"name="课程描述" type="text"  v-model="insert_description"/>
+                        </div>
+                        <div class="insertdiv"><li class="li_style0">容 量 : </li><input class="insert"style="height:25px;width:164px" id="insert_capacity"name="容量" type="text" v-model="insert_capacity"/>
+                        </div>
+                    </div><hr>
+                    <div style="height: 25px">
+                        <input type="button" class="button" name="确认" style="margin-left: 75%;" value="添加" v-on:click="add()">
+                        <input type="button" class="button" name="取消" style="float: right;margin-top: 5px"  value="取消" v-on:click="esc()">
+                    </div>
+                </dialog>
+                <dialog class="Dialog1" id="dialog1">
+                    <h3 class="h">删除课程</h3><hr>
+                    <div class="insertdiv">
+                        <li class="li_style0">课程的编号: </li><input  style="height:25px;width:164px" type="text" id="deleteCno" v-model="deleteCno" name="课程编号">
+                    </div>
+                    <div class="insertdiv">
+                        <li class="li_style0">开课学年: </li><select  style="height:25px;width:164px" id = "deleteYear" v-model="deleteYear" name="开课学年">
+                        <option value="2019-2020学年">2019-2020学年</option>
+                        <option value="2018-2019学年">2018-2019学年</option>
+                        <option value="2017-2018学年">2017-2018学年</option>
+                        <option value="2016-2017学年">2016-2017学年</option>
+                        <option value="2015-2016学年">2015-2016学年</option>
+                        <option value="2014-2015学年">2014-2015学年</option>
+                    </select>
+                    </div>
+                    <div class="insertdiv">
+                        <li class="li_style0">开课学期: </li><select  style="height:25px;width:164px" type="text" id="deleteSemester" v-model="deleteSemester" name="开课学年">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    </div>
+                    <div class="insertdiv">
+                        <li class="li_style0">专业: </li><input style="height:25px;width:164px" type="text" id="deleteMajorName" v-model="deleteMajorName" name="专业">
+                    </div>
+                    <div class="insertdiv">
+                        <li class="li_style0">年级: </li><select style="height:25px;width:164px" id = "deleteGrade" v-model="deleteGrade" name="年级">
+                        <option value="1">大一</option>
+                        <option value="2">大二</option>
+                        <option value="3">大三</option>
+                        <option value="4">大四</option>
+                    </select>
+                    </div>
+                    <div style="height: 25px">
+                        <input type="button" class="button" id="Del" style="width: 75px" value="确认删除" v-on:click="deletecourse()">
+                        <input type="button" class="button" name="取消删除" style="width: 75px ;float: right;margin-top: 5px"  value="取消删除" v-on:click="esc()">
+                    </div>
+                    </dialog>
+                <div class="course_mag">
                     <fieldset><legend><h2>课程安排</h2></legend>
                         <h5>学年：</h5><select id = 'change_year' v-model="input_year" style="height:25px;width:164px">
                             <option value="2019-2020学年">2019-2020学年</option>
@@ -91,7 +172,7 @@
                             <option value="3">大三</option>
                             <option value="4">大四</option>
                         </select>
-                        <button type="button" class="button" id="btn1"   v-on:click="search()">查询</button>
+                        <button type="button" class="button" id="btn1"  v-on:click="search()">查询</button>
                         <div id="dv1" style="display:none">
                             <HR>
                             <table class="Table">
@@ -120,8 +201,9 @@
                             </table>
                         </div>
                     </fieldset>
-                <br>
+                    <br>
                 </div>
+            </div>
             <dialog class="Dialog" id="Dialog">
                     <h3 class="h">课程安排</h3>
                     <li class="li_style">教师安排</li>
@@ -309,9 +391,76 @@
             table_semester:"",
             table_major:"",
             table_grade:"",
-            allCourses:[]
+            allCourses:[],
+            insert_year:"",
+            insert_semester:"",
+            insert_grade:"",
+            insert_majorName:"",
+            insert_cno:"",
+            insert_cName:"",
+            insert_description:"",
+            insert_college:"",
+            insert_capacity:"",
+            deleteCno:"",
+            deleteYear:"",
+            deleteSemester:"",
+            deleteMajorName:"",
+            deleteGrade:"",
         },
         methods:{
+
+            open:function(){
+             dialog0.showModal();
+            },
+            op:function(){
+                dialog1.showModal();
+            },
+            esc:function(){
+                dialog0.close();
+                dialog1.close();
+            },
+            deletecourse:function(){
+                this.$http.post("/deleteWillCourse",{
+                    cno:this.deleteCno,
+                    year:this.deleteYear.substring(0,4),
+                    semester:this.deleteSemester,
+                    majorName:this.deleteMajorName,
+                    grade:this.deleteGrade
+                },
+                {emulateJSON:true}).then(function (value) {
+
+                        alert("删除成功！")
+                        dialog1.close();
+                    },
+                function (reason) {
+                    alert("请求出错！")
+                }
+                );
+            },
+            add:function(){
+                this.$http.post("/addWillCourse", {
+                        cno:this.insert_cno,
+                        cname:this.insert_cName,
+                        college:this.insert_college,
+                        description:this.insert_description,
+                        status:"true",
+                        year:this.insert_year.substring(0,4),
+                        semester:this.insert_semester,
+                        majorName:this.insert_majorName,
+                        grade:this.insert_grade,
+                    },
+                    {emulateJSON:true}).then(function (value) {
+                        console.log("addWillCourse Success")
+                        alert("添加成功")
+                         dialog0.close();
+                        //console.log(this.deleteCourse);
+
+                    },
+                    function (reason) {
+                        alert("请求出错")
+                    }
+                );
+            },
             deleteCourse:function(){
                 this.$http.post("/deleteCourse", {
                         cno:this.nowCourseCno,
