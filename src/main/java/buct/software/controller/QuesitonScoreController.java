@@ -71,10 +71,6 @@ public class QuesitonScoreController {
         return "StuScoreMobile";
     }
 
-
-
-
-
     @RequestMapping(value =  "/TeaAddScore")
     public String TeaAddScore(HttpServletRequest request,Map<String,Object>map){
         HttpSession session = request.getSession();
@@ -88,6 +84,24 @@ public class QuesitonScoreController {
             }
         }
         map.put("choices",questionStudentChooses);
+
+        //判断是否打分成功
+        int isJudged = -1;
+        Object judgeObject = session.getAttribute("judge");
+        Object hasChangedScoreObject = session.getAttribute("hasChangedScore");
+
+        if (hasChangedScoreObject == null || judgeObject==null){
+            isJudged = -1;
+        }else if((boolean)hasChangedScoreObject==true){
+            if((boolean)judgeObject==true){
+                isJudged = 1;//打分成功
+            }else {
+                isJudged = 0;//已经打过分
+            }
+            session.removeAttribute("hasChangedScore");
+        }
+
+        map.put("judge",isJudged);
         return "TeaAddScore";
     }
 
@@ -116,13 +130,16 @@ public class QuesitonScoreController {
                              @RequestParam("thesisanswer")int thesisanswer,
                              @RequestParam("paper")int paper,
                              @RequestParam("extracredit")int extracredit){
-       //判断有无打过分
+       HttpSession session = request.getSession();
+        //判断有无打过分
         QuestionScore questionScoreCheck = questionScoreService.getQuestionScoreBySno(sno);
        if(questionScoreCheck!=null){
+           session.setAttribute("judge",false);//表示已经打过分
+           session.setAttribute("hasChangedScore",true);
            return "redirect:/TeaAddScore";
        }
 
-        QuestionScore questionScore = new QuestionScore();
+       QuestionScore questionScore = new QuestionScore();
        questionScore.setSno(sno);
        questionScore.setQuestionid(questionid);
        questionScore.setEarlyperformance(earlyperformance);
@@ -131,6 +148,8 @@ public class QuesitonScoreController {
        questionScore.setPaper(paper);
        questionScore.setExtracredit(extracredit);
        questionScoreService.addQuestionScore(questionScore);
+       session.setAttribute("hasChangedScore",true);
+       session.setAttribute("judge",true);//表示打分成功
        return "redirect:/TeaAddScore";
     }
 
@@ -164,10 +183,6 @@ public class QuesitonScoreController {
 
 
 
-
-
-
-
     //Back
 
     @RequestMapping(value = "/ManageLookThroughGrade")
@@ -178,10 +193,29 @@ public class QuesitonScoreController {
         return "ManageLookThroughGrade";
     }
 
+
     @RequestMapping(value = "/ManageScore")
     public String ManageScore(HttpServletRequest request,
                               @RequestParam("sno")int sno,
                               Map<String,Object> map){
+        HttpSession session = request.getSession();
+        Object isChangedObject = session.getAttribute("gradeIsChanged");
+        Object hasChangedObject = session.getAttribute("gradeHasChanged");
+        Boolean hasChanged = (Boolean)hasChangedObject;
+
+        if(isChangedObject == null || hasChangedObject==null){
+            session.setAttribute("gradeIsChanged",false);
+        }
+        else{
+            if(hasChanged==true){
+                session.setAttribute("gradeHasChanged",false);
+            }
+            else {
+                session.setAttribute("gradeIsChanged",false);
+            }
+        }
+
+//        System.out.println(isChangedObject);
         QuestionScore questionScore = questionScoreService.getQuestionScoreBySno(sno);
         map.put("Score",questionScore);
         return "ManageScore";
@@ -206,8 +240,10 @@ public class QuesitonScoreController {
         questionScore.setPaper(paper);
         questionScore.setExtracredit(extracredit);
         boolean isChanged = questionScoreService.changeQuestionScore(questionScore);
-        map.put("isChanged",isChanged);
-        return "redirect:/ManageScore"+"?sno="+sno;
+        HttpSession session = request.getSession();
+        session.setAttribute("gradeIsChanged",isChanged);
+        session.setAttribute("gradeHasChanged",true);
+        return "redirect:ManageLookThroughGrade";//"redirect:/ManageScore"+"?sno="+sno;
     }
 
 

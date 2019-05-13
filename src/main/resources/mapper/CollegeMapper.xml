@@ -21,5 +21,9 @@
         select collegename from college
     </select>
 
+    <select id="getColNameById" parameterType="int" resultType="String">
+        select collegename from college where collegeid = #{id}
+    </select>
+
 
 </mapper>

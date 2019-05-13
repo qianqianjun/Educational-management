@@ -87,14 +87,25 @@ public class QuestionController {
         int tno = question.getTno();
         Teacher teacher = teacherService.getTeacherByTno(tno);
         QuestionStudentChoose questionStudentChoose = questionStudentChooseService.getChoiceByQidSno(questionid,sno);
-        boolean isChosen=false;   //检验该学生是否投递选择
-        if(questionStudentChoose!=null)
-            isChosen=true;
+        int isChosen=-1;
+        Object hasChangedObject = session.getAttribute("hasChanged");
+        Object isChosenObject = session.getAttribute("isChosen");
+
+        if (hasChangedObject==null || isChosenObject==null){
+            isChosen = -1;
+        }else if(((boolean)hasChangedObject)==true){
+            if ((boolean)isChosenObject) isChosen = 1;
+            else isChosen = 0;
+            session.removeAttribute("hasChanged");
+        }else {
+            isChosen = -1;
+        }
         map.put("isChosen",isChosen);
         map.put("quesInfo",question);
         map.put("teaInfo",teacher);
         return "StuQuesDetails";
     }
+
     @RequestMapping(value = "/StuQuesDetailsMobile")
     public String StuQuesDetailsMobile(HttpServletRequest request,
                                  Map<String,Object> map,
@@ -116,10 +127,6 @@ public class QuestionController {
         map.put("teaInfo",teacher);
         return "StuQuesDetailsMobile";
     }
-
-
-
-
 
     //Back
     @RequestMapping("/ManageQues")
@@ -168,8 +175,27 @@ public class QuestionController {
 
     @RequestMapping(value = "/TeaAddQues")
     public String TeaAddQues(
-            HttpServletRequest request
+            HttpServletRequest request,
+            Map<String,Object>map
     ){
+        HttpSession session = request.getSession();
+        Object isAddedObject = session.getAttribute("isAdded");
+        Object hasChangedObject = session.getAttribute("hasChangedIsAdded");
+
+        int isAddedJudge = -1;
+
+        if (isAddedObject==null || hasChangedObject==null){
+            ;
+        }else if((boolean)hasChangedObject==true){
+            if((boolean)isAddedObject==true){
+                isAddedJudge=1;
+            }else {
+                isAddedJudge=0;
+            }
+            session.removeAttribute("hasChangedIsAdded");
+        }
+
+        map.put("isAdded",isAddedJudge);
         return "TeaAddQues";
     }
 
@@ -200,7 +226,11 @@ public class QuestionController {
         question.setDifficulty(difficulty);
         question.setMajorid(majorid);
         boolean isAdded = questionService.addQuestion(question);
-        map.put("isAdded",isAdded);
+
+        session.setAttribute("isAdded",isAdded);
+
+        session.setAttribute("hasChangedIsAdded",true);
+
         return "redirect:/TeaAddQues";
     }
 
@@ -227,8 +257,6 @@ public class QuestionController {
     }
 
 
-
-
     @RequestMapping(value = "/TeaQuesDetails")
     public String TeaQuesDetails(HttpServletRequest request,
                                  @RequestParam("questionid")int questionid,
@@ -243,6 +271,25 @@ public class QuestionController {
         }//添加学生详细信息
         map.put("choices",questionStudentChooses);
         map.put("students",students);
+
+        //判断有无选择成功
+        HttpSession session = request.getSession();
+
+        session.setAttribute("snoSured",question.getSno());
+
+        Object snoSured = session.getAttribute("snoSured");
+        int snoSuredInt;
+        if(snoSured!=null){
+            snoSuredInt = (int)snoSured;
+        }else{
+            snoSuredInt = -1;
+        }
+        boolean isSured = false;
+        if(snoSuredInt!=-1 && snoSuredInt==question.getSno()){
+            isSured = true;
+        }
+        map.put("isSured",isSured);
+
         return "TeaQuesDetails";
     }
 
@@ -261,6 +308,7 @@ public class QuestionController {
         }//添加学生详细信息
         map.put("choices",questionStudentChooses);
         map.put("students",students);
+
         return "TeaQuesDetailsMobile";
     }
 
@@ -271,7 +319,9 @@ public class QuestionController {
                               Map<String,Object>map){
         boolean isSured = questionService.sureQuestionStudent(questionid,sno);
         map.put("isSured",isSured);
-        return "redirect:/TeaQuesDetails";
+        HttpSession session = request.getSession();
+        session.setAttribute("snoSured",sno);
+        return "redirect:/TeaQuesDetails?questionid="+questionid;
     }
 
     @RequestMapping(value = "/sureQuesStuMobile")
@@ -281,7 +331,7 @@ public class QuestionController {
                               Map<String,Object>map){
         boolean isSured = questionService.sureQuestionStudent(questionid,sno);
         map.put("isSured",isSured);
-        return "redirect:/TeaQuesDetailsMobile";
+        return "redirect:/TeaQuesDetailsMobile?questionid="+questionid;
     }
 
 

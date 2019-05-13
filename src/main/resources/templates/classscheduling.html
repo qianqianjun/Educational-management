@@ -319,9 +319,9 @@
                         grade:this.nowCourseGrade
                     },
                     {emulateJSON:true}).then(function (value) {
-                        console.log("222")
+                        //console.log("222")
                         this.deleteCourse=value.body.data;
-                        console.log(this.deleteCourse);
+                        //console.log(this.deleteCourse);
                         /*开始操作*/
                         alert("取消成功")
                         Dialog.close();
@@ -370,19 +370,23 @@
                 var string = "";
                 string = string + course.name+'\n';
                 string = string + "("+course.start+'-'+course.end+'节)/'+course.long+'周/'+course.address+'/'+course.teacher;
-                for(var i=course.start;i<=course.end;i++){
-                    this.array[i][Number(course.day) + 2] = [course.start,course.end,string];
-                }
+                //console.log("++++")
+                //console.log(course.start)
+                //console.log(course.end)
+                for(var i=parseInt(course.start);i<=parseInt(course.end);i++){
+                    this.array[i][parseInt(course.day) + 2] = [course.start,course.end,string];
+                } 
             },
             insert_course:function(all_course){
-                console.log(all_course)
+                //console.log("-------------------------------");
+                //console.log(all_course)
                 var temp_array = all_course.course_time.split(';');
                 var course = {address:all_course.address,
                     name:all_course.cname,
                     teacher:all_course.tname,
                     start:null, end:null, day:null, long:null};
                 for(var x in temp_array) {
-                    console.log(x);
+                    //console.log(x);
                     var temp = temp_array[x].split(',');
                     temp[0] = temp[0].substring(1, temp[0].length);
                     temp[2] = temp[2].substring(0, temp[2].length - 1);
@@ -391,6 +395,7 @@
                     var temp1 = temp[2].split('-');
                     course.start = temp1[0];
                     course.end = temp1[1];
+                    //console.log(course);
                     this.insert_one_lesson(course);
                 }
             },
@@ -410,7 +415,8 @@
                                 var cell=row.insertCell(len);
                                 cell.width = 90;
                                 cell.height = 40;
-                                cell.rowSpan = this.array[i][j][1] - this.array[i][j][0] + 1;
+                                cell.rowSpan = parseInt(this.array[i][j][1]) - parseInt(this.array[i][j][0]) + parseInt(1);
+                                //console.log(cell.rowSpan);
                                 len = len + 1;
                                 cell.innerHTML = this.array[i][j][2];
                             }
@@ -420,7 +426,7 @@
                 }
             },
             getTable:function () {
-                console.log("hello")
+                //console.log("hello")
                 this.$http.post("/getAllCourses", {
                         year:this.table_year.substring(0,4),
                         semester:this.table_semester,
@@ -428,16 +434,16 @@
                         grade:this.table_grade
                     },
                     {emulateJSON:true}).then(function (value) {
-                        console.log("222")
+                        //console.log("222")
                         this.allCourses=value.body.data;
-                        console.log(this.allCourses);
+                        //console.log(this.allCourses);
                         /*开始操作*/
                         this.init_array();
                         for(var i=0;i<this.allCourses.length;i++){
                             this.insert_course(this.allCourses[i]);
                         }
                         this.create_table();
-                        console.log(this.array);
+                        //console.log(this.array);
                         dv0.style.display="block";
                     },
                     function (reason) {
@@ -447,10 +453,10 @@
             },
             search:function() {
                 year = this.input_year.substring(0,4);
-                console.log(this.input_year)
-                console.log(this.input_semester)
-                console.log(this.input_majorName)
-                console.log(this.input_grade)
+                //console.log(this.input_year)
+                //console.log(this.input_semester)
+                //console.log(this.input_majorName)
+                //console.log(this.input_grade)
                 dv1.style.display="block";
                 this.$http.post("/getWillCourses", {
                         year:this.input_year.substring(0,4),
@@ -459,7 +465,7 @@
                         grade:this.input_grade
                     },
                     {emulateJSON:true}).then(function (value) {
-                        console.log("222");
+                        //console.log("222");
                         this.allWillCourses=value.body.data;
                     },
                     function (reason) {
@@ -474,7 +480,7 @@
                 this.nowCourseMajorName = this.input_majorName;
                 this.nowCourseGrade = this.input_grade;
                 this.nowCourseCno = course.cno;
-                console.log("1111");
+                //console.log("1111");
                 Dialog.showModal();
             },
             eachTeacher:function(teacher) {
@@ -496,12 +502,12 @@
             },
             addAll:function(){
                 /*这里需要生成时间字符串*/
-                console.log(this.sum)
+                //console.log(this.sum)
                 var array = "";
                 for (var id = 0;id<this.sum;id++){
                     if(id != 0){array = array + ";"}
                     var string = "(";
-                    console.log(document.getElementsByName("time_start")[id].value);
+                    //console.log(document.getElementsByName("time_start")[id].value);
                     string = string + document.getElementsByName("time_start")[id].value;
                     string = string + "-" + document.getElementsByName("time_end")[id].value+",";
                     string = string + document.getElementsByName("week")[id].value + ",";
@@ -509,10 +515,10 @@
                     string = string + "-" + document.getElementsByName("section2")[id].value + ")";
                     array = array + string;
                 }
-                console.log(array)
+                //console.log(array)
                 this.nowCourseTime = array;
                 /*这里需要发送请求*/
-                console.log(this.input_grade);
+                //console.log(this.input_grade);
                 this.$http.post("/addCourse", {
                         cno:this.nowCourseCno,
                         tno:this.nowCourseTno,
@@ -526,8 +532,8 @@
                         time:this.nowCourseTime
                     },
                     {emulateJSON:true}).then(function (value) {
-                        console.log("222");
-                        console.log(value);
+                        //console.log("222");
+                        //console.log(value);
                         if(value) alert("添加成功")
                         Dialog.close();
                         this.search();
@@ -555,7 +561,7 @@
                         tname:this.input_tname
                     },
                     {emulateJSON:true}).then(function (value) {
-                        console.log("222");
+                        //console.log("222");
                         this.allTeachers=value.body.data;
                     },
                     function (reason) {
