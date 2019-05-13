@@ -73,7 +73,7 @@ public class TeacherService {
         int lastRowNum = sheet.getLastRowNum();
         float tno = 0;
         float coid = 0;
-
+        System.out.println(sheet.getLastRowNum());
         for (int i = 1; i <= lastRowNum; i++) {
             HSSFRow row = sheet.getRow(i);
             teacher = new Teacher();

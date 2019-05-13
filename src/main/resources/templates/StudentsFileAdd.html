@@ -94,7 +94,7 @@
                 this.upath = event.target.files[0];
             },
             uploadt: function () {
-                alert(2)
+                // alert(2)
                 //console.log(this.upath);
                 var zipFormData = new FormData();
                 zipFormData.append('file', this.upath2);//file要和@RequestParam("file")MultipartFile file对应好
@@ -114,7 +114,7 @@
             },
 
             getFile2: function (even) {
-                alert(2)
+                // alert(2)
                 this.upath2 = event.target.files[0];
             },
         }

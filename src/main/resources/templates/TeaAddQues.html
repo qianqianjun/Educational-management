@@ -10,6 +10,14 @@
     <script type="text/javascript" src="js/selectcourse/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/selectcourse/zftal-ui.css" />
     <link href="css/selectcourse/selectcourse.css" rel="stylesheet" type="text/css">
+    <script>
+        function f(isAdded) {
+            if(isAdded==1)
+                alert("添加成功！");
+            else if(isAdded==0)
+                alert("添加失败！");
+        }
+    </script>
     <style type="text/css">
         body{margin:0;padding:0}
         .top{height:50px;background: #7abaff}
@@ -18,7 +26,7 @@
         .foot{height:5%;background:antiquewhite;margin:0 auto}
     </style>
 </head>
-<body>
+<body th:onload="'javascript:f('+${isAdded}+');'">
 <header class="navbar-inverse top2">
     <div class="container" id="navbar_container">
         <div class="container">
@@ -35,14 +43,14 @@
     <div class="container container-func sl_all_bg" id="yhgnPage" style=" height: 500px;">
             <div class="panel panel-info"  >
                 <div class="panel-heading">&nbsp;</div>
-                <form role="form" method="post" action="#" th:action="@{/TeaAddQues}">
+                <form role="form" method="post" action="#" th:action="@{/TeaAddQues}" style="padding-left:20px; padding-right:20px;">
                     <div class="form-group">
-                        <label for="topic">论题题目</label>
-                        <input type="text" class="form-control" name="topic" id="topic" placeholder="文本输入">
+                        <label for="topic" style="font-size: 23px">论题题目</label>
+                        <input type="text" class="form-control" name="topic" id="topic" placeholder="文本输入" required="required">
                     </div>
                     <div class="form-inline">
-                        <label for="difficulty">论题难度</label>
-                        <select  class="form-control text-center" name="difficulty" id="difficulty">
+                        <label for="difficulty" style="font-size: 23px">论题难度</label>
+                        <select  class="form-control text-center" name="difficulty" id="difficulty" style="height:32px">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -51,15 +59,15 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="majorid">专业</label>
-                        <input type="text" class="form-control" name="majorid" id="majorid" placeholder="文本输入">
+                        <label for="majorid" style="font-size: 23px">专业</label>
+                            <input type="text" class="form-control" name="majorid" id="majorid" placeholder="文本输入" required="required">
                     </div>
                     <div class="form-group">
-                        <label for="content">论题详情</label>
-                        <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+                        <label for="content" style="font-size: 23px">论题详情</label>
+                        <textarea class="form-control" name="content" id="content" rows="3" required="required"></textarea>
                     </div>
                     <div data-role="controlgroup" data-type="horizontal" style="text-align: center;">
-                        <input type="submit" data-type="btn" data-inline="true"  value="发布">
+                        <input class="btn btn-primary btn-sm btn-block" type="submit" data-type="btn" data-inline="true" value="发布">
                     </div>
                 </form>
             </div>

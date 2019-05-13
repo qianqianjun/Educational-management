@@ -32,7 +32,13 @@ public class QuestionStudentChooseController {
         User user = (User) userInfo;
         int sno = user.getAccount();
         boolean isChosen = questionStudentChooseService.chooseQuestion(questionid,sno);
-        //不确定能否直接请求转发成功，可能有bug
+        session.setAttribute("hasChanged",true);
+        session.setAttribute("isChosen",isChosen);
+//        if(isChosen) //没用
+//            map.put("isChosen",1);
+//        else
+//            map.put("isChosen",0);
+
         return "forward:/StuQuesDetails";
     }
 
