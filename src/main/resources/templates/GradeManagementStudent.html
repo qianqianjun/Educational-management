@@ -8,6 +8,7 @@
 <!--Bootstrap布局框架-->
 <link rel="stylesheet" href="./css/grade/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="./css/grade/zftal-ui.css">
+    <link rel="stylesheet" type="text/css" href="./css/grade/button.css">
 <script src="./js/grade/jquery.min.js"></script>
 <script src="./js/grade/bootstrap.min.js"></script>
 
@@ -78,7 +79,7 @@
 <!-- btn-start  -->
 <div class="row sl_aff_btn">
 	<div class="col-md-12" >
-		<button type="button" class="btn btn-outline-primary btn-sm" v-on:click="search_go()"> 查 询</button>
+		<button type="button" class="button button-primary button-rounded button-small" v-on:click="search_go()"> 查 询</button>
 	</div>
 </div>
 
@@ -97,11 +98,8 @@
                     <div class="row" style="height: 30px;">
                         <div class="col-md-12 col-sm-12">
                             <h5 class="dark">
-                                <i class="glyphicon glyphicon-hand-right"></i>
-                                <!-- <span class="bigger-120" role="button">课程名称：</span>
-                                <span class="red2" role="button">面向对象程序设计</span> -->
                                 <span class="bigger-120" role="button">
-                                    &nbsp;课程名称：{{current_display.cname}}
+                                    课程名称：{{current_display.cname}}
                                 </span>
                             </h5>
                         </div>
