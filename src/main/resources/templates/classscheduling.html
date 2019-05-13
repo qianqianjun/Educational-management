@@ -420,6 +420,18 @@
                 dialog1.close();
             },
             deletecourse:function(){
+                this.$http.post("/deleteCourse",{
+                        cno:this.deleteCno,
+                        year:this.deleteYear.substring(0,4),
+                        semester:this.deleteSemester,
+                        majorName:this.deleteMajorName,
+                        grade:this.deleteGrade
+                    },
+                    {emulateJSON:true}).then(function (value) {
+                    },
+                    function (reason) {
+                    }
+                );
                 this.$http.post("/deleteWillCourse",{
                     cno:this.deleteCno,
                     year:this.deleteYear.substring(0,4),
