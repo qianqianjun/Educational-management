@@ -5,15 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<!-- 引入 jQuery Mobile 样式 -->
-	<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="css/backstage/my_jquery.mobile-1.4.5.min.css">
 
 	<!-- 引入 jQuery 库 -->
-	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 
 	<!-- 引入 jQuery Mobile 库 -->
-	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
-	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script src="js/backstage/my_vue.min.js"></script>
+	<script src="js/vue-resource.min.js"></script>
 
 
 
@@ -51,7 +51,20 @@
 
 <body>
 <div data-role="page" id="pageone">
-
+	<div data-role="panel" id="myPanel">
+		<a href="/GoPowerInfo" data-transition="slide" class="ui-btn ui-icon-lock ui-btn-icon-left" data-ajax="false">权限管理</a>
+		<a href="/GoStudentInfo" data-transition="slide" class="ui-btn ui-icon-info ui-btn-icon-left" data-ajax="false">学生信息</a>
+		<a href="/GoTeachearInfo" data-transition="slide" class="ui-btn ui-icon-info ui-btn-icon-left" data-ajax="false">教师信息</a>
+		<a href="/GoSemesterInfo" data-transition="slide" class="ui-btn ui-icon-calendar ui-btn-icon-left">学期管理</a>
+		<a href="/schedulingmobile?tno=-1&tname=null&address=null" data-transition="slide" class="ui-btn ui-icon-edit ui-btn-icon-left">排课系统</a>
+	</div>
+	<!--头部-->
+	<div data-role="header" style="background-color: steelblue" data-position="fixed">
+		<a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext" style="background-color: steelblue"></a>
+		<a href="/logout" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext"
+		   style="background-color: steelblue"></a>
+		<h1 class="ui-title">北京化工大学教务网</h1>
+	</div>
 	<!-- 头部 -->
 	<div data-role="header">
 		<!--<a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext">更多</a> -->
@@ -113,9 +126,8 @@
 
 </body>
 
-<script src="js/jquery-1.11.1.js"></script>
-<script src="js/jquery.mobile-1.4.3.js"></script>
-<script src="vue.js"></script>
+
+<script src="js/vue.js"></script>
 
 <!--<script>
 
