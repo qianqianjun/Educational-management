@@ -2,6 +2,8 @@ package buct.software.controller;
 import buct.software.domain.User;
 import buct.software.service.UserService;
 import buct.software.utils.ResponseMessage;
+import buct.software.views.UserAddView;
+import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,10 +26,31 @@ public class UserControllerApi {
                                           HttpServletRequest request){
         HttpSession session=request.getSession();
         User user=(User) session.getAttribute("user");
-        Integer account=user.getAccount();
+        UserAddView userAddView=new UserAddView();
+        userAddView.setUserAccount(user.getAccount());
+        userAddView.setUserPassword(user.getPassword());
+        userAddView.setUserStatus(user.getStatus());
+        userAddView.setUserType(user.getType());
+        Boolean res=userService.upDateUserPassword(userAddView,password);
+        if(res)
+            return new ResponseMessage(200,"修改成功",null);
+        else
+            return new ResponseMessage(500,"修改失败",null);
+    }
 
-        System.out.println(account);
-        System.out.println(password);
-        return new ResponseMessage(200,"修改成功",null);
+    @PostMapping("/fixpasswordBack")
+    public ResponseMessage fixpasswordBack(@RequestParam("account") Integer account,
+                                           @RequestParam("newpass") String newpass){
+        User user=userService.getByAccount(account);
+        UserAddView userAddView=new UserAddView();
+        userAddView.setUserType(user.getType());
+        userAddView.setUserStatus(user.getStatus());
+        userAddView.setUserPassword(user.getPassword());
+        userAddView.setUserAccount(account);
+        Boolean success=userService.upDateUserPassword(userAddView,newpass);
+        if(success)
+            return new ResponseMessage(200,"成功！",null);
+        else
+            return new ResponseMessage(500,"失败",null);
     }
 }
