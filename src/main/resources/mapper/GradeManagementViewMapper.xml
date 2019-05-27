@@ -82,7 +82,7 @@
         <where>
             select_course.semesterid=semester.semesterid and course.cno = planning.cno
             and course.cno = select_course.cno and scheduling.cno = select_course.cno
-            and scheduling.tno = #{tno} 
+            and scheduling.tno = #{tno}
             <if test="start == null">
                 and start in ('2016','2017','2018')
             </if>
