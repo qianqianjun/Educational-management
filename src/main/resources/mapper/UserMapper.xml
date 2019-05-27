@@ -7,4 +7,11 @@
     <select id="Login" parameterType="buct.software.domain.User" resultType="buct.software.domain.User">
         select * from user where user.account=#{account} and user.password=#{password}
     </select>
+    <insert id="addUser" parameterType="buct.software.views.UserAddView">
+        insert into user values(#{userAccount},#{userPassword},#{userType},#{userStatus})
+    </insert>
+    <update id="updateUserPassword" parameterType="buct.software.views.UserAddView">
+        update user set password = #{userPassword} where account = #{userAccount}
+    </update>
+
 </mapper>

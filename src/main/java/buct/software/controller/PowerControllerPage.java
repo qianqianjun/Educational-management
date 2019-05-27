@@ -47,6 +47,11 @@ public class PowerControllerPage {
         return "StudentsFileAdd";
     }
 
+    @RequestMapping("/GoChangePassword")
+    public String goChangePassword(){
+        return "changePassword";
+    }
+
     @ResponseBody
     @RequestMapping("/ExcelAfterInsert")
     public String excelAfterInsert(HttpServletRequest request, @RequestParam("file") MultipartFile multfile) {

@@ -1,7 +1,9 @@
 package buct.software.service;
 
 import buct.software.dao.TeacherDao;
+import buct.software.dao.UserDao;
 import buct.software.domain.Teacher;
+import buct.software.views.UserAddView;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -22,7 +24,8 @@ import java.util.List;
 public class TeacherService {
     @Autowired
     TeacherDao teacherDao;
-
+    @Autowired
+    UserDao userDao;
     public Teacher getTeacherByTno(Integer tno) {
         Teacher teacher = teacherDao.getByTno(tno);
         return teacher;
@@ -42,8 +45,18 @@ public class TeacherService {
         }
     }
 
-    public void addTeacher(Teacher teachers) {
-        teacherDao.insertTeacher(teachers);
+    public void addTeacher(Teacher teacher) {
+        teacherDao.insertTeacher(teacher);
+        if(teacher.getRank().equals("root")){
+            UserAddView user = new UserAddView();
+            user.setUserAccount(teacher.getTno());
+            user.setUserPassword(teacher.getTno().toString());
+            user.setUserType(2);
+            user.setUserStatus(1);
+            userDao.addUser(user);
+            System.out.println(user);
+        }
+
     }
 
     public void updateTeacherById(Integer id, Teacher teacher) {
@@ -92,7 +105,6 @@ public class TeacherService {
 //        teacherDao.insertTeacher();
 //        s(students);
         addTeachers(teachers);
-//        sheet.getRow()
         return true;
     }
 }
