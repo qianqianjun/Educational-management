@@ -112,7 +112,7 @@
     </update>
     <!--type domain-->
     <select id="getCoursePercent"  parameterType="buct.software.views.GradeManagementView" resultType="String">
-        select percent from Scheduling where semesterid=#{semesterId} and cno=#{cno}
+        select percent from scheduling where semesterid=#{semesterId} and cno=#{cno}
     </select>
 
     <resultMap id="CnoCname" type="buct.software.views.GradeManagementView">
