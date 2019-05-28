@@ -1,6 +1,7 @@
 package buct.software.controller;
 
 import buct.software.domain.Semester;
+import buct.software.domain.User;
 import buct.software.service.SemesterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,18 @@ import java.util.*;
 public class SemesterControllerPage {
     @Autowired
     SemesterService semesterService;
-
+    public boolean checkPower(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
+            return false;
+        }
+        return user.getType() == 2;
+    }
     @RequestMapping("/GoSemesterManage")
     public String semesterManage(Map<String, Object> parMap, HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         Semester currentSemesterInfo = semesterService.getCurrentSemesterInfo();
         request.setAttribute("currentSemesterInfo", currentSemesterInfo);
 //        parMap.put("currentSemesterInfo", currentSemesterInfo);
@@ -29,11 +39,14 @@ public class SemesterControllerPage {
     public String createNewSemester(@RequestParam("semesterid") Integer semesterId,
                                     @RequestParam("semester") String semester,
                                     @RequestParam("start") Date start,
-                                    @RequestParam("end") Date end) {
+                                    @RequestParam("end") Date end,HttpServletRequest request) {
         System.out.println(semesterId);
         System.out.println(semester);
         System.out.println(start);
         System.out.println(end);
+        if (checkPower(request) == false) {
+            return "error";
+        }
         if (semesterId.equals("") && semesterId == null) {
             return "error";
         }

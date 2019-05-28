@@ -2,6 +2,7 @@ package buct.software.views;
 
 import lombok.Data;
 
+import org.apache.ibatis.type.Alias;
 import org.omg.PortableInterceptor.INACTIVE;
 
 @Data
@@ -22,3 +23,4 @@ public class SchedulingView {
         this.capacity = capacity;
     }
 }
+

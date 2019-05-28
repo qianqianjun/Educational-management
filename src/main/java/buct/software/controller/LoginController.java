@@ -8,6 +8,7 @@ import buct.software.utils.UserAgentParser;
 import buct.software.views.SelectCourseView;
 import buct.software.views.StudentGradeIndexView;
 
+import buct.software.views.TeaCourseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +39,10 @@ public class LoginController {
     SelectCourseService selectCourseService;
     @Autowired
     SemesterService semesterService;
-
+    @Autowired
+    SchedulingService schedulingService;
+    @Autowired
+    CollegeService collegeService;
 
     /**
      * 登录页面网址，请求这个地址用于展现登录页面
@@ -82,14 +86,28 @@ public class LoginController {
                 return "student";
             }
             if (type == 1) {
+                int tno = user.getAccount();
+                List<TeaCourseView> teaCourseViews = schedulingService.getCourseInfoByTno(tno);
+                session.setAttribute("CourseTable",teaCourseViews);
+
+                parmMap.put("courseTable", teaCourseViews);//课表
+                Teacher teacher = teacherService.getTeacherByTno(tno);
+                parmMap.put("teainfo", teacher);
+                int cid = teacher.getCollegeId();
+                String colname = collegeService.getColnameById(cid);
+                parmMap.put("colname", colname);
+                if (platform.equals("mobile"))
+                    return "MobileTeacherHome";
                 return "teacher";
-            } else {
+            }
+            if(type==2){
                 if (platform.equals("mobile")) {
                     return "redirect:/GoMobileHomePage";
                 } else {
                     return "redirect:/GoHomePage";
                 }
             }
+            return "login";
         }
     }
 
@@ -178,10 +196,3 @@ public class LoginController {
         return "redirect:/index";
     }
 }
-
-
-//Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36
-//Mozilla/5.0 (Linux; Android 7.0; JMM-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Mobile Safari/537.36
-//Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Mobile/15E148 Safari/604.1
-
-

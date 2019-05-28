@@ -82,7 +82,7 @@
         <where>
             select_course.semesterid=semester.semesterid and course.cno = planning.cno
             and course.cno = select_course.cno and scheduling.cno = select_course.cno
-            and scheduling.tno = #{tno} and totalscore is not null
+            and scheduling.tno = #{tno}
             <if test="start == null">
                 and start in ('2016','2017','2018')
             </if>
@@ -112,7 +112,7 @@
     </update>
     <!--type domain-->
     <select id="getCoursePercent"  parameterType="buct.software.views.GradeManagementView" resultType="String">
-        select percent from Scheduling where semesterid=#{semesterId} and cno=#{cno}
+        select percent from scheduling where semesterid=#{semesterId} and cno=#{cno}
     </select>
 
     <resultMap id="CnoCname" type="buct.software.views.GradeManagementView">

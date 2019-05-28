@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<HTML lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>论题详情页面</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/selectcourse/vue.min.js"></script>
+    <script src="js/selectcourse/vue-resource.min.js"></script>
+    <script type="text/javascript" src="js/selectcourse/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/bootstrap.min.css" />
+    <script type="text/javascript" src="js/selectcourse/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/selectcourse/zftal-ui.css" />
+    <link href="css/selectcourse/selectcourse.css" rel="stylesheet" type="text/css">
     <style type="text/css">
         body{margin:0;padding:0}
         .top{height:50px;background: #7abaff}
@@ -14,34 +18,43 @@
         .foot{height:5%;background: wheat;margin:0 auto}
     </style>
 <body>
-<div class="top">
-    <h2 class="text-black-50 text-center">论题详情页面</h2>
-</div>
-<div class="up">
-    <button type="button" class="btn btn-default"><a href="TeaLookThroughQues" >查看论题</a></button>
-    <button type="button" class="btn btn-default"><a href="TeaAddScore" >成绩评定</a></button>
-    <button type="button" class="btn btn-default"><a href="TeaAddQues" >添加论题</a></button>
-</div>
-<div class="down">
-    <div class="panel panel-default">
-        <div class="alert alert-info" role="alert" >
-        <p th:text="${question.topic}"></p>
+<header class="navbar-inverse top2">
+    <div class="container" id="navbar_container">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only" style="gray;">论题详情</span>
+                </button>
+                <A class="navbar-brand" id="topbutton" href="">论题详情</A>
+            </div>
         </div>
-        <div>
-        <p th:text="${question.content}"></p>
+    </div>
+</header>
+<div class="down">
+    <div class="pre-scrollable " style="overflow:scroll;">
+        <div class="panel-heading">
+            <div class="alert alert-info" role="alert" style="padding-left:20px;">
+                <p th:text="${question.topic}"></p>
+            </div>
+            <div style="padding-left:20px;">
+                <p th:text="${question.content}"></p>
 
-            <!--<div class="text-right">-->
+                <!--<div class="text-right">-->
                 <!--<button type="button" class="btn btn-default">修改</button>-->
-            <!--</div>-->
+                <!--</div>-->
+            </div>
         </div>
     </div>
 </div>
-<div class="down">
-    <div class="panel panel-default" >      <!--row   pre-scrollable-->
-        <div class="panel-body ">
-                <table class="table table-striped table-bordered table-hover table-responsive"  style="min-width: 1000px;">
+<div id="bodyContainer" style="margin: 0px; padding: 0px; width: 100%;">
+    <div class="container container-func sl_all_bg" id="yhgnPage" >
+        <div class="pre-scrollable " style="overflow:scroll;">
+            <div class="panel panel-info"  >
+                <div class="panel-heading">&nbsp;</div>
+                <table class="table table-striped table-bordered table-hover table-responsive">
                     <thead>
                     <tr>
+                        <th>是否选中</th>
                         <th>学生名</th>
                         <th>学号</th>
                         <th>性别</th>
@@ -52,32 +65,33 @@
                     </thead>
                     <tbody>
                     <tr th:each="student:${students}">
+                        <td th:text="已被选中" th:if="${session.snoSured==student.sno}"></td>
+                        <td th:text="未被选中" th:if="${session.snoSured!=student.sno}"></td>
                         <td th:text="${student.sname}"> </td>
                         <td th:text="${student.sno}"></td>
                         <td th:text="${student.sex}"></td>
                         <td th:text="${student.major}"></td>
                         <td th:text="${student.klass}"></td>
+                        <!--<td th:text="${isSured}">-->
                         <td>
                             <form method="post" action="#" th:action="@{/sureQuesStu}">
                                 <input type="text" name="sno" th:value="${student.sno}" style="display:none;" />
                                 <input type="text" name="questionid" th:value="${question.questionid}" style="display:none;" />
-                                <input type="submit" name="sumbit" value="提交"  />
-
+                                <input type="submit" name="sumbit"  value="选择"  />
                             </form>
-
-
                         </td>
                     </tr>
                     </tbody>
                 </table>
+            </div>
         </div>
     </div>
 </div>
 <div class="down">
-    <p class="text-right"><a href="TeaLookThroughQues.html" >Come back »</a></p>
+    <p class="text-right"><a href="TeaLookThroughQues" >Come back »</a></p>
 </div>
-<div class="foot">
-    <h6>版权所有 帅气的张昊斌 </h6>
+<div id="footerID" class="footer">
+    版权所有&copy; Copyright 2016-2019 计科1601班
 </div>
 </body>
 <body>

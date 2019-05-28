@@ -1,6 +1,7 @@
 package buct.software.dao;
 
 import buct.software.domain.Teacher;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,6 +22,6 @@ public interface TeacherDao {
 
     public void updateTeacher(Teacher teacher);
 
-    public List<Teacher> getTeacherByTnoAndTname(Integer tno,String tname);
+    public List<Teacher> getTeacherByTnoAndTname(@Param("tno") Integer tno,@Param("tname") String tname);
 
 }

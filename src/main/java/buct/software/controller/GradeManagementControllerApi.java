@@ -13,7 +13,6 @@ import buct.software.service.CourseService;
 import buct.software.utils.ResponseMessage;
 
 import buct.software.views.GradeManagementView;
-import org.safehaus.uuid.UUIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -186,9 +185,6 @@ public class GradeManagementControllerApi {
         // MultipartFile to File
         multfile.transferTo(file);
 
-        /* 测试数据*/
-        tmpSemesterId = 1;
-        tmpcno = 1;
 
         if (fileName == null && "".equals(fileName)) {
             return "文件名不能为空！";

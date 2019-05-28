@@ -27,8 +27,19 @@ public class MobileBackstageControllerPage {
     @Autowired
     SemesterService semesterService;
 
+    public boolean checkPower(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
+            return false;
+        }
+        return user.getType() == 2;
+    }
+
     @RequestMapping("/GoMobileHomePage")
     public String goMobileHomePage(HttpServletRequest httpServletRequest,Map map) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         User user =(User) httpServletRequest.getSession().getAttribute("user");
         map.put("name",user.getTname());
         System.out.println(user);
@@ -42,6 +53,9 @@ public class MobileBackstageControllerPage {
 
     @RequestMapping("/GoPowerInfo")
     public String goPowInfo(HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         httpServletRequest.setAttribute("abnormal", powerService.getAbnormal());
         httpServletRequest.setAttribute("score", powerService.getScore());
         httpServletRequest.setAttribute("selectCourse", powerService.getSelectCourse());
@@ -56,6 +70,9 @@ public class MobileBackstageControllerPage {
      */
     @RequestMapping("/GoStudentInfo")
     public String goStudentInfo(HttpServletRequest request,Map<String,Object> map) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         List<Student> allStudent = studentService.getAllStudent();
 //        request.getSession().setAttribute("allStudent", allStudent);
         map.put("allStudent",allStudent);
@@ -66,6 +83,9 @@ public class MobileBackstageControllerPage {
 
     @RequestMapping("/mStudentPage")
     public String studentPage(Map<String, Object> map, HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         System.out.println();
         List<Student> allStudent = (List<Student>) request.getSession().getAttribute("allStudent");
 //        request.setAttribute("allStudent", allStudent);
@@ -76,6 +96,9 @@ public class MobileBackstageControllerPage {
 
     @RequestMapping("/GoTeachearInfo")
     public String goTeacherInfo(HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         List<Teacher> allTeacher = teacherService.getAllTeacher();
         request.getSession().setAttribute("allTeacher", allTeacher);
         return "forward:/mTeacherPage";
@@ -83,6 +106,9 @@ public class MobileBackstageControllerPage {
 
     @RequestMapping("/mTeacherPage")
     public String teacherPage(Map<String, Object> map, HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         List<Teacher> allTeacher = (List<Teacher>) request.getSession().getAttribute("allTeacher");
         map.put("allTeacher", allTeacher);
         request.setAttribute("allTeacher", allTeacher);
@@ -92,16 +118,25 @@ public class MobileBackstageControllerPage {
 
     @RequestMapping("/teacherSearch")
     public String teacherSearch(Map<String, Object> map, HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         return "teaSearch";
     }
 
     @RequestMapping("/studentSearch")
     public String studentSearch(Map<String, Object> map, HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         return "stuSearch";
     }
 
     @RequestMapping("/mobileSearchStudent")
     public String mobileSearchStudent(HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         String snoString = request.getParameter("sno");
         Integer sno = null;
         try {
@@ -118,6 +153,9 @@ public class MobileBackstageControllerPage {
 
     @RequestMapping("/mobileSearchTeacher")
     public String mobileSearchTeacher(HttpServletRequest request) {
+        if (checkPower(request) == false) {
+            return "error";
+        }
         String tname = request.getParameter("tname");
         Teacher teacher = new Teacher();
         teacher.setTname(tname);
@@ -129,6 +167,9 @@ public class MobileBackstageControllerPage {
     @RequestMapping("/addSemester")
     public String addSemester(HttpServletRequest request) {
 //        Object start = request.getAttribute("s_year")
+        if (checkPower(request) == false) {
+            return "error";
+        }
         String start = request.getParameter("start");
         String end = request.getParameter("end");
         String semester = request.getParameter("semester");
@@ -145,42 +186,63 @@ public class MobileBackstageControllerPage {
     }
 
     @RequestMapping("/GoSemesterInfo")
-    public String goSemesterInfo() {
+    public String goSemesterInfo(HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         return "couManage";
     }
 
     @RequestMapping("/OpenSelectCourse")
-    public String openSelectCourse() {
+    public String openSelectCourse(HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         powerService.openSelectCourse();
         return "forward:/GoPowerInfo";
     }
 
     @RequestMapping("/CloseSelectCourse")
-    public String closeSelectCourse() {
+    public String closeSelectCourse(HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         powerService.closeSelectCourse();
         return "forward:/GoPowerInfo";
     }
 
     @RequestMapping("/OpenScore")
-    public String openScore() {
+    public String openScore(HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         powerService.openScore();
         return "forward:/GoPowerInfo";
     }
 
     @RequestMapping("/CloseScore")
-    public String closeScore() {
+    public String closeScore(HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         powerService.closeScore();
         return "forward:/GoPowerInfo";
     }
 
     @RequestMapping("/OpenAbnormal")
-    public String openAbnormal() {
+    public String openAbnormal(HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         powerService.openAbnormal();
         return "forward:/GoPowerInfo";
     }
 
     @RequestMapping("/CloseAbnormal")
-    public String closeAbnormal() {
+    public String closeAbnormal(HttpServletRequest httpServletRequest) {
+        if (checkPower(httpServletRequest) == false) {
+            return "error";
+        }
         powerService.closeAbnormal();
         return "forward:/GoPowerInfo";
     }
