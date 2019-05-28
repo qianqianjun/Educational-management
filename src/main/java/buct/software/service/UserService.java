@@ -1,15 +1,10 @@
 package buct.software.service;
 
-import buct.software.dao.CollegeDao;
 import buct.software.dao.UserDao;
-import buct.software.domain.College;
 import buct.software.domain.User;
-import buct.software.utils.ResponseMessage;
-import org.apache.ibatis.io.ResolverUtil;
+import buct.software.views.UserAddView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author  高谦
@@ -41,5 +36,22 @@ public class UserService {
         else{
             return null;
         }
+    }
+    public Boolean upDateUserPassword(UserAddView userAddView,String newPassword){
+        User user = new User();
+        user.setAccount(userAddView.getUserAccount());
+        user.setPassword(userAddView.getUserPassword());
+        User login = userDao.Login(user);
+        if(login==null) {
+            return false;
+        } else{
+            userAddView.setUserPassword(newPassword);
+            userDao.updateUserPassword(userAddView);
+            return true;
+        }
+    }
+
+    public User getByAccount(Integer account){
+        return userDao.getByAccount(account);
     }
 }

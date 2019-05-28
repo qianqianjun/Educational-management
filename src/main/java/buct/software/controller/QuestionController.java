@@ -136,6 +136,7 @@ public class QuestionController {
         map.put("quesInfos",questions);
         return "ManageQues";
     }
+
     @RequestMapping(value = "/ManageQues",method = RequestMethod.POST)
     public String ManageQues(HttpServletRequest request,
                              @RequestParam("questionid")int questionid,
@@ -144,7 +145,6 @@ public class QuestionController {
         map.put("isDeleted",isDeleted);
         return "redirect:/ManageQues";
     }
-
 
 
     //Teacher
